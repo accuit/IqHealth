@@ -16,6 +16,10 @@ import {
   Validators,
   FormBuilder
 } from '@angular/forms';
+import { ConsultationComponent } from './consultation/consultation.component';
+import { AcademyComponent } from './academy/academy.component';
+import { BookTestComponent } from './book-test/book-test.component';
+import { ArticlesEventComponent } from './articles-event/articles-event.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +28,11 @@ import {
     PackageComponent,
     LoginComponent,
     ServicesComponent,
-    HomeComponent
+    HomeComponent,
+    ConsultationComponent,
+    AcademyComponent,
+    BookTestComponent,
+    ArticlesEventComponent
   ],
   imports: [
     BrowserModule,
