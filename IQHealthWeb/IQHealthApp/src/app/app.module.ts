@@ -20,6 +20,7 @@ import { ConsultationComponent } from './consultation/consultation.component';
 import { AcademyComponent } from './academy/academy.component';
 import { BookTestComponent } from './book-test/book-test.component';
 import { ArticlesEventComponent } from './articles-event/articles-event.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { ArticlesEventComponent } from './articles-event/articles-event.componen
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

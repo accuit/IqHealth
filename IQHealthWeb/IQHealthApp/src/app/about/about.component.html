@@ -47,13 +47,12 @@
                                 <input type="text" class="form-control" formControlName="name" placeholder="Patient Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Patient Name'" required>
                                 <input type="text" class="form-control" formControlName="phone" placeholder="Phone " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone'">
                                 <input type="email" class="form-control" formControlName="email" placeholder="Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'">
-                                <textarea formControlName="messege" class="" rows="5" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'"></textarea>
                                 <div class="text-center">
                                     <button type="submit" class="main_btn text-uppercase">Confirm Booking</button>
                                 </div>
                             </form>
                         </div>
-                        {{ this.feedbackForm.value | json}}
+                        {{ user | json}}
                     </div>
                 </div>
             </div>
