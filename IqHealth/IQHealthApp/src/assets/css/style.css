@@ -224,7 +224,7 @@ a {
 /*---------------------------------------------------- */
 /*----------------------------------------------------*/
 .top_menu {
-  background: #fff;
+  background:#f8f8f8;
   height: 40px;
   line-height: 16px; }
   .top_menu .float-left p {
@@ -277,7 +277,7 @@ a {
   z-index: 99;
   transition: background 0.4s, all 0.3s linear; }
   .header_area .main_menu {
-    background: #f8f8f8; }
+    background: #ffffff; }
   .header_area .navbar {
     padding: 0px;
     border: 0px;
@@ -660,55 +660,8 @@ a {
           border: 1px solid #3face4;
           outline: none; }
 
-/*End Appointment Area
-=========================================================================================== */
-/*Start Recent Blog Area
-=========================================================================================== */
-.single-recent-blog .thumb {
-  overflow: hidden; }
-  .single-recent-blog .thumb img {
-    width: 100%; }
-.single-recent-blog h4 {
-  font-weight: 600;
-  margin-top: 35px;
-  transition: all 300ms linear 0s; }
-.single-recent-blog a {
-  color: #222; }
-.single-recent-blog .name {
-  font-size: 13px;
-  font-weight: 100; }
-.single-recent-blog p {
-  text-align: left;
-  margin: 20px 0px;
-  max-width: 310px; }
-.single-recent-blog .bottom {
-  padding: 10px 0; }
-  .single-recent-blog .bottom span {
-    margin-left: 20px; }
-    .single-recent-blog .bottom span:first-child {
-      margin-left: 0; }
-@media (max-width: 991px) {
-  .single-recent-blog {
-    margin-bottom: 30px; }
-    .single-recent-blog .meta {
-      margin-top: 20px; } }
-@media (max-width: 767px) {
-  .single-recent-blog .meta {
-    margin-top: 0px; } }
-.single-recent-blog .f-img {
-  transition: all 300ms linear 0s; }
-.single-recent-blog:hover {
-  cursor: pointer; }
-  .single-recent-blog:hover h4 {
-    color: #3face4; }
-  .single-recent-blog:hover .f-img {
-    cursor: pointer;
-    transform: scale(1.05); }
+/*End Appointment Area*/
 
-/* end Recent Blog Area
-=========================================================================================== */
-/*---------------------------------------------------- */
-/*----------------------------------------------------*/
 /* Procedure Category
 ============================================================================================ */
 .procedure_category .categories_post .categories_details {
@@ -1264,197 +1217,7 @@ a {
   background-color: #3face4;
   border-color: #eee; }
 
-/*============ Start Blog Single Styles  =============*/
-.single-post-area .social-links {
-  padding-top: 10px; }
-  .single-post-area .social-links li {
-    display: inline-block;
-    margin-bottom: 10px; }
-    .single-post-area .social-links li a {
-      color: #cccccc;
-      padding: 7px;
-      font-size: 14px;
-      transition: all 0.2s linear; }
-      .single-post-area .social-links li a:hover {
-        color: #000000; }
-.single-post-area .blog_details {
-  padding-top: 26px; }
-  .single-post-area .blog_details p {
-    margin-bottom: 10px; }
-.single-post-area .quotes {
-  margin-top: 20px;
-  margin-bottom: 30px;
-  padding: 24px 35px 24px 30px;
-  background-color: white;
-  box-shadow: -20.84px 21.58px 30px 0px rgba(176, 176, 176, 0.1);
-  font-size: 14px;
-  line-height: 24px;
-  color: #777;
-  font-style: italic; }
-.single-post-area .arrow {
-  position: absolute; }
-  .single-post-area .arrow .lnr {
-    font-size: 20px;
-    font-weight: 600; }
-.single-post-area .thumb .overlay-bg {
-  background: rgba(0, 0, 0, 0.8); }
-.single-post-area .navigation-area {
-  border-top: 1px solid #eee;
-  padding-top: 30px;
-  margin-top: 60px; }
-  .single-post-area .navigation-area p {
-    margin-bottom: 0px; }
-  .single-post-area .navigation-area h4 {
-    font-size: 18px;
-    line-height: 25px;
-    color: #000000; }
-  .single-post-area .navigation-area .nav-left {
-    text-align: left; }
-    .single-post-area .navigation-area .nav-left .thumb {
-      margin-right: 20px;
-      background: #000; }
-      .single-post-area .navigation-area .nav-left .thumb img {
-        transition: all 300ms linear 0s; }
-    .single-post-area .navigation-area .nav-left .lnr {
-      margin-left: 20px;
-      opacity: 0;
-      transition: all 300ms linear 0s; }
-    .single-post-area .navigation-area .nav-left:hover .lnr {
-      opacity: 1; }
-    .single-post-area .navigation-area .nav-left:hover .thumb img {
-      opacity: .5; }
-    @media (max-width: 767px) {
-      .single-post-area .navigation-area .nav-left {
-        margin-bottom: 30px; } }
-  .single-post-area .navigation-area .nav-right {
-    text-align: right; }
-    .single-post-area .navigation-area .nav-right .thumb {
-      margin-left: 20px;
-      background: #000; }
-      .single-post-area .navigation-area .nav-right .thumb img {
-        transition: all 300ms linear 0s; }
-    .single-post-area .navigation-area .nav-right .lnr {
-      margin-right: 20px;
-      opacity: 0;
-      transition: all 300ms linear 0s; }
-    .single-post-area .navigation-area .nav-right:hover .lnr {
-      opacity: 1; }
-    .single-post-area .navigation-area .nav-right:hover .thumb img {
-      opacity: .5; }
-@media (max-width: 991px) {
-  .single-post-area .sidebar-widgets {
-    padding-bottom: 0px; } }
 
-.comments-area {
-  background: #fafaff;
-  border: 1px solid #eee;
-  padding: 50px 30px;
-  margin-top: 50px; }
-  @media (max-width: 414px) {
-    .comments-area {
-      padding: 50px 8px; } }
-  .comments-area h4 {
-    text-align: center;
-    margin-bottom: 50px;
-    color: #000000;
-    font-size: 18px; }
-  .comments-area h5 {
-    font-size: 16px;
-    margin-bottom: 0px; }
-  .comments-area a {
-    color: #000000; }
-  .comments-area .comment-list {
-    padding-bottom: 48px; }
-    .comments-area .comment-list:last-child {
-      padding-bottom: 0px; }
-    .comments-area .comment-list.left-padding {
-      padding-left: 25px; }
-    @media (max-width: 413px) {
-      .comments-area .comment-list .single-comment h5 {
-        font-size: 12px; }
-      .comments-area .comment-list .single-comment .date {
-        font-size: 11px; }
-      .comments-area .comment-list .single-comment .comment {
-        font-size: 10px; } }
-  .comments-area .thumb {
-    margin-right: 20px; }
-  .comments-area .date {
-    font-size: 13px;
-    color: #cccccc;
-    margin-bottom: 13px; }
-  .comments-area .comment {
-    color: #777777;
-    margin-bottom: 0px; }
-  .comments-area .btn-reply {
-    background-color: #fff;
-    color: #000000;
-    border: 1px solid #eee;
-    padding: 2px 18px;
-    font-size: 12px;
-    display: block;
-    font-weight: 600;
-    transition: all 300ms linear 0s; }
-    .comments-area .btn-reply:hover {
-      background-color: #3face4;
-      color: #fff; }
-
-.comment-form {
-  background: #fafaff;
-  text-align: center;
-  border: 1px solid #eee;
-  padding: 47px 30px 43px;
-  margin-top: 50px;
-  margin-bottom: 40px; }
-  .comment-form h4 {
-    text-align: center;
-    margin-bottom: 50px;
-    font-size: 18px;
-    line-height: 22px;
-    color: #000000; }
-  .comment-form .name {
-    padding-left: 0px; }
-    @media (max-width: 767px) {
-      .comment-form .name {
-        padding-right: 0px;
-        margin-bottom: 1rem; } }
-  .comment-form .email {
-    padding-right: 0px; }
-    @media (max-width: 991px) {
-      .comment-form .email {
-        padding-left: 0px; } }
-  .comment-form .form-control {
-    padding: 8px 20px;
-    background: #fff;
-    border: none;
-    border-radius: 0px;
-    width: 100%;
-    font-size: 14px;
-    color: #777777;
-    border: 1px solid transparent; }
-    .comment-form .form-control:focus {
-      box-shadow: none;
-      border: 1px solid #eee; }
-  .comment-form textarea.form-control {
-    height: 140px;
-    resize: none; }
-  .comment-form ::-webkit-input-placeholder {
-    /* Chrome/Opera/Safari */
-    font-size: 13px;
-    color: #777; }
-  .comment-form ::-moz-placeholder {
-    /* Firefox 19+ */
-    font-size: 13px;
-    color: #777; }
-  .comment-form :-ms-input-placeholder {
-    /* IE 10+ */
-    font-size: 13px;
-    color: #777; }
-  .comment-form :-moz-placeholder {
-    /* Firefox 18- */
-    font-size: 13px;
-    color: #777; }
-
-/*============ End Blog Single Styles  =============*/
 /*---------------------------------------------------- */
 /*----------------------------------------------------*/
 /* Reservation Form Area css

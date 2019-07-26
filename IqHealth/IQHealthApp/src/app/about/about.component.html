@@ -5,7 +5,6 @@
                     <div class="banner_content text-left">
                         <h2>About Us</h2>
                         <div class="page_link">
-                            <a href="index.html">Home</a>
                             <a href="about.html">About</a>
                         </div>
                     </div>
@@ -47,12 +46,13 @@
                                 <input type="text" class="form-control" formControlName="name" placeholder="Patient Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Patient Name'" required>
                                 <input type="text" class="form-control" formControlName="phone" placeholder="Phone " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone'">
                                 <input type="email" class="form-control" formControlName="email" placeholder="Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'">
+                                <textarea formControlName="messege" class="" rows="5" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'"></textarea>
                                 <div class="text-center">
                                     <button type="submit" class="main_btn text-uppercase">Confirm Booking</button>
                                 </div>
                             </form>
                         </div>
-                        {{ user | json}}
+                        {{ this.feedbackForm.value | json}}
                     </div>
                 </div>
             </div>

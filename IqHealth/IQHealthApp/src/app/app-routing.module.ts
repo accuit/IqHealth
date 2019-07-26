@@ -7,6 +7,8 @@ import { ConsultationComponent } from './consultation/consultation.component';
 import { BookTestComponent } from './book-test/book-test.component';
 import { AcademyComponent } from './academy/academy.component';
 import { ArticlesEventComponent } from './articles-event/articles-event.component';
+import { HealthPackagesComponent } from './health-packages/health-packages.component';
+import { ContactComponent } from './contact/contact.component';
 
 
 const routes: Routes = [
@@ -37,6 +39,14 @@ const routes: Routes = [
   {
     path: 'articles-and-event',
     component: ArticlesEventComponent
+  },
+  {
+    path: 'health-packages',
+    component: HealthPackagesComponent
+  },
+  {
+    path: 'contact',
+    component: ContactComponent
   },
 
 

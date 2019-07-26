@@ -20,7 +20,9 @@ import { ConsultationComponent } from './consultation/consultation.component';
 import { AcademyComponent } from './academy/academy.component';
 import { BookTestComponent } from './book-test/book-test.component';
 import { ArticlesEventComponent } from './articles-event/articles-event.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HealthPackagesComponent } from './health-packages/health-packages.component';
+import { ContactComponent } from './contact/contact.component';
+import { DoctorConsultationComponent } from './doctor-consultation/doctor-consultation.component';
 
 @NgModule({
   declarations: [
@@ -33,14 +35,16 @@ import { HttpClientModule } from '@angular/common/http';
     ConsultationComponent,
     AcademyComponent,
     BookTestComponent,
-    ArticlesEventComponent
+    ArticlesEventComponent,
+    HealthPackagesComponent,
+    ContactComponent,
+    DoctorConsultationComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
