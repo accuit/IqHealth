@@ -1,0 +1,7 @@
+.home_banner_area {
+    background: url(../../assets/img/contactus-banner.jpg) no-repeat center bottom;
+    position: relative;
+    z-index: 1;
+    height: 600px;
+
+}

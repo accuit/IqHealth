@@ -1,0 +1,39 @@
+.single_service {
+    text-align: justify;
+}
+
+.single_service .lnr {
+    font-size: 35px;
+    color: #3face4;
+}
+
+.single_service h4 {
+    transition: all 300ms linear 0s;
+    margin: 20px 0px;
+}
+
+.single_service p {
+    margin: 0;
+}
+
+.row {
+    display: grid
+}
+
+img {
+    float: right;
+}
+
+.single_service:hover {
+    cursor: pointer;
+}
+
+.single_service:hover h4 {
+    color: #3face4;
+}
+
+@media (max-width: 991px) {
+    .single_service {
+        margin-bottom: 30px;
+    }
+}

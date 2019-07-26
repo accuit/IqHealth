@@ -16,6 +16,13 @@ import {
   Validators,
   FormBuilder
 } from '@angular/forms';
+import { ConsultationComponent } from './consultation/consultation.component';
+import { AcademyComponent } from './academy/academy.component';
+import { BookTestComponent } from './book-test/book-test.component';
+import { ArticlesEventComponent } from './articles-event/articles-event.component';
+import { HealthPackagesComponent } from './health-packages/health-packages.component';
+import { ContactComponent } from './contact/contact.component';
+import { DoctorConsultationComponent } from './doctor-consultation/doctor-consultation.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +31,14 @@ import {
     PackageComponent,
     LoginComponent,
     ServicesComponent,
-    HomeComponent
+    HomeComponent,
+    ConsultationComponent,
+    AcademyComponent,
+    BookTestComponent,
+    ArticlesEventComponent,
+    HealthPackagesComponent,
+    ContactComponent,
+    DoctorConsultationComponent
   ],
   imports: [
     BrowserModule,
