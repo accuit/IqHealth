@@ -101,3 +101,4 @@ C:\PROJECTS\IqHealth\IqHealth\IqHealth.WebApi\bin\MySql.Data.EntityFramework.xml
 C:\PROJECTS\IqHealth\IqHealth\IqHealth.WebApi\bin\System.Web.Cors.dll
 C:\PROJECTS\IqHealth\IqHealth\IqHealth.WebApi\bin\System.Web.Http.Cors.dll
 C:\PROJECTS\IqHealth\IqHealth\IqHealth.WebApi\bin\System.Web.Http.Cors.xml
+C:\PROJECTS\IqHealth\IqHealth\IqHealth.WebApi\bin\IqHealth.WebApi.dll.config
