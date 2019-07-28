@@ -97,10 +97,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/28/2019 17:31:38</publishTime>
     </File>
     <File Include="bin/IqHealth.WebApi.dll">
-      <publishTime>07/28/2019 17:40:31</publishTime>
+      <publishTime>07/28/2019 18:46:40</publishTime>
     </File>
     <File Include="bin/IqHealth.WebApi.pdb">
-      <publishTime>07/28/2019 17:40:31</publishTime>
+      <publishTime>07/28/2019 18:46:40</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.TelemetryCorrelation.dll">
       <publishTime>07/27/2019 00:59:03</publishTime>

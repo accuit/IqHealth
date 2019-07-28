@@ -34,7 +34,7 @@ namespace IqHealth.WebApi.Controllers
                 return Request.CreateResponse(HttpStatusCode.NoContent, users);
         }
 
-        [HttpPost()]
+        [HttpPut()]
         [Route("login")]
         public IHttpActionResult UserLogin(UserLogin u)
         {
