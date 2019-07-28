@@ -1,5 +1,5 @@
-﻿using IqHealth.WebApi.Model;
-using IqHealth.WebApi.Model.DataModels;
+﻿using IqHealth.Data.Persistence;
+using IqHealth.Persistence.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,35 +15,58 @@ namespace IqHealth.WebApi.Controllers
     [RoutePrefix("api/user")]
     public class AccountController : ApiController
     {
-        private readonly IqHealthDBContext context = new IqHealthDBContext();
+        private readonly IqHealthDBContext _context;
+
+        public AccountController()
+        {
+            _context = new IqHealthDBContext();
+        }
 
         [HttpGet]
-        [Route("test-api")]
-        public string Get()
+        [Route("data")]
+        public HttpResponseMessage GetTestData()
         {
-            return "Welcome to IQHealth";
-        }
-
-        [HttpPost]
-        [Route("login")]
-        public User Post(UserLogin u)
-        {
-            if (!String.IsNullOrEmpty(u.username))
-                 return context.User.Where(x => x.Email.Contains(u.username) && (x.Password == u.password)).FirstOrDefault();
+            List<User> users = new List<User>();
+            users = _context.User.ToList();
+            if (users.Count > 0)
+                return Request.CreateResponse(HttpStatusCode.OK, users);
             else
-                return null;
+                return Request.CreateResponse(HttpStatusCode.NoContent, users);
         }
 
-
-        // PUT api/values/5
-        public void Put(int id, [FromBody]string value)
+        [HttpPost()]
+        [Route("login")]
+        public IHttpActionResult UserLogin(UserLogin u)
         {
+            var user = new User();
+            if (!String.IsNullOrEmpty(u.username))
+            {
+                user = _context.User.Where(x => x.Email.Contains(u.username) && (x.Password == u.password)).FirstOrDefault();
+                if (user != null)
+                    return Ok(user);
+                else
+                    return Unauthorized();
+            }
+            else
+                return NotFound();
         }
 
-        // DELETE api/values/5
-        public void Delete(int id)
+        [HttpPut]
+        [ResponseType(typeof(User))]
+        [Route("register")]
+        public IHttpActionResult RegisterUser(User user)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            _context.User.Add(user);
+            _context.SaveChanges();
+
+            return CreatedAtRoute("", new { id = user.ID }, user);
         }
+
     }
 }
 
