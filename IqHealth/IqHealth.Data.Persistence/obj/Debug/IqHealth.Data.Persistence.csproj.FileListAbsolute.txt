@@ -1,0 +1,13 @@
+C:\PROJECTS\IqHealth\IqHealth\IqHealth.Data.Persistence\bin\Debug\IqHealth.Data.Persistence.dll
+C:\PROJECTS\IqHealth\IqHealth\IqHealth.Data.Persistence\bin\Debug\IqHealth.Data.Persistence.pdb
+C:\PROJECTS\IqHealth\IqHealth\IqHealth.Data.Persistence\bin\Debug\EntityFramework.dll
+C:\PROJECTS\IqHealth\IqHealth\IqHealth.Data.Persistence\bin\Debug\MySql.Data.dll
+C:\PROJECTS\IqHealth\IqHealth\IqHealth.Data.Persistence\bin\Debug\MySql.Data.EntityFramework.dll
+C:\PROJECTS\IqHealth\IqHealth\IqHealth.Data.Persistence\bin\Debug\EntityFramework.xml
+C:\PROJECTS\IqHealth\IqHealth\IqHealth.Data.Persistence\bin\Debug\MySql.Data.xml
+C:\PROJECTS\IqHealth\IqHealth\IqHealth.Data.Persistence\bin\Debug\MySql.Data.EntityFramework.xml
+C:\PROJECTS\IqHealth\IqHealth\IqHealth.Data.Persistence\obj\Debug\IqHealth.Data.Persistence.csprojAssemblyReference.cache
+C:\PROJECTS\IqHealth\IqHealth\IqHealth.Data.Persistence\obj\Debug\IqHealth.Data.Persistence.csproj.CoreCompileInputs.cache
+C:\PROJECTS\IqHealth\IqHealth\IqHealth.Data.Persistence\obj\Debug\IqHealth.Data.Persistence.csproj.CopyComplete
+C:\PROJECTS\IqHealth\IqHealth\IqHealth.Data.Persistence\obj\Debug\IqHealth.Data.Persistence.dll
+C:\PROJECTS\IqHealth\IqHealth\IqHealth.Data.Persistence\obj\Debug\IqHealth.Data.Persistence.pdb
