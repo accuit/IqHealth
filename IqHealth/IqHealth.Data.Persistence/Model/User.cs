@@ -48,4 +48,10 @@ namespace IqHealth.Persistence.Models
 
         //public List<Login> Login { get; set; }
     }
+
+    public class UserLogin
+    {
+        public string username { get; set; }
+        public string password { get; set; }
+    }
 }

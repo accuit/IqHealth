@@ -41,7 +41,7 @@ namespace IqHealth.WebApi.Controllers
             var user = new User();
             if (!String.IsNullOrEmpty(u.username))
             {
-                user = _context.User.Where(x => x.Email.Contains(u.username) && (x.Password == u.password)).FirstOrDefault();
+                user = _context.User.Where(x => x.Email == u.username && x.Password == u.password).FirstOrDefault();
                 if (user != null)
                     return Ok(user);
                 else
