@@ -1,5 +1,5 @@
 ﻿using IqHealth.Data.Persistence;
-using IqHealth.Persistence.Models;
+using IqHealth.Data.Persistence.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;

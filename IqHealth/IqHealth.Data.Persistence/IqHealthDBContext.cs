@@ -1,4 +1,4 @@
-﻿using IqHealth.Persistence.Models;
+﻿using IqHealth.Data.Persistence.Model;
 using MySql.Data.EntityFramework;
 using System;
 using System.Collections.Generic;
@@ -13,6 +13,7 @@ namespace IqHealth.Data.Persistence
     public class IqHealthDBContext: DbContext
     {
         public DbSet<User> User { get; set; }
+        public DbSet<HealthServices> HealthServices { get; set; }
 
         public IqHealthDBContext()
             : base("IqHealthConnection")
