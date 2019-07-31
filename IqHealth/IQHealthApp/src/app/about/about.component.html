@@ -14,6 +14,66 @@
         <!--================End Banner Area =================-->
     
         <!-- Start Appointment Area -->
+        
+                    <!-- /*-----About us Start ================-----*/ -->
+                    <section class="about-us-area">
+                        <div class="container">
+                    <div id="colorlib-about">
+                        <div class="container">
+                        <div class="row">
+                        <div class="col-md-6 col-md-push-6 animate-box fadeInUp animated-fast">
+                        <img class="img-responsive about-img" src="../../assets/img/about.jpg" alt="">
+                        </div>
+                        <div class="col-md-6 col-md-pull-6 animate-box fadeInUp animated-fast">
+                        <h2>About Healthcare</h2>
+                        <p>
+                        Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.
+                        </p>
+                        <div class="fancy-collapse-panel">
+                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="collapsed">Our Mission
+                        </a>
+                        </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne" aria-expanded="false" style="height: 0px;">
+                        <div class="panel-body">
+                        <div class="row">
+                        <div class="col-md-6">
+                        <p>The Doctors Clinic is a leader in healthcare quality.
+                                Our mission is to provide excellent medical care in a family centered environment. We firmly embrace the concept of the medical home, a centralized base for caring for children and their entire family. Our philosophy is shared by all our staff, from physicians to the front desk. We value the relationships with our families, and enjoy caring for newborns through young adults. We are committed to continuously educating ourselves and incorporating the best of technology to provide excellent care. </p>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingTwo">
+                        <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Our Vission
+                        </a>
+                        </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo" aria-expanded="false">
+                        <div class="panel-body">
+                        <p>We strive to work with the community to improve the lives of our patients and their families. We provide clinical expertise to parents as well as other health professionals. We work professionally with our referring Doctors, to help them and look to them for their clinical expertise .</p>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+
+                    <!-- ======= Abouty us end======  -->
+
+        <!-- End Appointment Area -->
+    
+        <!--================ About Myself Area =================-->
         <section class="appointment-area">
             <div class="container">
                 <div class="row justify-content-between align-items-center appointment-wrap">
@@ -39,209 +99,8 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="col-lg-6 col-md-6 pt-60 pb-60">
-                        <div class="appointment-right">
-                            <form class="form-wrap" action="#" [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
-                                <h3 class="pb-20 text-center mb-20">Book an Appointment</h3>
-                                <input type="text" class="form-control" formControlName="name" placeholder="Patient Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Patient Name'" required>
-                                <input type="text" class="form-control" formControlName="phone" placeholder="Phone " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone'">
-                                <input type="email" class="form-control" formControlName="email" placeholder="Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'">
-                                <textarea formControlName="messege" class="" rows="5" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'"></textarea>
-                                <div class="text-center">
-                                    <button type="submit" class="main_btn text-uppercase">Confirm Booking</button>
-                                </div>
-                            </form>
-                        </div>
-                        {{ this.feedbackForm.value | json}}
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- End Appointment Area -->
-    
-        <!--================ About Myself Area =================-->
-        <section class="about_myself section_gap">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 pr-0">
-                        <div class="about_img">
-                            <img class="img-fluid w-100" src="img/about-me.jpg" alt="">
-                        </div>
-                    </div>
-    
-                    <div class="col-lg-6 pl-0">
-                        <div class="about_box">
-                            <div class="section-title-wrap text-left">
-                                <h1>About Myself</h1>
-                                <p>
-                                    nappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the
-                                    workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach.
-                                </p>
-                            </div>
-    
-                            <div class="activity">
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-6">
-                                        <div class="activity_box">
-                                            <div>
-                                                <i class="lnr lnr-database"></i>
-                                            </div>
-                                            <h3>$<span class="counter">2.5</span> M</h3>
-                                            <p>Total Donation</p>
-                                        </div>
-                                    </div>
-    
-                                    <div class="col-lg-6 col-md-6">
-                                        <div class="activity_box">
-                                            <div>
-                                                <i class="lnr lnr-book"></i>
-                                            </div>
-                                            <h3 class="counter">1465</h3>
-                                            <p>Total Project</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6">
-                                        <div class="activity_box">
-                                            <div>
-                                                <i class="lnr lnr-users"></i>
-                                            </div>
-                                            <h3 class="counter">3965</h3>
-                                            <p>Total Volunteers</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6">
-                                        <div class="activity_box">
-                                            <div>
-                                                <i class="lnr lnr-users"></i>
-                                            </div>
-                                            <h3 class="counter">3965</h3>
-                                            <p>Total Volunteers</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        
         <!--================ End About Myself Area =================-->
     
         <!-- Start Feedback Area -->
-        <section class="feedback_area section_gap relative">
-            <div class="container">
-                <div class="row justify-content-center section-title-wrap">
-                    <div class="col-lg-12">
-                        <h1>Enjoy our Client’s Feedback</h1>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        </p>
-                    </div>
-                </div>
-    
-                <div class="feedback_contents justify-content-center align-items-center">
-                    <div class="active-review-carusel owl-carousel">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <img src="img/feedback-bg.jpg" alt="">
-                            </div>
-    
-                            <div class="col-lg-6">
-                                <div class="single-feedback-carusel">
-                                    <div class="d-flex flex-row">
-                                        <h4 class="">Fannie Rowe</h4>
-                                        <div class="star">
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star"></span>
-                                        </div>
-                                    </div>
-                                    <p class="">
-                                        Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can
-                                        find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-    
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <img src="img/feedback-bg.jpg" alt="">
-                            </div>
-    
-                            <div class="col-lg-6">
-                                <div class="single-feedback-carusel">
-                                    <div class="d-flex flex-row">
-                                        <h4 class="">Fannie Rowe</h4>
-                                        <div class="star">
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star"></span>
-                                        </div>
-                                    </div>
-                                    <p class="">
-                                        Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can
-                                        find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-    
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <img src="img/feedback-bg.jpg" alt="">
-                            </div>
-    
-                            <div class="col-lg-6">
-                                <div class="single-feedback-carusel">
-                                    <div class="d-flex flex-row">
-                                        <h4 class="">Fannie Rowe</h4>
-                                        <div class="star">
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star"></span>
-                                        </div>
-                                    </div>
-                                    <p class="">
-                                        Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can
-                                        find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-    
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <img src="img/feedback-bg.jpg" alt="">
-                            </div>
-    
-                            <div class="col-lg-6">
-                                <div class="single-feedback-carusel">
-                                    <div class="d-flex flex-row">
-                                        <h4 class="">Fannie Rowe</h4>
-                                        <div class="star">
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star"></span>
-                                        </div>
-                                    </div>
-                                    <p class="">
-                                        Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker. Here you can
-                                        find the best computer accessory for your laptop, monitor, printer, scanner, speaker.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- End Feedback Area -->
+        

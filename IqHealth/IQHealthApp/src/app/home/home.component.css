@@ -1,0 +1,19 @@
+
+.home_banner_area {
+    height: 800px;}
+    .container {padding-top: 25px;}
+
+.about_myself .about_box {
+    background: #f9f9ff;
+    padding: 50px 31px 0px;}
+
+
+*, ::after, ::before {
+    box-sizing: border-box;}
+
+ p {text-align: justify;}
+
+ .img {
+    max-width: 80px;
+    height: 50px;
+}

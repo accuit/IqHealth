@@ -1,0 +1,66 @@
+.banner_area .banner_inner {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    min-height: 1000px;
+    background: url(../../assets/img/healthbanner.jpg) no-repeat center bottom;
+    background-size: auto;
+    z-index: 1;
+}
+
+
+@media (min-width: 1200px)
+.container {
+    max-width: 1170px;
+}
+@media (min-width: 1200px)
+.container {
+    max-width: 1140px;
+}
+@media (min-width: 992px)
+.container {
+    max-width: 960px;
+}
+@media (min-width: 768px)
+.container {
+    max-width: 720px;
+}
+@media (min-width: 576px)
+.container {
+    max-width: 540px;
+}
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+user agent stylesheet
+div {
+    display: block;
+}
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-top: 30px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+
+
+.appointment-area {
+    background: #ffffff;
+    position: relative;
+    z-index: 5;
+    padding-top: 40px;
+}
+
+
+p {text-align: justify; display: block;}
+
