@@ -18,9 +18,13 @@ namespace IqHealth.Data.Persistence.Model
         [StringLength(50)]
         public string Name { get; set; }
 
+        public string Description { get; set; }
+
         public string ImageUrl { get; set; }
 
         public string PageUrl { get; set; }
+
+        public int Type { get; set; }
 
         public DateTime CreatedDate { get; set; }
 
