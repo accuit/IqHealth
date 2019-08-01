@@ -4,7 +4,7 @@
     background-position: bottom;
     min-height: 900px;
     width: 100%;
-    background: url(../../assets/img/all banners/home 1.jpg)
+    background: url('../../assets/img/all banners/home 1.jpg')
 }
 
 .single_service {
@@ -50,8 +50,10 @@ img {
     color: #3face4;
 }
 
-@media (min-width: 1200px) .container {
-    max-width: 1170px;
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1170px;
+    }
 }
 
 div {
