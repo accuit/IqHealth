@@ -23,7 +23,6 @@ import { ArticlesEventComponent } from './articles-event/articles-event.componen
 import { HealthPackagesComponent } from './health-packages/health-packages.component';
 import { ContactComponent } from './contact/contact.component';
 import { DoctorConsultationComponent } from './doctor-consultation/doctor-consultation.component';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -48,7 +47,6 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
     FormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent
-  ]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

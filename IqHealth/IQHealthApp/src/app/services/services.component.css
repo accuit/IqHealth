@@ -1,3 +1,12 @@
+.banner_area .banner_inner {
+    position: relative;
+    overflow: hidden;
+    background-position: bottom;
+    min-height: 900px;
+    width: 100%;
+    background: url('../../assets/img/all banners/home 1.jpg')
+}
+
 .single_service {
     text-align: justify;
 }
@@ -17,11 +26,20 @@
 }
 
 .row {
-    display: grid
+    display: inline-block;
 }
 
 img {
     float: right;
+    padding: 2px;
+    margin-left: 90px;
+    margin-top: 50px;
+    border: groove;
+    border: block color 3;
+}
+
+.section_gap {
+    padding: 0px 40px;
 }
 
 .single_service:hover {
@@ -32,8 +50,32 @@ img {
     color: #3face4;
 }
 
-@media (max-width: 991px) {
-    .single_service {
-        margin-bottom: 30px;
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1170px;
     }
+}
+
+div {
+    display: inline-block;
+    padding: 20px;
+    text-align: initial;
+}
+
+p {
+    text-align: justify;
+}
+
+h2 {
+    text-justify: auto;
+    border-style: inherit;
+    color: steelblue;
+    text-align: center;
+}
+
+h1 {
+    text-justify: auto;
+    border-style: inherit;
+    color: black;
+    text-align: center;
 }
