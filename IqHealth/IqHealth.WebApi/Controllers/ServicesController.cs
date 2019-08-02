@@ -22,7 +22,7 @@ namespace IqHealth.WebApi.Controllers
         }
 
         [HttpGet()]
-        [Route("get")]
+        [Route("data")]
         public IHttpActionResult GetServices()
         {
             var services = new List<HealthServices>();
@@ -66,7 +66,7 @@ namespace IqHealth.WebApi.Controllers
             }
 
             _context.SaveChanges();
-            return CreatedAtRoute("", new { id = service.ID }, service);
+            return Ok(service);
         }
 
         private bool isDuplicateName(string name)

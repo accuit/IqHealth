@@ -14,6 +14,7 @@ namespace IqHealth.Data.Persistence
     {
         public DbSet<User> User { get; set; }
         public DbSet<HealthServices> HealthServices { get; set; }
+        public DbSet<Doctor> Doctor { get; set; }
 
         public IqHealthDBContext()
             : base("IqHealthConnection")

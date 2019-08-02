@@ -64,7 +64,7 @@ namespace IqHealth.WebApi.Controllers
             _context.User.Add(user);
             _context.SaveChanges();
 
-            return CreatedAtRoute("", new { id = user.ID }, user);
+            return Ok(user);
         }
 
     }

@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IqHealthDBContext.cs" />
+    <Compile Include="Model\Doctor.cs" />
     <Compile Include="Model\HealthServices.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
