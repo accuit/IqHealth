@@ -26,11 +26,11 @@ namespace IqHealth.Data.Persistence.Model
 
         public string Designation { get; set; }
 
-        public DateTime DateOfBirth { get; set; }
+        public DateTime? DateOfBirth { get; set; }
 
         public int Experience { get; set; }
 
-        public int Specialist { get; set; }
+        public string Specialist { get; set; }
 
         public string ImageUrl { get; set; }
 
@@ -42,10 +42,20 @@ namespace IqHealth.Data.Persistence.Model
 
         public string RegistrationNo { get; set; }
 
-        public DateTime CreatedDate { get; set; }
+        public DateTime? CreatedDate { get; set; }
 
-        public DateTime UpdatedDate { get; set; }
+        public DateTime? UpdatedDate { get; set; }
 
         public Boolean IsDeleted { get; set; }
+
+        [NotMapped]
+        public string CreatedDateStr { get; set; }
+
+        [NotMapped]
+        public string DateOfBirthStr { get; set; }
+
+        [NotMapped]
+        public string UpdatedDateStr { get; set; }
+
     }
 }

@@ -26,10 +26,16 @@ namespace IqHealth.Data.Persistence.Model
 
         public int Type { get; set; }
 
+        public string ServicesIncluded { get; set; }
+
+        [NotMapped]
+        public List<string> ServicesInclList { get; set; }
+
         public DateTime CreatedDate { get; set; }
 
         public DateTime? UpdatedDate { get; set; }
 
         public bool IsDeleted { get; set; }
+
     }
 }

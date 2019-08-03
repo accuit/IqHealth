@@ -28,7 +28,16 @@ namespace IqHealth.WebApi.Controllers
             var services = new List<HealthServices>();
             services = _context.HealthServices.Where(x => x.IsDeleted == false).ToList();
             if (services != null)
+            {
+                foreach (var item in services)
+                {
+                    item.ServicesInclList = new List<string>();
+                    if (!string.IsNullOrEmpty(item.ServicesIncluded))
+                        foreach (var i in item.ServicesIncluded.Split(','))
+                            item.ServicesInclList.Add(i.Trim(' '));
+                }
                 return Ok(services);
+            }
             else
                 return NotFound();
         }
@@ -42,16 +51,14 @@ namespace IqHealth.WebApi.Controllers
             {
                 return BadRequest(ModelState);
             }
-            string message = "";
             var serv = _context.HealthServices.Where(x => x.ID == service.ID).FirstOrDefault();
             if (serv == null)
             {
                 if (!isDuplicateName(service.Name))
                 {
                     _context.HealthServices.Add(service);
-                    return Content(HttpStatusCode.PreconditionFailed, "Service with this Name already exists. Try different name.");
+                    return Ok("Service with this Name already exists. Try different name.");
                 }
-                message = "Service successfully added.";
             }
             else
             {
@@ -60,9 +67,10 @@ namespace IqHealth.WebApi.Controllers
                 serv.ImageUrl = service.ImageUrl;
                 serv.PageUrl = service.PageUrl;
                 serv.Type = service.Type;
+                serv.ServicesIncluded = service.ServicesIncluded;
+                serv.Type = service.Type;
                 serv.UpdatedDate = DateTime.Now;
                 _context.Entry(serv).State = EntityState.Modified;
-                message = "Service successfully updated.";
             }
 
             _context.SaveChanges();

@@ -23,12 +23,15 @@ namespace IqHealth.WebApi.Controllers
 
         [HttpGet()]
         [Route("data")]
-        public IHttpActionResult GetServices()
+        public IHttpActionResult GetDoctors()
         {
-            var services = new List<Doctor>();
-            services = _context.Doctor.Where(x => x.IsDeleted == false).ToList();
-            if (services != null)
-                return Ok(services);
+            var doctors = new List<Doctor>();
+            doctors = _context.Doctor.Where(x => x.IsDeleted == false).ToList();
+            if (doctors != null)
+            {
+                //doctors = FormatData(doctors);
+                return Ok(doctors);
+            }
             else
                 return NotFound();
         }
@@ -42,7 +45,6 @@ namespace IqHealth.WebApi.Controllers
             {
                 return BadRequest(ModelState);
             }
-            string message = "";
             var docs = _context.Doctor.Where(x => x.ID == doc.ID).FirstOrDefault();
             if (docs == null)
             {
@@ -51,11 +53,10 @@ namespace IqHealth.WebApi.Controllers
                     _context.Doctor.Add(doc);
                     return Content(HttpStatusCode.OK, "Service with this Name already exists. Try different name.");
                 }
-                message = "Doctor details successfully added.";
             }
             else
             {
-                docs.FirstName = doc.LastName;
+                docs.FirstName = doc.FirstName;
                 docs.LastName = doc.LastName;
                 docs.ImageUrl = doc.ImageUrl;
                 docs.Email = doc.Email;
@@ -69,7 +70,6 @@ namespace IqHealth.WebApi.Controllers
                 docs.IsDeleted = doc.IsDeleted;
                 docs.UpdatedDate = DateTime.Now;
                 _context.Entry(docs).State = EntityState.Modified;
-                message = "Doctor details successfully updated.";
             }
 
             _context.SaveChanges();
@@ -105,6 +105,20 @@ namespace IqHealth.WebApi.Controllers
             }
 
             return Content(HttpStatusCode.OK, "No service found.");
+        }
+
+        private static List<Doctor> FormatData(List<Doctor> list)
+        {
+            List<Doctor> result = new List<Doctor>();
+
+            foreach(Doctor doc in list)
+            {
+                //doc.CreatedDateStr = doc.CreatedDate.ToShortDateString();
+                //doc.DateOfBirthStr = doc.DateOfBirth.ToShortDateString();
+                //doc.UpdatedDateStr = doc.UpdatedDate.ToShortDateString();
+            }
+
+            return result;
         }
 
     }
