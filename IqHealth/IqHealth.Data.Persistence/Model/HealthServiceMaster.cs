@@ -26,9 +26,9 @@ namespace IqHealth.Data.Persistence.Model
         [StringLength(1000)]
         public string PageUrl { get; set; }
 
-        //public DateTime? CreatedDate { get; set; }
+        public DateTime? CreatedDate { get; set; }
 
-        //public DateTime? UpdatedDate { get; set; }
+        public DateTime? UpdatedDate { get; set; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int IsDeleted { get; set; }

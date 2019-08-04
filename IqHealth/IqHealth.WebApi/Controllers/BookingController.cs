@@ -10,7 +10,7 @@ using System.Web.Http.Description;
 
 namespace IqHealth.WebApi.Controllers
 {
-    [RoutePrefix("api/booking")]
+    [RoutePrefix("api/bookings")]
     public class BookingController : ApiController
     {
         private readonly IqHealthDBContext _context;
@@ -73,7 +73,7 @@ namespace IqHealth.WebApi.Controllers
 
             _context.BookingMasters.Add(appointment);
             _context.SaveChanges();
-            return Ok(appointment);
+            return Ok(appointment.ID);
         }
 
 

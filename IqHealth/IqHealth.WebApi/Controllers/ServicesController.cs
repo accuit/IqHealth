@@ -42,6 +42,34 @@ namespace IqHealth.WebApi.Controllers
                 return NotFound();
         }
 
+        [HttpGet()]
+        [Route("all-tests", Name = "GetAllTests")]
+        public IHttpActionResult GetAllTests()
+        {
+            var tests = new List<TestMaster>();
+            tests = _context.TestMasters.Where(x => x.IsDeleted == 0).ToList();
+            if (tests != null)
+            {
+                return Ok(tests);
+            }
+            else
+                return Ok("No tests found.");
+        }
+
+        [HttpGet()]
+        [Route("all-packages", Name = "GetAllPackages")]
+        public IHttpActionResult GetAllPackages()
+        {
+            var tests = new List<PackageMaster>();
+            tests = _context.PackageMasters.Where(x => x.IsDeleted == 0).ToList();
+            if (tests != null)
+            {
+                return Ok(tests);
+            }
+            else
+                return Ok("No package found.");
+        }
+
         [HttpPut]
         [ResponseType(typeof(HealthServiceMaster))]
         [Route("submit", Name = "SubmitService")]
@@ -69,7 +97,7 @@ namespace IqHealth.WebApi.Controllers
                 serv.Type = service.Type;
                 serv.ServicesIncluded = service.ServicesIncluded;
                 serv.Type = service.Type;
-                //serv.UpdatedDate = DateTime.Now;
+                serv.UpdatedDate = DateTime.Now;
                 _context.Entry(serv).State = EntityState.Modified;
             }
 
