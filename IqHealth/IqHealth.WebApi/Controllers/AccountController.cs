@@ -12,7 +12,7 @@ using System.Web.Http.Description;
 
 namespace IqHealth.WebApi.Controllers
 {
-    [RoutePrefix("api/user")]
+    [RoutePrefix("api/users")]
     public class AccountController : ApiController
     {
         private readonly IqHealthDBContext _context;
@@ -26,24 +26,24 @@ namespace IqHealth.WebApi.Controllers
         [Route("data")]
         public HttpResponseMessage GetTestData()
         {
-            List<User> users = new List<User>();
-            users = _context.User.ToList();
-            if (users.Count > 0)
-                return Request.CreateResponse(HttpStatusCode.OK, users);
+            List<UserMaster> UserMasters = new List<UserMaster>();
+            UserMasters = _context.UserMasters.ToList();
+            if (UserMasters.Count > 0)
+                return Request.CreateResponse(HttpStatusCode.OK, UserMasters);
             else
-                return Request.CreateResponse(HttpStatusCode.NoContent, users);
+                return Request.CreateResponse(HttpStatusCode.NoContent, UserMasters);
         }
 
         [HttpPut()]
         [Route("login")]
-        public IHttpActionResult UserLogin(UserLogin u)
+        public IHttpActionResult UserMasterLogin(UserMasterLogin u)
         {
-            var user = new User();
+            var UserMaster = new UserMaster();
             if (!String.IsNullOrEmpty(u.username))
             {
-                user = _context.User.Where(x => x.Email == u.username && x.Password == u.password).FirstOrDefault();
-                if (user != null)
-                    return Ok(user);
+                UserMaster = _context.UserMasters.Where(x => x.Email == u.username && x.Password == u.password).FirstOrDefault();
+                if (UserMaster != null)
+                    return Ok(UserMaster);
                 else
                     return Unauthorized();
             }
@@ -52,20 +52,27 @@ namespace IqHealth.WebApi.Controllers
         }
 
         [HttpPut]
-        [ResponseType(typeof(User))]
+        [ResponseType(typeof(UserMaster))]
         [Route("register")]
-        public IHttpActionResult RegisterUser(User user)
+        public IHttpActionResult RegisterUserMaster(UserMaster UserMaster)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.User.Add(user);
+            _context.UserMasters.Add(UserMaster);
             _context.SaveChanges();
 
-            return Ok(user);
+            return Ok(UserMaster);
         }
+
+    }
+
+    public class UserMasterLogin
+    {
+        public string username { get; set; }
+        public string password { get; set; }
 
     }
 }

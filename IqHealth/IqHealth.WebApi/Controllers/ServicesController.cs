@@ -25,8 +25,8 @@ namespace IqHealth.WebApi.Controllers
         [Route("data")]
         public IHttpActionResult GetServices()
         {
-            var services = new List<HealthServices>();
-            services = _context.HealthServices.Where(x => x.IsDeleted == false).ToList();
+            var services = new List<HealthServiceMaster>();
+            services = _context.HealthServiceMasters.Where(x => x.IsDeleted == 0).ToList();
             if (services != null)
             {
                 foreach (var item in services)
@@ -43,20 +43,20 @@ namespace IqHealth.WebApi.Controllers
         }
 
         [HttpPut]
-        [ResponseType(typeof(HealthServices))]
+        [ResponseType(typeof(HealthServiceMaster))]
         [Route("submit", Name = "SubmitService")]
-        public IHttpActionResult SubmitService(HealthServices service)
+        public IHttpActionResult SubmitService(HealthServiceMaster service)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            var serv = _context.HealthServices.Where(x => x.ID == service.ID).FirstOrDefault();
+            var serv = _context.HealthServiceMasters.Where(x => x.ID == service.ID).FirstOrDefault();
             if (serv == null)
             {
                 if (!isDuplicateName(service.Name))
                 {
-                    _context.HealthServices.Add(service);
+                    _context.HealthServiceMasters.Add(service);
                     return Ok("Service with this Name already exists. Try different name.");
                 }
             }
@@ -69,7 +69,7 @@ namespace IqHealth.WebApi.Controllers
                 serv.Type = service.Type;
                 serv.ServicesIncluded = service.ServicesIncluded;
                 serv.Type = service.Type;
-                serv.UpdatedDate = DateTime.Now;
+                //serv.UpdatedDate = DateTime.Now;
                 _context.Entry(serv).State = EntityState.Modified;
             }
 
@@ -79,7 +79,7 @@ namespace IqHealth.WebApi.Controllers
 
         private bool isDuplicateName(string name)
         {
-            int count = _context.HealthServices.Where(x => x.Name == name).ToList().Count();
+            int count = _context.HealthServiceMasters.Where(x => x.Name == name).ToList().Count();
             if (count > 1)
                 return true;
             else
@@ -96,16 +96,29 @@ namespace IqHealth.WebApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            var service = _context.HealthServices.Where(x => x.ID == Id).FirstOrDefault();
+            var service = _context.HealthServiceMasters.Where(x => x.ID == Id).FirstOrDefault();
             if (service != null)
             {
-                service.IsDeleted = true;
+                service.IsDeleted = 1;
                 _context.Entry(service).State = EntityState.Modified;
                 _context.SaveChanges();
                 return Ok(true);
             }
 
             return Content(HttpStatusCode.NoContent, "No service found.");
+        }
+
+        [HttpGet()]
+        [Route("tests")]
+        public IHttpActionResult GetAppointments()
+        {
+            var appointments = new List<TestMaster>();
+            appointments = _context.TestMasters.ToList();
+            if (appointments != null)
+                return Ok(appointments);
+
+            else
+                return NotFound();
         }
 
     }

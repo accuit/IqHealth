@@ -25,8 +25,8 @@ namespace IqHealth.WebApi.Controllers
         [Route("data")]
         public IHttpActionResult GetDoctors()
         {
-            var doctors = new List<Doctor>();
-            doctors = _context.Doctor.Where(x => x.IsDeleted == false).ToList();
+            var doctors = new List<DoctorMaster>();
+            doctors = _context.DoctorMasters.Where(x => x.IsDeleted == 0).ToList();
             if (doctors != null)
             {
                 //doctors = FormatData(doctors);
@@ -37,20 +37,20 @@ namespace IqHealth.WebApi.Controllers
         }
 
         [HttpPut]
-        [ResponseType(typeof(Doctor))]
+        [ResponseType(typeof(DoctorMaster))]
         [Route("submit", Name = "SubmitDoctor")]
-        public IHttpActionResult SubmitDoctor(Doctor doc)
+        public IHttpActionResult SubmitDoctor(DoctorMaster doc)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            var docs = _context.Doctor.Where(x => x.ID == doc.ID).FirstOrDefault();
+            var docs = _context.DoctorMasters.Where(x => x.ID == doc.ID).FirstOrDefault();
             if (docs == null)
             {
                 if (!isDuplicateDocName(doc.FirstName, doc.LastName))
                 {
-                    _context.Doctor.Add(doc);
+                    _context.DoctorMasters.Add(doc);
                     return Content(HttpStatusCode.OK, "Service with this Name already exists. Try different name.");
                 }
             }
@@ -78,7 +78,7 @@ namespace IqHealth.WebApi.Controllers
 
         private bool isDuplicateDocName(string FirstName, string LastName)
         {
-            int count = _context.Doctor.Where(x => x.FirstName == FirstName && x.LastName == LastName).ToList().Count();
+            int count = _context.DoctorMasters.Where(x => x.FirstName == FirstName && x.LastName == LastName).ToList().Count();
             if (count > 1)
                 return true;
             else
@@ -95,10 +95,10 @@ namespace IqHealth.WebApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            var doctor = _context.Doctor.Where(x => x.ID == Id).FirstOrDefault();
+            var doctor = _context.DoctorMasters.Where(x => x.ID == Id).FirstOrDefault();
             if (doctor != null)
             {
-                doctor.IsDeleted = true;
+                doctor.IsDeleted = 1;
                 _context.Entry(doctor).State = EntityState.Modified;
                 _context.SaveChanges();
                 return Ok(true);
@@ -107,11 +107,11 @@ namespace IqHealth.WebApi.Controllers
             return Content(HttpStatusCode.OK, "No service found.");
         }
 
-        private static List<Doctor> FormatData(List<Doctor> list)
+        private static List<DoctorMaster> FormatData(List<DoctorMaster> list)
         {
-            List<Doctor> result = new List<Doctor>();
+            List<DoctorMaster> result = new List<DoctorMaster>();
 
-            foreach(Doctor doc in list)
+            foreach(DoctorMaster doc in list)
             {
                 //doc.CreatedDateStr = doc.CreatedDate.ToShortDateString();
                 //doc.DateOfBirthStr = doc.DateOfBirth.ToShortDateString();

@@ -8,34 +8,26 @@ using System.Threading.Tasks;
 
 namespace IqHealth.Data.Persistence.Model
 {
-    [Table("tbl_Health_Services")]
-    public class HealthServices
+    [Table("tbl_test_packages")]
+    public class Packages
     {
         [Key]
         public int ID { get; set; }
 
         [Required]
-        [StringLength(50)]
+        [StringLength(250)]
         public string Name { get; set; }
 
-        public string Description { get; set; }
+        public decimal Cost { get; set; }
 
-        public string ImageUrl { get; set; }
+        public decimal Status { get; set; }
 
-        public string PageUrl { get; set; }
-
-        public int Type { get; set; }
-
-        public string ServicesIncluded { get; set; }
-
-        [NotMapped]
-        public List<string> ServicesInclList { get; set; }
-
-        public DateTime CreatedDate { get; set; }
+        public DateTime? CreatedDate { get; set; }
 
         public DateTime? UpdatedDate { get; set; }
 
         public bool IsDeleted { get; set; }
 
+        //public ICollection<MedicalTests> MedicalTests { get; set; }
     }
 }

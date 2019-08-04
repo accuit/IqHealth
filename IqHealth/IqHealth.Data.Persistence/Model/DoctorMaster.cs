@@ -8,54 +8,55 @@ using System.Threading.Tasks;
 
 namespace IqHealth.Data.Persistence.Model
 {
-    [Table("tbl_Doctors")]
-    public class Doctor
+    [Table("DoctorMaster")]
+    public partial class DoctorMaster
     {
-        [Key]
         public int ID { get; set; }
 
         [Required]
         [StringLength(50)]
         public string FirstName { get; set; }
 
+        [Required]
+        [StringLength(50)]
         public string LastName { get; set; }
-
-        public string Email { get; set; }
-
-        public string Mobile { get; set; }
-
-        public string Designation { get; set; }
 
         public DateTime? DateOfBirth { get; set; }
 
         public int Experience { get; set; }
 
+        [StringLength(250)]
         public string Specialist { get; set; }
 
+        [StringLength(1000)]
         public string ImageUrl { get; set; }
 
+        [StringLength(150)]
         public string Hospital { get; set; }
 
+        [StringLength(250)]
+        public string Designation { get; set; }
+
+        [StringLength(500)]
         public string About { get; set; }
 
+        [StringLength(1000)]
         public string LogoUrl { get; set; }
 
-        public string RegistrationNo { get; set; }
+        public int IsDeleted { get; set; }
 
-        public DateTime? CreatedDate { get; set; }
+        public DateTime CreatedDate { get; set; }
 
         public DateTime? UpdatedDate { get; set; }
 
-        public Boolean IsDeleted { get; set; }
+        [Required]
+        [StringLength(15)]
+        public string Mobile { get; set; }
 
-        [NotMapped]
-        public string CreatedDateStr { get; set; }
+        [StringLength(250)]
+        public string Email { get; set; }
 
-        [NotMapped]
-        public string DateOfBirthStr { get; set; }
-
-        [NotMapped]
-        public string UpdatedDateStr { get; set; }
-
+        [StringLength(45)]
+        public string RegistrationNo { get; set; }
     }
 }
