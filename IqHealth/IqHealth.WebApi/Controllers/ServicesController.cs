@@ -70,7 +70,7 @@ namespace IqHealth.WebApi.Controllers
                 return Ok("No package found.");
         }
 
-        [HttpPut]
+        [HttpPost]
         [ResponseType(typeof(HealthServiceMaster))]
         [Route("submit", Name = "SubmitService")]
         public IHttpActionResult SubmitService(HealthServiceMaster service)
@@ -136,7 +136,7 @@ namespace IqHealth.WebApi.Controllers
             return Content(HttpStatusCode.NoContent, "No service found.");
         }
 
-        [HttpGet()]
+        [HttpGet]
         [Route("tests")]
         public IHttpActionResult GetAppointments()
         {

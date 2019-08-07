@@ -6,10 +6,12 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 
 namespace IqHealth.WebApi.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     [RoutePrefix("api/bookings")]
     public class BookingController : ApiController
     {
@@ -18,6 +20,15 @@ namespace IqHealth.WebApi.Controllers
         public BookingController()
         {
             _context = new IqHealthDBContext();
+        }
+
+        [HttpPost]
+        [Route("cors")]
+        public IHttpActionResult TestCors()
+        {
+            var appointments = new List<BookingMaster>();
+            appointments = _context.BookingMasters.ToList();
+            return Ok(appointments);
         }
 
         [HttpGet()]
@@ -33,7 +44,7 @@ namespace IqHealth.WebApi.Controllers
                 return NotFound();
         }
 
-        [HttpPut()]
+        [HttpPost]
         [Route("search")]
         public IHttpActionResult SearchBookings(BookingMaster appointment)
         {
@@ -61,7 +72,7 @@ namespace IqHealth.WebApi.Controllers
 
         }
 
-        [HttpPut]
+        [HttpPost]
         [ResponseType(typeof(BookingMaster))]
         [Route("add", Name = "AddBooking")]
         public IHttpActionResult AddBooking(BookingMaster appointment)
