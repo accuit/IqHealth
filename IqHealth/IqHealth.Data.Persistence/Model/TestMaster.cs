@@ -9,6 +9,7 @@ namespace IqHealth.Data.Persistence.Model
     [Table("TestMaster")]
     public partial class TestMaster
     {
+        
         public int ID { get; set; }
 
         [Required]
@@ -36,5 +37,7 @@ namespace IqHealth.Data.Persistence.Model
         public int IsDeleted { get; set; }
 
         public int? PackageID { get; set; }
+
+        public virtual PackageMaster PackageMaster { get; set; }
     }
 }

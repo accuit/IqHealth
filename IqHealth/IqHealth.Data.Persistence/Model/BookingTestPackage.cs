@@ -16,5 +16,9 @@ namespace IqHealth.Data.Persistence.Model
         public int? TestID { get; set; }
 
         public int? PackageID { get; set; }
+
+        public virtual BookingMaster BookingMaster { get; set; }
+
+        public virtual PackageMaster PackageMaster { get; set; }
     }
 }

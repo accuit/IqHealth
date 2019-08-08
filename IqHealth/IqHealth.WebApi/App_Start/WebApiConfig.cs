@@ -11,6 +11,11 @@ namespace IqHealth.WebApi
     {
         public static void Register(HttpConfiguration config)
         {
+            var json = config.Formatters.JsonFormatter;
+            json.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.Objects;
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
+
+
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(

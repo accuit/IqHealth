@@ -1,4 +1,5 @@
 ﻿using IqHealth.Data.Persistence;
+using IqHealth.Data.Persistence.DTO;
 using IqHealth.Data.Persistence.Model;
 using System;
 using System.Collections.Generic;
@@ -56,12 +57,35 @@ namespace IqHealth.WebApi.Controllers
                 return Ok("No tests found.");
         }
 
-        [HttpGet()]
+        [HttpGet]
         [Route("all-packages", Name = "GetAllPackages")]
         public IHttpActionResult GetAllPackages()
         {
-            var tests = new List<PackageMaster>();
-            tests = _context.PackageMasters.Where(x => x.IsDeleted == 0).ToList();
+
+            var Categories = _context.PackageCategories.ToList();
+            //foreach (var catg in Categories)
+            //{
+            //    HealthTestPackageDTO dto = new HealthTestPackageDTO();
+            //    dto.PackageCategory = catg;
+            //    dto.PackageMasters = _context.PackageMasters.Where(x => x.CatgID == catg.ID && x.IsDeleted == 0).ToList();
+
+            //    response.Add(dto);
+            //}
+
+            if (Categories != null)
+            {
+                return Ok(Categories);
+            }
+            else
+                return Ok("No package found.");
+        }
+
+        [HttpGet()]
+        [Route("packages", Name = "GetAllPackagesCategories")]
+        public IHttpActionResult GetAllPackagesCategories()
+        {
+            var tests = new List<PackageCategory>();
+            tests = _context.PackageCategories.ToList();
             if (tests != null)
             {
                 return Ok(tests);

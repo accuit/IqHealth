@@ -11,6 +11,12 @@ namespace IqHealth.Data.Persistence.Model
     [Table("DoctorMaster")]
     public partial class DoctorMaster
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public DoctorMaster()
+        {
+            DoctorAppointments = new HashSet<DoctorAppointment>();
+        }
+
         public int ID { get; set; }
 
         [Required]
@@ -58,5 +64,8 @@ namespace IqHealth.Data.Persistence.Model
 
         [StringLength(45)]
         public string RegistrationNo { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DoctorAppointment> DoctorAppointments { get; set; }
     }
 }
