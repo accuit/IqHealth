@@ -9,6 +9,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
+using System.Web.Http.Results;
 
 namespace IqHealth.WebApi.Controllers
 {
@@ -24,10 +25,10 @@ namespace IqHealth.WebApi.Controllers
 
         [HttpGet()]
         [Route("data")]
-        public IHttpActionResult GetServices()
+        public JsonResponse<List<HealthServiceMaster>> GetServices()
         {
-            var services = new List<HealthServiceMaster>();
-            services = _context.HealthServiceMasters.Where(x => x.IsDeleted == 0).ToList();
+            JsonResponse<List<HealthServiceMaster>> response = new JsonResponse<List<HealthServiceMaster>>();
+            var services = _context.HealthServiceMasters.Where(x => x.IsDeleted == 0).ToList();
             if (services != null)
             {
                 foreach (var item in services)
@@ -37,62 +38,71 @@ namespace IqHealth.WebApi.Controllers
                         foreach (var i in item.ServicesIncluded.Split(','))
                             item.ServicesInclList.Add(i.Trim(' '));
                 }
-                return Ok(services);
+                response.StatusCode = "200";
+                response.IsSuccess = true;
+                response.Message = "Data collected.";
             }
             else
-                return NotFound();
+            {
+                response.StatusCode = "500";
+                response.IsSuccess = true;
+                response.Message = "Something went wrong! Contact administrator.";
+            }
+
+            response.SingleResult = services;
+            return response;
         }
 
         [HttpGet()]
         [Route("all-tests", Name = "GetAllTests")]
-        public IHttpActionResult GetAllTests()
+        public JsonResponse<List<TestMaster>> GetAllTests()
         {
-            var tests = new List<TestMaster>();
-            tests = _context.TestMasters.Where(x => x.IsDeleted == 0).ToList();
+            JsonResponse<List<TestMaster>> response = new JsonResponse<List<TestMaster>>();
+            
+            var tests = _context.TestMasters.Where(x => x.IsDeleted == 0).ToList();
             if (tests != null)
             {
-                return Ok(tests);
+                response.StatusCode = "200";
+                response.IsSuccess = true;
+                response.Message = "Data collected.";
             }
             else
-                return Ok("No tests found.");
+            {
+                response.StatusCode = "500";
+                response.IsSuccess = true;
+                response.Message = "Something went wrong! Contact administrator.";
+            }             
+
+            response.SingleResult = tests;
+            return response;
+            
         }
 
         [HttpGet]
         [Route("all-packages", Name = "GetAllPackages")]
-        public IHttpActionResult GetAllPackages()
+        public JsonResponse<List<PackageCategory>> GetAllPackages()
         {
 
-            var Categories = _context.PackageCategories.ToList();
-            //foreach (var catg in Categories)
-            //{
-            //    HealthTestPackageDTO dto = new HealthTestPackageDTO();
-            //    dto.PackageCategory = catg;
-            //    dto.PackageMasters = _context.PackageMasters.Where(x => x.CatgID == catg.ID && x.IsDeleted == 0).ToList();
+            JsonResponse<List<PackageCategory>> response = new JsonResponse<List<PackageCategory>>();
+            List<PackageCategory> categories = _context.PackageCategories.ToList();
 
-            //    response.Add(dto);
-            //}
-
-            if (Categories != null)
+            foreach (var catg in categories)
             {
-                return Ok(Categories);
+                catg.PackageMasters = _context.PackageMasters.Where(x => x.CatgID == catg.ID && x.IsDeleted == 0).ToList();
+                foreach (var test in catg.PackageMasters)
+                {
+                    test.TestMasters = _context.TestMasters.Where(x => x.PackageID == test.ID).ToList();
+                }
             }
-            else
-                return Ok("No package found.");
+
+            response.SingleResult = categories;
+            response.StatusCode = "200";
+            response.Message = "Data collected.";
+            response.IsSuccess = true;
+
+            return response;
         }
 
-        [HttpGet()]
-        [Route("packages", Name = "GetAllPackagesCategories")]
-        public IHttpActionResult GetAllPackagesCategories()
-        {
-            var tests = new List<PackageCategory>();
-            tests = _context.PackageCategories.ToList();
-            if (tests != null)
-            {
-                return Ok(tests);
-            }
-            else
-                return Ok("No package found.");
-        }
 
         [HttpPost]
         [ResponseType(typeof(HealthServiceMaster))]

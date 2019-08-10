@@ -45,6 +45,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -54,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTO\HealthTestPackageDTO.cs" />
+    <Compile Include="DTO\Response.cs" />
     <Compile Include="IqHealthDBContext.cs" />
     <Compile Include="Model\BookingMaster.cs" />
     <Compile Include="Model\BookingTestPackage.cs" />

@@ -10,3 +10,4 @@ C:\PROJECTS\IqHealth\IqHealth\IqHealth.Data.Persistence\obj\Debug\IqHealth.Data.
 C:\PROJECTS\IqHealth\IqHealth\IqHealth.Data.Persistence\obj\Debug\IqHealth.Data.Persistence.csproj.CopyComplete
 C:\PROJECTS\IqHealth\IqHealth\IqHealth.Data.Persistence\obj\Debug\IqHealth.Data.Persistence.dll
 C:\PROJECTS\IqHealth\IqHealth\IqHealth.Data.Persistence\obj\Debug\IqHealth.Data.Persistence.pdb
+C:\PROJECTS\IqHealth\IqHealth\IqHealth.Data.Persistence\obj\Debug\IqHealth.Data.Persistence.csprojAssemblyReference.cache

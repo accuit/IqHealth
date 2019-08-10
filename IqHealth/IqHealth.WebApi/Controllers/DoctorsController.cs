@@ -1,4 +1,5 @@
 ﻿using IqHealth.Data.Persistence;
+using IqHealth.Data.Persistence.DTO;
 using IqHealth.Data.Persistence.Model;
 using System;
 using System.Collections.Generic;
@@ -23,17 +24,26 @@ namespace IqHealth.WebApi.Controllers
 
         [HttpGet()]
         [Route("data")]
-        public IHttpActionResult GetDoctors()
+        public JsonResponse<List<DoctorMaster>> GetDoctors()
         {
-            var doctors = new List<DoctorMaster>();
-            doctors = _context.DoctorMasters.Where(x => x.IsDeleted == 0).ToList();
+            JsonResponse<List<DoctorMaster>> response = new JsonResponse<List<DoctorMaster>>();
+
+            List<DoctorMaster> doctors = _context.DoctorMasters.Where(x => x.IsDeleted == 0).ToList();
             if (doctors != null)
             {
-                //doctors = FormatData(doctors);
-                return Ok(doctors);
+                response.StatusCode = "200";
+                response.IsSuccess = true;
+                response.Message = "Data collected.";
             }
             else
-                return NotFound();
+            {
+                response.StatusCode = "500";
+                response.IsSuccess = true;
+                response.Message = "Something went wrong! Contact administrator.";
+            }
+            response.SingleResult = doctors;
+
+            return response;
         }
 
         [HttpPut]
@@ -111,7 +121,7 @@ namespace IqHealth.WebApi.Controllers
         {
             List<DoctorMaster> result = new List<DoctorMaster>();
 
-            foreach(DoctorMaster doc in list)
+            foreach (DoctorMaster doc in list)
             {
                 //doc.CreatedDateStr = doc.CreatedDate.ToShortDateString();
                 //doc.DateOfBirthStr = doc.DateOfBirth.ToShortDateString();
