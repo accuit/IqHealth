@@ -54,6 +54,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AspectEnums.cs" />
+    <Compile Include="DTO\EmailNotification.cs" />
     <Compile Include="DTO\HealthTestPackageDTO.cs" />
     <Compile Include="DTO\Response.cs" />
     <Compile Include="IqHealthDBContext.cs" />
