@@ -47,43 +47,59 @@ namespace IqHealth.WebApi.Controllers
         }
 
         [HttpPut]
-        [ResponseType(typeof(DoctorMaster))]
-        [Route("submit", Name = "SubmitDoctor")]
-        public IHttpActionResult SubmitDoctor(DoctorMaster doc)
+        [Route("submit")]
+        public JsonResponse<int> SubmitDoctor(DoctorMaster doc)
         {
+            JsonResponse<int> response = new JsonResponse<int>();
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                response.IsSuccess = false;
+                response.Message = "Model validation failed.";
+                return response;
             }
-            var docs = _context.DoctorMasters.Where(x => x.ID == doc.ID).FirstOrDefault();
-            if (docs == null)
+            try
             {
-                if (!isDuplicateDocName(doc.FirstName, doc.LastName))
+                var docs = _context.DoctorMasters.Where(x => x.ID == doc.ID).FirstOrDefault();
+                if (docs == null)
                 {
-                    _context.DoctorMasters.Add(doc);
-                    return Content(HttpStatusCode.OK, "Service with this Name already exists. Try different name.");
+                    if (!isDuplicateDocName(doc.FirstName, doc.LastName))
+                    {
+                        _context.DoctorMasters.Add(doc);
+                        response.IsSuccess = _context.SaveChanges() > 0 ? true : false;
+                        response.Message = "Your appointment with Dr. " + doc.FirstName + " is fixed.";
+                    }
+                }
+                else
+                {
+                    docs.FirstName = doc.FirstName;
+                    docs.LastName = doc.LastName;
+                    docs.ImageUrl = doc.ImageUrl;
+                    docs.Email = doc.Email;
+                    docs.Mobile = doc.Mobile;
+                    docs.Designation = doc.Designation;
+                    docs.Experience = doc.Experience;
+                    docs.Specialist = doc.Specialist;
+                    docs.Hospital = doc.Hospital;
+                    docs.LogoUrl = doc.LogoUrl;
+                    docs.RegistrationNo = doc.RegistrationNo;
+                    docs.IsDeleted = doc.IsDeleted;
+                    docs.UpdatedDate = DateTime.Now;
+                    _context.Entry(docs).State = EntityState.Modified;
+                    response.StatusCode = "200";
+                    response.IsSuccess = _context.SaveChanges() > 0 ? true : false;
+                    response.Message = "Your appointment with Dr. " + doc.FirstName + " is updated.";
                 }
             }
-            else
+            catch(Exception ex)
             {
-                docs.FirstName = doc.FirstName;
-                docs.LastName = doc.LastName;
-                docs.ImageUrl = doc.ImageUrl;
-                docs.Email = doc.Email;
-                docs.Mobile = doc.Mobile;
-                docs.Designation = doc.Designation;
-                docs.Experience = doc.Experience;
-                docs.Specialist = doc.Specialist;
-                docs.Hospital = doc.Hospital;
-                docs.LogoUrl = doc.LogoUrl;
-                docs.RegistrationNo = doc.RegistrationNo;
-                docs.IsDeleted = doc.IsDeleted;
-                docs.UpdatedDate = DateTime.Now;
-                _context.Entry(docs).State = EntityState.Modified;
+                response.StatusCode = "500";
+                response.IsSuccess = _context.SaveChanges() > 0 ? true : false;
+                response.Message = "Your appointment with Dr. " + doc.FirstName + " is updated.";
             }
+           
 
-            _context.SaveChanges();
-            return Ok(doc);
+
+            return response;
         }
 
         private bool isDuplicateDocName(string FirstName, string LastName)

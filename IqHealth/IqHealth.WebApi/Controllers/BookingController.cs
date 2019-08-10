@@ -1,4 +1,5 @@
 ﻿using IqHealth.Data.Persistence;
+using IqHealth.Data.Persistence.DTO;
 using IqHealth.Data.Persistence.Model;
 using System;
 using System.Collections.Generic;
@@ -68,25 +69,77 @@ namespace IqHealth.WebApi.Controllers
             else
                 return Ok("No booking found with data.");
             return Ok(appointments);
-
-
         }
 
+
         [HttpPost]
-        [ResponseType(typeof(BookingMaster))]
-        [Route("add", Name = "AddBooking")]
-        public IHttpActionResult AddBooking(BookingMaster appointment)
+        [Route("add")]
+        public JsonResponse<int> AddBooking(BookingMaster appointment)
         {
+            JsonResponse<int> response = new JsonResponse<int>();
+
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                response.IsSuccess = false;
+                response.Message = "Model validation failed.";
+                return response;
             }
 
             _context.BookingMasters.Add(appointment);
-            _context.SaveChanges();
-            return Ok(appointment.ID);
+            response.IsSuccess = _context.SaveChanges() > 0 ? true : false;
+
+            if (response.IsSuccess)
+            {
+                response.Message = "Data submitted successfully.";
+                response.SingleResult = appointment.ID;
+            }
+            return response;
         }
 
+        [HttpGet]
+        [Route("doctor-appointments")]
+        public JsonResponse<List<DoctorAppointment>> GetDoctorAppointment()
+        {
+            JsonResponse<List<DoctorAppointment>> response = new JsonResponse<List<DoctorAppointment>>();
+
+            response.SingleResult = _context.DoctorAppointments.Where(x => x.IsDeleted == 0).ToList();
+            response.StatusCode = "200";
+            response.Message =  "Appointment records are fetched successfully.";
+
+            return response;
+        }
+
+        [HttpPost]
+        [Route("new-appointment")]
+        public JsonResponse<int> AddDoctorAppointment(DoctorAppointment appointment)
+        {
+            JsonResponse<int> response = new JsonResponse<int>();
+
+            if (!ModelState.IsValid)
+            {
+                response.IsSuccess = false;
+                response.Message = "Model validation failed.";
+                return response;
+            }
+
+            _context.DoctorAppointments.Add(appointment);
+            response.IsSuccess = _context.SaveChanges() > 0 ? true : false;
+
+
+            if (response.IsSuccess)
+            {
+                response.StatusCode = "200";
+                response.Message = "Data submitted successfully.";
+            }
+            else
+            {
+                response.StatusCode = "500";
+                response.Message = "Something went wrong!.";
+            }
+
+            response.SingleResult = appointment.ID;
+            return response;
+        }
 
     }
 }

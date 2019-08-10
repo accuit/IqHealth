@@ -21,14 +21,12 @@ namespace IqHealth.Data.Persistence
         }
 
         public virtual DbSet<BookingMaster> BookingMasters { get; set; }
-        public virtual DbSet<BookingTestPackage> BookingTestPackages { get; set; }
         public virtual DbSet<DoctorAppointment> DoctorAppointments { get; set; }
         public virtual DbSet<DoctorMaster> DoctorMasters { get; set; }
         public virtual DbSet<Login> Logins { get; set; }
         public virtual DbSet<PackageCategory> PackageCategories { get; set; }
         public virtual DbSet<PackageMaster> PackageMasters { get; set; }
         public virtual DbSet<TestMaster> TestMasters { get; set; }
-        public virtual DbSet<TestsPackage> TestsPackages { get; set; }
         public virtual DbSet<UserMaster> UserMasters { get; set; }
         public virtual DbSet<HealthServiceMaster> HealthServiceMasters { get; set; }
 
@@ -74,11 +72,6 @@ namespace IqHealth.Data.Persistence
             modelBuilder.Entity<BookingMaster>()
                 .Property(e => e.CreatedDate)
                 .HasPrecision(0);
-
-            modelBuilder.Entity<BookingMaster>()
-                .HasMany(e => e.BookingTestPackages)
-                .WithOptional(e => e.BookingMaster)
-                .HasForeignKey(e => e.BookingID);
 
             modelBuilder.Entity<DoctorAppointment>()
                 .Property(e => e.Name)
@@ -220,7 +213,7 @@ namespace IqHealth.Data.Persistence
                 .HasPrecision(0);
 
             modelBuilder.Entity<PackageMaster>()
-                .HasMany(e => e.BookingTestPackages)
+                .HasMany(e => e.BookingMasters)
                 .WithOptional(e => e.PackageMaster)
                 .HasForeignKey(e => e.PackageID);
 
@@ -252,6 +245,11 @@ namespace IqHealth.Data.Persistence
             modelBuilder.Entity<TestMaster>()
                 .Property(e => e.UpdatedDate)
                 .HasPrecision(0);
+
+            modelBuilder.Entity<TestMaster>()
+                .HasMany(e => e.BookingMasters)
+                .WithOptional(e => e.TestMaster)
+                .HasForeignKey(e => e.TestID);
 
             modelBuilder.Entity<UserMaster>()
                 .Property(e => e.FirstName)

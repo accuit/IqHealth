@@ -14,12 +14,6 @@ namespace IqHealth.Data.Persistence.Model
     public partial class BookingMaster
     {
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public BookingMaster()
-        {
-            BookingTestPackages = new HashSet<BookingTestPackage>();
-        }
-
         [DataMember]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID { get; set; }
@@ -82,7 +76,14 @@ namespace IqHealth.Data.Persistence.Model
         [DataMember]
         public int? PackageID { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BookingTestPackage> BookingTestPackages { get; set; }
+        [DataMember]
+        public int? TestID { get; set; }
+
+        [NotMapped]
+        public virtual PackageMaster PackageMaster { get; set; }
+
+        [NotMapped]
+        public virtual TestMaster TestMaster { get; set; }
+
     }
 }
