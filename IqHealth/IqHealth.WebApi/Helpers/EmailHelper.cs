@@ -83,16 +83,17 @@ namespace IqHealth.WebApi.Helpers
 
                     message.To.Add(ConfigurationManager.AppSettings["DbugToEmail"].ToString());
                     fromAddress = ConfigurationManager.AppSettings["DbugFromEmail"].ToString();
+                    smtpClient.EnableSsl = ConfigurationManager.AppSettings["DbugIsSSL"].ToString() == "Y" ? true : false;
                     fromPass = ConfigurationManager.AppSettings["DbugFromPass"];
                     smtpClient.Host = ConfigurationManager.AppSettings["DbugSMTPHost"]; //"relay-hosting.secureserver.net";   //-- Donot change.
                     smtpClient.Port = Convert.ToInt32(ConfigurationManager.AppSettings["DbugSMTPPort"]); // 587; //--- Donot change    
-                    smtpClient.EnableSsl = true;
                     smtpClient.Credentials = new System.Net.NetworkCredential(fromAddress, fromPass);
                     message.Subject = "[Debug Mode ON] - " + emailmodel.Subject;
 
                 }
                 else
                 {
+                    smtpClient.EnableSsl = ConfigurationManager.AppSettings["IsSSL"].ToString() == "Y" ? true : false;
                     fromName = ConfigurationManager.AppSettings["FromName"].ToString();
                     fromAddress = ConfigurationManager.AppSettings["FromEmail"].ToString();
                     smtpClient.Host = ConfigurationManager.AppSettings["SMTPHost"];
@@ -101,7 +102,7 @@ namespace IqHealth.WebApi.Helpers
                 }
 
                 message.BodyEncoding = Encoding.UTF8;
-                message.From = new System.Net.Mail.MailAddress(fromAddress, emailmodel.FromName);
+                message.From = new System.Net.Mail.MailAddress(fromAddress, fromName);
                 message.IsBodyHtml = true;
                 message.Body = emailmodel.Body;
                 smtpClient.Send(message);

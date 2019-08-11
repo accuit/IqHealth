@@ -17,9 +17,9 @@ namespace IqHealth.WebApi.Controllers
     {
         [Route("send-email")]
         [HttpPost]
-        public JsonResponse<bool> SendBookingEmail(BookingMaster model)
+        public JsonResponse<EmailNotification> SendBookingEmail(BookingMaster model)
         {
-            JsonResponse<bool> response = new JsonResponse<bool>();
+            JsonResponse<EmailNotification> response = new JsonResponse<EmailNotification>();
             EmailNotification email = new EmailNotification();
             try
             {
@@ -40,6 +40,7 @@ namespace IqHealth.WebApi.Controllers
                 response.Message = "Email sent Successfully!";
                 response.StatusCode = "200";
                 response.IsSuccess = true;
+                response.SingleResult = email;
             }
             catch (Exception ex)
             {
