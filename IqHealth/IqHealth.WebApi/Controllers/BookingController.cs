@@ -85,11 +85,12 @@ namespace IqHealth.WebApi.Controllers
                 response.IsSuccess = false;
                 response.StatusCode = "200";
                 response.FailedValidations = ModelState.Keys.ToArray();
-                response.Message = string.Format("Kindly check field {0}. It is not in correct format.", response.FailedValidations[0].Split('.').LastOrDefault());
+                response.Message = string.Format("Kindly check <strong> {0} </strong>. It is missing or in incorrect format.", response.FailedValidations[0].Split('.').LastOrDefault());
                 return response;
             }
             try
             {
+
                 _context.BookingMasters.Add(appointment);
                 response.IsSuccess = _context.SaveChanges() > 0 ? true : false;
 
