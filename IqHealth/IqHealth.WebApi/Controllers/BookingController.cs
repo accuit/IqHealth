@@ -77,22 +77,36 @@ namespace IqHealth.WebApi.Controllers
         public JsonResponse<int> AddBooking(BookingMaster appointment)
         {
             JsonResponse<int> response = new JsonResponse<int>();
+            appointment.CreatedDate = DateTime.Now;
+            appointment.IsDeleted = 0;
 
             if (!ModelState.IsValid)
             {
                 response.IsSuccess = false;
-                response.Message = "Model validation failed.";
+                response.StatusCode = "200";
+                response.FailedValidations = ModelState.Keys.ToArray();
+                response.Message = string.Format("Kindly check field {0}. It is not in correct format.", response.FailedValidations[0].Split('.').LastOrDefault());
                 return response;
             }
-
-            _context.BookingMasters.Add(appointment);
-            response.IsSuccess = _context.SaveChanges() > 0 ? true : false;
-
-            if (response.IsSuccess)
+            try
             {
-                response.Message = "Data submitted successfully.";
-                response.SingleResult = appointment.ID;
+                _context.BookingMasters.Add(appointment);
+                response.IsSuccess = _context.SaveChanges() > 0 ? true : false;
+
+                if (response.IsSuccess)
+                {
+                    response.StatusCode = "200";
+                    response.Message = "Your appointment is successfully fixed.";
+                    response.SingleResult = appointment.ID;
+                }
             }
+            catch (Exception ex)
+            {
+                response.IsSuccess = false;
+                response.StatusCode = "500";
+                response.Message = ex.Message;
+            }
+
             return response;
         }
 
@@ -104,7 +118,7 @@ namespace IqHealth.WebApi.Controllers
 
             response.SingleResult = _context.DoctorAppointments.Where(x => x.IsDeleted == 0).ToList();
             response.StatusCode = "200";
-            response.Message =  "Appointment records are fetched successfully.";
+            response.Message = "Appointment records are fetched successfully.";
 
             return response;
         }

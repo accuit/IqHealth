@@ -96,6 +96,7 @@ namespace IqHealth.WebApi.Helpers
                     smtpClient.EnableSsl = ConfigurationManager.AppSettings["IsSSL"].ToString() == "Y" ? true : false;
                     fromName = ConfigurationManager.AppSettings["FromName"].ToString();
                     fromAddress = ConfigurationManager.AppSettings["FromEmail"].ToString();
+                    smtpClient.Port = Convert.ToInt32(ConfigurationManager.AppSettings["SMTPPort"]);
                     smtpClient.Host = ConfigurationManager.AppSettings["SMTPHost"];
                     message.To.Add(emailmodel.ToEmail);
                     message.Subject = emailmodel.Subject;

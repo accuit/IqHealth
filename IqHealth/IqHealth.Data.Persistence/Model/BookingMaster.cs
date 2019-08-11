@@ -54,7 +54,6 @@ namespace IqHealth.Data.Persistence.Model
         public string Address { get; set; }
 
         [DataMember]
-        [Required]
         [StringLength(50)]
         public string City { get; set; }
 
