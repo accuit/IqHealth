@@ -27,7 +27,7 @@ namespace IqHealth.WebApi.Controllers
                 email.Subject = "Your booking is confirmed.";
                 email.ToEmail = model.Email;
                 email.Status = (int)AspectEnums.EmailStatus.Pending;
-                email.Message = "This is email message.";
+                email.Message = "This is an email message.";
                 email.Mobile = model.Mobile;
                 email.IsCustomerCopy = false;
                 email.Body = email.Message;
@@ -37,7 +37,7 @@ namespace IqHealth.WebApi.Controllers
                 email.IsAttachment = false;
                 EmailHelper eNotification = new EmailHelper();
                 eNotification.SendEmail(email);
-                response.Message = "Success!";
+                response.Message = "Email sent Successfully!";
                 response.StatusCode = "200";
                 response.IsSuccess = true;
             }
