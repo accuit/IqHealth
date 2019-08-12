@@ -1,8 +1,10 @@
 ﻿using IqHealth.Data.Persistence;
 using IqHealth.Data.Persistence.DTO;
+using IqHealth.Data.Persistence.Model;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -18,6 +20,27 @@ namespace IqHealth.WebApi.Helpers
         public static readonly string SMTP_CLIENT = "smtp-mail.outlook.com"; // as we are using outlook so we have provided smtp-mail.outlook.com   
         public static readonly string EMAIL_BODY = "Reset your Password <a href='http://{0}.safetychain.com/api/Account/forgotPassword?{1}'>Here.</a>";
 
+
+        public string GetEmailBody(BookingMaster model)
+        {
+            string body = string.Empty;
+            using (StreamReader reader = new StreamReader(System.Web.HttpContext.Current.Server.MapPath("~/Helpers/EmailTemplates/UserBookingConfirmation.html")))
+            {
+                body = reader.ReadToEnd();
+            }
+            body = body.Replace("{Name}", model.FirstName + " " + model.LastName);
+            body = body.Replace("{Age}", model.Age.ToString());
+            body = body.Replace("{Sex}", model.Sex == 1? "Male": "Female");
+            body = body.Replace("{CollectionType}", model.CollectionType == 1? "Collection Centre": "Home");
+            body = body.Replace("{BookingDate}", model.BookingDate.ToString());
+            //body = body.Replace("{PrefferedTiming}", url);
+            body = body.Replace("{Email}", model.Email);
+            body = body.Replace("{Mobile}", model.Mobile);
+            body = body.Replace("{Address}", model.Address);
+            body = body.Replace("{Landmark}", model.LastName);
+            body = body.Replace("{PinCode}", model.PinCode);
+            return body;
+        }
 
         public int SendEmail(EmailNotification emailmodel)
         {
