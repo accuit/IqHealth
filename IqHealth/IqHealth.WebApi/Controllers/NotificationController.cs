@@ -24,19 +24,18 @@ namespace IqHealth.WebApi.Controllers
             try
             {
                 email.ToName = model.FirstName + " " + model.LastName;
-                email.Subject = "Your booking is confirmed.";
                 email.ToEmail = model.Email;
                 email.Status = (int)AspectEnums.EmailStatus.Pending;
                 email.Message = "This is an email message.";
                 email.Mobile = model.Mobile;
                 email.IsCustomerCopy = false;
-                email.Body = email.Message;
                 email.CreatedDate = DateTime.Now;
                 email.IsHtml = true;
                 email.Priority = 2;
                 email.IsAttachment = false;
-                EmailHelper eNotification = new EmailHelper();
-                int status = eNotification.SendEmail(email);
+                EmailHelper eHelper = new EmailHelper();
+                email.Body = eHelper.GetEmailBody(model);
+                int status = eHelper.SendEmail(email);
                 if (status == (int)AspectEnums.EmailStatus.Sent)
                 {
                     response.Message = string.Format("Email successfully sent to {0} at {1}.", email.ToName, email.ToEmail);

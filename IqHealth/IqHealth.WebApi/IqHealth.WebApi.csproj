@@ -179,6 +179,7 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <None Include="Properties\PublishProfiles\IQHealthApi.pubxml" />
+    <Content Include="Helpers\EmailTemplates\UserBookingConfirmation.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -191,7 +192,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\" />
-    <Folder Include="Helpers\EmailTemplates\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
