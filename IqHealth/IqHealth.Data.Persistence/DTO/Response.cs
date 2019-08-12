@@ -22,22 +22,6 @@ namespace IqHealth.Data.Persistence.DTO
 
         #region Properties
 
-        /// <summary>
-        /// Response result
-        /// </summary>
-        [DataMember]
-        public List<T> Result
-        {
-            get { return result; }
-            set { result = value; }
-        }
-
-        [DataMember]
-        public T SingleResult
-        {
-            get { return singleResult; }
-            set { singleResult = value; }
-        }
 
         /// <summary>
         /// True, If bussiness logic return successful response
@@ -69,6 +53,7 @@ namespace IqHealth.Data.Persistence.DTO
             set { statusCode = value; }
         }
 
+
         /// <summary>
         /// Property to get set validation messages
         /// </summary>
@@ -77,6 +62,23 @@ namespace IqHealth.Data.Persistence.DTO
         {
             get;
             set;
+        }
+
+        /// <summary>
+        /// Response result
+        /// </summary>
+        [DataMember]
+        public List<T> Result
+        {
+            get { return result; }
+            set { result = value; }
+        }
+
+        [DataMember]
+        public T SingleResult
+        {
+            get { return singleResult; }
+            set { singleResult = value; }
         }
 
         #endregion

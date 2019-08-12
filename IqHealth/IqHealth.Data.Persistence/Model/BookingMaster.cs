@@ -32,49 +32,61 @@ namespace IqHealth.Data.Persistence.Model
         public int Age { get; set; }
 
         [DataMember]
+        public string Time { get; set; }
+
+        [DataMember]
         [Required]
         [StringLength(15)]
         public string Mobile { get; set; }
 
+        [Required]
         [DataMember]
         [StringLength(150)]
         public string Email { get; set; }
 
+        [Required]
         [DataMember]
         public int Sex { get; set; }
 
+        [Required]
         [DataMember]
         public DateTime? BookingDate { get; set; }
 
+        [Required]
         [DataMember]
         public int CollectionType { get; set; }
 
+        [Required]
         [DataMember]
         [StringLength(250)]
         public string Address { get; set; }
 
-        [DataMember]
         [Required]
+        [DataMember]
         [StringLength(50)]
         public string City { get; set; }
+
 
         [DataMember]
         [StringLength(250)]
         public string Landmark { get; set; }
 
+        [Required]
         [DataMember]
         [StringLength(10)]
         public string PinCode { get; set; }
+
 
         public DateTime CreatedDate { get; set; }
 
         public int IsDeleted { get; set; }
 
-        [DataMember]
         public int Status { get; set; }
 
+        [Required]
         [DataMember]
         public int? PackageID { get; set; }
+
 
         [DataMember]
         public int? TestID { get; set; }

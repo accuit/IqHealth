@@ -17,9 +17,9 @@ namespace IqHealth.WebApi.Controllers
     {
         [Route("send-email")]
         [HttpPost]
-        public JsonResponse<bool> SendBookingEmail(BookingMaster model)
+        public JsonResponse<EmailNotification> SendBookingEmail(BookingMaster model)
         {
-            JsonResponse<bool> response = new JsonResponse<bool>();
+            JsonResponse<EmailNotification> response = new JsonResponse<EmailNotification>();
             EmailNotification email = new EmailNotification();
             try
             {
@@ -36,16 +36,28 @@ namespace IqHealth.WebApi.Controllers
                 email.Priority = 2;
                 email.IsAttachment = false;
                 EmailHelper eNotification = new EmailHelper();
-                eNotification.SendEmail(email);
-                response.Message = "Email sent Successfully!";
-                response.StatusCode = "200";
-                response.IsSuccess = true;
+                int status = eNotification.SendEmail(email);
+                if (status == (int)AspectEnums.EmailStatus.Sent)
+                {
+                    response.Message = string.Format("Email successfully sent to {0} at {1}.", email.ToName, email.ToEmail);
+                    response.StatusCode = "200";
+                    response.IsSuccess = true;
+                    response.SingleResult = email;
+                }
+                else
+                {
+                    response.Message = string.Format("Could not send email to {0} at {1}.", email.ToName, email.ToEmail);
+                    response.StatusCode = "500";
+                    response.IsSuccess = false;
+                    response.SingleResult = null;
+                }
             }
             catch (Exception ex)
             {
                 response.IsSuccess = false;
                 response.Message = ex.Message;
                 response.StatusCode = "500";
+                response.SingleResult = null;
             }
             
             return response;
