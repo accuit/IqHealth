@@ -21,6 +21,19 @@ namespace IqHealth.WebApi.Helpers
         public static readonly string EMAIL_BODY = "Reset your Password <a href='http://{0}.safetychain.com/api/Account/forgotPassword?{1}'>Here.</a>";
 
 
+        public void PrepareAndSendEmail(BookingMaster model)
+        {
+           string body = GetEmailBody(model);
+            EmailNotification email = new EmailNotification();
+            email.ToEmail = model.Email;
+            email.Status = (int)AspectEnums.EmailStatus.Pending;
+            email.Message = body;
+            email.Body = body;
+            email.Priority = 2;
+            email.IsAttachment = false;
+            SendEmail(email);
+        }
+
         public string GetEmailBody(BookingMaster model)
         {
             string body = string.Empty;

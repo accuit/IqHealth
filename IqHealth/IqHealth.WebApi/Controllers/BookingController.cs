@@ -1,6 +1,7 @@
 ﻿using IqHealth.Data.Persistence;
 using IqHealth.Data.Persistence.DTO;
 using IqHealth.Data.Persistence.Model;
+using IqHealth.WebApi.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -77,20 +78,19 @@ namespace IqHealth.WebApi.Controllers
         public JsonResponse<int> AddBooking(BookingMaster appointment)
         {
             JsonResponse<int> response = new JsonResponse<int>();
-            appointment.CreatedDate = DateTime.Now;
-            appointment.IsDeleted = 0;
 
             if (!ModelState.IsValid)
             {
                 response.IsSuccess = false;
                 response.StatusCode = "200";
                 response.FailedValidations = ModelState.Keys.ToArray();
-                response.Message = string.Format("Kindly check <strong> {0} </strong>. It is missing or in incorrect format.", response.FailedValidations[0].Split('.').LastOrDefault());
+                response.Message = string.Format("Kindly check {0}. It is missing or in incorrect format.", response.FailedValidations[0].Split('.').LastOrDefault());
                 return response;
             }
             try
             {
-
+                appointment.CreatedDate = DateTime.Now;
+                appointment.IsDeleted = 0;
                 _context.BookingMasters.Add(appointment);
                 response.IsSuccess = _context.SaveChanges() > 0 ? true : false;
 
@@ -99,6 +99,9 @@ namespace IqHealth.WebApi.Controllers
                     response.StatusCode = "200";
                     response.Message = "Your appointment is successfully fixed.";
                     response.SingleResult = appointment.ID;
+                    // Sending email notification
+                    EmailHelper e = new EmailHelper();
+                    e.PrepareAndSendEmail(appointment);
                 }
             }
             catch (Exception ex)
@@ -133,25 +136,30 @@ namespace IqHealth.WebApi.Controllers
             if (!ModelState.IsValid)
             {
                 response.IsSuccess = false;
-                response.Message = "Model validation failed.";
+                response.FailedValidations = ModelState.Keys.ToArray();
+                response.StatusCode = "200";
+                response.Message = string.Format("Kindly check {0}. It is missing or in incorrect format.", response.FailedValidations[0].Split('.').LastOrDefault());
                 return response;
             }
 
-            _context.DoctorAppointments.Add(appointment);
-            response.IsSuccess = _context.SaveChanges() > 0 ? true : false;
-
-
-            if (response.IsSuccess)
+            try
             {
+                appointment.CreatedDate = DateTime.Now;
+                appointment.IsDeleted = 0;
+                appointment.Status = 1;
+                _context.DoctorAppointments.Add(appointment);
+                response.IsSuccess = _context.SaveChanges() > 0 ? true : false;
                 response.StatusCode = "200";
-                response.Message = "Data submitted successfully.";
-            }
-            else
-            {
-                response.StatusCode = "500";
-                response.Message = "Something went wrong!.";
-            }
+                response.Message = "Your appointment is fixed successfully.";
 
+            }
+            catch (Exception ex)
+            {
+                response.IsSuccess = false;
+                response.StatusCode = "500";
+                response.Message = ex.Message;
+            }
+            
             response.SingleResult = appointment.ID;
             return response;
         }
