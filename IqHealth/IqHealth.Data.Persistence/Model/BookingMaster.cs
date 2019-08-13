@@ -31,8 +31,6 @@ namespace IqHealth.Data.Persistence.Model
         [DataMember]
         public int Age { get; set; }
 
-        [DataMember]
-        public string Time { get; set; }
 
         [DataMember]
         [Required]
