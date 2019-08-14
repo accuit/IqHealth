@@ -11,7 +11,9 @@ namespace IqHealth.WebApi
     {
         public static void Register(HttpConfiguration config)
         {
-            var corsAttr = new EnableCorsAttribute("http://localhost:4200", "*", "*");
+            bool isDebugMode = ConfigurationManager.AppSettings["IsDebugMode"] == "Y" ? true : false;
+            string CorsUrl = isDebugMode ? ConfigurationManager.AppSettings["DBugCORSUrl"] : ConfigurationManager.AppSettings["CORSUrl"];
+            var corsAttr = new EnableCorsAttribute(CorsUrl, "*", "*");
             config.EnableCors(corsAttr);
 
             config.MapHttpAttributeRoutes();
