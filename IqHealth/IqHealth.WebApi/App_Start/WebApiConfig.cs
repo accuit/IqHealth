@@ -11,10 +11,8 @@ namespace IqHealth.WebApi
     {
         public static void Register(HttpConfiguration config)
         {
-            //var json = config.Formatters.JsonFormatter;
-            //json.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.Objects;
-            //config.Formatters.Remove(config.Formatters.XmlFormatter);
-
+            var corsAttr = new EnableCorsAttribute("http://localhost:4200", "*", "*");
+            config.EnableCors(corsAttr);
 
             config.MapHttpAttributeRoutes();
 

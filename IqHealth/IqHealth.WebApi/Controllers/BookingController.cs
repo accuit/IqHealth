@@ -13,7 +13,7 @@ using System.Web.Http.Description;
 
 namespace IqHealth.WebApi.Controllers
 {
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
+
     [RoutePrefix("api/bookings")]
     public class BookingController : ApiController
     {
