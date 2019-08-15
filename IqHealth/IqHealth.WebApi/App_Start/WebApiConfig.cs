@@ -11,10 +11,10 @@ namespace IqHealth.WebApi
     {
         public static void Register(HttpConfiguration config)
         {
-            //var json = config.Formatters.JsonFormatter;
-            //json.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.Objects;
-            //config.Formatters.Remove(config.Formatters.XmlFormatter);
-
+            bool isDebugMode = ConfigurationManager.AppSettings["IsDebugMode"] == "Y" ? true : false;
+            string CorsUrl = isDebugMode ? ConfigurationManager.AppSettings["DBugCORSUrl"] : ConfigurationManager.AppSettings["CORSUrl"];
+            var corsAttr = new EnableCorsAttribute(CorsUrl, "*", "*");
+            config.EnableCors(corsAttr);
 
             config.MapHttpAttributeRoutes();
 
