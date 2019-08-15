@@ -21,21 +21,9 @@ namespace IqHealth.WebApi.Helpers
         public static readonly string EMAIL_BODY = "Reset your Password <a href='http://{0}.safetychain.com/api/Account/forgotPassword?{1}'>Here.</a>";
 
 
-        public void PrepareAndSendEmail(BookingMaster model)
+        public int PrepareAndSendEmail(BookingMaster model)
         {
-           string body = GetEmailBody(model);
-            EmailNotification email = new EmailNotification();
-            email.ToEmail = model.Email;
-            email.Status = (int)AspectEnums.EmailStatus.Pending;
-            email.Message = body;
-            email.Body = body;
-            email.Priority = 2;
-            email.IsAttachment = false;
-            SendEmail(email);
-        }
 
-        public string GetEmailBody(BookingMaster model)
-        {
             string body = string.Empty;
             using (StreamReader reader = new StreamReader(System.Web.HttpContext.Current.Server.MapPath("~/Helpers/EmailTemplates/UserBookingConfirmation.html")))
             {
@@ -43,17 +31,50 @@ namespace IqHealth.WebApi.Helpers
             }
             body = body.Replace("{Name}", model.FirstName + " " + model.LastName);
             body = body.Replace("{Age}", model.Age.ToString());
-            body = body.Replace("{Sex}", model.Sex == 1? "Male": "Female");
-            body = body.Replace("{CollectionType}", model.CollectionType == 1? "Collection Centre": "Home");
+            body = body.Replace("{Sex}", model.Sex == 1 ? "Male" : "Female");
+            body = body.Replace("{CollectionType}", model.CollectionType == 1 ? "Collection Centre" : "Home");
             body = body.Replace("{BookingDate}", model.BookingDate.ToString());
-            //body = body.Replace("{PrefferedTiming}", url);
             body = body.Replace("{Email}", model.Email);
             body = body.Replace("{Mobile}", model.Mobile);
             body = body.Replace("{Address}", model.Address);
             body = body.Replace("{Landmark}", model.LastName);
             body = body.Replace("{PinCode}", model.PinCode);
-            return body;
+
+
+            EmailNotification email = new EmailNotification();
+            email.ToEmail = model.Email;
+            email.Status = (int)AspectEnums.EmailStatus.Pending;
+            email.Message = body;
+            email.Body = body;
+            email.Priority = 2;
+            email.IsAttachment = false;
+            return SendEmail(email);
         }
+
+        public int PrepareAndSendAppointmentEmail(DoctorAppointment model)
+        {
+            string body = string.Empty;
+            using (StreamReader reader = new StreamReader(System.Web.HttpContext.Current.Server.MapPath("~/Helpers/EmailTemplates/DoctorAppointmentConfirmation.html")))
+            {
+                body = reader.ReadToEnd();
+            }
+            body = body.Replace("{Name}", model.Name);
+            body = body.Replace("{Age}", model.Age.ToString());
+            body = body.Replace("{Sex}", model.Sex == 1 ? "Male" : "Female");
+            body = body.Replace("{BookingDate}", model.BookingDate.ToString());
+            body = body.Replace("{Email}", model.Email);
+            body = body.Replace("{Mobile}", model.Mobile);
+
+            EmailNotification email = new EmailNotification();
+            email.ToEmail = model.Email;
+            email.Status = (int)AspectEnums.EmailStatus.Pending;
+            email.Message = body;
+            email.Body = body;
+            email.Priority = 2;
+            email.IsAttachment = false;
+            return SendEmail(email);
+        }
+
 
         public int SendEmail(EmailNotification emailmodel)
         {
@@ -73,7 +94,7 @@ namespace IqHealth.WebApi.Helpers
 
                 if (isDebugMode)
                 {
-                    
+
                     message.To.Add(ConfigurationManager.AppSettings["DbugToEmail"].ToString());
                     fromAddress = ConfigurationManager.AppSettings["DbugFromEmail"].ToString();
                     smtpClient.EnableSsl = ConfigurationManager.AppSettings["DbugIsSSL"].ToString() == "Y" ? true : false;
@@ -84,7 +105,7 @@ namespace IqHealth.WebApi.Helpers
                 }
                 else
                 {
-                    
+
                     smtpClient.EnableSsl = ConfigurationManager.AppSettings["IsSSL"].ToString() == "Y" ? true : false;
                     fromName = ConfigurationManager.AppSettings["FromName"].ToString();
                     fromAddress = ConfigurationManager.AppSettings["FromEmail"].ToString();
@@ -93,7 +114,7 @@ namespace IqHealth.WebApi.Helpers
                     smtpClient.Host = ConfigurationManager.AppSettings["SMTPHost"];
                     message.To.Add(emailmodel.ToEmail);
                 }
-                
+
                 smtpClient.Credentials = new NetworkCredential(fromAddress, fromPass);
                 message.BodyEncoding = Encoding.UTF8;
                 message.From = new System.Net.Mail.MailAddress(fromAddress, fromName);
@@ -104,7 +125,7 @@ namespace IqHealth.WebApi.Helpers
                 return (int)AspectEnums.EmailStatus.Sent;
 
             }
-            catch (Exception ex)
+            catch
             {
                 return (int)AspectEnums.EmailStatus.Failed;
             }

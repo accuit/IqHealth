@@ -86,9 +86,14 @@ namespace IqHealth.WebApi.Controllers
             JsonResponse<List<PackageCategory>> response = new JsonResponse<List<PackageCategory>>();
             List<PackageCategory> categories = _context.PackageCategories.ToList();
 
+            List<PackageMaster> allPackages = new List<PackageMaster>();
+
+            allPackages = _context.PackageMasters.Where(x => x.IsDeleted == 0).ToList(); // Only reequest will be sent to fetch the data.
+
+
             foreach (var catg in categories)
             {
-                catg.PackageMasters = _context.PackageMasters.Where(x => x.CatgID == catg.ID && x.IsDeleted == 0).ToList();
+                catg.PackageMasters = allPackages.Where(x => x.CatgID == catg.ID && x.IsDeleted == 0).ToList();
                 foreach (var test in catg.PackageMasters)
                 {
                     test.TestMasters = _context.TestMasters.Where(x => x.PackageID == test.ID).ToList();

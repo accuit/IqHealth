@@ -15,40 +15,30 @@ namespace IqHealth.WebApi.Controllers
     [RoutePrefix("api/notification")]
     public class NotificationController : ApiController
     {
-        [Route("send-email")]
+        [Route("email-booking")]
         [HttpPost]
-        public JsonResponse<EmailNotification> SendBookingEmail(BookingMaster model)
+        public JsonResponse<int> SendBookingEmail(BookingMaster model)
         {
-            JsonResponse<EmailNotification> response = new JsonResponse<EmailNotification>();
-            EmailNotification email = new EmailNotification();
+            JsonResponse<int> response = new JsonResponse<int>();
+            
             try
             {
-                email.ToName = model.FirstName + " " + model.LastName;
-                email.ToEmail = model.Email;
-                email.Status = (int)AspectEnums.EmailStatus.Pending;
-                email.Message = "This is an email message.";
-                email.Mobile = model.Mobile;
-                email.IsCustomerCopy = false;
-                email.CreatedDate = DateTime.Now;
-                email.IsHtml = true;
-                email.Priority = 2;
-                email.IsAttachment = false;
                 EmailHelper eHelper = new EmailHelper();
-                email.Body = eHelper.GetEmailBody(model);
-                int status = eHelper.SendEmail(email);
+                int status =  eHelper.PrepareAndSendEmail(model);
+               
                 if (status == (int)AspectEnums.EmailStatus.Sent)
                 {
-                    response.Message = string.Format("Email successfully sent to {0} at {1}.", email.ToName, email.ToEmail);
+                    response.Message = string.Format("Email successfully sent to {0} at {1}.", model.FirstName, model.Email);
                     response.StatusCode = "200";
                     response.IsSuccess = true;
-                    response.SingleResult = email;
+                    response.SingleResult = status;
                 }
                 else
                 {
-                    response.Message = string.Format("Could not send email to {0} at {1}.", email.ToName, email.ToEmail);
+                    response.Message = string.Format("Could not send email to {0} at {1}.", model.FirstName, model.Email);
                     response.StatusCode = "500";
                     response.IsSuccess = false;
-                    response.SingleResult = null;
+                    response.SingleResult = status;
                 }
             }
             catch (Exception ex)
@@ -56,9 +46,45 @@ namespace IqHealth.WebApi.Controllers
                 response.IsSuccess = false;
                 response.Message = ex.Message;
                 response.StatusCode = "500";
-                response.SingleResult = null;
+                response.SingleResult = 0;
             }
             
+            return response;
+        }
+        [Route("email-appointment")]
+        [HttpPost]
+        public JsonResponse<int> SendAppointmentEmail(DoctorAppointment model)
+        {
+            JsonResponse<int> response = new JsonResponse<int>();
+            
+            try
+            {
+               
+                EmailHelper eHelper = new EmailHelper();
+                int status = eHelper.PrepareAndSendAppointmentEmail(model);
+                if (status == (int)AspectEnums.EmailStatus.Sent)
+                {
+                    response.Message = string.Format("Email successfully sent to {0} at {1}.", model.Name, model.Email);
+                    response.StatusCode = "200";
+                    response.IsSuccess = true;
+                    response.SingleResult = status;
+                }
+                else
+                {
+                    response.Message = string.Format("Could not send email to {0} at {1}.", model.Name, model.Email);
+                    response.StatusCode = "500";
+                    response.IsSuccess = false;
+                    response.SingleResult = status;
+                }
+            }
+            catch (Exception ex)
+            {
+                response.IsSuccess = false;
+                response.Message = ex.Message;
+                response.StatusCode = "500";
+                response.SingleResult = 0;
+            }
+
             return response;
         }
     }

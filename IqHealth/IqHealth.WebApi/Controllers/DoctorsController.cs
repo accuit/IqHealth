@@ -94,7 +94,7 @@ namespace IqHealth.WebApi.Controllers
             {
                 response.StatusCode = "500";
                 response.IsSuccess = _context.SaveChanges() > 0 ? true : false;
-                response.Message = "Your appointment with Dr. " + doc.FirstName + " is updated.";
+                response.Message = ex.Message;
             }
            
 

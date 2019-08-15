@@ -81,8 +81,7 @@ namespace IqHealth.WebApi.Controllers
 
             if (!ModelState.IsValid)
             {
-                response.IsSuccess = false;
-                response.StatusCode = "200";
+                
                 response.FailedValidations = ModelState.Keys.ToArray();
                 response.Message = string.Format("Kindly check {0}. It is missing or in incorrect format.", response.FailedValidations[0].Split('.').LastOrDefault());
                 return response;
@@ -96,12 +95,11 @@ namespace IqHealth.WebApi.Controllers
 
                 if (response.IsSuccess)
                 {
+                    response.IsSuccess = false;
+                    response.StatusCode = "200";
                     response.StatusCode = "200";
                     response.Message = "Your appointment is successfully fixed.";
                     response.SingleResult = appointment.ID;
-                    // Sending email notification
-                    EmailHelper e = new EmailHelper();
-                    e.PrepareAndSendEmail(appointment);
                 }
             }
             catch (Exception ex)
@@ -159,7 +157,7 @@ namespace IqHealth.WebApi.Controllers
                 response.StatusCode = "500";
                 response.Message = ex.Message;
             }
-            
+
             response.SingleResult = appointment.ID;
             return response;
         }
