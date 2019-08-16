@@ -95,8 +95,6 @@ namespace IqHealth.WebApi.Controllers
 
                 if (response.IsSuccess)
                 {
-                    response.IsSuccess = false;
-                    response.StatusCode = "200";
                     response.StatusCode = "200";
                     response.Message = "Your appointment is successfully fixed.";
                     response.SingleResult = appointment.ID;

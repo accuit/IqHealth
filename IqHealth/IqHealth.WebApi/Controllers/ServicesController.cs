@@ -108,6 +108,21 @@ namespace IqHealth.WebApi.Controllers
             return response;
         }
 
+        [HttpGet]
+        [Route("packages", Name = "GetPackages")]
+        public JsonResponse<List<PackageMaster>> GetPackages()
+        {
+
+            JsonResponse<List<PackageMaster>> response = new JsonResponse<List<PackageMaster>>();
+            
+            response.SingleResult = _context.PackageMasters.Where(x => x.IsDeleted == 0).ToList();
+            response.StatusCode = "200";
+            response.Message = "Data collected.";
+            response.IsSuccess = true;
+
+            return response;
+        }
+
 
         [HttpPost]
         [ResponseType(typeof(HealthServiceMaster))]
