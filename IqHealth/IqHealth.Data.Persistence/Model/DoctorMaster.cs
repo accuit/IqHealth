@@ -17,6 +17,7 @@ namespace IqHealth.Data.Persistence.Model
         public DoctorMaster()
         {
             DoctorAppointments = new HashSet<DoctorAppointment>();
+            DoctorSpecialities = new HashSet<DoctorSpeciality>();
         }
 
         [DataMember]
@@ -81,7 +82,20 @@ namespace IqHealth.Data.Persistence.Model
         [StringLength(45)]
         public string RegistrationNo { get; set; }
 
+        public int? HospitalID { get; set; }
+
+        public int? SpecialityID { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DoctorAppointment> DoctorAppointments { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DoctorSpeciality> DoctorSpecialities { get; set; }
+
+        [DataMember]
+        public virtual HospitalMaster HospitalMaster { get; set; }
+
+        [DataMember]
+        public virtual SpecialityMaster SpecialityMaster { get; set; }
     }
 }

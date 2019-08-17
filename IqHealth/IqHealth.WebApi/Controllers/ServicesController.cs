@@ -28,25 +28,36 @@ namespace IqHealth.WebApi.Controllers
         public JsonResponse<List<HealthServiceMaster>> GetServices()
         {
             JsonResponse<List<HealthServiceMaster>> response = new JsonResponse<List<HealthServiceMaster>>();
-            var services = _context.HealthServiceMasters.Where(x => x.IsDeleted == 0).ToList();
-            if (services != null)
+            List<HealthServiceMaster> services = new List<HealthServiceMaster>();
+            try
             {
-                foreach (var item in services)
+                services = _context.HealthServiceMasters.Where(x => x.IsDeleted == 0).ToList();
+                if (services != null)
                 {
-                    item.ServicesInclList = new List<string>();
-                    if (!string.IsNullOrEmpty(item.ServicesIncluded))
-                        foreach (var i in item.ServicesIncluded.Split(','))
-                            item.ServicesInclList.Add(i.Trim(' '));
+                    foreach (var item in services)
+                    {
+                        item.ServicesInclList = new List<string>();
+                        if (!string.IsNullOrEmpty(item.ServicesIncluded))
+                            foreach (var i in item.ServicesIncluded.Split(','))
+                                item.ServicesInclList.Add(i.Trim(' '));
+                    }
+                    response.StatusCode = "200";
+                    response.IsSuccess = true;
+                    response.Message = "Sertvices successfully fetched.";
                 }
-                response.StatusCode = "200";
-                response.IsSuccess = true;
-                response.Message = "Data collected.";
+                else
+                {
+                    response.StatusCode = "500";
+                    response.IsSuccess = true;
+                    response.Message = "No services found. Please try again.";
+                }
+
             }
-            else
+            catch (Exception ex)
             {
                 response.StatusCode = "500";
-                response.IsSuccess = true;
-                response.Message = "Something went wrong! Contact administrator.";
+                response.IsSuccess = false;
+                response.Message = ex.Message;
             }
 
             response.SingleResult = services;
@@ -58,24 +69,34 @@ namespace IqHealth.WebApi.Controllers
         public JsonResponse<List<TestMaster>> GetAllTests()
         {
             JsonResponse<List<TestMaster>> response = new JsonResponse<List<TestMaster>>();
-            
-            var tests = _context.TestMasters.Where(x => x.IsDeleted == 0).ToList();
-            if (tests != null)
+
+            List<TestMaster> tests = new List<TestMaster>();
+            try
             {
-                response.StatusCode = "200";
-                response.IsSuccess = true;
-                response.Message = "Data collected.";
+                tests = _context.TestMasters.Where(x => x.IsDeleted == 0).ToList();
+                if (tests != null)
+                {
+                    response.StatusCode = "200";
+                    response.IsSuccess = true;
+                    response.Message = "Data collected.";
+                }
+                else
+                {
+                    response.StatusCode = "500";
+                    response.IsSuccess = true;
+                    response.Message = "No data found.";
+                }
             }
-            else
+            catch (Exception ex)
             {
                 response.StatusCode = "500";
-                response.IsSuccess = true;
-                response.Message = "Something went wrong! Contact administrator.";
-            }             
+                response.IsSuccess = false;
+                response.Message = ex.Message;
+            }
 
             response.SingleResult = tests;
             return response;
-            
+
         }
 
         [HttpGet]
@@ -86,9 +107,7 @@ namespace IqHealth.WebApi.Controllers
             JsonResponse<List<PackageCategory>> response = new JsonResponse<List<PackageCategory>>();
             List<PackageCategory> categories = _context.PackageCategories.ToList();
 
-            List<PackageMaster> allPackages = new List<PackageMaster>();
-
-            allPackages = _context.PackageMasters.Where(x => x.IsDeleted == 0).ToList(); // Only reequest will be sent to fetch the data.
+            List<PackageMaster> allPackages = _context.PackageMasters.Where(x => x.IsDeleted == 0).ToList(); // Only reequest will be sent to fetch the data.
 
 
             foreach (var catg in categories)
@@ -114,7 +133,7 @@ namespace IqHealth.WebApi.Controllers
         {
 
             JsonResponse<List<PackageMaster>> response = new JsonResponse<List<PackageMaster>>();
-            
+
             response.SingleResult = _context.PackageMasters.Where(x => x.IsDeleted == 0).ToList();
             response.StatusCode = "200";
             response.Message = "Data collected.";
