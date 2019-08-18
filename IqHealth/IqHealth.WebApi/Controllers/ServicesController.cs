@@ -23,7 +23,7 @@ namespace IqHealth.WebApi.Controllers
             _context = new IqHealthDBContext();
         }
 
-        [HttpGet()]
+        [HttpGet]
         [Route("data")]
         public JsonResponse<List<HealthServiceMaster>> GetServices()
         {

@@ -79,7 +79,7 @@ namespace IqHealth.WebApi.Controllers
             return response;
         }
 
-        [HttpGet()]
+        [HttpGet]
         [Route("doctor-speciality")]
         public JsonResponse<List<DoctorSpeciality>> GetDocSpecialiy()
         {
@@ -113,8 +113,42 @@ namespace IqHealth.WebApi.Controllers
             return response;
         }
 
+        [HttpGet]
+        [Route("doctors-by-speciality")]
+        public JsonResponse<List<DoctorSpeciality>> GetDocBySpeciality(int id)
+        {
+            JsonResponse<List<DoctorSpeciality>> response = new JsonResponse<List<DoctorSpeciality>>();
 
-        [HttpPut]
+            try
+            {
+                List<DoctorSpeciality> specialities = _context.DoctorSpecialities.SqlQuery("SELECT DoctorSpecialities.ID, DoctorSpecialities.SpecialityID, DoctorSpecialities.DoctorID, DoctorMaster.FirstName,  DoctorMaster.LastName, SpecialityMaster.Title  FROM DoctorSpecialities INNER JOIN DoctorMaster ON DoctorSpecialities.DoctorID = DoctorMaster.ID INNER JOIN SpecialityMaster ON DoctorSpecialities.SpecialityID = SpecialityMaster.ID WHERE SpecialityMaster.ID = "+ id).ToList();
+
+                if (specialities != null)
+                {
+                    response.StatusCode = "200";
+                    response.IsSuccess = true;
+                    response.Message = "Data collected.";
+                }
+                else
+                {
+                    response.StatusCode = "500";
+                    response.IsSuccess = true;
+                    response.Message = "Something went wrong! Contact administrator.";
+                }
+                response.SingleResult = specialities;
+            }
+            catch (Exception ex)
+            {
+                response.StatusCode = "500";
+                response.IsSuccess = false;
+                response.Message = ex.Message;
+            }
+
+            return response;
+        }
+
+
+        [HttpPost]
         [Route("submit")]
         public JsonResponse<int> SubmitDoctor(DoctorMaster doc)
         {
