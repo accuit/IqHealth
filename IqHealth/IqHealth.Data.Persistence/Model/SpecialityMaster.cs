@@ -33,6 +33,10 @@ namespace IqHealth.Data.Persistence.Model
         public int IsDeleted { get; set; }
 
         [DataMember]
+        [StringLength(1000)]
+        public string ImageUrl { get; set; }
+
+        [DataMember]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DoctorMaster> DoctorMasters { get; set; }
 

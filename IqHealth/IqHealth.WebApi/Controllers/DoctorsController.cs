@@ -51,7 +51,7 @@ namespace IqHealth.WebApi.Controllers
                 response.IsSuccess = false;
                 response.Message = ex.Message;
             }
-            
+
             return response;
         }
 
@@ -81,7 +81,7 @@ namespace IqHealth.WebApi.Controllers
 
         [HttpGet]
         [Route("doctor-speciality")]
-        public JsonResponse<List<DoctorSpeciality>> GetDocSpecialiy()
+        public JsonResponse<List<DoctorSpeciality>> GetDocSpeciality()
         {
             JsonResponse<List<DoctorSpeciality>> response = new JsonResponse<List<DoctorSpeciality>>();
 
@@ -109,19 +109,19 @@ namespace IqHealth.WebApi.Controllers
                 response.IsSuccess = false;
                 response.Message = ex.Message;
             }
-            
+
             return response;
         }
 
         [HttpGet]
-        [Route("doctors-by-speciality")]
-        public JsonResponse<List<DoctorSpeciality>> GetDocBySpeciality(int id)
+        [Route("doctors-by-all-speciality")]
+        public JsonResponse<List<DoctorSpeciality>> GetDocByAllSpeciality(int id)
         {
             JsonResponse<List<DoctorSpeciality>> response = new JsonResponse<List<DoctorSpeciality>>();
 
             try
             {
-                List<DoctorSpeciality> specialities = _context.DoctorSpecialities.SqlQuery("SELECT DoctorSpecialities.ID, DoctorSpecialities.SpecialityID, DoctorSpecialities.DoctorID, DoctorMaster.FirstName,  DoctorMaster.LastName, SpecialityMaster.Title  FROM DoctorSpecialities INNER JOIN DoctorMaster ON DoctorSpecialities.DoctorID = DoctorMaster.ID INNER JOIN SpecialityMaster ON DoctorSpecialities.SpecialityID = SpecialityMaster.ID WHERE SpecialityMaster.ID = "+ id).ToList();
+                List<DoctorSpeciality> specialities = _context.DoctorSpecialities.SqlQuery("SELECT DoctorSpecialities.ID, DoctorSpecialities.SpecialityID, DoctorSpecialities.DoctorID, DoctorMaster.FirstName,  DoctorMaster.LastName, SpecialityMaster.Title  FROM DoctorSpecialities INNER JOIN DoctorMaster ON DoctorSpecialities.DoctorID = DoctorMaster.ID INNER JOIN SpecialityMaster ON DoctorSpecialities.SpecialityID = SpecialityMaster.ID WHERE SpecialityMaster.ID = " + id).ToList();
 
                 if (specialities != null)
                 {
@@ -135,6 +135,34 @@ namespace IqHealth.WebApi.Controllers
                     response.IsSuccess = true;
                     response.Message = "Something went wrong! Contact administrator.";
                 }
+                response.SingleResult = specialities;
+            }
+            catch (Exception ex)
+            {
+                response.StatusCode = "500";
+                response.IsSuccess = false;
+                response.Message = ex.Message;
+            }
+
+            return response;
+        }
+
+        [HttpGet]
+        [Route("doctors-by-speciality/{id}")]
+        public JsonResponse<List<DoctorMaster>> GetDocBySpeciality(int id)
+        {
+            JsonResponse<List<DoctorMaster>> response = new JsonResponse<List<DoctorMaster>>();
+
+            try
+            {
+                List<DoctorMaster> specialities = _context.DoctorMasters.Where(x => x.SpecialityID == id).ToList();
+                if (specialities != null)
+                    response.Message = "Doctors successfully found for this speciality.";
+                else
+                    response.Message = "No doctor found for this speciality.";
+
+                response.StatusCode = "200";
+                response.IsSuccess = true;
                 response.SingleResult = specialities;
             }
             catch (Exception ex)
@@ -213,7 +241,7 @@ namespace IqHealth.WebApi.Controllers
                 return false;
 
         }
-        
+
 
         [HttpGet]
         [Route("delete/{id}")]
