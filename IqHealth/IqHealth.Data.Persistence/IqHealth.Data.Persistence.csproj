@@ -60,16 +60,16 @@
     <Compile Include="DTO\Response.cs" />
     <Compile Include="IqHealthDBContext.cs" />
     <Compile Include="Model\BookingMaster.cs" />
-    <Compile Include="Model\BookingTestPackage.cs" />
+    <Compile Include="Model\HospitalMaster.cs" />
     <Compile Include="Model\DoctorMaster.cs" />
     <Compile Include="Model\HealthServiceMaster.cs" />
     <Compile Include="Model\Login.cs" />
-    <Compile Include="Model\MedicalTests.cs" />
+    <Compile Include="Model\DoctorSpeciality.cs" />
     <Compile Include="Model\PackageCategory.cs" />
     <Compile Include="Model\PackageMaster.cs" />
     <Compile Include="Model\DoctorAppointment.cs" />
     <Compile Include="Model\TestMaster.cs" />
-    <Compile Include="Model\TestsPackage.cs" />
+    <Compile Include="Model\SpecialityMaster.cs" />
     <Compile Include="Model\UserMaster.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

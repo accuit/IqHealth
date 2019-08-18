@@ -28,7 +28,40 @@ namespace IqHealth.WebApi.Controllers
         {
             JsonResponse<List<DoctorMaster>> response = new JsonResponse<List<DoctorMaster>>();
 
-            List<DoctorMaster> doctors = _context.DoctorMasters.Where(x => x.IsDeleted == 0).ToList();
+            try
+            {
+                List<DoctorMaster> doctors = _context.DoctorMasters.Where(x => x.IsDeleted == 0).ToList();
+                if (doctors != null)
+                {
+                    response.StatusCode = "200";
+                    response.IsSuccess = true;
+                    response.Message = "Data collected.";
+                }
+                else
+                {
+                    response.StatusCode = "200";
+                    response.IsSuccess = true;
+                    response.Message = "No data available.";
+                }
+                response.SingleResult = doctors;
+            }
+            catch (Exception ex)
+            {
+                response.StatusCode = "500";
+                response.IsSuccess = false;
+                response.Message = ex.Message;
+            }
+
+            return response;
+        }
+
+        [HttpGet]
+        [Route("specialities")]
+        public JsonResponse<List<SpecialityMaster>> GetSpecialities()
+        {
+            JsonResponse<List<SpecialityMaster>> response = new JsonResponse<List<SpecialityMaster>>();
+
+            List<SpecialityMaster> doctors = _context.SpecialityMasters.Where(x => x.IsDeleted == 0).ToList();
             if (doctors != null)
             {
                 response.StatusCode = "200";
@@ -46,7 +79,104 @@ namespace IqHealth.WebApi.Controllers
             return response;
         }
 
-        [HttpPut]
+        [HttpGet]
+        [Route("doctor-speciality")]
+        public JsonResponse<List<DoctorSpeciality>> GetDocSpeciality()
+        {
+            JsonResponse<List<DoctorSpeciality>> response = new JsonResponse<List<DoctorSpeciality>>();
+
+            try
+            {
+                List<DoctorSpeciality> specialities = _context.DoctorSpecialities.SqlQuery("SELECT DoctorSpecialities.ID, DoctorSpecialities.SpecialityID, DoctorSpecialities.DoctorID, DoctorMaster.FirstName,  DoctorMaster.LastName, SpecialityMaster.Title  FROM DoctorSpecialities INNER JOIN DoctorMaster ON DoctorSpecialities.DoctorID = DoctorMaster.ID INNER JOIN SpecialityMaster ON DoctorSpecialities.SpecialityID = SpecialityMaster.ID ").ToList();
+
+                if (specialities != null)
+                {
+                    response.StatusCode = "200";
+                    response.IsSuccess = true;
+                    response.Message = "Data collected.";
+                }
+                else
+                {
+                    response.StatusCode = "500";
+                    response.IsSuccess = true;
+                    response.Message = "Something went wrong! Contact administrator.";
+                }
+                response.SingleResult = specialities;
+            }
+            catch (Exception ex)
+            {
+                response.StatusCode = "500";
+                response.IsSuccess = false;
+                response.Message = ex.Message;
+            }
+
+            return response;
+        }
+
+        [HttpGet]
+        [Route("doctors-by-all-speciality")]
+        public JsonResponse<List<DoctorSpeciality>> GetDocByAllSpeciality(int id)
+        {
+            JsonResponse<List<DoctorSpeciality>> response = new JsonResponse<List<DoctorSpeciality>>();
+
+            try
+            {
+                List<DoctorSpeciality> specialities = _context.DoctorSpecialities.SqlQuery("SELECT DoctorSpecialities.ID, DoctorSpecialities.SpecialityID, DoctorSpecialities.DoctorID, DoctorMaster.FirstName,  DoctorMaster.LastName, SpecialityMaster.Title  FROM DoctorSpecialities INNER JOIN DoctorMaster ON DoctorSpecialities.DoctorID = DoctorMaster.ID INNER JOIN SpecialityMaster ON DoctorSpecialities.SpecialityID = SpecialityMaster.ID WHERE SpecialityMaster.ID = " + id).ToList();
+
+                if (specialities != null)
+                {
+                    response.StatusCode = "200";
+                    response.IsSuccess = true;
+                    response.Message = "Data collected.";
+                }
+                else
+                {
+                    response.StatusCode = "500";
+                    response.IsSuccess = true;
+                    response.Message = "Something went wrong! Contact administrator.";
+                }
+                response.SingleResult = specialities;
+            }
+            catch (Exception ex)
+            {
+                response.StatusCode = "500";
+                response.IsSuccess = false;
+                response.Message = ex.Message;
+            }
+
+            return response;
+        }
+
+        [HttpGet]
+        [Route("doctors-by-speciality/{id}")]
+        public JsonResponse<List<DoctorMaster>> GetDocBySpeciality(int id)
+        {
+            JsonResponse<List<DoctorMaster>> response = new JsonResponse<List<DoctorMaster>>();
+
+            try
+            {
+                List<DoctorMaster> specialities = _context.DoctorMasters.Where(x => x.SpecialityID == id).ToList();
+                if (specialities != null)
+                    response.Message = "Doctors successfully found for this speciality.";
+                else
+                    response.Message = "No doctor found for this speciality.";
+
+                response.StatusCode = "200";
+                response.IsSuccess = true;
+                response.SingleResult = specialities;
+            }
+            catch (Exception ex)
+            {
+                response.StatusCode = "500";
+                response.IsSuccess = false;
+                response.Message = ex.Message;
+            }
+
+            return response;
+        }
+
+
+        [HttpPost]
         [Route("submit")]
         public JsonResponse<int> SubmitDoctor(DoctorMaster doc)
         {
@@ -90,13 +220,13 @@ namespace IqHealth.WebApi.Controllers
                     response.Message = "Your appointment with Dr. " + doc.FirstName + " is updated.";
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 response.StatusCode = "500";
                 response.IsSuccess = _context.SaveChanges() > 0 ? true : false;
                 response.Message = ex.Message;
             }
-           
+
 
 
             return response;
@@ -111,6 +241,7 @@ namespace IqHealth.WebApi.Controllers
                 return false;
 
         }
+
 
         [HttpGet]
         [Route("delete/{id}")]

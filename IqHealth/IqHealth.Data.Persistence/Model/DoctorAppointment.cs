@@ -39,6 +39,7 @@ namespace IqHealth.Data.Persistence.Model
         [DataMember]
         public DateTime? BookingDate { get; set; }
 
+        [DataMember]
         public int? DoctorID { get; set; }
 
         public DateTime? CreatedDate { get; set; }
