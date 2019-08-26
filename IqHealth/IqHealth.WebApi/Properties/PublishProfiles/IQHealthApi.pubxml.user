@@ -91,16 +91,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/30/2019 00:48:26</publishTime>
     </File>
     <File Include="bin/IqHealth.Data.Persistence.dll">
-      <publishTime>08/24/2019 18:08:27</publishTime>
+      <publishTime>08/26/2019 23:35:35</publishTime>
     </File>
     <File Include="bin/IqHealth.Data.Persistence.pdb">
-      <publishTime>08/24/2019 18:08:27</publishTime>
+      <publishTime>08/26/2019 23:35:35</publishTime>
     </File>
     <File Include="bin/IqHealth.WebApi.dll">
-      <publishTime>08/24/2019 18:08:28</publishTime>
+      <publishTime>08/26/2019 23:38:02</publishTime>
     </File>
     <File Include="bin/IqHealth.WebApi.pdb">
-      <publishTime>08/24/2019 18:08:28</publishTime>
+      <publishTime>08/26/2019 23:38:02</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.TelemetryCorrelation.dll">
       <publishTime>07/30/2019 00:48:26</publishTime>
@@ -403,7 +403,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/27/2019 00:58:49</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>08/22/2019 18:49:50</publishTime>
+      <publishTime>08/26/2019 23:38:03</publishTime>
     </File>
   </ItemGroup>
 </Project>
