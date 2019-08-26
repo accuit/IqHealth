@@ -37,7 +37,7 @@ namespace IqHealth.WebApi.Helpers
             body = body.Replace("{Email}", model.Email);
             body = body.Replace("{Mobile}", model.Mobile);
             body = body.Replace("{Address}", model.Address);
-            body = body.Replace("{Landmark}", model.LastName);
+            body = body.Replace("{Landmark}", model.Landmark);
             body = body.Replace("{PinCode}", model.PinCode);
 
 

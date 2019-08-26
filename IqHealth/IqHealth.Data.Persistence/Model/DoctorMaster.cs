@@ -84,6 +84,7 @@ namespace IqHealth.Data.Persistence.Model
 
         public int? HospitalID { get; set; }
 
+        [DataMember]
         public int? SpecialityID { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
