@@ -30,7 +30,7 @@ namespace IqHealth.WebApi.Controllers
 
             try
             {
-                List<DoctorMaster> doctors = _context.DoctorMasters.Where(x => x.IsDeleted == 0).ToList();
+                List<DoctorMaster> doctors = _context.DoctorMasters.Where(x => x.IsDeleted == 0).OrderBy(x=>x.Sequence).ToList();
                 if (doctors != null)
                 {
                     response.StatusCode = "200";

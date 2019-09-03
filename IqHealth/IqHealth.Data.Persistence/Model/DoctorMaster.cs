@@ -56,6 +56,9 @@ namespace IqHealth.Data.Persistence.Model
         public string Designation { get; set; }
 
         [DataMember]
+        public int Sequence { get; set; }
+
+        [DataMember]
         [StringLength(500)]
         public string About { get; set; }
 

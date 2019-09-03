@@ -14,7 +14,7 @@ namespace IqHealth.Data.Persistence
     {
 
         public IqHealthDBContext()
-            : base("IqHealthConnection")
+            : base("LeelaDBConnection")
         {
             this.Configuration.LazyLoadingEnabled = false;
             this.Configuration.ProxyCreationEnabled = false;
