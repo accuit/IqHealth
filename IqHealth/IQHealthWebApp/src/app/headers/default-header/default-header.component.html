@@ -12,11 +12,11 @@
 
                     <ul class="nav navbar-nav navigation-box">
                         <li class="current">
-                            <a href="index.html">Home</a>
+                            <a [routerLink]="'/'">Home</a>
                         </li>
-                        <li> <a href="about.html">About Clinic</a> </li>
+                        <li> <a [routerLink]="'/know-about-us'">About Us</a> </li>
                         <li>
-                            <a href="departments-1.html">Departments</a>
+                            <a [routerLink]="'/departments-list'">Departments</a>
                             <ul class="sub-menu">
                                 <li><a href="departments-details-1.html">Children Health Center</a></li>
                                 <li><a href="departments-details-2.html">Dentistry & Oral Surgery</a></li>
@@ -49,11 +49,11 @@
                                 <li><a href="blog-details.html">Blog Details</a></li>
                             </ul><!-- /.sub-menu -->
                         </li>
-                        <li> <a href="contact.html">Contact</a> </li>
+                        <li> <a [routerLink]="'/contact-us'">Contact</a> </li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
                 <div class="right-side-box">
-                    <a href="appointment.html" class="book-appointment"><i class="fas fa-calendar-alt"></i> book an
+                    <a [routerLink]="'/book-an-appointment'" class="book-appointment"><i class="fas fa-calendar-alt"></i> book an
                         appointment</a>
                 </div><!-- /.right-side-box -->
             </div><!-- /.container -->

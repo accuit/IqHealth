@@ -1,0 +1,620 @@
+@font-face {
+    font-family: 'clinmedix-icon';
+    src:  url('fonts/clinmedix-icon.eot?hu29a4');
+    src:  url('fonts/clinmedix-icon.eot?hu29a4#iefix') format('embedded-opentype'),
+      url('fonts/clinmedix-icon.ttf?hu29a4') format('truetype'),
+      url('fonts/clinmedix-icon.woff?hu29a4') format('woff'),
+      url('fonts/clinmedix-icon.svg?hu29a4#clinmedix-icon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  [class^="clinmedix-icon-"], [class*=" clinmedix-icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'clinmedix-icon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+  
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .clinmedix-icon-clock:before {
+    content: "\e95c";
+  }
+  .clinmedix-icon-left-quotes-sign:before {
+    content: "\e95d";
+  }
+  .clinmedix-icon-placeholder:before {
+    content: "\e95e";
+  }
+  .clinmedix-icon-right-quote:before {
+    content: "\e95f";
+  }
+  .clinmedix-icon-search:before {
+    content: "\e960";
+  }
+  .clinmedix-icon-smartphone:before {
+    content: "\e961";
+  }
+  .clinmedix-icon-ambulance2:before {
+    content: "\e962";
+  }
+  .clinmedix-icon-ambulance-1:before {
+    content: "\e963";
+  }
+  .clinmedix-icon-analysis:before {
+    content: "\e964";
+  }
+  .clinmedix-icon-atom:before {
+    content: "\e965";
+  }
+  .clinmedix-icon-atom-1:before {
+    content: "\e966";
+  }
+  .clinmedix-icon-bed:before {
+    content: "\e967";
+  }
+  .clinmedix-icon-bed-1:before {
+    content: "\e968";
+  }
+  .clinmedix-icon-bone:before {
+    content: "\e969";
+  }
+  .clinmedix-icon-bowl:before {
+    content: "\e96a";
+  }
+  .clinmedix-icon-bowl-1:before {
+    content: "\e96b";
+  }
+  .clinmedix-icon-bowl-2:before {
+    content: "\e96c";
+  }
+  .clinmedix-icon-cardiogram2:before {
+    content: "\e96d";
+  }
+  .clinmedix-icon-cardiogram-1:before {
+    content: "\e96e";
+  }
+  .clinmedix-icon-cardiogram-2:before {
+    content: "\e96f";
+  }
+  .clinmedix-icon-cardiogram-3:before {
+    content: "\e970";
+  }
+  .clinmedix-icon-chemical1:before {
+    content: "\e971";
+  }
+  .clinmedix-icon-chemical-11:before {
+    content: "\e972";
+  }
+  .clinmedix-icon-chemistry:before {
+    content: "\e973";
+  }
+  .clinmedix-icon-computer-mouse:before {
+    content: "\e974";
+  }
+  .clinmedix-icon-danger:before {
+    content: "\e975";
+  }
+  .clinmedix-icon-desktop-computer:before {
+    content: "\e976";
+  }
+  .clinmedix-icon-dna:before {
+    content: "\e977";
+  }
+  .clinmedix-icon-dna-1:before {
+    content: "\e978";
+  }
+  .clinmedix-icon-doctor2:before {
+    content: "\e979";
+  }
+  .clinmedix-icon-drop1:before {
+    content: "\e97a";
+  }
+  .clinmedix-icon-droplet:before {
+    content: "\e97b";
+  }
+  .clinmedix-icon-eye:before {
+    content: "\e97c";
+  }
+  .clinmedix-icon-femenine:before {
+    content: "\e97d";
+  }
+  .clinmedix-icon-first-aid-kit2:before {
+    content: "\e97e";
+  }
+  .clinmedix-icon-first-aid-kit-1:before {
+    content: "\e97f";
+  }
+  .clinmedix-icon-first-aid-kit-2:before {
+    content: "\e980";
+  }
+  .clinmedix-icon-first-aid-kit-3:before {
+    content: "\e981";
+  }
+  .clinmedix-icon-heart1:before {
+    content: "\e982";
+  }
+  .clinmedix-icon-heart-1:before {
+    content: "\e983";
+  }
+  .clinmedix-icon-heart-2:before {
+    content: "\e984";
+  }
+  .clinmedix-icon-helicopter1:before {
+    content: "\e985";
+  }
+  .clinmedix-icon-hexagon:before {
+    content: "\e986";
+  }
+  .clinmedix-icon-hospital1:before {
+    content: "\e987";
+  }
+  .clinmedix-icon-hospital-11:before {
+    content: "\e988";
+  }
+  .clinmedix-icon-hospital-2:before {
+    content: "\e989";
+  }
+  .clinmedix-icon-hospital-3:before {
+    content: "\e98a";
+  }
+  .clinmedix-icon-injection:before {
+    content: "\e98b";
+  }
+  .clinmedix-icon-kidney:before {
+    content: "\e98c";
+  }
+  .clinmedix-icon-list:before {
+    content: "\e98d";
+  }
+  .clinmedix-icon-list-1:before {
+    content: "\e98e";
+  }
+  .clinmedix-icon-list-2:before {
+    content: "\e98f";
+  }
+  .clinmedix-icon-list-3:before {
+    content: "\e990";
+  }
+  .clinmedix-icon-loupe:before {
+    content: "\e991";
+  }
+  .clinmedix-icon-lungs:before {
+    content: "\e992";
+  }
+  .clinmedix-icon-masculine:before {
+    content: "\e993";
+  }
+  .clinmedix-icon-medical-tool:before {
+    content: "\e994";
+  }
+  .clinmedix-icon-medication:before {
+    content: "\e995";
+  }
+  .clinmedix-icon-medication-1:before {
+    content: "\e996";
+  }
+  .clinmedix-icon-medicine1:before {
+    content: "\e997";
+  }
+  .clinmedix-icon-medicine-11:before {
+    content: "\e998";
+  }
+  .clinmedix-icon-medicine-21:before {
+    content: "\e999";
+  }
+  .clinmedix-icon-medicine-31:before {
+    content: "\e99a";
+  }
+  .clinmedix-icon-medicine-41:before {
+    content: "\e99b";
+  }
+  .clinmedix-icon-medicine-51:before {
+    content: "\e99c";
+  }
+  .clinmedix-icon-medicine-61:before {
+    content: "\e99d";
+  }
+  .clinmedix-icon-microscope1:before {
+    content: "\e99e";
+  }
+  .clinmedix-icon-microscope-1:before {
+    content: "\e99f";
+  }
+  .clinmedix-icon-microscope-2:before {
+    content: "\e9a0";
+  }
+  .clinmedix-icon-molar:before {
+    content: "\e9a1";
+  }
+  .clinmedix-icon-molecule:before {
+    content: "\e9a2";
+  }
+  .clinmedix-icon-nurse2:before {
+    content: "\e9a3";
+  }
+  .clinmedix-icon-nurse-1:before {
+    content: "\e9a4";
+  }
+  .clinmedix-icon-nurse-2:before {
+    content: "\e9a5";
+  }
+  .clinmedix-icon-pharmacy:before {
+    content: "\e9a6";
+  }
+  .clinmedix-icon-pharmacy-1:before {
+    content: "\e9a7";
+  }
+  .clinmedix-icon-phonendoscope:before {
+    content: "\e9a8";
+  }
+  .clinmedix-icon-pill:before {
+    content: "\e9a9";
+  }
+  .clinmedix-icon-pill-1:before {
+    content: "\e9aa";
+  }
+  .clinmedix-icon-pill-2:before {
+    content: "\e9ab";
+  }
+  .clinmedix-icon-pill-3:before {
+    content: "\e9ac";
+  }
+  .clinmedix-icon-pill-4:before {
+    content: "\e9ad";
+  }
+  .clinmedix-icon-pills2:before {
+    content: "\e9ae";
+  }
+  .clinmedix-icon-shield:before {
+    content: "\e9af";
+  }
+  .clinmedix-icon-skeleton:before {
+    content: "\e9b0";
+  }
+  .clinmedix-icon-statistics:before {
+    content: "\e9b1";
+  }
+  .clinmedix-icon-stretcher1:before {
+    content: "\e9b2";
+  }
+  .clinmedix-icon-stretcher-11:before {
+    content: "\e9b3";
+  }
+  .clinmedix-icon-stretcher-2:before {
+    content: "\e9b4";
+  }
+  .clinmedix-icon-stretcher-3:before {
+    content: "\e9b5";
+  }
+  .clinmedix-icon-stretcher-4:before {
+    content: "\e9b6";
+  }
+  .clinmedix-icon-sunglasses:before {
+    content: "\e9b7";
+  }
+  .clinmedix-icon-sunglasses-1:before {
+    content: "\e9b8";
+  }
+  .clinmedix-icon-syringe3:before {
+    content: "\e9b9";
+  }
+  .clinmedix-icon-syringe-11:before {
+    content: "\e9ba";
+  }
+  .clinmedix-icon-syringe-21:before {
+    content: "\e9bb";
+  }
+  .clinmedix-icon-tablet:before {
+    content: "\e9bc";
+  }
+  .clinmedix-icon-tablet-1:before {
+    content: "\e9bd";
+  }
+  .clinmedix-icon-test-tube1:before {
+    content: "\e9be";
+  }
+  .clinmedix-icon-test-tube-1:before {
+    content: "\e9bf";
+  }
+  .clinmedix-icon-test-tube-2:before {
+    content: "\e9c0";
+  }
+  .clinmedix-icon-thermometer2:before {
+    content: "\e9c1";
+  }
+  .clinmedix-icon-thermometer-1:before {
+    content: "\e9c2";
+  }
+  .clinmedix-icon-thermometer-2:before {
+    content: "\e9c3";
+  }
+  .clinmedix-icon-thermometer-3:before {
+    content: "\e9c4";
+  }
+  .clinmedix-icon-wheelchair1:before {
+    content: "\e9c5";
+  }
+  .clinmedix-icon-play-button:before {
+    content: "\e95b";
+  }
+  .clinmedix-icon-24-hours:before {
+    content: "\e900";
+  }
+  .clinmedix-icon-acupuncture:before {
+    content: "\e901";
+  }
+  .clinmedix-icon-ambulance:before {
+    content: "\e902";
+  }
+  .clinmedix-icon-band-aid:before {
+    content: "\e903";
+  }
+  .clinmedix-icon-blood-transfusion:before {
+    content: "\e904";
+  }
+  .clinmedix-icon-cardiogram:before {
+    content: "\e905";
+  }
+  .clinmedix-icon-crutches:before {
+    content: "\e906";
+  }
+  .clinmedix-icon-doctor:before {
+    content: "\e907";
+  }
+  .clinmedix-icon-dropper:before {
+    content: "\e908";
+  }
+  .clinmedix-icon-enema:before {
+    content: "\e909";
+  }
+  .clinmedix-icon-flask:before {
+    content: "\e90a";
+  }
+  .clinmedix-icon-helicopter:before {
+    content: "\e90b";
+  }
+  .clinmedix-icon-stretcher:before {
+    content: "\e90c";
+  }
+  .clinmedix-icon-hospital:before {
+    content: "\e90d";
+  }
+  .clinmedix-icon-first-aid-kit:before {
+    content: "\e90e";
+  }
+  .clinmedix-icon-microscope:before {
+    content: "\e90f";
+  }
+  .clinmedix-icon-nurse:before {
+    content: "\e910";
+  }
+  .clinmedix-icon-oxygen-mask:before {
+    content: "\e911";
+  }
+  .clinmedix-icon-petri-dish:before {
+    content: "\e912";
+  }
+  .clinmedix-icon-rehabilitation:before {
+    content: "\e913";
+  }
+  .clinmedix-icon-pills:before {
+    content: "\e914";
+  }
+  .clinmedix-icon-medical-history:before {
+    content: "\e915";
+  }
+  .clinmedix-icon-hospital-1:before {
+    content: "\e916";
+  }
+  .clinmedix-icon-serum:before {
+    content: "\e917";
+  }
+  .clinmedix-icon-eye-test:before {
+    content: "\e918";
+  }
+  .clinmedix-icon-stethoscope:before {
+    content: "\e919";
+  }
+  .clinmedix-icon-no-photo:before {
+    content: "\e91a";
+  }
+  .clinmedix-icon-silence:before {
+    content: "\e91b";
+  }
+  .clinmedix-icon-stretcher-1:before {
+    content: "\e91c";
+  }
+  .clinmedix-icon-surgeon:before {
+    content: "\e91d";
+  }
+  .clinmedix-icon-surgery:before {
+    content: "\e91e";
+  }
+  .clinmedix-icon-syringe:before {
+    content: "\e91f";
+  }
+  .clinmedix-icon-test-tube:before {
+    content: "\e920";
+  }
+  .clinmedix-icon-thermometer:before {
+    content: "\e921";
+  }
+  .clinmedix-icon-wheelchair:before {
+    content: "\e922";
+  }
+  .clinmedix-icon-x-ray:before {
+    content: "\e923";
+  }
+  .clinmedix-icon-medicine-7:before {
+    content: "\e924";
+  }
+  .clinmedix-icon-vitamin-c:before {
+    content: "\e925";
+  }
+  .clinmedix-icon-drop:before {
+    content: "\e926";
+  }
+  .clinmedix-icon-cream:before {
+    content: "\e927";
+  }
+  .clinmedix-icon-nurse1:before {
+    content: "\e928";
+  }
+  .clinmedix-icon-doctor-1:before {
+    content: "\e929";
+  }
+  .clinmedix-icon-chemical-1:before {
+    content: "\e92a";
+  }
+  .clinmedix-icon-transfusion:before {
+    content: "\e92b";
+  }
+  .clinmedix-icon-thermometer1:before {
+    content: "\e92c";
+  }
+  .clinmedix-icon-syringe-2:before {
+    content: "\e92d";
+  }
+  .clinmedix-icon-medicine-6:before {
+    content: "\e92e";
+  }
+  .clinmedix-icon-vitamin:before {
+    content: "\e92f";
+  }
+  .clinmedix-icon-medicine-5:before {
+    content: "\e930";
+  }
+  .clinmedix-icon-syringe-1:before {
+    content: "\e931";
+  }
+  .clinmedix-icon-medicine-4:before {
+    content: "\e932";
+  }
+  .clinmedix-icon-drugs:before {
+    content: "\e933";
+  }
+  .clinmedix-icon-doctor1:before {
+    content: "\e934";
+  }
+  .clinmedix-icon-chemical:before {
+    content: "\e935";
+  }
+  .clinmedix-icon-syrup:before {
+    content: "\e936";
+  }
+  .clinmedix-icon-stethoscope1:before {
+    content: "\e937";
+  }
+  .clinmedix-icon-sugar-blood-level:before {
+    content: "\e938";
+  }
+  .clinmedix-icon-heart:before {
+    content: "\e939";
+  }
+  .clinmedix-icon-inhaler:before {
+    content: "\e93a";
+  }
+  .clinmedix-icon-blood:before {
+    content: "\e93b";
+  }
+  .clinmedix-icon-health-1:before {
+    content: "\e93c";
+  }
+  .clinmedix-icon-date:before {
+    content: "\e93d";
+  }
+  .clinmedix-icon-paste:before {
+    content: "\e93e";
+  }
+  .clinmedix-icon-herbal-1:before {
+    content: "\e93f";
+  }
+  .clinmedix-icon-herbal:before {
+    content: "\e940";
+  }
+  .clinmedix-icon-spray:before {
+    content: "\e941";
+  }
+  .clinmedix-icon-plaster:before {
+    content: "\e942";
+  }
+  .clinmedix-icon-medicine-3:before {
+    content: "\e943";
+  }
+  .clinmedix-icon-medicine-2:before {
+    content: "\e944";
+  }
+  .clinmedix-icon-aids:before {
+    content: "\e945";
+  }
+  .clinmedix-icon-health:before {
+    content: "\e946";
+  }
+  .clinmedix-icon-urine:before {
+    content: "\e947";
+  }
+  .clinmedix-icon-medicine-1:before {
+    content: "\e948";
+  }
+  .clinmedix-icon-medicine:before {
+    content: "\e949";
+  }
+  .clinmedix-icon-syringe1:before {
+    content: "\e94a";
+  }
+  .clinmedix-icon-tooth:before {
+    content: "\e94b";
+  }
+  .clinmedix-icon-bandage:before {
+    content: "\e94c";
+  }
+  .clinmedix-icon-red-cross:before {
+    content: "\e94d";
+  }
+  .clinmedix-icon-pipette:before {
+    content: "\e94e";
+  }
+  .clinmedix-icon-pills1:before {
+    content: "\e94f";
+  }
+  .clinmedix-icon-medicines:before {
+    content: "\e950";
+  }
+  .clinmedix-icon-medical-history1:before {
+    content: "\e951";
+  }
+  .clinmedix-icon-first-aid-kit1:before {
+    content: "\e952";
+  }
+  .clinmedix-icon-syringe2:before {
+    content: "\e953";
+  }
+  .clinmedix-icon-helipad:before {
+    content: "\e954";
+  }
+  .clinmedix-icon-inhalator:before {
+    content: "\e955";
+  }
+  .clinmedix-icon-emergency-call:before {
+    content: "\e956";
+  }
+  .clinmedix-icon-electrocardiogram:before {
+    content: "\e957";
+  }
+  .clinmedix-icon-cardiogram1:before {
+    content: "\e958";
+  }
+  .clinmedix-icon-blood1:before {
+    content: "\e959";
+  }
+  .clinmedix-icon-ambulance1:before {
+    content: "\e95a";
+  }

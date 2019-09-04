@@ -1,0 +1,135 @@
+<app-inner-banner></app-inner-banner>
+<section class="appointment-style-two sec-pad">
+    <div class="thm-container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="appointment-sidebar sidebar-left">
+                    <div class="single-appointment-sidebar overview">
+                        <div class="title">
+                            <h3>Booking Overview</h3>
+                            <p>Review your appointment details</p>
+                        </div><!-- /.title -->
+                        <ul class="infos">
+                            <li>
+                                <span class="type">Service:</span>
+                                <span class="option">Neurology & Neurosurgery</span>
+                            </li>
+                            <li>
+                                <span class="type">Dr. Name:</span>
+                                <span class="option">Dr. Andrian Henry</span>
+                            </li>
+                            <li>
+                                <span class="type">Fee:</span>
+                                <span class="option">$100/Consultation</span>
+                            </li>
+                            <li>
+                                <span class="type">Date:</span>
+                                <span class="option">October 15, 2018</span>
+                            </li>
+                            <li>
+                                <span class="type">Time:</span>
+                                <span class="option">04:00 PM</span>
+                            </li>
+                        </ul><!-- /.infos -->
+                    </div><!-- /.single-appointment-sidebar overview -->
+                    <div class="single-appointment-sidebar availability">
+                        <div class="title">
+                            <h3>availability</h3>
+                        </div><!-- /.title -->
+                        <ul class="infos">
+                            <li>
+                                <span class="type">Monday to Friday</span>
+                                <span class="option">09:00 am  -  19:00 pm</span>
+                            </li>
+                            <li>
+                                <span class="type">Saturday</span>
+                                <span class="option">08:00 am  -  17:00 pm</span>
+                            </li>
+                            <li>
+                                <span class="type">Sunday</span>
+                                <span class="option">Emergency Only</span>
+                            </li>
+                        </ul><!-- /.infos -->
+                    </div><!-- /.single-appointment-sidebar availability -->
+                </div><!-- /.appointment-sidebar -->
+            </div><!-- /.col-md-4 -->
+            <div class="col-md-8">
+                <form action="inc/sendemail.php" class="appointment-form contact-form">
+                    <h3>Need an <span class="color-1">Advice</span> from <span class="color-2">Expert Doctor?</span>
+                        Get an Appointment Today!</h3>
+                    <p>To speak with a representative, Call us <span>1-258-985-703</span></p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="frm-control">
+                                <input type="text" placeholder="Your Name" name="name">
+                            </div><!-- /.frm-control -->
+                        </div><!-- /.col-md-6 -->
+                        <div class="col-md-6">
+                            <div class="frm-control">
+                                <input type="text" placeholder="Email" name="email">
+                            </div><!-- /.frm-control -->
+                        </div><!-- /.col-md-6 -->
+                        <div class="col-md-6">
+                            <div class="frm-control">
+                                <input type="text" placeholder="Phone" name="phone">
+                            </div><!-- /.frm-control -->
+                        </div><!-- /.col-md-6 -->
+                        <div class="col-md-6">
+                            <div class="frm-control">
+                                <select name="time-select" class="selectpicker" id="dpartments-select">
+                                    <option value="1">Primary Medical  </option>
+                                    <option value="1">Primary Medical  (Department)</option>
+                                    <option value="1">Primary Medical Cause ()</option>
+                                    <option value="1">Primary Medical Cause </option>
+                                </select><!-- /#time-select -->
+                            </div><!-- /.frm-control -->
+                        </div><!-- /.col-md-6 -->
+                        <div class="col-md-4">
+                            <div class="frm-control select-date">
+                                <input type="text" placeholder="Select Day" name="select-date" class="select-date-input">
+                                <i class="fa fa-calendar-alt"></i><!-- /.fa -->
+                            </div><!-- /.frm-control -->
+                        </div><!-- /.col-md-6 -->
+                        <div class="col-md-4">
+                                <div class="frm-control">
+                                    <div class="btn-group bootstrap-select dropup"> <select name="time-select" class="selectpicker" id="time-select" tabindex="-98">
+                                        <option value="1">09.00 am - 10.00 am</option>
+                                        <option value="2">10.01 am - 11.00 am</option>
+                                        <option value="1">11.01 am - 12.00 pm</option>
+                                        <option value="1">12.01 pm - 01.00 pm</option>
+                                    </select></div><!-- /#time-select -->
+                                </div><!-- /.frm-control -->
+                            </div>
+                        <div class="col-md-4">
+                            <div class="frm-control">
+                                <select name="doctor-select" class="selectpicker" id="doctor-select">
+                                    <option value="1">Select Doctor</option>
+                                    <option value="1">Select Doctor</option>
+                                    <option value="1">Select Doctor</option>
+                                    <option value="1">Select Doctor</option>
+                                </select><!-- /#time-select -->
+                            </div><!-- /.frm-control -->
+                        </div><!-- /.col-md-6 -->
+                        <div class="col-md-12">
+                            <div class="frm-control">
+                                <input type="text" placeholder="Subject" name="subject">
+                            </div><!-- /.frm-control -->
+                        </div><!-- /.col-md-12 -->
+                        <div class="col-md-12">
+                            <div class="frm-control">
+                                <textarea name="message" id="message" placeholder="Message"></textarea><!-- /#message -->
+                            </div><!-- /.frm-control -->
+                        </div><!-- /.col-md-12 -->
+                        <div class="col-md-12">
+                            <div class="frm-control mb0">
+                                <button type="submit">Send Request</button>
+                                <button type="reset">Reset</button>
+                            </div><!-- /.frm-control -->
+                        </div><!-- /.col-md-12 -->
+                    </div><!-- /.row -->
+                    <div class="form-result"></div><!-- /.form-result -->
+                </form><!-- /.appointment-form -->
+            </div><!-- /.col-md-8 -->
+        </div><!-- /.row -->
+    </div><!-- /.thm-container -->
+</section><!-- /.appointment-style-one -->

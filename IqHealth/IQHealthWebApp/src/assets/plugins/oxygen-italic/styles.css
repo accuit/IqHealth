@@ -1,0 +1,8 @@
+
+@font-face {
+       font-family: 'Oxygen-Italic';
+       src: url('Oxygen-Italic.eot?#iefix') format('embedded-opentype'),  url('Oxygen-Italic.otf')  format('opentype'),
+                 url('Oxygen-Italic.woff') format('woff'), url('Oxygen-Italic.ttf')  format('truetype'), url('Oxygen-Italic.svg#Oxygen-Italic') format('svg');
+       font-weight: normal;
+       font-style: normal;
+     }

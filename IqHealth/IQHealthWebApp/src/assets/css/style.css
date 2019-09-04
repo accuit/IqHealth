@@ -40,13 +40,13 @@
 /*
 * font style sheet
 */
-@import url(http://html.tonatheme.com/2019/clinmedix/plugins/oxygen-regular/styles.css);
-@import url(http://html.tonatheme.com/2019/clinmedix/plugins/oxygen-italic/styles.css);
-@import url(http://html.tonatheme.com/2019/clinmedix/plugins/oxygen-bold/styles.css);
-@import url(http://html.tonatheme.com/2019/clinmedix/plugins/oxygen-bold-italic/styles.css);
+@import url(../plugins/oxygen-regular/styles.css);
+@import url(../plugins/oxygen-italic/styles.css);
+@import url(../plugins/oxygen-bold/styles.css);
+@import url(../plugins/oxygen-bold-italic/styles.css);
 @import url(https://fonts.googleapis.com/css?family=Oxygen:300,400,700|Merriweather:400,400i);
-@import url(http://html.tonatheme.com/2019/clinmedix/css/bootstrap.min.css);
-@import url(http://html.tonatheme.com/2019/clinmedix/bootstrap-select.min.css);
+@import url(bootstrap.min.css);
+@import url(bootstrap-select.min.css);
 @import url(http://html.tonatheme.com/2019/clinmedix/css/owl.carousel.css);
 @import url(http://html.tonatheme.com/2019/clinmedix/css/owl.theme.default.min.css);
 @import url(http://html.tonatheme.com/2019/clinmedix/css/nouislider.css);
@@ -58,9 +58,9 @@
 @import url(http://html.tonatheme.com/2019/clinmedix/css/twentytwenty.css);
 @import url(http://html.tonatheme.com/2019/clinmedix/css/jquery.bxslider.min.css);
 @import url(../plugins/fontawesome-5/css/fontawesome-all.min.css);
-@import url(http://html.tonatheme.com/2019/clinmedix/plugins/icofont/css/icofont.css);
-@import url(http://html.tonatheme.com/2019/clinmedix/plugins/clinmedix-icon/style.css);
-@import url(http://html.tonatheme.com/2019/clinmedix/plugins/bands-icon/style.css);
+@import url(../plugins/icofont/css/icofont.css);
+@import url(../plugins/clinmedix-icon/style.css);
+@import url(../plugins/bands-icon/style.css);
 @import url(http://html.tonatheme.com/2019/clinmedix/plugins/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css);
 @import url(http://html.tonatheme.com/2019/clinmedix/plugins/jquery-ui-1.12.1.custom/jquery-ui.min.css);
 /************************** 
