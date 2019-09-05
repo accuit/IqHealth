@@ -7,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ServicesListComponent implements OnInit {
 
+  title: string = 'Our Services List';
+  url:string = '#';
+  subtitle: string = 'Our Services';
+  parent: string = 'Home';
+
   constructor() { }
 
   ngOnInit() {
