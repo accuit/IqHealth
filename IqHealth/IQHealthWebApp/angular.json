@@ -30,7 +30,10 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/gmaps.js",
+              "src/assets/js/map-helper.js"
+            ]
           },
           "configurations": {
             "production": {
