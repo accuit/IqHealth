@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-inner-banner',
@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InnerBannerComponent implements OnInit {
 
+  @Input('title') title: string;
+  @Input('url') url: string;
+  @Input('subtitle') subtitle: string;
+  @Input('parent') parent: string;
+
   constructor() { }
 
   ngOnInit() {
+    
   }
 
 }

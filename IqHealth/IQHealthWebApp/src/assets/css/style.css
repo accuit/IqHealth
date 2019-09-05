@@ -47,22 +47,22 @@
 @import url(https://fonts.googleapis.com/css?family=Oxygen:300,400,700|Merriweather:400,400i);
 @import url(bootstrap.min.css);
 @import url(bootstrap-select.min.css);
-@import url(http://html.tonatheme.com/2019/clinmedix/css/owl.carousel.css);
-@import url(http://html.tonatheme.com/2019/clinmedix/css/owl.theme.default.min.css);
-@import url(http://html.tonatheme.com/2019/clinmedix/css/nouislider.css);
-@import url(http://html.tonatheme.com/2019/clinmedix/css/nouislider.pips.css);
+@import url(../css/owl.carousel.css);
+@import url(../css/owl.theme.default.min.css);
+@import url(../css/nouislider.css);
+@import url(../css/nouislider.pips.css);
 @import url(http://html.tonatheme.com/2019/clinmedix/css/jquery.bootstrap-touchspin.css);
 @import url(http://html.tonatheme.com/2019/clinmedix/css/magnific-popup.css);
-@import url(http://html.tonatheme.com/2019/clinmedix/css/animate.min.css);
-@import url(http://html.tonatheme.com/2019/clinmedix/css/hover-min.css);
+@import url(../css/animate.min.css);
+@import url(../css/hover-min.css);
 @import url(http://html.tonatheme.com/2019/clinmedix/css/twentytwenty.css);
-@import url(http://html.tonatheme.com/2019/clinmedix/css/jquery.bxslider.min.css);
+@import url(../css/jquery.bxslider.min.css);
 @import url(../plugins/fontawesome-5/css/fontawesome-all.min.css);
 @import url(../plugins/icofont/css/icofont.css);
 @import url(../plugins/clinmedix-icon/style.css);
 @import url(../plugins/bands-icon/style.css);
-@import url(http://html.tonatheme.com/2019/clinmedix/plugins/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css);
-@import url(http://html.tonatheme.com/2019/clinmedix/plugins/jquery-ui-1.12.1.custom/jquery-ui.min.css);
+@import url(../plugins/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css);
+@import url(../plugins/jquery-ui-1.12.1.custom/jquery-ui.min.css);
 /************************** 
 * 2. miscelnious styles 
 ***************************/
