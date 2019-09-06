@@ -14,7 +14,8 @@ import { DepartmentDetailsComponent } from './departments/department-details/dep
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent
+    redirectTo:'home',
+    pathMatch: 'full'
   },
   {
     path: 'home',
@@ -25,7 +26,7 @@ const routes: Routes = [
     component: ServicesListComponent
   },
   {
-    path: 'services/:id',
+    path: 'service-details/:id',
     component: ServiceDetailsComponent
   },
   {

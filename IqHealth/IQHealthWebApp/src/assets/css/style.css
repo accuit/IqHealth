@@ -47,9 +47,9 @@
 @import url(https://fonts.googleapis.com/css?family=Oxygen:300,400,700|Merriweather:400,400i);
 @import url(bootstrap.min.css);
 @import url(bootstrap-select.min.css);
-@import url(../css/owl.carousel.css);
+/* @import url(../css/owl.carousel.css); */
 @import url(../css/owl.theme.default.min.css);
-@import url(../css/nouislider.css);
+/* @import url(../css/nouislider.css); */
 @import url(../css/nouislider.pips.css);
 @import url(http://html.tonatheme.com/2019/clinmedix/css/jquery.bootstrap-touchspin.css);
 @import url(http://html.tonatheme.com/2019/clinmedix/css/magnific-popup.css);

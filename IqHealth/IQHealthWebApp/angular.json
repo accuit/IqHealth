@@ -31,6 +31,20 @@
               "src/styles.scss"
             ],
             "scripts": [
+              "src/assets/js/jquery.js",
+              "src/assets/js/bootstrap.min.js",
+              "src/assets/js/bootstrap-select.min.js",
+              "src/assets/js/jquery.validate.min.js",
+              "src/assets/js/owl.carousel.min.js",
+              "src/assets/js/isotope.js",
+              "src/assets/js/jquery.magnific-popup.min.js",
+              "src/assets/js/waypoints.min.js",
+              "src/assets/js/jquery.counterup.min.js",
+              "src/assets/js/wow.min.js",
+              "src/assets/js/jquery.easing.min.js",
+              "src/assets/plugins/jquery-ui-1.12.1.custom/jquery-ui.min.js",
+              "src/assets/js/custom.js",
+              "src/assets/js/booking-form-config.js",
               "src/assets/js/gmaps.js",
               "src/assets/js/map-helper.js"
             ]

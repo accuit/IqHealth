@@ -49,6 +49,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
     SharedModule
   ],
   providers: [],
+  entryComponents: [HomeComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

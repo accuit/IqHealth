@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FindDoctorComponent } from './components/find-doctor/find-doctor.component';
 import { InnerBannerComponent } from './components/inner-banner/inner-banner.component';
+import { SidebarListComponent } from './components/sidebar-list/sidebar-list.component';
+import { PriceListsComponent } from './components/price-lists/price-lists.component';
 
 
 
 @NgModule({
-  declarations: [FindDoctorComponent, InnerBannerComponent],
+  declarations: [FindDoctorComponent, InnerBannerComponent, SidebarListComponent, PriceListsComponent],
   imports: [
     CommonModule
   ],
