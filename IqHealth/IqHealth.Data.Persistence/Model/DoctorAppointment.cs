@@ -46,7 +46,11 @@ namespace IqHealth.Data.Persistence.Model
 
         public int IsDeleted { get; set; }
 
+        [DataMember]
         public int Status { get; set; }
+
+        [DataMember]
+        public int? CompanyID { get; set; }
 
         public virtual DoctorMaster DoctorMaster { get; set; }
     }

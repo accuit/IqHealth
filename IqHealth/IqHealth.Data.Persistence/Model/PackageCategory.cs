@@ -40,6 +40,10 @@ namespace IqHealth.Data.Persistence.Model
 
         public int IsDeleted { get; set; }
 
+        public int? CompanyID { get; set; }
+
+        public virtual CompanyMaster CompanyMaster { get; set; }
+
 
         [DataMember]
         public List<PackageMaster> PackageMasters { get; set; }

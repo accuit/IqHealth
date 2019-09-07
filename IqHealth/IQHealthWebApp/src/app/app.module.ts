@@ -15,12 +15,10 @@ import { DepartmentListComponent } from './departments/department-list/departmen
 import { DepartmentDetailsComponent } from './departments/department-details/department-details.component';
 import { ServicesListComponent } from './services/services-list/services-list.component';
 import { ServiceDetailsComponent } from './services/service-details/service-details.component';
-import { PackagesListComponent } from './packages/packages-list/packages-list.component';
-import { PackageDetailsComponent } from './packages/package-details/package-details.component';
-import { PackageCategoryListComponent } from './packages/package-category-list/package-category-list.component';
-import { PackageCategoryDetailsComponent } from './packages/package-category-details/package-category-details.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AboutUsComponent } from './about-us/about-us.component';
+import { AppService } from './core/app.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -36,19 +34,16 @@ import { AboutUsComponent } from './about-us/about-us.component';
     DepartmentDetailsComponent,
     ServicesListComponent,
     ServiceDetailsComponent,
-    PackagesListComponent,
-    PackageDetailsComponent,
-    PackageCategoryListComponent,
-    PackageCategoryDetailsComponent,
     ContactUsComponent,
     AboutUsComponent
   ],
   imports: [
+    HttpClientModule, 
     BrowserModule,
     AppRoutingModule,
     SharedModule
   ],
-  providers: [],
+  providers: [AppService],
   entryComponents: [HomeComponent],
   bootstrap: [AppComponent]
 })

@@ -59,13 +59,13 @@ namespace IqHealth.Data.Persistence.Model
         [DataMember]
         public List<TestMaster> TestMasters { get; set; }
 
+        public int? CompanyID { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BookingMaster> BookingMasters { get; set; }
 
-        public virtual PackageCategory PackageCategory { get; set; }
+        public virtual CompanyMaster CompanyMaster { get; set; }
 
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        //public virtual ICollection<TestMaster> TestMasters { get; set; }
+        public virtual PackageCategory PackageCategory { get; set; }
     }
 }

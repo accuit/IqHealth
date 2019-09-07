@@ -56,9 +56,6 @@ namespace IqHealth.Data.Persistence.Model
         public string Designation { get; set; }
 
         [DataMember]
-        public int Sequence { get; set; }
-
-        [DataMember]
         [StringLength(500)]
         public string About { get; set; }
 
@@ -89,6 +86,14 @@ namespace IqHealth.Data.Persistence.Model
 
         [DataMember]
         public int? SpecialityID { get; set; }
+
+        [DataMember]
+        public int? CompanyID { get; set; }
+
+        [DataMember]
+        public int? Sequence { get; set; }
+
+        public virtual CompanyMaster CompanyMaster { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DoctorAppointment> DoctorAppointments { get; set; }
