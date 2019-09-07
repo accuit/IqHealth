@@ -85,6 +85,8 @@ namespace IqHealth.Data.Persistence.Model
         [DataMember]
         public int? PackageID { get; set; }
 
+        [DataMember]
+        public int? CompanyID { get; set; }
 
         [DataMember]
         public int? TestID { get; set; }
@@ -94,6 +96,8 @@ namespace IqHealth.Data.Persistence.Model
 
         [NotMapped]
         public virtual TestMaster TestMaster { get; set; }
+
+
 
     }
 }

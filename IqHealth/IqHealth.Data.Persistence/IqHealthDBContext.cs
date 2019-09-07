@@ -14,13 +14,15 @@ namespace IqHealth.Data.Persistence
     {
 
         public IqHealthDBContext()
-            : base("LeelaDBConnection")
+            : base("IqHealthConnection")
         {
             this.Configuration.LazyLoadingEnabled = false;
             this.Configuration.ProxyCreationEnabled = false;
         }
 
         public virtual DbSet<BookingMaster> BookingMasters { get; set; }
+        public virtual DbSet<CommonSetup> CommonSetups { get; set; }
+        public virtual DbSet<CompanyMaster> CompanyMasters { get; set; }
         public virtual DbSet<DoctorAppointment> DoctorAppointments { get; set; }
         public virtual DbSet<DoctorMaster> DoctorMasters { get; set; }
         public virtual DbSet<DoctorSpeciality> DoctorSpecialities { get; set; }
@@ -75,6 +77,61 @@ namespace IqHealth.Data.Persistence
             modelBuilder.Entity<BookingMaster>()
                 .Property(e => e.CreatedDate)
                 .HasPrecision(0);
+
+            modelBuilder.Entity<CommonSetup>()
+                .Property(e => e.MainType)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CommonSetup>()
+                .Property(e => e.SubType)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CommonSetup>()
+                .Property(e => e.DisplayText)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CompanyMaster>()
+                .Property(e => e.Name)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CompanyMaster>()
+                .Property(e => e.LogoUrl)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CompanyMaster>()
+                .Property(e => e.Address)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CompanyMaster>()
+                .Property(e => e.BannerUrl)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CompanyMaster>()
+                .Property(e => e.About)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CompanyMaster>()
+                .Property(e => e.MapUrl)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CompanyMaster>()
+                .HasMany(e => e.DoctorMasters)
+                .WithOptional(e => e.CompanyMaster)
+                .HasForeignKey(e => e.CompanyID);
+
+            modelBuilder.Entity<CompanyMaster>()
+                .HasMany(e => e.PackageMasters)
+                .WithOptional(e => e.CompanyMaster)
+                .HasForeignKey(e => e.CompanyID);
+
+            modelBuilder.Entity<CompanyMaster>()
+                .HasMany(e => e.PackageCategories)
+                .WithOptional(e => e.CompanyMaster)
+                .HasForeignKey(e => e.CompanyID);
+
+            modelBuilder.Entity<CompanyMaster>()
+                .HasMany(e => e.UserMasters);
+         
 
             modelBuilder.Entity<DoctorAppointment>()
                 .Property(e => e.Name)
@@ -254,6 +311,10 @@ namespace IqHealth.Data.Persistence
 
             modelBuilder.Entity<SpecialityMaster>()
                 .Property(e => e.Title)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<SpecialityMaster>()
+                .Property(e => e.ImageUrl)
                 .IsUnicode(false);
 
             modelBuilder.Entity<SpecialityMaster>()

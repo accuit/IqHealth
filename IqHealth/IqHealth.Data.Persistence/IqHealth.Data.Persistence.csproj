@@ -60,6 +60,8 @@
     <Compile Include="DTO\Response.cs" />
     <Compile Include="IqHealthDBContext.cs" />
     <Compile Include="Model\BookingMaster.cs" />
+    <Compile Include="Model\CommonSetup.cs" />
+    <Compile Include="Model\CompanyMaster.cs" />
     <Compile Include="Model\HospitalMaster.cs" />
     <Compile Include="Model\DoctorMaster.cs" />
     <Compile Include="Model\HealthServiceMaster.cs" />
