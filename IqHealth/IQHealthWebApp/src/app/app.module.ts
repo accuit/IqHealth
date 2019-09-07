@@ -18,6 +18,7 @@ import { ServiceDetailsComponent } from './services/service-details/service-deta
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { AppService } from './core/app.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { AppService } from './core/app.service';
     AboutUsComponent
   ],
   imports: [
+    HttpClientModule, 
     BrowserModule,
     AppRoutingModule,
     SharedModule

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AppService } from 'src/app/core/app.service';
+import { APIResponse, ServicesModel } from 'src/app/core/app.models';
 
 @Component({
   selector: 'app-services-list',
@@ -11,10 +13,22 @@ export class ServicesListComponent implements OnInit {
   url:string = '#';
   subtitle: string = 'Our Services';
   parent: string = 'Home';
+  isloaded: boolean;
+  services: ServicesModel[];
 
-  constructor() { }
+  constructor(private readonly service: AppService) { }
 
   ngOnInit() {
+    this.loadServicesList();
+  }
+
+  loadServicesList(): any {
+    this.service.getAllServices()
+      .subscribe((data: APIResponse) => {
+        this.isloaded = true;
+        this.services = data.SingleResult;
+        console.log(this.services);
+      })
   }
 
 }

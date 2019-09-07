@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { CityModel, BookingMaster, Doctor, APIResponse, DoctorAppointment } from './app-model';
-import { Observable, throwError, pipe, interval, of } from 'rxjs';
-import { catchError, map, retryWhen, flatMap } from 'rxjs/operators';
-import { environment } from './../environments/environment';
+import { CityModel, BookingMaster, Doctor, APIResponse, DoctorAppointment } from './app.models';
+import { throwError } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class AppService {

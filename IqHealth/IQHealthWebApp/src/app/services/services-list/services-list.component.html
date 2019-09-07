@@ -9,50 +9,18 @@
                 <div class="line"></div><!-- /.line -->
             </div><!-- /.sec-title -->
             <div class="row">
-                <div class="col-md-4 col-sm-12 col-xs-12">
+                <div *ngFor="let s of services" class="col-md-4 col-sm-12 col-xs-12">
                     <div class="single-service-style-two clearfix">
                         <div class="img-box ">
-                            <img src="images/service-4-1.jpg" alt="Awesome Image" />
+                            <img [src]="s.ImageUrl" alt="{{s.Name}}" />
                         </div><!-- /.img-box -->
                         <div class="text-box">
                             <div class="inner-box">
-                                <a [routerLink]="'/service-details/1'">
-                                    <h3>Dentistry & Oral Surgery</h3>
+                                <a [routerLink]="'/service-details/s.ID'">
+                                    <h3>{{s.Name}}</h3>
                                 </a>
-                                <p>Dolor sit amet, consectetur adipisicing elit por incididunt ut labore et dolore ma gna alin veniam, quis nostrud exrc exercitation sed ipsum ullamco laboris</p>
-                                <a href="departments-details-2.html" class="more-btn">Read More <i class="fa fa-angle-double-right"></i></a><!-- /.more-btn -->
-                            </div><!-- /.inner-box -->
-                        </div><!-- /.text-box -->
-                    </div><!-- /.single-service-style-two -->
-                </div><!-- /.col-md-6 -->
-                <div class="col-md-4 col-sm-12 col-xs-12">
-                    <div class="single-service-style-two clearfix">
-                        <div class="img-box ">
-                            <img src="images/service-4-8.jpg" alt="Awesome Image" />
-                        </div><!-- /.img-box -->
-                        <div class="text-box">
-                            <div class="inner-box">
-                                <a href="departments-details-7.html">
-                                    <h3>Outpatient Rehabilitation</h3>
-                                </a>
-                                <p>Dolor sit amet, consectetur adipisicing elit por incididunt ut labore et dolore ma gna alin veniam, quis nostrud exrc exercitation sed ipsum ullamco laboris</p>
-                                <a href="departments-details-7.html" class="more-btn">Read More <i class="fa fa-angle-double-right"></i></a><!-- /.more-btn -->
-                            </div><!-- /.inner-box -->
-                        </div><!-- /.text-box -->
-                    </div><!-- /.single-service-style-two -->
-                </div><!-- /.col-md-6 -->
-                <div class="col-md-4 col-sm-12 col-xs-12">
-                    <div class="single-service-style-two clearfix">
-                        <div class="img-box ">
-                            <img src="images/service-4-9.jpg" alt="Awesome Image" />
-                        </div><!-- /.img-box -->
-                        <div class="text-box">
-                            <div class="inner-box">
-                                <a href="#">
-                                    <h3>Radio Theraphy</h3>
-                                </a>
-                                <p>Dolor sit amet, consectetur adipisicing elit por incididunt ut labore et dolore ma gna alin veniam, quis nostrud exrc exercitation sed ipsum ullamco laboris</p>
-                                <a href="#" class="more-btn">Read More <i class="fa fa-angle-double-right"></i></a><!-- /.more-btn -->
+                                <p>s.Description</p>
+                                <a [routerLink]="'/service-details/s.ID'" class="more-btn">Read More <i class="fa fa-angle-double-right"></i></a><!-- /.more-btn -->
                             </div><!-- /.inner-box -->
                         </div><!-- /.text-box -->
                     </div><!-- /.single-service-style-two -->
