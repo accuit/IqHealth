@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { SideBarListModel } from 'src/app/core/sidebar-list.model';
 
 @Component({
   selector: 'app-sidebar-list',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarListComponent implements OnInit {
 
+  @Input() list: SideBarListModel;
+
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }
