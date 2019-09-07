@@ -1,0 +1,151 @@
+<app-inner-banner title="Contact Health IQ" url="#" parent="Home" subtitle="Contact Us"></app-inner-banner>
+
+<div #mymap class="google-map" id="contact-google-map" 
+    data-map-lat="22.5267089" 
+    data-map-lng="88.3449872"
+    data-icon-path="http://localhost:4200/assets/images/map-pointer.png" 
+    data-map-title="Brooklyn, New York, United Kingdom" 
+    data-map-zoom="18"
+    data-markers='{
+          "marker-1": [22.5267089, 88.3449872, "<h4>Main Office</h4><p>Babylon Branch , Lindenhurst, UK</p>"]
+      }'>
+      
+</div>
+
+<section class="contact-info-style-one text-center">
+    <div class="thm-container">
+        <div class="row">
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="single-contact-info-style-one">
+                    <div class="inner-box">
+                        <div class="icon-box">
+                            <img src="../../assets/images/contact-info-1-2.png" alt="Awesome Image" />
+                        </div><!-- /.icon-box -->
+                        <h3>Our Location</h3>
+                        <p>322 Willis Avenue, Southern Street <br> Lakepool, Newyork 33069</p>
+                    </div><!-- /.inner-box -->
+                </div><!-- /.single-contact-info-style-one -->
+            </div><!-- /.col-md-4 -->
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="single-contact-info-style-one">
+                    <div class="inner-box">
+                        <div class="icon-box">
+                            <img src="../../assets/images/contact-info-1-1.png" alt="Awesome Image" />
+                        </div><!-- /.icon-box -->
+                        <h3>phone us </h3>
+                        <p><span>+ 1-258-985-703</span> <br>24/7 Helpline: 0800 14620</p>
+                    </div><!-- /.inner-box -->
+                </div><!-- /.single-contact-info-style-one -->
+            </div><!-- /.col-md-4 -->
+            <div class="col-md-4 col-sm-6 col-xs-12 col-lg-offset-0 col-md-offset-0 col-sm-offset-3 col-xs-offset-0">
+                <div class="single-contact-info-style-one">
+                    <div class="inner-box">
+                        <div class="icon-box">
+                            <img src="../../assets/images/contact-info-1-3.png" alt="Awesome Image" />
+                        </div><!-- /.icon-box -->
+                        <h3>Send Email</h3>
+                        <p>support@clin-medix.org <br> info@domain.com</p>
+                    </div><!-- /.inner-box -->
+                </div><!-- /.single-contact-info-style-one -->
+            </div><!-- /.col-md-4 -->
+        </div><!-- /.row -->
+    </div><!-- /.thm-container -->
+</section><!-- /.contact-info-style-one -->
+
+<section class="appointment-style-one sec-pad pt0 contact-page">
+    <div class="thm-container">
+        <div class="row">
+            <div class="col-md-7">
+                <form action="inc/sendemail.php" class="appointment-form contact-form">
+                    <h3>Get In Touch</h3>
+                    <p>Send us your contact information for anything you need and we’ll be happy to assist you!</p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="frm-control">
+                                <input type="text" placeholder="First Name" name="name">
+                            </div><!-- /.frm-control -->
+                        </div><!-- /.col-md-6 -->
+                        <div class="col-md-6">
+                            <div class="frm-control">
+                                <input type="text" placeholder="Last Name" name="lname">
+                            </div><!-- /.frm-control -->
+                        </div><!-- /.col-md-6 -->
+                        <div class="col-md-6">
+                            <div class="frm-control">
+                                <input type="text" placeholder="Email Address" name="email">
+                            </div><!-- /.frm-control -->
+                        </div><!-- /.col-md-6 -->
+                        <div class="col-md-6">
+                            <div class="frm-control">
+                                <input type="text" placeholder="Phone" name="phone">
+                            </div><!-- /.frm-control -->
+                        </div><!-- /.col-md-6 -->
+                        <div class="col-md-6">
+                            <div class="frm-control">
+                                <select name="departments-select" class="selectpicker" id="departments-select">
+                                    <option value="1">Departments</option>
+                                    <option value="Cardiology">Cardiology</option>
+                                    <option value="Eye Care">Eye Care</option>
+                                    <option value="Skin Care">Skin Care</option>
+                                    <option value="Pathology">Pathology</option>
+                                </select><!-- /#time-select -->
+                            </div><!-- /.frm-control -->
+                        </div><!-- /.col-md-6 -->
+                        <div class="col-md-6">
+                            <div class="frm-control">
+                                <input type="text" placeholder="Subject" name="subject">
+                            </div><!-- /.frm-control -->
+                        </div><!-- /.col-md-6 -->
+                        <div class="col-md-12">
+                            <div class="frm-control mb0">
+                                <textarea name="message" id="message" placeholder="Message"></textarea>
+                                <!-- /#message -->
+                                <button type="submit">Send Message</button>
+                            </div><!-- /.frm-control -->
+                        </div><!-- /.col-md-12 -->
+                    </div><!-- /.row -->
+                    <div class="form-result"></div><!-- /.form-result -->
+                </form><!-- /.appointment-form -->
+            </div><!-- /.col-md-7 -->
+            <div class="col-md-5">
+                <div class="appointment-time">
+                    <div class="inner-box">
+                        <h3>Opening Hours</h3>
+                        <p>Proident sunt in culpa qui officia deserunt mollit animd laborum perspicia.</p>
+                        <div class="time-box">
+                            <div class="signle-time-box">
+                                <div class="day-name">Monday:</div><!-- /.day-name -->
+                                <div class="time-line">09:00 am - 19:00 pm</div><!-- /.time-line -->
+                            </div><!-- /.signle-time-box -->
+                            <div class="signle-time-box">
+                                <div class="day-name">Tuesday:</div><!-- /.day-name -->
+                                <div class="time-line">09:00 am - 19:00 pm</div><!-- /.time-line -->
+                            </div><!-- /.signle-time-box -->
+                            <div class="signle-time-box">
+                                <div class="day-name">Wednesday:</div><!-- /.day-name -->
+                                <div class="time-line">09:00 am - 19:00 pm</div><!-- /.time-line -->
+                            </div><!-- /.signle-time-box -->
+                            <div class="signle-time-box">
+                                <div class="day-name">Thursday:</div><!-- /.day-name -->
+                                <div class="time-line">09:00 am - 19:00 pm</div><!-- /.time-line -->
+                            </div><!-- /.signle-time-box -->
+                            <div class="signle-time-box">
+                                <div class="day-name">Friday:</div><!-- /.day-name -->
+                                <div class="time-line">09:00 am - 19:00 pm</div><!-- /.time-line -->
+                            </div><!-- /.signle-time-box -->
+                            <div class="signle-time-box">
+                                <div class="day-name">Saturday:</div><!-- /.day-name -->
+                                <div class="time-line">09:00 am - 19:00 pm</div><!-- /.time-line -->
+                            </div><!-- /.signle-time-box -->
+                            <div class="signle-time-box">
+                                <div class="day-name">Sunday:</div><!-- /.day-name -->
+                                <div class="time-line">Closed*</div><!-- /.time-line -->
+                            </div><!-- /.signle-time-box -->
+                        </div><!-- /.time-box -->
+                        <p class="notice">Treatment for Emergency Cases Only *</p><!-- /.notice -->
+                    </div><!-- /.inner-box -->
+                </div><!-- /.appointment-time -->
+            </div><!-- /.col-md-5 -->
+        </div><!-- /.row -->
+    </div><!-- /.thm-container -->
+</section><!-- /.appointment-style-one -->

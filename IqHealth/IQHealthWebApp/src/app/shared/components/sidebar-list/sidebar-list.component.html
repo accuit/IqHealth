@@ -1,0 +1,22 @@
+<div class="col-md-4 col-sm-12 col-xs-12">
+        <div class="sidebar sidebar-left">
+            <div class="single-sidebar category-sidebar">
+                <div class="title">
+                    <h3>All departments</h3>
+                </div><!-- /.title -->
+                <ul class="categories-list" *ngFor="let item of list.value">
+                    <li class="active"><a [routerLink]="item.page + '/' + item.ID">{{item.Name}}</a></li>
+                    <!-- <li><a href="departments-details-2.html">Dentistry &amp; Oral Surgery</a></li>
+                    <li><a href="departments-details-3.html">Diagnostic Imaging</a></li>
+                    <li><a href="departments-details-4.html">Family Care Solutions</a></li>
+                    <li><a href="departments-details-5.html">Cardiac Surgery</a></li>
+                    <li><a href="departments-details-6.html">Eye Care Services</a></li>
+                    <li><a href="departments-details-7.html">Outpatient Rehabilitation</a></li>
+                    <li><a href="departments-details-8.html">Physiotherapy </a></li> -->
+                </ul>
+            </div><!-- /.single-sidebar -->
+            <!-- /.single-sidebar -->
+            <!-- /.single-sidebar -->
+            <!-- /.single-sidebar -->
+        </div><!-- /.sidebar -->
+    </div>

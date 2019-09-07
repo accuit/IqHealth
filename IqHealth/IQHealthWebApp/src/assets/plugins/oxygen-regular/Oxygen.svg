@@ -1,0 +1,8 @@
+
+@font-face {
+    font-family: 'Oxygen-Regular';
+    src: url('Oxygen.eot?#iefix') format('embedded-opentype'),  url('Oxygen.otf')  format('opentype'),
+           url('Oxygen.woff') format('woff'), url('Oxygen.ttf')  format('truetype'), url('Oxygen.svg#Oxygen') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
