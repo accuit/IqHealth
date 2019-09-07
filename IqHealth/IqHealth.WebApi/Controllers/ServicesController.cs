@@ -64,6 +64,47 @@ namespace IqHealth.WebApi.Controllers
             return response;
         }
 
+        [HttpGet]
+        [Route("service-details/{id}")]
+        public JsonResponse<HealthServiceMaster> GetServiceByID(int id)
+        {
+            JsonResponse<HealthServiceMaster> response = new JsonResponse<HealthServiceMaster>();
+            HealthServiceMaster service = new HealthServiceMaster();
+            try
+            {
+                service = _context.HealthServiceMasters.Where(x => x.IsDeleted == 0 && x.ID == id).First();
+                if (service != null)
+                {
+                    service.ServicesInclList = new List<string>();
+                    if (!string.IsNullOrEmpty(service.ServicesIncluded))
+                    {
+                        foreach (var i in service.ServicesIncluded.Split(','))
+                            service.ServicesInclList.Add(i.Trim(' '));
+                    }
+
+                    response.StatusCode = "200";
+                    response.IsSuccess = true;
+                    response.Message = "Service successfully fetched.";
+                }
+                else
+                {
+                    response.StatusCode = "500";
+                    response.IsSuccess = true;
+                    response.Message = "No services found. Please try again.";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                response.StatusCode = "500";
+                response.IsSuccess = false;
+                response.Message = ex.Message;
+            }
+
+            response.SingleResult = service;
+            return response;
+        }
+
         [HttpGet()]
         [Route("all-tests", Name = "GetAllTests")]
         public JsonResponse<List<TestMaster>> GetAllTests()

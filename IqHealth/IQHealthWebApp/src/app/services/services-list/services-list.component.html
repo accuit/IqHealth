@@ -12,15 +12,15 @@
                 <div *ngFor="let s of services" class="col-md-4 col-sm-12 col-xs-12">
                     <div class="single-service-style-two clearfix">
                         <div class="img-box ">
-                            <img [src]="s.ImageUrl" alt="{{s.Name}}" />
+                            <img [src]="'assets/images/services/'+ s.ID + '.jpg' " alt="{{s.Name}}" />
                         </div><!-- /.img-box -->
                         <div class="text-box">
                             <div class="inner-box">
-                                <a [routerLink]="'/service-details/s.ID'">
+                                <a [routerLink]="'/service-details/'+ s.ID">
                                     <h3>{{s.Name}}</h3>
                                 </a>
-                                <p>s.Description</p>
-                                <a [routerLink]="'/service-details/s.ID'" class="more-btn">Read More <i class="fa fa-angle-double-right"></i></a><!-- /.more-btn -->
+                                <p>{{ s.Description | slice:0:200 }}</p>
+                                <a [routerLink]="'/service-details/'+ s.ID" class="more-btn">Read More <i class="fa fa-angle-double-right"></i></a><!-- /.more-btn -->
                             </div><!-- /.inner-box -->
                         </div><!-- /.text-box -->
                     </div><!-- /.single-service-style-two -->

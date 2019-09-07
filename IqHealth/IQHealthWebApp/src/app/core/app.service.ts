@@ -40,6 +40,10 @@ export class AppService {
     return this.httpClient.get<APIResponse>(this.baseUrl + 'api/services/data');
   }
 
+  getServiceByID(id): any {
+    return this.httpClient.get<APIResponse>(this.baseUrl + 'api/services/service-details/'+ id);
+  }
+
   getAllTests(): any {
     return this.httpClient.get(this.baseUrl + 'api/services/all-tests');
   }

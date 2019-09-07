@@ -1,5 +1,6 @@
 export class SideBarListModel {
     page: string;
     value: any;
-    alignment: string  
+    alignment: string
+    activeID: number  
 }

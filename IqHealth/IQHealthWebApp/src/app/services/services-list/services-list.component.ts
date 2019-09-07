@@ -27,7 +27,6 @@ export class ServicesListComponent implements OnInit {
       .subscribe((data: APIResponse) => {
         this.isloaded = true;
         this.services = data.SingleResult;
-        console.log(this.services);
       })
   }
 
