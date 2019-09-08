@@ -45,7 +45,7 @@ const routes: Routes = [
     component: PackageDetailsComponent
   },
   {
-    path: 'doctors-list',
+    path: 'our-doctors',
     component: DoctorsListComponent
   },
   {

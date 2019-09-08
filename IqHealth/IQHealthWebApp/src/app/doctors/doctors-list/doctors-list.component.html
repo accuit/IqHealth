@@ -1,1 +1,35 @@
-<p>doctors-list works!</p>
+<app-inner-banner *ngIf="isloaded" [title]="title" [url]="url" [parent]="Home" [subtitle]="subtitle">
+    </app-inner-banner>
+
+    <section class="team-style-one sec-pad">
+            <div class="thm-container">
+                <div class="sec-title text-center">
+                    <h3>Our Doctors are Setting the New Standards <br> in <span class="color-1">Medical Research</span> & <span class="color-2">Clinical Care</span></h3>
+                    <p>Tell me something about doctors in HealthIQ</p>
+                    <div class="line"></div><!-- /.line -->
+                </div><!-- /.sec-title -->
+                <div *ngIf="isloaded" class="row">
+                    <div *ngFor="let doctor of doctors" class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="single-team-style-one">
+                            <div class="img-box">
+                                <img [src]="'assets/images/doctors/'+ doctor.ID + '.jpg'" alt="{{doctor.FirstName}}" />
+                                <div class="hover-box">
+                                    <div class="inner-box">
+                                        <div class="social">
+                                                <button class="nw-btn main_btn circle" tabindex="0">Book Appointment <span _ngcontent-brn-c0="" class="lnr lnr-arrow-right"></span></button>
+                                        </div><!-- /.social -->
+                                       
+                                    </div><!-- /.inner-box -->
+                                </div><!-- /.hover-box -->
+                            </div><!-- /.img-box -->
+                            <div class="text-box">
+                                <a href="#">
+                                    <h3>{{doctor.FirstName}} {{doctor.LastName}}</h3>
+                                </a>
+                                <p>{{doctor.Specialist}}</p>
+                            </div><!-- /.text-box -->
+                        </div><!-- /.single-team-style-one -->
+                    </div><!-- /.col-md-3 col-sm-6 col-xs-12 -->
+                </div><!-- /.row -->
+            </div><!-- /.thm-container -->
+        </section><!-- /.team-style-one -->
