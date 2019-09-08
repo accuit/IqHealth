@@ -51,8 +51,6 @@ namespace IqHealth.Data.Persistence.Model
         [DataMember]
         public int? PackageID { get; set; }
 
-        public virtual CompanyMaster CompanyMaster { get; set; }
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BookingMaster> BookingMasters { get; set; }
 

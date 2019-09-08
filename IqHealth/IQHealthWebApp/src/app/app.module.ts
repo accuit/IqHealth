@@ -19,6 +19,10 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { AppService } from './core/app.service';
 import { HttpClientModule } from '@angular/common/http';
+import { PackageCategoryListComponent } from './packages/package-category-list/package-category-list.component';
+import { PackageDetailsComponent } from './packages/package-details/package-details.component';
+import { PackageCategoryDetailsComponent } from './packages/package-category-details/package-category-details.component';
+import { PackagesListComponent } from './packages/packages-list/packages-list.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +36,10 @@ import { HttpClientModule } from '@angular/common/http';
     DoctorDetailsComponent,
     DepartmentListComponent,
     DepartmentDetailsComponent,
+    PackageCategoryListComponent,
+    PackageDetailsComponent,
+    PackageCategoryDetailsComponent,
+    PackagesListComponent,
     ServicesListComponent,
     ServiceDetailsComponent,
     ContactUsComponent,

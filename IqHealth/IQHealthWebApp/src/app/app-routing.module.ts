@@ -9,6 +9,9 @@ import { DepartmentListComponent } from './departments/department-list/departmen
 import { DoctorsListComponent } from './doctors/doctors-list/doctors-list.component';
 import { ServiceDetailsComponent } from './services/service-details/service-details.component';
 import { DepartmentDetailsComponent } from './departments/department-details/department-details.component';
+import { PackageCategoryDetailsComponent } from './packages/package-category-details/package-category-details.component';
+import { PackageCategoryListComponent } from './packages/package-category-list/package-category-list.component';
+import { PackageDetailsComponent } from './packages/package-details/package-details.component';
 
 
 const routes: Routes = [
@@ -30,12 +33,16 @@ const routes: Routes = [
     component: ServiceDetailsComponent
   },
   {
-    path: 'departments-list',
-    component: DepartmentListComponent
+    path: 'package-categories-list',
+    component: PackageCategoryListComponent
   },
   {
-    path: 'departments/:id',
-    component: DepartmentDetailsComponent
+    path: 'package-category-details/:id',
+    component: PackageCategoryDetailsComponent
+  },
+  {
+    path: 'package-details/:id',
+    component: PackageDetailsComponent
   },
   {
     path: 'doctors-list',

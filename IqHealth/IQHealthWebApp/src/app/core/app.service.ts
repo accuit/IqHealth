@@ -48,6 +48,13 @@ export class AppService {
     return this.httpClient.get(this.baseUrl + 'api/services/all-tests');
   }
 
+  getAllPackageCategories(): any {
+    return this.httpClient.get<APIResponse>(this.baseUrl + 'api/services/all-package-categories');
+  }
+
+  getPackagesByCategory(id): any {
+    return this.httpClient.get<APIResponse>(this.baseUrl + 'api/services/packages-by-category/'+ id);
+  }
   getAllPackages(): any {
     return this.httpClient.get<APIResponse>(this.baseUrl + 'api/services/all-packages');
   }
