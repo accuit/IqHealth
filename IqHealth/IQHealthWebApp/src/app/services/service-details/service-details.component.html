@@ -18,7 +18,8 @@
                         <br>
                         <p>{{ servicedetails.Description }}</p>
                         <br>
-                        <div *ngIf="servicedetails.ServicesInclList.length > 0" class="service-approach">
+                        <div *ngIf="servicedetails.ServicesInclList && servicedetails.ServicesInclList.length > 0"
+                            class="service-approach">
                             <div class="title-box">
                                 <h3>Service Includes</h3>
                                 <br>
@@ -26,9 +27,9 @@
                             </div><!-- /.title-box -->
                             <br>
                             <br>
-                            
+
                         </div><!-- /.service-approach -->
-                       
+
                     </div><!-- /.text-box -->
                 </div><!-- /.service-details-content -->
             </div><!-- /.col-md-8 -->

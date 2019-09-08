@@ -48,7 +48,7 @@ export class ServiceDetailsComponent implements OnInit {
     }
 
     if (this.isLoaded) {
-      this.servicedetails = this.services.filter(x => x.ID === this.activeID);
+      this.servicedetails = this.services.filter(x=>x.ID == Number(this.activeID))[0];
       this.title = this.servicedetails.Name;
       this.subtitle = this.title;
     }
@@ -56,7 +56,9 @@ export class ServiceDetailsComponent implements OnInit {
   }
 
   displayService(event) {
-    this.servicedetails = this.services[event];
+    if (this.isLoaded)
+      this.servicedetails = this.services.filter(x=>x.ID == Number(event))[0];
+      console.log(this.servicedetails);
   }
 
 }
