@@ -5,14 +5,14 @@ import { BookAppointmentComponent } from './book-appointment/book-appointment.co
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ServicesListComponent } from './services/services-list/services-list.component';
-import { DepartmentListComponent } from './departments/department-list/department-list.component';
 import { DoctorsListComponent } from './doctors/doctors-list/doctors-list.component';
 import { ServiceDetailsComponent } from './services/service-details/service-details.component';
-import { DepartmentDetailsComponent } from './departments/department-details/department-details.component';
 import { PackageCategoryDetailsComponent } from './packages/package-category-details/package-category-details.component';
 import { PackageCategoryListComponent } from './packages/package-category-list/package-category-list.component';
 import { PackageDetailsComponent } from './packages/package-details/package-details.component';
-
+import { AcademyComponent } from './academy/academy.component';
+import { CoursesComponent } from './academy/courses/courses.component';
+import { FeeStructureComponent } from './academy/fee-structure/fee-structure.component';
 
 const routes: Routes = [
   {
@@ -59,6 +59,18 @@ const routes: Routes = [
   {
     path: 'know-about-us',
     component: AboutUsComponent
+  },
+  {
+    path: 'academy',
+    component: AcademyComponent
+  },
+  {
+    path: 'academy/our-courses',
+    component: CoursesComponent
+  },
+  {
+    path: 'academy/fee-structure',
+    component: FeeStructureComponent
   },
 ];
 

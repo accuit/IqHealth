@@ -23,6 +23,9 @@ import { PackageCategoryListComponent } from './packages/package-category-list/p
 import { PackageDetailsComponent } from './packages/package-details/package-details.component';
 import { PackageCategoryDetailsComponent } from './packages/package-category-details/package-category-details.component';
 import { PackagesListComponent } from './packages/packages-list/packages-list.component';
+import { AcademyComponent } from './academy/academy.component';
+import { CoursesComponent } from './academy/courses/courses.component';
+import { FeeStructureComponent } from './academy/fee-structure/fee-structure.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +46,10 @@ import { PackagesListComponent } from './packages/packages-list/packages-list.co
     ServicesListComponent,
     ServiceDetailsComponent,
     ContactUsComponent,
-    AboutUsComponent
+    AboutUsComponent,
+    AcademyComponent,
+    CoursesComponent,
+    FeeStructureComponent
   ],
   imports: [
     HttpClientModule, 
