@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SideBarListModel } from 'src/app/core/sidebar-list.model';
-import { Doctor, APIResponse } from 'src/app/core/app.models';
+import { Doctor, APIResponse, Speciality } from 'src/app/core/app.models';
 import { AppService } from 'src/app/core/app.service';
 
 @Component({
@@ -17,21 +17,33 @@ export class DoctorsListComponent implements OnInit {
   sidebar: SideBarListModel;
   doctors: Doctor[] = [];
   isloaded: boolean = false;
-
+  specialities: Speciality[] = [];
 
   constructor(private readonly service: AppService) { }
 
   ngOnInit() {
+    this.loadSpecialities();
     this.loadDoctorsList();
   }
 
+  loadSpecialities(): any {
+    this.service.getSpecialities()
+      .subscribe((data: APIResponse) => {
+        this.isloaded = true;
+        this.specialities = data.SingleResult;
+      })
+  }
+
   loadDoctorsListBySpeciality(id: number, el: HTMLDivElement): any {
-    console.log('calling getDoctorsBySpeciality');
     this.service.getDoctorsBySpeciality(id)
       .subscribe((data: APIResponse) => {
         this.doctors = data.SingleResult;
       })
     el.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+  }
+
+  getDoctors(id){
+    this.doctors = this.doctors.filter(x=>x.SpecialityID === Number(id));
   }
 
   loadDoctorsList(): any {

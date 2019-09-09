@@ -12,7 +12,7 @@
 
                     <ul class="nav navbar-nav navigation-box">
                         <li class="current">
-                            <a [routerLink]="'/'">Home</a>
+                            <a href="#">Home</a>
                         </li>
                         <li> <a [routerLink]="'/know-about-us'">About Us</a> </li>
                         <li>
@@ -27,7 +27,14 @@
                                     <li *ngFor="let p of packages"><a [routerLink]="'/package-category-details/' + p.ID">{{p.Name}}</a></li>
                                 </ul><!-- /.sub-menu --><!-- /.sub-menu -->
                         </li>
-                        <li> <a [routerLink]="'/our-doctors'">Doctors</a> </li>
+                        <li> <a href="/our-doctors">Doctors</a> </li>
+                        <li>
+                                <a [routerLink]="'/academy'">Academy</a>
+                                <ul class="sub-menu">
+                                    <li><a [routerLink]="'/academy/our-courses'">Our Courses</a></li>
+                                    <li><a [routerLink]="'/academy/fee-structure'">Fee Structure</a></li>
+                                </ul>
+                            </li>
                         <li>
                             <a href="#">Pages</a>
                             <ul class="sub-menu">

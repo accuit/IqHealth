@@ -36,6 +36,14 @@ namespace IqHealth.Data.Persistence.Model
         [StringLength(1000)]
         public string ImageUrl { get; set; }
 
+
+        [DataMember]
+        [StringLength(1000)]
+        public string LogoUrl { get; set; }
+
+        [DataMember]
+        public string CompanyID { get; set; }
+
         [DataMember]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DoctorMaster> DoctorMasters { get; set; }

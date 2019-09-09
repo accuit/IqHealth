@@ -65,6 +65,8 @@ export class Doctor {
       ID: number;
       Speciality: string;
       Title: string;
+      LogoUrl?: string;
+      CompanyID: number;
   }
 
   export class ServicesModel {
