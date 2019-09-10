@@ -70,7 +70,7 @@ namespace IqHealth.Data.Persistence.Model
         [DataMember]
         public int CompanyID { get; set; }
 
-        //public virtual CompanyMaster CompanyMaster { get; set; }
+        public virtual CompanyMaster CompanyMaster { get; set; }
 
     }
 }

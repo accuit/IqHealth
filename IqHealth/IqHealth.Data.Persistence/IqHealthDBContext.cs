@@ -23,6 +23,8 @@ namespace IqHealth.Data.Persistence
         public virtual DbSet<BookingMaster> BookingMasters { get; set; }
         public virtual DbSet<CommonSetup> CommonSetups { get; set; }
         public virtual DbSet<CompanyMaster> CompanyMasters { get; set; }
+        public virtual DbSet<CourseCurriculum> CourseCurriculums { get; set; }
+        public virtual DbSet<CourseMaster> CourseMasters { get; set; }
         public virtual DbSet<DoctorAppointment> DoctorAppointments { get; set; }
         public virtual DbSet<DoctorMaster> DoctorMasters { get; set; }
         public virtual DbSet<DoctorSpeciality> DoctorSpecialities { get; set; }
@@ -31,6 +33,7 @@ namespace IqHealth.Data.Persistence
         public virtual DbSet<PackageCategory> PackageCategories { get; set; }
         public virtual DbSet<PackageMaster> PackageMasters { get; set; }
         public virtual DbSet<SpecialityMaster> SpecialityMasters { get; set; }
+        public virtual DbSet<SubCourses> SubCourses { get; set; }
         public virtual DbSet<TestMaster> TestMasters { get; set; }
         public virtual DbSet<UserMaster> UserMasters { get; set; }
         public virtual DbSet<HealthServiceMaster> HealthServiceMasters { get; set; }
@@ -120,6 +123,12 @@ namespace IqHealth.Data.Persistence
                 .HasForeignKey(e => e.CompanyID);
 
             modelBuilder.Entity<CompanyMaster>()
+                .HasMany(e => e.CourseMasters)
+                .WithRequired(e => e.CompanyMaster)
+                .HasForeignKey(e => e.CompanyID)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<CompanyMaster>()
                 .HasMany(e => e.PackageMasters)
                 .WithOptional(e => e.CompanyMaster)
                 .HasForeignKey(e => e.CompanyID);
@@ -130,8 +139,56 @@ namespace IqHealth.Data.Persistence
                 .HasForeignKey(e => e.CompanyID);
 
             modelBuilder.Entity<CompanyMaster>()
-                .HasMany(e => e.UserMasters);
-         
+                .HasMany(e => e.SpecialityMasters)
+                .WithRequired(e => e.CompanyMaster)
+                .HasForeignKey(e => e.CompanyID)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<CompanyMaster>()
+                .HasMany(e => e.SubCourses)
+                .WithRequired(e => e.CompanyMaster)
+                .HasForeignKey(e => e.CompanyID)
+                .WillCascadeOnDelete(false);
+
+            //modelBuilder.Entity<CompanyMaster>()
+            //    .HasMany(e => e.TestMasters)
+            //    .WithOptional(e => e.CompanyMaster)
+            //    .HasForeignKey(e => e.CompanyID);
+
+            //modelBuilder.Entity<CompanyMaster>()
+            //    .HasMany(e => e.UserMasters)
+            //    .WithOptional(e => e.CompanyMaster)
+            //    .HasForeignKey(e => e.CompanyID);
+
+            modelBuilder.Entity<CourseCurriculum>()
+                .Property(e => e.Name)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CourseMaster>()
+                .Property(e => e.Name)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CourseMaster>()
+                .Property(e => e.About)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CourseMaster>()
+                .Property(e => e.Qualification)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CourseMaster>()
+                .Property(e => e.Certification)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CourseMaster>()
+                .HasMany(e => e.CourseCurriculums)
+                .WithRequired(e => e.CourseMaster)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<CourseMaster>()
+                .HasMany(e => e.SubCourses)
+                .WithRequired(e => e.CourseMaster)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<DoctorAppointment>()
                 .Property(e => e.Name)
@@ -318,6 +375,10 @@ namespace IqHealth.Data.Persistence
                 .IsUnicode(false);
 
             modelBuilder.Entity<SpecialityMaster>()
+                .Property(e => e.LogoUrl)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<SpecialityMaster>()
                 .HasMany(e => e.DoctorMasters)
                 .WithOptional(e => e.SpecialityMaster)
                 .HasForeignKey(e => e.SpecialityID);
@@ -327,6 +388,30 @@ namespace IqHealth.Data.Persistence
                 .WithRequired(e => e.SpecialityMaster)
                 .HasForeignKey(e => e.SpecialityID)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<SubCourses>()
+                .Property(e => e.Name)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<SubCourses>()
+                .Property(e => e.MinQualification)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<SubCourses>()
+                .Property(e => e.IndianAdmissionFee)
+                .HasPrecision(9, 2);
+
+            modelBuilder.Entity<SubCourses>()
+                .Property(e => e.ForeignAdmissionFee)
+                .HasPrecision(9, 2);
+
+            modelBuilder.Entity<SubCourses>()
+                .Property(e => e.IndianOtherFee)
+                .HasPrecision(9, 2);
+
+            modelBuilder.Entity<SubCourses>()
+                .Property(e => e.ForeignOtherFee)
+                .HasPrecision(9, 2);
 
             modelBuilder.Entity<TestMaster>()
                 .Property(e => e.Name)

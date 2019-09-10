@@ -1,3 +1,5 @@
+﻿
+
 namespace IqHealth.Data.Persistence.Model
 {
     using System;
@@ -7,15 +9,15 @@ namespace IqHealth.Data.Persistence.Model
     using System.Data.Entity.Spatial;
     using System.Runtime.Serialization;
 
+    [Table("CourseMaster")]
     [DataContract]
-    [Table("SpecialityMaster")]
-    public partial class SpecialityMaster
+    public partial class CourseMaster
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public SpecialityMaster()
+        public CourseMaster()
         {
-            DoctorMasters = new HashSet<DoctorMaster>();
-            DoctorSpecialities = new HashSet<DoctorSpeciality>();
+            CourseCurriculums = new HashSet<CourseCurriculum>();
+            SubCourses = new HashSet<SubCourses>();
         }
 
         [DataMember]
@@ -23,33 +25,45 @@ namespace IqHealth.Data.Persistence.Model
 
         [DataMember]
         [Required]
-        [StringLength(145)]
-        public string Speciality { get; set; }
+        [StringLength(150)]
+        public string Name { get; set; }
 
         [DataMember]
-        [StringLength(245)]
-        public string Title { get; set; }
+        [Required]
+        [StringLength(1500)]
+        public string About { get; set; }
 
+        [DataMember]
         public int IsDeleted { get; set; }
-
-        [DataMember]
-        [StringLength(1000)]
-        public string ImageUrl { get; set; }
-
-
-        [DataMember]
-        [StringLength(1000)]
-        public string LogoUrl { get; set; }
 
         [DataMember]
         public int CompanyID { get; set; }
 
+        [Required]
+        [StringLength(500)]
+        public string Qualification { get; set; }
+
+        [DataMember]
+        public int MinAge { get; set; }
+
+        [DataMember]
+        public int MaxAge { get; set; }
+
+        [DataMember]
+        public int? Duration { get; set; }
+
+        [StringLength(500)]
+        public string Certification { get; set; }
+
+        [DataMember]
+        public int? InternshipDuration { get; set; }
+
         public virtual CompanyMaster CompanyMaster { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DoctorMaster> DoctorMasters { get; set; }
+        public virtual ICollection<CourseCurriculum> CourseCurriculums { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DoctorSpeciality> DoctorSpecialities { get; set; }
+        public virtual ICollection<SubCourses> SubCourses { get; set; }
     }
 }
