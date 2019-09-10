@@ -34,6 +34,11 @@ namespace IqHealth.Data.Persistence.Model
         public string About { get; set; }
 
         [DataMember]
+        [Required]
+        [StringLength(1000)]
+        public string ImageUrl { get; set; }
+
+        [DataMember]
         public int IsDeleted { get; set; }
 
         [DataMember]
@@ -60,9 +65,11 @@ namespace IqHealth.Data.Persistence.Model
 
         public virtual CompanyMaster CompanyMaster { get; set; }
 
+        [DataMember]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CourseCurriculum> CourseCurriculums { get; set; }
 
+        [DataMember]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SubCourses> SubCourses { get; set; }
     }

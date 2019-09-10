@@ -42,7 +42,7 @@ export class ServiceDetailsComponent implements OnInit {
   loadServicePage(): any {
     this.sidebar = {
       page: 'All Services',
-      value: this.services,
+      list: this.services,
       alignment: 'left',
       activeID: this.activeID
     }

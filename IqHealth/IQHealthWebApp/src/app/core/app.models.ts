@@ -69,6 +69,7 @@ export class Doctor {
       CompanyID: number;
   }
 
+
   export class ServicesModel {
     ID: number;
     Name: string;  

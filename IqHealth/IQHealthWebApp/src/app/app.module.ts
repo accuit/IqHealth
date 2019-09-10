@@ -26,6 +26,7 @@ import { PackagesListComponent } from './packages/packages-list/packages-list.co
 import { AcademyComponent } from './academy/academy.component';
 import { CoursesComponent } from './academy/courses/courses.component';
 import { FeeStructureComponent } from './academy/fee-structure/fee-structure.component';
+import { AcademyModule } from './academy/academy.module';
 
 @NgModule({
   declarations: [
@@ -46,16 +47,14 @@ import { FeeStructureComponent } from './academy/fee-structure/fee-structure.com
     ServicesListComponent,
     ServiceDetailsComponent,
     ContactUsComponent,
-    AboutUsComponent,
-    AcademyComponent,
-    CoursesComponent,
-    FeeStructureComponent
+    AboutUsComponent
   ],
   imports: [
     HttpClientModule, 
     BrowserModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    AcademyModule
   ],
   providers: [AppService],
   entryComponents: [HomeComponent],

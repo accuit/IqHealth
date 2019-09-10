@@ -1,11 +1,11 @@
 <div class="col-md-4 col-sm-12 col-xs-12">
     <div class="sidebar sidebar-right">
-        <div *ngIf="list.value" class="single-sidebar category-sidebar">
+        <div *ngIf="data.list" class="single-sidebar category-sidebar">
             <div class="title">
-                <h3>{{list.page}}</h3>
+                <h3>{{data.page}}</h3>
             </div>
             <ul class="categories-list">
-                <li *ngFor="let item of list.value" [ngClass]="{'active':item.ID == list.activeID}" (click)="change(item.ID, $event)">
+                <li *ngFor="let item of data.list" [ngClass]="{'active':item.ID == data.activeID}" (click)="change(item.ID, $event)">
                     <a>{{item.Name}} </a>
                 </li>
             </ul>

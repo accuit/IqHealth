@@ -43,7 +43,7 @@ export class PackageCategoryDetailsComponent implements OnInit {
   loadCategoryPage(): any {
     this.sidebar = {
       page: 'All Packages',
-      value: this.categories,
+      list: this.categories,
       alignment: 'left',
       activeID: this.activeID
     }

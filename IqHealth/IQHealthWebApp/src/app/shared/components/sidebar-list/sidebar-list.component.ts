@@ -8,7 +8,7 @@ import { SideBarListModel } from 'src/app/core/sidebar-list.model';
 })
 export class SidebarListComponent {
 
-  @Input() list: SideBarListModel;
+  @Input('data') data: SideBarListModel;
   @Output() valueChange = new EventEmitter();
 
   constructor(private readonly el: ElementRef,

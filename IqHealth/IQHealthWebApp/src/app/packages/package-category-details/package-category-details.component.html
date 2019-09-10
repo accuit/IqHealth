@@ -4,7 +4,7 @@
 <section class="blog-style-two sec-pad blog-page">
     <div class="thm-container">
         <div *ngIf="isloaded" class="row">
-            <app-sidebar-list (valueChange)='displayPackages($event)' [list]="sidebar"></app-sidebar-list>
+            <app-sidebar-list (valueChange)='displayPackages($event)' [data]="sidebar"></app-sidebar-list>
             <div class="col-md-8 col-sm-12 col-xs-12">
                 <div class="service-details-content ">
                     <div class="img-box">
