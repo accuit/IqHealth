@@ -141,6 +141,42 @@ namespace IqHealth.WebApi.Controllers
         }
 
         [HttpGet]
+        [Route("all-package-categories")]
+        public JsonResponse<List<PackageCategory>> GetAllPackageCategories()
+        {
+
+            JsonResponse<List<PackageCategory>> response = new JsonResponse<List<PackageCategory>>();
+            List<PackageCategory> categories = _context.PackageCategories.ToList();
+
+            response.SingleResult = categories;
+            response.StatusCode = "200";
+            response.Message = "Data collected.";
+            response.IsSuccess = true;
+
+            return response;
+        }
+
+        [HttpGet]
+        [Route("packages-by-category/{id}")]
+        public JsonResponse<List<PackageMaster>> GetPackagesByCategory(int id)
+        {
+
+            JsonResponse<List<PackageMaster>> response = new JsonResponse<List<PackageMaster>>();
+            List<PackageMaster> allPackages = _context.PackageMasters.Where(x => x.IsDeleted == 0 && x.CatgID == id).ToList(); // Only reequest will be sent to fetch the data.
+
+            foreach (var test in allPackages)
+                test.TestMasters = _context.TestMasters.Where(x => x.PackageID == test.ID).ToList();
+
+
+            response.SingleResult = allPackages;
+            response.StatusCode = "200";
+            response.Message = "Data collected.";
+            response.IsSuccess = true;
+
+            return response;
+        }
+
+        [HttpGet]
         [Route("all-packages", Name = "GetAllPackages")]
         public JsonResponse<List<PackageCategory>> GetAllPackages()
         {

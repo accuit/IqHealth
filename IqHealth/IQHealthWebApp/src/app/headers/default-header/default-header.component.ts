@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AppService } from 'src/app/core/app.service';
+import { APIResponse, ServicesModel, PackageCategory } from 'src/app/core/app.models';
 
 @Component({
   selector: 'app-default-header',
@@ -7,9 +9,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DefaultHeaderComponent implements OnInit {
 
-  constructor() { }
+  services: ServicesModel[] = [];
+  packages: PackageCategory[] = [];
+  isloaded = false;
+  constructor(private readonly service: AppService) { }
 
   ngOnInit() {
+    this.loadServicesList();
+    this.loadPackagesList();
+  }
+
+  loadServicesList(): any {
+    this.service.getAllServices()
+      .subscribe((data: APIResponse) => {
+        this.isloaded = true;
+        this.services = data.SingleResult;
+      })
+  }
+
+  loadPackagesList(): any {
+    this.service.getAllPackageCategories()
+      .subscribe((data: APIResponse) => {
+        this.isloaded = true;
+        this.packages = data.SingleResult;
+      })
   }
 
 }

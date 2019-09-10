@@ -1,0 +1,50 @@
+<app-inner-banner title="Academy Courses" [url]="url" [parent]="parent" subtitle="Course Details">
+</app-inner-banner>
+
+<section class="blog-style-two sec-pad blog-details-page">
+    <div class="thm-container">
+        <div class="row">
+            <div class="col-md-8 col-sm-12 col-xs-12">
+                <div *ngIf="isLoaded" class="single-post-content">
+                    <div class="img-box">
+                        <img *ngIf="!isLoaded" [src]="'assets/images/academy/courses/loading.gif'"
+                            style="max-width: 600px" alt="Awesome Image" />
+                        <img [src]="'assets/images/academy/courses/'+ courseDetails.ID + '.jpg'"
+                            style="max-width: 700px" alt="{{ courseDetails.Name }} Image" />
+
+                    </div><!-- /.img-box -->
+                    <div class="post-content">
+                        <br>
+                        <h3 class="post-title">{{ courseDetails.Name }}</h3>
+                        <br>
+                        <p>{{ courseDetails.About }}</p>
+                        <br>
+
+                        <h3>Course Curriculum</h3> <br>
+                        <ul class="list-items">
+                            <li *ngFor="let item of courseDetails.CourseCurriculums"><i
+                                    class="fa fa-check"></i>{{item.Name}}</li>
+                        </ul>
+                        <br>
+
+                        <h3>Course Eligibility</h3> <br>
+                        <ul class="list-items">
+                            <li *ngFor="let item of courseDetails.SubCourses"><i class="fa fa-check"></i>
+                                <span style="color: #AB1C6E;">Course: </span>  {{item.Name}}
+                                <span style="color: #AB1C6E;">Qualification: </span> {{item.MinQualification}} 
+                                <span style="color: #AB1C6E;"> Min Age: </span> {{item.MinAge}} 
+                            </li>
+                        </ul>
+
+
+
+                    </div><!-- /.text-box -->
+                </div><!-- /.service-details-content -->
+            </div><!-- /.col-md-8 -->
+
+            <app-sidebar-blogs *ngIf="isLoaded" (valueChange)='displayCourse($event)' [data]="sidebar">
+            </app-sidebar-blogs>
+
+        </div>
+    </div>
+</section>

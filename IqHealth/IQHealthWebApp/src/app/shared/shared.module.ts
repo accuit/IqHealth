@@ -5,22 +5,30 @@ import { InnerBannerComponent } from './components/inner-banner/inner-banner.com
 import { SidebarListComponent } from './components/sidebar-list/sidebar-list.component';
 import { PriceListsComponent } from './components/price-lists/price-lists.component';
 import { RouterModule } from '@angular/router';
-
-
+import { SidebarBlogsComponent } from './components/sidebar-blogs/sidebar-blogs.component';
 
 @NgModule({
-  declarations: [FindDoctorComponent, InnerBannerComponent, SidebarListComponent, PriceListsComponent],
+  declarations: [
+    FindDoctorComponent,
+    InnerBannerComponent,
+    SidebarListComponent,
+    PriceListsComponent,
+    SidebarBlogsComponent],
+
   imports: [
     RouterModule,
     CommonModule
   ],
+
   exports: [
     FindDoctorComponent,
     InnerBannerComponent,
     SidebarListComponent,
-    PriceListsComponent
+    PriceListsComponent,
+    SidebarBlogsComponent
   ],
-  entryComponents:[
+  
+  entryComponents: [
     InnerBannerComponent
   ]
 })

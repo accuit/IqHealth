@@ -1,10 +1,10 @@
-<app-inner-banner *ngIf="isLoaded" [title]="title" [url]="url" [parent]="parent" [subtitle]="subtitle">
+<app-inner-banner *ngIf="isLoaded" [title]="title" [url]="url" [parent]="Home" [subtitle]="subtitle">
 </app-inner-banner>
 
 <section class="blog-style-two sec-pad blog-page">
     <div class="thm-container">
         <div *ngIf="isLoaded" class="row">
-            <app-sidebar-list (valueChange)='displayService($event)' [list]="sidebar"></app-sidebar-list>
+            <app-sidebar-list (valueChange)='displayService($event)' [data]="sidebar"></app-sidebar-list>
             <div class="col-md-8 col-sm-12 col-xs-12">
                 <div class="service-details-content">
                     <div class="img-box">
