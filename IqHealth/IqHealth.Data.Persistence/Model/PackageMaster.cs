@@ -15,7 +15,7 @@ namespace IqHealth.Data.Persistence.Model
         public PackageMaster()
         {
             BookingMasters = new HashSet<BookingMaster>();
-            //TestMasters = new HashSet<TestMaster>();
+            TestMasters = new HashSet<TestMaster>();
         }
 
         [DataMember]
@@ -56,9 +56,6 @@ namespace IqHealth.Data.Persistence.Model
         [StringLength(1005)]
         public string ImageUrl { get; set; }
 
-        [DataMember]
-        public List<TestMaster> TestMasters { get; set; }
-
         public int? CompanyID { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -67,5 +64,9 @@ namespace IqHealth.Data.Persistence.Model
         public virtual CompanyMaster CompanyMaster { get; set; }
 
         public virtual PackageCategory PackageCategory { get; set; }
+
+        [DataMember]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TestMaster> TestMasters { get; set; }
     }
 }

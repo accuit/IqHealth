@@ -52,6 +52,7 @@ namespace IqHealth.Data.Persistence.Model
         public int? PackageID { get; set; }
 
         [DataMember]
+        [ForeignKey("CompanyMaster")]
         public int CompanyID { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

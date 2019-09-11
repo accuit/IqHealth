@@ -1,2 +1,45 @@
 <app-inner-banner [title]="title" [url]="url" [parent]="parent" [subtitle]="subtitle">
     </app-inner-banner>
+    <section class="blog-section sp-two">
+            <div class="container">
+                <div class="sec-title-style-two text-center">
+                    <h3>Courses <span class="color-1">Fee Structure</span></h3>
+                    <p>Our fee structure is diversed and it meant to help each student to fulfill their goals. </p>
+                </div>
+                <div *ngIf="isLoaded" class="row">
+                    <!-- news block one -->
+                    <div *ngFor="let item of subCourses" class="col-md-4 col-sm-6 news-block-one">
+                        <div class="inner-box hvr-float-shadow">
+                            <div class="image">
+                                <img height="150px" [src]="'assets/images/academy/courses/'+ item.CourseMasterID + '.jpg'" alt="">
+                                <div class="overlay">
+                                    <a class="link-btn" [routerLink]="'online-enquiry/' + item.CourseMasterID">
+                                        <i class="fa">Enquiry</i>
+                                    </a>                                
+                                </div>
+                            </div>
+                            <div class="lower-content">
+                                <h4><a [routerLink]="'/course-details/' + item.CourseMasterID">{{item.Name}}</a></h4>
+                                <ul class="post-meta">
+                                    <li>Course Duration: <strong>{{item.Duration}} Months</strong></li>
+                                    <li>Minimum Age: <strong>{{item.MinAge}} Years</strong></li>
+                                </ul>
+                                <div class="text"><h4><span>Indian Student</span> </h4>
+                                    <ul class="post-meta">
+                                            <li><span>Admission Fee:INR. {{item.IndianAdmissionFee}}</span></li>
+                                            <li><span>Other Fee: INR. {{item.IndianOtherFee}}</span></li>
+                                        </ul>
+                                </div>
+                                <div class="text"><h4><span>Non Indian Student</span> </h4>
+                                    <ul class="post-meta">
+                                            <li><span>Admission Fee: {{item.ForeignAdmissionFee}}</span></li>
+                                            <li><span>Other Fee:  {{item.ForeignOtherFee}}</span></li>
+                                        </ul>
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
