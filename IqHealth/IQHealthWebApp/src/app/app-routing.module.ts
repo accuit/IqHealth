@@ -13,11 +13,12 @@ import { PackageDetailsComponent } from './packages/package-details/package-deta
 import { AcademyComponent } from './academy/academy.component';
 import { CoursesComponent } from './academy/courses/courses.component';
 import { FeeStructureComponent } from './academy/fee-structure/fee-structure.component';
+import { EnquiryComponent } from './enquiry/enquiry.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo:'home',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
   {
@@ -72,6 +73,10 @@ const routes: Routes = [
     path: 'academy/fee-structure',
     component: FeeStructureComponent
   },
+  {
+    path: 'online-enquiry',
+    component: EnquiryComponent
+  }
 ];
 
 @NgModule({

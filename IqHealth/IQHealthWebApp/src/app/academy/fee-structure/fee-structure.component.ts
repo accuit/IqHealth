@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SideBarListModel } from 'src/app/core/sidebar-list.model';
+import { SubCourses } from '../academy.model';
+import { AcademyService } from '../academy.service';
+import { APIResponse } from 'src/app/core/app.models';
 
 @Component({
   selector: 'app-fee-structure',
@@ -13,10 +16,20 @@ export class FeeStructureComponent implements OnInit {
   subtitle: string = 'Academy';
   parent: string = 'Fee Structure';
   sidebar: SideBarListModel;
-  
-  constructor() { }
+  isLoaded = false;
+  subCourses: SubCourses[] = [];
+
+  constructor(private readonly service: AcademyService) {
+  }
 
   ngOnInit() {
+
+    this.service.getSubCourses()
+      .subscribe((data: APIResponse) => {
+        this.subCourses = data.SingleResult;
+        this.isLoaded = true;
+      })
+
   }
 
 }

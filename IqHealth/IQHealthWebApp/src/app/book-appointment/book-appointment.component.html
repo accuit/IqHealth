@@ -1,4 +1,4 @@
-<app-inner-banner title="Book An Appointmet" url="#" parent="Home" subtitle="Book Appointment"></app-inner-banner>
+<app-inner-banner title="Book An Appointment" url="#" parent="Home" subtitle="Book Appointment"></app-inner-banner>
 
 <section class="appointment-style-two sec-pad">
     <div class="thm-container">
@@ -40,11 +40,11 @@
                         <ul class="infos">
                             <li>
                                 <span class="type">Monday to Friday</span>
-                                <span class="option">09:00 am  -  19:00 pm</span>
+                                <span class="option">09:00 am - 19:00 pm</span>
                             </li>
                             <li>
                                 <span class="type">Saturday</span>
-                                <span class="option">08:00 am  -  17:00 pm</span>
+                                <span class="option">08:00 am - 17:00 pm</span>
                             </li>
                             <li>
                                 <span class="type">Sunday</span>
@@ -55,81 +55,102 @@
                 </div><!-- /.appointment-sidebar -->
             </div><!-- /.col-md-4 -->
             <div class="col-md-8">
-                <form action="inc/sendemail.php" class="appointment-form contact-form">
+                <form [formGroup]="appointmentForm" (ngSubmit)="onSubmit()" class="appointment-form contact-form">
                     <h3>Need an <span class="color-1">Advice</span> from <span class="color-2">Expert Doctor?</span>
                         Get an Appointment Today!</h3>
                     <p>To speak with a representative, Call us <span>1-258-985-703</span></p>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="frm-control">
-                                <input type="text" placeholder="Your Name" name="name">
+                                <input type="text" placeholder="Your Name" formControlName="name"
+                                    [ngClass]="{ 'error': f.name.touched && f.name}">
+                            </div>
+                        </div><!-- /.col-md-6 -->
+                        <div class="col-md-6">
+                            <div class="frm-control">
+                                <input type="text" placeholder="Email" formControlName="email"
+                                    [ngClass]="{ 'error': f.email.touched && f.email}">
                             </div><!-- /.frm-control -->
                         </div><!-- /.col-md-6 -->
                         <div class="col-md-6">
                             <div class="frm-control">
-                                <input type="text" placeholder="Email" name="email">
+                                <input type="text" placeholder="Mobile" formControlName="mobile"
+                                    [ngClass]="{ 'error': f.mobile.touched && f.mobile}">
                             </div><!-- /.frm-control -->
                         </div><!-- /.col-md-6 -->
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <div class="frm-control">
-                                <input type="text" placeholder="Phone" name="phone">
+                                <select name="time-select" formControlName="sex" class="selectpicker"
+                                    id="dpartments-select">
+                                    <option value="0">Select Sex </option>
+                                    <option value="1">Male</option>
+                                    <option value="2">Female</option>
+                                </select>
                             </div><!-- /.frm-control -->
                         </div><!-- /.col-md-6 -->
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <div class="frm-control">
-                                <select name="time-select" class="selectpicker" id="dpartments-select">
-                                    <option value="1">Primary Medical  </option>
-                                    <option value="1">Primary Medical  (Department)</option>
-                                    <option value="1">Primary Medical Cause ()</option>
-                                    <option value="1">Primary Medical Cause </option>
-                                </select><!-- /#time-select -->
+                                <input type="text" placeholder="Age" formControlName="age">
                             </div><!-- /.frm-control -->
                         </div><!-- /.col-md-6 -->
                         <div class="col-md-4">
                             <div class="frm-control select-date">
-                                <input type="text" placeholder="Select Day" name="select-date" class="select-date-input">
-                                <i class="fa fa-calendar-alt"></i><!-- /.fa -->
-                            </div><!-- /.frm-control -->
-                        </div><!-- /.col-md-6 -->
-                        <div class="col-md-4">
-                                <div class="frm-control">
-                                    <div class="btn-group bootstrap-select dropup"> <select name="time-select" class="selectpicker" id="time-select" tabindex="-98">
-                                        <option value="1">09.00 am - 10.00 am</option>
-                                        <option value="2">10.01 am - 11.00 am</option>
-                                        <option value="1">11.01 am - 12.00 pm</option>
-                                        <option value="1">12.01 pm - 01.00 pm</option>
-                                    </select></div><!-- /#time-select -->
-                                </div><!-- /.frm-control -->
+                                <input type="text" placeholder="MM-DD-YYYY" formControlName="bookingDate"
+                                    class="select-date-input" [ngClass]="{ 'error': submitted && f.name.bookingDate}">
+                                <i class="fa fa-calendar-alt"></i>
                             </div>
+                        </div>
                         <div class="col-md-4">
                             <div class="frm-control">
-                                <select name="doctor-select" class="selectpicker" id="doctor-select">
-                                    <option value="1">Select Doctor</option>
-                                    <option value="1">Select Doctor</option>
-                                    <option value="1">Select Doctor</option>
-                                    <option value="1">Select Doctor</option>
-                                </select><!-- /#time-select -->
-                            </div><!-- /.frm-control -->
+                                <div class="btn-group bootstrap-select dropup">
+                                    <select formControlName="bookingTime" class="selectpicker" id="time-select"
+                                        tabindex="-98">
+                                        <option value="2">09.00 am - 10.00 am</option>
+                                        <option value="1">10.01 am - 11.00 am</option>
+                                        <option value="11.01 am - 12.00 pm">11.01 am - 12.00 pm</option>
+                                        <option value="12.01 pm - 01.00 pm">12.01 pm - 01.00 pm</option>
+                                        <option value="01.00 pm - 02.00 pm">01.00 pm - 02.00 pm</option>
+                                        <option value="02.01 pm - 04.00 pm">02.01 pm - 04.00 pm</option>
+                                        <option value="04.01 pm - 06.00 pm">04.01 pm - 06.00 pm</option>
+                                        <option value="06.01 pm - 08.00 pm">06.01 pm - 08.00 pm</option>
+                                    </select></div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                             
+                            <div class="frm-control">
+                                <div class="btn-group bootstrap-select">
+                                    <button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown"  title="Select Doctors">
+                                        <span  class="filter-option pull-left"> {{selectedText}}</span>&nbsp;
+                                        <span class="bs-caret"><span class="caret"></span></span>
+                                    </button>
+
+                                    <div class="dropdown-menu open">
+                                        <ul class="dropdown-menu inner" role="menu">
+                                            <li *ngFor="let doctor of doctorsList" ><a (click)="selectDoctor(doctor)"> 
+                                                 <span  class="text">{{doctor.FirstName}}</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <select formControlName="doctorID">
+                                            <option *ngFor="let doctor of doctorsList" [class.selected]="{'selected':selectedID == doctor.ID.toString() }" [ngValue]="doctor.ID">
+                                                {{doctor.FirstName}}</option>
+                                        </select>
+                                </div>
+                                
+                            </div>
                         </div><!-- /.col-md-6 -->
-                        <div class="col-md-12">
-                            <div class="frm-control">
-                                <input type="text" placeholder="Subject" name="subject">
-                            </div><!-- /.frm-control -->
-                        </div><!-- /.col-md-12 -->
-                        <div class="col-md-12">
-                            <div class="frm-control">
-                                <textarea name="message" id="message" placeholder="Message"></textarea><!-- /#message -->
-                            </div><!-- /.frm-control -->
-                        </div><!-- /.col-md-12 -->
                         <div class="col-md-12">
                             <div class="frm-control mb0">
-                                <button type="submit">Send Request</button>
+                                <button [disabled]="!appointmentForm.valid"  type="submit">Submit</button>
                                 <button type="reset">Reset</button>
                             </div><!-- /.frm-control -->
                         </div><!-- /.col-md-12 -->
                     </div><!-- /.row -->
-                    <div class="form-result"></div><!-- /.form-result -->
-                </form><!-- /.appointment-form -->
+                    <div class="form-result"></div>
+                </form>
+                <br>
+               
             </div><!-- /.col-md-8 -->
         </div><!-- /.row -->
     </div><!-- /.thm-container -->

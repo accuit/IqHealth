@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { CityModel, BookingMaster, Doctor, APIResponse, DoctorAppointment } from './app.models';
 import { throwError } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { delay } from 'q';
 
 @Injectable()
 export class AppService {
