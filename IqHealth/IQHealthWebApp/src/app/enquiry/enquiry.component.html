@@ -1,94 +1,49 @@
-<app-inner-banner title="Contact Health IQ" url="#" parent="Home" subtitle="Contact Us"></app-inner-banner>
-
-<div #mymap class="google-map" id="contact-google-map" 
-    data-map-lat="22.5267089" 
-    data-map-lng="88.3449872"
-    data-icon-path="http://localhost:4200/assets/images/map-pointer.png" 
-    data-map-title="Brooklyn, New York, United Kingdom" 
-    data-map-zoom="18"
-    data-markers='{
-          "marker-1": [22.5267089, 88.3449872, "<h4>Main Office</h4><p>Babylon Branch , Lindenhurst, UK</p>"]
-      }'>
-      
-</div>
-
-<section class="contact-info-style-one text-center">
-    <div class="thm-container">
-        <div class="row">
-            <div class="col-md-4 col-sm-6 col-xs-12">
-                <div class="single-contact-info-style-one">
-                    <div class="inner-box">
-                        <div class="icon-box">
-                            <img src="../../assets/images/contact-info-1-2.png" alt="Awesome Image" />
-                        </div><!-- /.icon-box -->
-                        <h3>Our Location</h3>
-                        <p>322 Willis Avenue, Southern Street <br> Lakepool, Newyork 33069</p>
-                    </div><!-- /.inner-box -->
-                </div><!-- /.single-contact-info-style-one -->
-            </div><!-- /.col-md-4 -->
-            <div class="col-md-4 col-sm-6 col-xs-12">
-                <div class="single-contact-info-style-one">
-                    <div class="inner-box">
-                        <div class="icon-box">
-                            <img src="../../assets/images/contact-info-1-1.png" alt="Awesome Image" />
-                        </div><!-- /.icon-box -->
-                        <h3>phone us </h3>
-                        <p><span>+ 1-258-985-703</span> <br>24/7 Helpline: 0800 14620</p>
-                    </div><!-- /.inner-box -->
-                </div><!-- /.single-contact-info-style-one -->
-            </div><!-- /.col-md-4 -->
-            <div class="col-md-4 col-sm-6 col-xs-12 col-lg-offset-0 col-md-offset-0 col-sm-offset-3 col-xs-offset-0">
-                <div class="single-contact-info-style-one">
-                    <div class="inner-box">
-                        <div class="icon-box">
-                            <img src="../../assets/images/contact-info-1-3.png" alt="Awesome Image" />
-                        </div><!-- /.icon-box -->
-                        <h3>Send Email</h3>
-                        <p>support@clin-medix.org <br> info@domain.com</p>
-                    </div><!-- /.inner-box -->
-                </div><!-- /.single-contact-info-style-one -->
-            </div><!-- /.col-md-4 -->
-        </div><!-- /.row -->
-    </div><!-- /.thm-container -->
-</section><!-- /.contact-info-style-one -->
-
 <section class="appointment-style-one sec-pad pt0 contact-page">
     <div class="thm-container">
         <div class="row">
             <div class="col-md-7">
-                <form action="inc/sendemail.php" class="appointment-form contact-form">
+                <form action="inc/sendemail.php" class="appointment-form contact-form" novalidate="novalidate">
                     <h3>Get In Touch</h3>
                     <p>Send us your contact information for anything you need and we’ll be happy to assist you!</p>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="frm-control">
-                                <input type="text" placeholder="First Name" name="name">
+                                <input type="text" placeholder="Full Name" name="FirstName">
                             </div><!-- /.frm-control -->
                         </div><!-- /.col-md-6 -->
                         <div class="col-md-6">
                             <div class="frm-control">
-                                <input type="text" placeholder="Last Name" name="lname">
+                                <input type="text" placeholder="Last Name" name="LastName">
                             </div><!-- /.frm-control -->
                         </div><!-- /.col-md-6 -->
                         <div class="col-md-6">
                             <div class="frm-control">
-                                <input type="text" placeholder="Email Address" name="email">
+                                <input type="text" placeholder="Email Address" name="Email">
                             </div><!-- /.frm-control -->
                         </div><!-- /.col-md-6 -->
                         <div class="col-md-6">
                             <div class="frm-control">
-                                <input type="text" placeholder="Phone" name="phone">
+                                <input type="text" placeholder="Phone" name="Phone">
                             </div><!-- /.frm-control -->
                         </div><!-- /.col-md-6 -->
                         <div class="col-md-6">
                             <div class="frm-control">
-                                <select name="departments-select" class="selectpicker" id="departments-select">
-                                    <option value="1">Departments</option>
-                                    <option value="Cardiology">Cardiology</option>
-                                    <option value="Eye Care">Eye Care</option>
-                                    <option value="Skin Care">Skin Care</option>
-                                    <option value="Pathology">Pathology</option>
-                                </select><!-- /#time-select -->
+                                <div class="btn-group bootstrap-select dropup"><button type="button"
+                                        class="btn dropdown-toggle btn-default" data-toggle="dropdown"
+                                        data-id="departments-select" title="Pathology" aria-expanded="false">
+                                        <span class="filter-option pull-left">Pathology</span>&nbsp;<span
+                                            class="bs-caret">
+                                            <span class="caret"></span></span></button>
+                              
+                                    <select name="departments-select" class="selectpicker" id="departments-select"
+                                        tabindex="-98">
+                                        <option value="1">Departments</option>
+                                        <option value="Cardiology">Cardiology</option>
+                                        <option value="Eye Care">Eye Care</option>
+                                        <option value="Skin Care">Skin Care</option>
+                                        <option value="Pathology">Pathology</option>
+                                    </select>
+                                </div><!-- /#time-select -->
                             </div><!-- /.frm-control -->
                         </div><!-- /.col-md-6 -->
                         <div class="col-md-6">
@@ -148,5 +103,4 @@
             </div><!-- /.col-md-5 -->
         </div><!-- /.row -->
     </div><!-- /.thm-container -->
-</section><!-- /.appointment-style-one -->
-
+</section>

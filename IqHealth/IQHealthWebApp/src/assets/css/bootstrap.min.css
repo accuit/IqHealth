@@ -131,7 +131,8 @@ button, html input[type=button], input[type=reset], input[type=submit] {
 }
 
 button[disabled], html input[disabled] {
-    cursor: default
+    cursor: not-allowed;
+    background-color: #c3b0bb
 }
 
 button::-moz-focus-inner, input::-moz-focus-inner {

@@ -41,6 +41,7 @@ export class DoctorAppointment {
     Email : string;
     Mobile : string;
     BookingDate: Date;
+    BookingTime: string;
     DoctorID: number;
 }
 

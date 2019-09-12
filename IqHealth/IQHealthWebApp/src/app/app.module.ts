@@ -27,6 +27,8 @@ import { AcademyComponent } from './academy/academy.component';
 import { CoursesComponent } from './academy/courses/courses.component';
 import { FeeStructureComponent } from './academy/fee-structure/fee-structure.component';
 import { AcademyModule } from './academy/academy.module';
+import { EnquiryComponent } from './enquiry/enquiry.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -47,9 +49,12 @@ import { AcademyModule } from './academy/academy.module';
     ServicesListComponent,
     ServiceDetailsComponent,
     ContactUsComponent,
-    AboutUsComponent
+    AboutUsComponent,
+    EnquiryComponent
   ],
   imports: [
+    ReactiveFormsModule,
+    FormsModule,
     HttpClientModule, 
     BrowserModule,
     AppRoutingModule,
