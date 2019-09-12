@@ -1,30 +1,48 @@
 <div class="find-doctor-box">
     <div class="thm-container">
-        <form action="#" class="row find-doctor-form">
+        <form *ngIf="isLoaded" action="#" class="row find-doctor-form">
             <div class="col-md-3">
                 <div class="frm-control">
-                    <select name="name-select" class="selectpicker" id="name-select">
-                        <option value="1">By Doctor Name</option>
-                        <option value="2">Daine Amer</option>
-                        <option value="3">Antwan Salafia</option>
-                        <option value="4">Kori Fedele</option>
-                        <option value="5">Harriet Mcelhiney</option>
-                        <option value="6">Elfriede Mauceri</option>
-                    </select><!-- /#time-select -->
+                    <div class="btn-group bootstrap-select">
+                        <button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown"  title="Select Doctors">
+                            <span  class="filter-option pull-left"> {{selectedText}}</span>&nbsp;
+                            <span class="bs-caret"><span class="caret"></span></span>
+                        </button>
+
+                        <div class="dropdown-menu open">
+                            <ul class="dropdown-menu inner" role="menu">
+                                <li *ngFor="let doctor of doctors" ><a (click)="selectDoctor(doctor)"> 
+                                     <span  class="text">{{doctor.FirstName}}</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <select formControlName="doctorID">
+                                <option *ngFor="let doctor of doctors"  [value]="doctor.ID">  {{doctor.FirstName}} {{doctor.LastName}}</option>
+                            </select>
+                    </div>
                 </div><!-- /.frm-control -->
             </div><!-- /.col-md-3 -->
             <div class="col-md-3">
                 <div class="frm-control cli">
+                        <div class="btn-group bootstrap-select">
+                                <button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown"  title="Select Doctors">
+                                    <span  class="filter-option pull-left"> {{selectedSpeciality}}</span>&nbsp;
+                                    <span class="bs-caret"><span class="caret"></span></span>
+                                </button>
+        
+                                <div class="dropdown-menu open">
+                                    <ul class="dropdown-menu inner" role="menu">
+                                        <li *ngFor="let S of specialities" ><a (click)="selectSpeciality(S)"> 
+                                             <span  class="text">{{S.Speciality}}</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <select formControlName="specialityID">
+                                        <option *ngFor="let S of specialities"  [value]="S.ID">  {{S.Speciality}}</option>
+                                    </select>
+                            </div>
                     <select name="departments-select" class="selectpicker" id="departments-select">
-                        <option value="1">By Department</option>
-                        <option value="2">Children Health Center</option>
-                        <option value="3">Dentistry & Oral Surgery</option>
-                        <option value="4">Diagnostic Imaging</option>
-                        <option value="5">Family Care Solutions</option>
-                        <option value="6">Cardiac Surgery</option>
-                        <option value="7">Eye Care Services</option>
-                        <option value="8">Outpatient Rehabilitation</option>
-                        <option value="9">Physiotherapy</option>
+                        <option *ngFor="let S of specialities" [value]="S.ID">{{S.Speciality}}</option>
                     </select><!-- /#time-select -->
                 </div><!-- /.frm-control -->
             </div><!-- /.col-md-3 -->

@@ -50,7 +50,6 @@ export class DoctorsListComponent implements OnInit {
     this.service.getAllDoctors()
       .subscribe((data: APIResponse) => {
         this.isloaded = true;
-        console.log(data);
         this.doctors = data.SingleResult;
       })
   }
