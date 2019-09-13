@@ -1,4 +1,7 @@
-<section class="appointment-style-one sec-pad pt0 contact-page">
+<app-inner-banner [title]="title" [url]="url" parent="Home" subtitle="Student Enquiry Form">
+</app-inner-banner>
+
+<section class="appointment-style-one sec-pad pt100 contact-page">
     <div class="thm-container">
         <div class="row">
             <div class="col-md-7">
@@ -8,54 +11,52 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="frm-control">
-                                <input type="text" placeholder="Full Name" name="FirstName">
+                                <input type="text" placeholder="Full Name" name="name">
                             </div><!-- /.frm-control -->
                         </div><!-- /.col-md-6 -->
                         <div class="col-md-6">
                             <div class="frm-control">
-                                <input type="text" placeholder="Last Name" name="LastName">
+                                <input type="text" placeholder="Email Address" name="email">
                             </div><!-- /.frm-control -->
                         </div><!-- /.col-md-6 -->
                         <div class="col-md-6">
                             <div class="frm-control">
-                                <input type="text" placeholder="Email Address" name="Email">
+                                <input type="text" placeholder="Mobile No." name="mobile">
                             </div><!-- /.frm-control -->
                         </div><!-- /.col-md-6 -->
                         <div class="col-md-6">
                             <div class="frm-control">
-                                <input type="text" placeholder="Phone" name="Phone">
+                                <input type="text" placeholder="Place" name="place">
                             </div><!-- /.frm-control -->
                         </div><!-- /.col-md-6 -->
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="frm-control">
-                                <div class="btn-group bootstrap-select dropup"><button type="button"
-                                        class="btn dropdown-toggle btn-default" data-toggle="dropdown"
-                                        data-id="departments-select" title="Pathology" aria-expanded="false">
-                                        <span class="filter-option pull-left">Pathology</span>&nbsp;<span
-                                            class="bs-caret">
-                                            <span class="caret"></span></span></button>
-                              
-                                    <select name="departments-select" class="selectpicker" id="departments-select"
-                                        tabindex="-98">
-                                        <option value="1">Departments</option>
-                                        <option value="Cardiology">Cardiology</option>
-                                        <option value="Eye Care">Eye Care</option>
-                                        <option value="Skin Care">Skin Care</option>
-                                        <option value="Pathology">Pathology</option>
-                                    </select>
-                                </div><!-- /#time-select -->
-                            </div><!-- /.frm-control -->
-                        </div><!-- /.col-md-6 -->
-                        <div class="col-md-6">
-                            <div class="frm-control">
-                                <input type="text" placeholder="Subject" name="subject">
+                                <div class="frm-control">
+                                    <div class="btn-group bootstrap-select">
+                                        <button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown"  title="Select Doctors">
+                                            <span  class="filter-option pull-left"> {{selectedText}}</span>&nbsp;
+                                            <span class="bs-caret"><span class="caret"></span></span>
+                                        </button>
+                                        <div class="dropdown-menu open">
+                                            <ul class="dropdown-menu inner" role="menu">
+                                                <li *ngFor="let c of subCourses" ><a (click)="selectCourse(c)"> 
+                                                     <span  class="text">{{c.Name}}</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <select formControlName="doctorID">
+                                                <option *ngFor="let c of subCourses" [class.selected]="{'selected':selectedID == c.ID.toString() }" [ngValue]="c.ID">
+                                                    {{c.Name}}</option>
+                                            </select>
+                                    </div>  
+                                </div>
                             </div><!-- /.frm-control -->
                         </div><!-- /.col-md-6 -->
                         <div class="col-md-12">
                             <div class="frm-control mb0">
-                                <textarea name="message" id="message" placeholder="Message"></textarea>
+                                <textarea name="message" id="message" placeholder="Write Your Query"></textarea>
                                 <!-- /#message -->
-                                <button type="submit">Send Message</button>
+                                <button type="submit">Submit Message</button>
                             </div><!-- /.frm-control -->
                         </div><!-- /.col-md-12 -->
                     </div><!-- /.row -->
@@ -65,39 +66,16 @@
             <div class="col-md-5">
                 <div class="appointment-time">
                     <div class="inner-box">
-                        <h3>Opening Hours</h3>
-                        <p>Proident sunt in culpa qui officia deserunt mollit animd laborum perspicia.</p>
+                        <h3>Available Courses</h3>
+                        <p>Below is the list of available course you can enquiry for.</p>
                         <div class="time-box">
-                            <div class="signle-time-box">
-                                <div class="day-name">Monday:</div><!-- /.day-name -->
-                                <div class="time-line">09:00 am - 19:00 pm</div><!-- /.time-line -->
+                            <div *ngFor="let c of subCourses" class="signle-time-box">
+                                <div class="day-name">{{c.Name}}</div><!-- /.day-name -->
+                                <!-- <div class="time-line">09:00 am - 19:00 pm</div> -->
                             </div><!-- /.signle-time-box -->
-                            <div class="signle-time-box">
-                                <div class="day-name">Tuesday:</div><!-- /.day-name -->
-                                <div class="time-line">09:00 am - 19:00 pm</div><!-- /.time-line -->
-                            </div><!-- /.signle-time-box -->
-                            <div class="signle-time-box">
-                                <div class="day-name">Wednesday:</div><!-- /.day-name -->
-                                <div class="time-line">09:00 am - 19:00 pm</div><!-- /.time-line -->
-                            </div><!-- /.signle-time-box -->
-                            <div class="signle-time-box">
-                                <div class="day-name">Thursday:</div><!-- /.day-name -->
-                                <div class="time-line">09:00 am - 19:00 pm</div><!-- /.time-line -->
-                            </div><!-- /.signle-time-box -->
-                            <div class="signle-time-box">
-                                <div class="day-name">Friday:</div><!-- /.day-name -->
-                                <div class="time-line">09:00 am - 19:00 pm</div><!-- /.time-line -->
-                            </div><!-- /.signle-time-box -->
-                            <div class="signle-time-box">
-                                <div class="day-name">Saturday:</div><!-- /.day-name -->
-                                <div class="time-line">09:00 am - 19:00 pm</div><!-- /.time-line -->
-                            </div><!-- /.signle-time-box -->
-                            <div class="signle-time-box">
-                                <div class="day-name">Sunday:</div><!-- /.day-name -->
-                                <div class="time-line">Closed*</div><!-- /.time-line -->
-                            </div><!-- /.signle-time-box -->
+                           
                         </div><!-- /.time-box -->
-                        <p class="notice">Treatment for Emergency Cases Only *</p><!-- /.notice -->
+                        <!-- <p class="notice">Treatment for Emergency Cases Only *</p> -->
                     </div><!-- /.inner-box -->
                 </div><!-- /.appointment-time -->
             </div><!-- /.col-md-5 -->

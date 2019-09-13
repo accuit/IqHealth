@@ -1,7 +1,7 @@
 <div class="find-doctor-box">
     <div class="thm-container">
         <form  [formGroup]="findDocForm" (ngSubmit)="onSubmit()" class="row find-doctor-form">
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="frm-control">
                     <div class="btn-group bootstrap-select">
                         <button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown"  title="Select Doctors">
@@ -12,7 +12,7 @@
                         <div class="dropdown-menu open">
                             <ul class="dropdown-menu inner" role="menu">
                                 <li *ngFor="let doctor of doctors" ><a (click)="selectDoctor(doctor)"> 
-                                     <span  class="text">{{doctor.FirstName}}</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+                                     <span  class="text">{{doctor.FirstName}} {{doctor.LastName}}</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
                                 </li>
                             </ul>
                         </div>
@@ -22,7 +22,7 @@
                     </div>
                 </div><!-- /.frm-control -->
             </div><!-- /.col-md-3 -->
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="frm-control cli">
                         <div class="btn-group bootstrap-select">
                                 <button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown"  title="Select Doctors">
@@ -43,17 +43,11 @@
                             </div>
                 </div>
             </div><!-- /.col-md-3 -->
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="frm-control">
-                    <select name="qualification-select" class="selectpicker" id="qualification-select">
-                        <option value="1">By Qualification</option>
-                        <option value="1">By Qualification</option>
-                        <option value="1">By Qualification</option>
-                        <option value="1">By Qualification</option>
-                    </select><!-- /#time-select -->
-                </div><!-- /.frm-control -->
-            </div><!-- /.col-md-3 -->
-            <div class="col-md-3">
+                    </div>
+            </div>
+            <div class="col-md-4">
                 <div class="frm-control">
                     <button type="submit">find doctor <i class="fa fa-angle-double-right"></i></button>
                 </div><!-- /.frm-control -->

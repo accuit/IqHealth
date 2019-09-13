@@ -1,34 +1,49 @@
 <app-inner-banner [title]="title" [url]="url" [parent]="parent" [subtitle]="subtitle">
-    </app-inner-banner>
+</app-inner-banner>
 
-    <section class="team-style-one">
-            <div class="thm-container">
-                <div class="sec-title text-center">
-                    <h3>Our Doctors are Setting the New Standards <br> in <span class="color-1">Medical Research</span></h3>
-                    <div class="line"></div><!-- /.line -->
-                </div><!-- /.sec-title -->
-                <div *ngIf="isLoaded" class="row">
-                    <div *ngFor="let doctor of doctors" class="col-md-3 col-sm-6 col-xs-12">
-                        <div class="single-team-style-one">
-                            <div class="img-box">
-                                <img [src]="'assets/images/doctors/'+ doctor.ID + '.jpg'" alt="{{doctor.FirstName}}" />
-                                <div class="hover-box">
-                                    <div class="inner-box">
-                                        <div class="social">
-                                                <button class="nw-btn main_btn circle" tabindex="0">Book Appointment <span _ngcontent-brn-c0="" class="lnr lnr-arrow-right"></span></button>
-                                        </div><!-- /.social -->
-                                       
-                                    </div><!-- /.inner-box -->
-                                </div><!-- /.hover-box -->
-                            </div><!-- /.img-box -->
-                            <div class="text-box">
-                                <a href="#">
-                                    <h3>{{doctor.FirstName}} {{doctor.LastName}}</h3>
-                                </a>
-                                <p>{{doctor.Specialist}}</p>
-                            </div><!-- /.text-box -->
-                        </div><!-- /.single-team-style-one -->
-                    </div><!-- /.col-md-3 col-sm-6 col-xs-12 -->
-                </div><!-- /.row -->
-            </div><!-- /.thm-container -->
-        </section><!-- /.team-style-one -->
+<section *ngIf="urlParams && (urlParams.doctor || urlParams.speciality)" class="subscribe-style-one home-two"
+    style="background-image: url(images/subscribe-bg-1-1.jpg); background-attachment: fixed; background-position: center center;">
+    <div class="inner">
+        <div class="thm-container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="subscribe-content">
+                        <h3>Could not Find Your Doctor?</h3>
+                    </div><!-- /.subscribe-content -->
+                </div><!-- /.col-md-6 -->
+                <div class="col-md-6">
+                    <form action="#" class="subscribe-form clearfix">
+                        <button (click)="resetDoctorsList()" type="submit">All Doctors<i
+                                class="fa fa-angle-double-right"></i></button>
+                    </form><!-- /.subscribe-form -->
+                </div><!-- /.col-md-6 -->
+            </div><!-- /.row -->
+        </div><!-- /.thm-container -->
+    </div><!-- /.inner -->
+</section>
+
+<section class="team-style-one  sec-pad">
+    <div class="thm-container">
+        <div class="sec-title text-center">
+            <h3>Our Doctors are Setting the New Standards <br> in <span class="color-1">Medical Research</span></h3>
+            <div class="line"></div><!-- /.line -->
+        </div><!-- /.sec-title -->
+        <div *ngIf="isLoaded" class="row">
+            <div *ngFor="let doctor of doctors" class="col-md-3 col-sm-6 col-xs-12">
+                <div class="single-team-style-one">
+                    <div class="img-box">
+                        <img [src]="'assets/images/doctors/'+ doctor.ID + '.jpg'" alt="{{doctor.FirstName}}" />
+        
+                    </div><!-- /.img-box -->
+                    <div class="text-box">
+                        <a href="#">
+                            <h3>{{doctor.FirstName}} {{doctor.LastName}}</h3>
+                        </a>
+                        <p>{{doctor.Specialist}}</p>
+                        <a href="/book-an-appointment" class="book-btn">Fix Appointment <i class="fa fa-angle-double-right"></i></a>
+                    </div><!-- /.text-box -->
+                </div><!-- /.single-team-style-one -->
+            </div><!-- /.col-md-3 col-sm-6 col-xs-12 -->
+        </div><!-- /.row -->
+    </div><!-- /.thm-container -->
+</section><!-- /.team-style-one -->

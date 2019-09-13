@@ -97,154 +97,26 @@
         </div><!-- /.thm-container -->
     </section><!-- /.service-style-four -->
 
-    <section class="service-style-six sec-pad">
+    <section  class="service-style-six sec-pad">
             <div class="thm-container">
                 <div class="sec-title text-center">
                     <img src="http://html.tonatheme.com/2019/clinmedix/images/sec-title-icon-2.png" alt="Awesome Image" />
-                    <h3>Our Dental Services</h3>
-                    <p>Mollit animid acusm est laborum sed dolore perspiciatis unde omnis iste natus error volt sit ipsum dui <br> mque lorem tium  ipsum tempor incididunt ut labore et dolore magna aliqua </p>
+                    <h3>Our Services</h3>
+                    <!-- <p>Mollit animid acusm est laborum sed dolore perspiciatis unde omnis iste natus error volt sit ipsum dui <br> mque lorem tium  ipsum tempor incididunt ut labore et dolore magna aliqua </p> -->
                     <div class="line"></div><!-- /.line -->
                 </div><!-- /.sec-title -->
                 <div class="service-style-six-carousel owl-theme owl-carousel">
-                    <div class="item">
+                    <div *ngFor="let S of services" class="item">
                         <div class="single-service-style-six">
                             <div class="img-box">
-                                <img src="http://html.tonatheme.com/2019/clinmedix/images/service-2-1.jpg" alt="Awesome Image"/>
+                                <img height="250px" [src]="'assets/images/services/'+ S.ID + '.jpg'" alt="S.Name"/>
                             </div><!-- /.img-box -->
                             <div class="text-box">
                                 <div class="inner-box hvr-bounce-to-bottom">
                                     <div class="content">
-                                        <a href="#"><h3>Family Dentistry</h3></a>
-                                        <p>Dolor sit amet consectetur dipisicing elit pory incididunt labore dolore magn aliqua veniam quis nostrud exercitation.</p>
-                                        <a href="#" class="more"><i class="fa fa-angle-double-right"></i></a>
-                                    </div><!-- /.content -->
-                                </div><!-- /.inner-box -->
-                            </div><!-- /.text-box -->
-                        </div><!-- /.single-service-style-six -->
-                    </div><!-- /.item -->
-                    <div class="item">
-                        <div class="single-service-style-six">
-                            <div class="img-box">
-                                <img src="http://html.tonatheme.com/2019/clinmedix/images/service-2-2.jpg" alt="Awesome Image"/>
-                            </div><!-- /.img-box -->
-                            <div class="text-box">
-                                <div class="inner-box hvr-bounce-to-bottom">
-                                    <div class="content">
-                                        <a href="#"><h3>Implant Dentistry</h3></a>
-                                        <p>Dolor sit amet consectetur dipisicing elit pory incididunt labore dolore magn aliqua veniam quis nostrud exercitation.</p>
-                                        <a href="#" class="more"><i class="fa fa-angle-double-right"></i></a>
-                                    </div><!-- /.content -->
-                                </div><!-- /.inner-box -->
-                            </div><!-- /.text-box -->
-                        </div><!-- /.single-service-style-six -->
-                    </div><!-- /.item -->
-                    <div class="item">
-                        <div class="single-service-style-six">
-                            <div class="img-box">
-                                <img src="http://html.tonatheme.com/2019/clinmedix/images/service-2-3.jpg" alt="Awesome Image"/>
-                            </div><!-- /.img-box -->
-                            <div class="text-box">
-                                <div class="inner-box hvr-bounce-to-bottom">
-                                    <div class="content">
-                                        <a href="#"><h3>Cosmetic Dentistry</h3></a>
-                                        <p>Dolor sit amet consectetur dipisicing elit pory incididunt labore dolore magn aliqua veniam quis nostrud exercitation.</p>
-                                        <a href="#" class="more"><i class="fa fa-angle-double-right"></i></a>
-                                    </div><!-- /.content -->
-                                </div><!-- /.inner-box -->
-                            </div><!-- /.text-box -->
-                        </div><!-- /.single-service-style-six -->
-                    </div><!-- /.item -->
-                    <div class="item">
-                        <div class="single-service-style-six">
-                            <div class="img-box">
-                                <img src="http://html.tonatheme.com/2019/clinmedix/images/service-2-1.jpg" alt="Awesome Image"/>
-                            </div><!-- /.img-box -->
-                            <div class="text-box">
-                                <div class="inner-box hvr-bounce-to-bottom">
-                                    <div class="content">
-                                        <a href="#"><h3>Family Dentistry</h3></a>
-                                        <p>Dolor sit amet consectetur dipisicing elit pory incididunt labore dolore magn aliqua veniam quis nostrud exercitation.</p>
-                                        <a href="#" class="more"><i class="fa fa-angle-double-right"></i></a>
-                                    </div><!-- /.content -->
-                                </div><!-- /.inner-box -->
-                            </div><!-- /.text-box -->
-                        </div><!-- /.single-service-style-six -->
-                    </div><!-- /.item -->
-                    <div class="item">
-                        <div class="single-service-style-six">
-                            <div class="img-box">
-                                <img src="http://html.tonatheme.com/2019/clinmedix/images/service-2-2.jpg" alt="Awesome Image"/>
-                            </div><!-- /.img-box -->
-                            <div class="text-box">
-                                <div class="inner-box hvr-bounce-to-bottom">
-                                    <div class="content">
-                                        <a href="#"><h3>Implant Dentistry</h3></a>
-                                        <p>Dolor sit amet consectetur dipisicing elit pory incididunt labore dolore magn aliqua veniam quis nostrud exercitation.</p>
-                                        <a href="#" class="more"><i class="fa fa-angle-double-right"></i></a>
-                                    </div><!-- /.content -->
-                                </div><!-- /.inner-box -->
-                            </div><!-- /.text-box -->
-                        </div><!-- /.single-service-style-six -->
-                    </div><!-- /.item -->
-                    <div class="item">
-                        <div class="single-service-style-six">
-                            <div class="img-box">
-                                <img src="http://html.tonatheme.com/2019/clinmedix/images/service-2-3.jpg" alt="Awesome Image"/>
-                            </div><!-- /.img-box -->
-                            <div class="text-box">
-                                <div class="inner-box hvr-bounce-to-bottom">
-                                    <div class="content">
-                                        <a href="#"><h3>Cosmetic Dentistry</h3></a>
-                                        <p>Dolor sit amet consectetur dipisicing elit pory incididunt labore dolore magn aliqua veniam quis nostrud exercitation.</p>
-                                        <a href="#" class="more"><i class="fa fa-angle-double-right"></i></a>
-                                    </div><!-- /.content -->
-                                </div><!-- /.inner-box -->
-                            </div><!-- /.text-box -->
-                        </div><!-- /.single-service-style-six -->
-                    </div><!-- /.item -->
-                    <div class="item">
-                        <div class="single-service-style-six">
-                            <div class="img-box">
-                                <img src="http://html.tonatheme.com/2019/clinmedix/images/service-2-1.jpg" alt="Awesome Image"/>
-                            </div><!-- /.img-box -->
-                            <div class="text-box">
-                                <div class="inner-box hvr-bounce-to-bottom">
-                                    <div class="content">
-                                        <a href="#"><h3>Family Dentistry</h3></a>
-                                        <p>Dolor sit amet consectetur dipisicing elit pory incididunt labore dolore magn aliqua veniam quis nostrud exercitation.</p>
-                                        <a href="#" class="more"><i class="fa fa-angle-double-right"></i></a>
-                                    </div><!-- /.content -->
-                                </div><!-- /.inner-box -->
-                            </div><!-- /.text-box -->
-                        </div><!-- /.single-service-style-six -->
-                    </div><!-- /.item -->
-                    <div class="item">
-                        <div class="single-service-style-six">
-                            <div class="img-box">
-                                <img src="http://html.tonatheme.com/2019/clinmedix/images/service-2-2.jpg" alt="Awesome Image"/>
-                            </div><!-- /.img-box -->
-                            <div class="text-box">
-                                <div class="inner-box hvr-bounce-to-bottom">
-                                    <div class="content">
-                                        <a href="#"><h3>Implant Dentistry</h3></a>
-                                        <p>Dolor sit amet consectetur dipisicing elit pory incididunt labore dolore magn aliqua veniam quis nostrud exercitation.</p>
-                                        <a href="#" class="more"><i class="fa fa-angle-double-right"></i></a>
-                                    </div><!-- /.content -->
-                                </div><!-- /.inner-box -->
-                            </div><!-- /.text-box -->
-                        </div><!-- /.single-service-style-six -->
-                    </div><!-- /.item -->
-                    <div class="item">
-                        <div class="single-service-style-six">
-                            <div class="img-box">
-                                <img src="http://html.tonatheme.com/2019/clinmedix/images/service-2-3.jpg" alt="Awesome Image"/>
-                            </div><!-- /.img-box -->
-                            <div class="text-box">
-                                <div class="inner-box hvr-bounce-to-bottom">
-                                    <div class="content">
-                                        <a href="#"><h3>Cosmetic Dentistry</h3></a>
-                                        <p>Dolor sit amet consectetur dipisicing elit pory incididunt labore dolore magn aliqua veniam quis nostrud exercitation.</p>
-                                        <a href="#" class="more"><i class="fa fa-angle-double-right"></i></a>
+                                        <a href="#"><h3>{{S.Name}}</h3></a>
+                                        <p>{{ S.Description | slice:0:100 }}</p>
+                                        <a [routerLink]="'/service-details/'+ S.ID" class="more"><i class="fa fa-angle-double-right"></i></a>
                                     </div><!-- /.content -->
                                 </div><!-- /.inner-box -->
                             </div><!-- /.text-box -->

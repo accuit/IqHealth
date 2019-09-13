@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { SideBarListModel } from 'src/app/core/sidebar-list.model';
 import { Doctor, APIResponse, Speciality } from 'src/app/core/app.models';
 import { AppService } from 'src/app/core/app.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-doctors-list',
@@ -21,6 +22,7 @@ export class DoctorsListComponent implements OnInit {
   isLoaded: boolean = false;
   specialities: Speciality[] = [];
   showSlider = false;
+  urlParams: any;
 
   constructor(private readonly service: AppService, private readonly route: ActivatedRoute) {
 
@@ -35,6 +37,7 @@ export class DoctorsListComponent implements OnInit {
   executeParams(): void {
     this.route.queryParams
       .subscribe(params => {
+        this.urlParams = params;
         if (params.doctor || params.speciality) {
           this.showSlider = false;
           if (params.doctor)
@@ -67,6 +70,11 @@ export class DoctorsListComponent implements OnInit {
 
   getDoctors(id) {
     this.doctors = this.doctors.filter(x => x.SpecialityID === Number(id));
+  }
+
+  resetDoctorsList(){
+    this.route.queryParams = new Observable<Params>();
+    this.loadDoctorsList();
   }
 
   loadDoctorsList(): any {

@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DefaultHeaderComponent } from './headers/default-header/default-header.component';
@@ -23,12 +22,10 @@ import { PackageCategoryListComponent } from './packages/package-category-list/p
 import { PackageDetailsComponent } from './packages/package-details/package-details.component';
 import { PackageCategoryDetailsComponent } from './packages/package-category-details/package-category-details.component';
 import { PackagesListComponent } from './packages/packages-list/packages-list.component';
-import { AcademyComponent } from './academy/academy.component';
-import { CoursesComponent } from './academy/courses/courses.component';
-import { FeeStructureComponent } from './academy/fee-structure/fee-structure.component';
 import { AcademyModule } from './academy/academy.module';
 import { EnquiryComponent } from './enquiry/enquiry.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { AppJsonService } from './core/app.json.service';
 
 @NgModule({
   declarations: [
@@ -61,7 +58,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     SharedModule,
     AcademyModule
   ],
-  providers: [AppService],
+  providers: [AppService, AppJsonService],
   entryComponents: [HomeComponent],
   bootstrap: [AppComponent]
 })

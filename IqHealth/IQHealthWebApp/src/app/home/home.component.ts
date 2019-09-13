@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../core/app.service';
-import { APIResponse, Speciality, Doctor } from '../core/app.models';
+import { APIResponse, Speciality, Doctor, ServicesModel } from '../core/app.models';
+import { AppJsonService } from '../core/app.json.service';
 
 @Component({
   selector: 'app-home',
@@ -12,11 +13,14 @@ export class HomeComponent implements OnInit {
   isLoaded: boolean = false;
   specialities: Speciality[] = [];
   doctors: Doctor[] = [];
+  services: ServicesModel[] = [];
 
-  constructor(private readonly service: AppService) { 
+  constructor(private readonly service: AppService, private readonly jsonService: AppJsonService) { 
+    
   }
 
   ngOnInit() {
+    this.loadServicesList();
   }
 
   loadSpecialities(): any {
@@ -32,6 +36,14 @@ export class HomeComponent implements OnInit {
       .subscribe((data: APIResponse) => {
         this.isLoaded = true;
         this.doctors = data.SingleResult;
+      })
+  }
+
+  loadServicesList(): any {
+    this.jsonService.getAllServices()
+      .subscribe((data: any) => {
+        this.services = data;
+        console.log(this.services);
       })
   }
 
