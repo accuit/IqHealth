@@ -30,6 +30,7 @@ namespace IqHealth.Data.Persistence
         public virtual DbSet<DoctorSpeciality> DoctorSpecialities { get; set; }
         public virtual DbSet<HospitalMaster> HospitalMasters { get; set; }
         public virtual DbSet<Login> Logins { get; set; }
+        public virtual DbSet<OnlineEnquiry> OnlineEnquiries { get; set; }
         public virtual DbSet<PackageCategory> PackageCategories { get; set; }
         public virtual DbSet<PackageMaster> PackageMasters { get; set; }
         public virtual DbSet<SpecialityMaster> SpecialityMasters { get; set; }

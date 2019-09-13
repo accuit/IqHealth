@@ -79,7 +79,7 @@ const routes: Routes = [
     component: FeeStructureComponent
   },
   {
-    path: 'online-enquiry',
+    path: 'online-enquiry/:id',
     component: EnquiryComponent
   }
 ];

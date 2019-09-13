@@ -69,6 +69,7 @@
     <Compile Include="Model\HealthServiceMaster.cs" />
     <Compile Include="Model\Login.cs" />
     <Compile Include="Model\DoctorSpeciality.cs" />
+    <Compile Include="Model\OnlineEnquiry.cs" />
     <Compile Include="Model\PackageCategory.cs" />
     <Compile Include="Model\PackageMaster.cs" />
     <Compile Include="Model\DoctorAppointment.cs" />

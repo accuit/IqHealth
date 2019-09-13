@@ -5,31 +5,31 @@
     <div class="thm-container">
         <div class="row">
             <div class="col-md-7">
-                <form action="inc/sendemail.php" class="appointment-form contact-form" novalidate="novalidate">
-                    <h3>Get In Touch</h3>
+                <form [formGroup]="enquiryForm" (ngSubmit)="onSubmit()" class="appointment-form contact-form" novalidate="novalidate">
+                    <h3>{{enquiryTypeName}}</h3>
                     <p>Send us your contact information for anything you need and we’ll be happy to assist you!</p>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="frm-control">
-                                <input type="text" placeholder="Full Name" name="name">
+                                <input type="text" placeholder="Full Name" formControlName="name">
                             </div><!-- /.frm-control -->
                         </div><!-- /.col-md-6 -->
                         <div class="col-md-6">
                             <div class="frm-control">
-                                <input type="text" placeholder="Email Address" name="email">
+                                <input type="text" placeholder="Email Address" formControlName="email">
                             </div><!-- /.frm-control -->
                         </div><!-- /.col-md-6 -->
                         <div class="col-md-6">
                             <div class="frm-control">
-                                <input type="text" placeholder="Mobile No." name="mobile">
+                                <input type="text" placeholder="Mobile No." formControlName="phone">
                             </div><!-- /.frm-control -->
                         </div><!-- /.col-md-6 -->
                         <div class="col-md-6">
                             <div class="frm-control">
-                                <input type="text" placeholder="Place" name="place">
+                                <input type="text" placeholder="Place" formControlName="place">
                             </div><!-- /.frm-control -->
                         </div><!-- /.col-md-6 -->
-                        <div class="col-md-12">
+                        <div *ngIf="enquiryType===2 && isLoaded" class="col-md-12">
                             <div class="frm-control">
                                 <div class="frm-control">
                                     <div class="btn-group bootstrap-select">
@@ -44,20 +44,21 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                        <select formControlName="doctorID">
+                                        <select formControlName="typeValue">
                                                 <option *ngFor="let c of subCourses" [class.selected]="{'selected':selectedID == c.ID.toString() }" [ngValue]="c.ID">
                                                     {{c.Name}}</option>
-                                            </select>
+                                        </select>
                                     </div>  
                                 </div>
-                            </div><!-- /.frm-control -->
-                        </div><!-- /.col-md-6 -->
+                            </div>
+                        </div>
                         <div class="col-md-12">
                             <div class="frm-control mb0">
-                                <textarea name="message" id="message" placeholder="Write Your Query"></textarea>
+                                <textarea name="message" formControlName="message" id="message" placeholder="Write Your Query"></textarea>
                                 <!-- /#message -->
                                 <button type="submit">Submit Message</button>
                             </div><!-- /.frm-control -->
+                            {{enquiryForm.value | json}}
                         </div><!-- /.col-md-12 -->
                     </div><!-- /.row -->
                     <div class="form-result"></div><!-- /.form-result -->

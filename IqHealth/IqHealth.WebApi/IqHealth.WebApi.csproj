@@ -169,6 +169,7 @@
     <Compile Include="Controllers\BookingController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\DoctorsController.cs" />
+    <Compile Include="Controllers\EnquiryController.cs" />
     <Compile Include="Controllers\NotificationController.cs" />
     <Compile Include="Controllers\ServicesController.cs" />
     <Compile Include="Global.asax.cs">
