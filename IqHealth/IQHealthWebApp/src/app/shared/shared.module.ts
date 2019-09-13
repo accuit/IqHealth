@@ -6,6 +6,7 @@ import { SidebarListComponent } from './components/sidebar-list/sidebar-list.com
 import { PriceListsComponent } from './components/price-lists/price-lists.component';
 import { RouterModule } from '@angular/router';
 import { SidebarBlogsComponent } from './components/sidebar-blogs/sidebar-blogs.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,8 @@ import { SidebarBlogsComponent } from './components/sidebar-blogs/sidebar-blogs.
     SidebarBlogsComponent],
 
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule,
     CommonModule
   ],

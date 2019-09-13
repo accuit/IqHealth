@@ -1,7 +1,7 @@
 <app-inner-banner [title]="title" [url]="url" [parent]="parent" [subtitle]="subtitle">
     </app-inner-banner>
 
-    <section class="service-style-four ">
+    <section *ngIf="showSlider" class="service-style-four ">
             <div class="title-wrapper sec-pad pb0">
                 <div class="thm-container">
                     <div class="sec-title-style-two text-center">
@@ -9,7 +9,7 @@
                         <h3>Explore Our <span class="color-1">Doctors</span> based on <span class="color-1">Specialities</span></h3>
                         <!-- <p>Mollit animid acusm est laborum sed dolore perspiciatis unde omnis iste natus error volt sit ipsum dui <br> mque lorem tium  ipsum tempor incididunt ut labore et dolore magna aliqua </p> -->
                     </div><!-- /.sec-title-style-two -->
-                    <div class="tab-row service-tab-title-carousel owl-theme owl-carousel" role="tablist">
+                    <div  class="tab-row service-tab-title-carousel owl-theme owl-carousel" role="tablist">
                         <div class="item" data-tab-name="dentist">
                             <a href="#dentist" (click)="getDoctors(1)" aria-controls="dentist" role="tab" data-toggle="tab" class="service-top-tab">
                                 <div class="inner">
@@ -80,7 +80,7 @@
                 </div><!-- /.thm-container -->
             </div><!-- /.title-wrapper -->
           
-        </section><!-- /.service-style-four -->
+        </section>/.service-style-four
 
     <section class="team-style-one">
             <div class="thm-container">
@@ -88,7 +88,7 @@
                     <h3>Our Doctors are Setting the New Standards <br> in <span class="color-1">Medical Research</span></h3>
                     <div class="line"></div><!-- /.line -->
                 </div><!-- /.sec-title -->
-                <div *ngIf="isloaded" class="row">
+                <div *ngIf="isLoaded" class="row">
                     <div *ngFor="let doctor of doctors" class="col-md-3 col-sm-6 col-xs-12">
                         <div class="single-team-style-one">
                             <div class="img-box">

@@ -49,6 +49,11 @@ const routes: Routes = [
     path: 'our-doctors',
     component: DoctorsListComponent
   },
+  // {
+  //   path: 'our-doctors',
+  //   redirectTo: 'our-doctors',
+  //   pathMatch: 'full'
+  // },
   {
     path: 'book-an-appointment',
     component: BookAppointmentComponent

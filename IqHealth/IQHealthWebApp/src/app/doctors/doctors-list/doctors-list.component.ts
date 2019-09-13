@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { SideBarListModel } from 'src/app/core/sidebar-list.model';
 import { Doctor, APIResponse, Speciality } from 'src/app/core/app.models';
 import { AppService } from 'src/app/core/app.service';
+import { ActivatedRoute } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-doctors-list',
@@ -16,20 +18,41 @@ export class DoctorsListComponent implements OnInit {
   parent: string = 'Home';
   sidebar: SideBarListModel;
   doctors: Doctor[] = [];
-  isloaded: boolean = false;
+  isLoaded: boolean = false;
   specialities: Speciality[] = [];
+  showSlider = false;
 
-  constructor(private readonly service: AppService) { }
+  constructor(private readonly service: AppService, private readonly route: ActivatedRoute) {
 
-  ngOnInit() {
     this.loadSpecialities();
     this.loadDoctorsList();
+  }
+
+  ngOnInit() {
+
+  }
+
+  executeParams(): void {
+    this.route.queryParams
+      .subscribe(params => {
+        if (params.doctor || params.speciality) {
+          this.showSlider = false;
+          if (params.doctor)
+            this.doctors = this.doctors.filter(x => x.ID === Number(params.doctor));
+          if (params.speciality)
+            this.doctors = this.doctors.filter(x => x.SpecialityID === Number(params.speciality));
+        }
+        else{
+          this.showSlider = true;
+        }
+
+      });
   }
 
   loadSpecialities(): any {
     this.service.getSpecialities()
       .subscribe((data: APIResponse) => {
-        this.isloaded = true;
+        this.isLoaded = true;
         this.specialities = data.SingleResult;
       })
   }
@@ -42,15 +65,16 @@ export class DoctorsListComponent implements OnInit {
     el.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
   }
 
-  getDoctors(id){
-    this.doctors = this.doctors.filter(x=>x.SpecialityID === Number(id));
+  getDoctors(id) {
+    this.doctors = this.doctors.filter(x => x.SpecialityID === Number(id));
   }
 
   loadDoctorsList(): any {
     this.service.getAllDoctors()
       .subscribe((data: APIResponse) => {
-        this.isloaded = true;
+        this.isLoaded = true;
         this.doctors = data.SingleResult;
+        this.executeParams();
       })
   }
 
