@@ -32,7 +32,12 @@
                                 <a [routerLink]="'/academy'">Academy</a>
                                 <ul class="sub-menu">
                                     <li><a [routerLink]="'/academy/our-courses'">Our Courses</a></li>
-                                    <li><a [routerLink]="'/academy/fee-structure'">Fee Structure</a></li>
+                                    <li>
+                                        <a [routerLink]="'/academy/fee-structure'">Fee Structure</a>
+                                        <ul class="sub-menu">
+                                                <li><a [routerLink]="'/online-enquiry/2'">Online Enquiry</a></li>
+                                        </ul>
+                                    </li>
                                 </ul>
                             </li>
                         <li>

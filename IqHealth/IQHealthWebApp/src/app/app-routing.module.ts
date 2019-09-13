@@ -14,6 +14,8 @@ import { AcademyComponent } from './academy/academy.component';
 import { CoursesComponent } from './academy/courses/courses.component';
 import { FeeStructureComponent } from './academy/fee-structure/fee-structure.component';
 import { EnquiryComponent } from './enquiry/enquiry.component';
+import { LoginComponent } from './academy/account/login/login.component';
+import { RegisterComponent } from './academy/account/register/register.component';
 
 const routes: Routes = [
   {
@@ -49,11 +51,6 @@ const routes: Routes = [
     path: 'our-doctors',
     component: DoctorsListComponent
   },
-  // {
-  //   path: 'our-doctors',
-  //   redirectTo: 'our-doctors',
-  //   pathMatch: 'full'
-  // },
   {
     path: 'book-an-appointment',
     component: BookAppointmentComponent
@@ -81,6 +78,14 @@ const routes: Routes = [
   {
     path: 'online-enquiry/:id',
     component: EnquiryComponent
+  },
+  {
+    path: 'user-login',
+    component: LoginComponent
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
   }
 ];
 

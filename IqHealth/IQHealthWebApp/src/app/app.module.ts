@@ -26,6 +26,7 @@ import { AcademyModule } from './academy/academy.module';
 import { EnquiryComponent } from './enquiry/enquiry.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AppJsonService } from './core/app.json.service';
+import { AccountModule } from './academy/account/account.module';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { AppJsonService } from './core/app.json.service';
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    AcademyModule
+    AcademyModule,
+    AccountModule
   ],
   providers: [AppService, AppJsonService],
   entryComponents: [HomeComponent],
