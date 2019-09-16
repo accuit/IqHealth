@@ -15,8 +15,8 @@ export class HomeComponent implements OnInit {
   doctors: Doctor[] = [];
   services: ServicesModel[] = [];
 
-  constructor(private readonly service: AppService, private readonly jsonService: AppJsonService) { 
-    
+  constructor(private readonly service: AppService, private readonly jsonService: AppJsonService) {
+
   }
 
   ngOnInit() {
@@ -40,11 +40,8 @@ export class HomeComponent implements OnInit {
   }
 
   loadServicesList(): any {
-    this.jsonService.getAllServices()
-      .subscribe((data: any) => {
-        this.services = data;
-        console.log(this.services);
-      })
+    this.services = this.jsonService.getAllServices();
+
   }
 
 }

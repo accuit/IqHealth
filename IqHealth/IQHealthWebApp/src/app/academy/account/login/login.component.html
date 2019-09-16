@@ -1,29 +1,38 @@
 <section class="service-style-four sec-pad">
     <div class="thm-container">
-            <div class="sec-title-style-two text-center">
-                    
-                    <h3>Already Registered <span class="color-1">?</span> <span class="color-1"> Sign In Here</span></h3>
-                    <p>Explore our services and products specially curated for our registered members.</p>
-                    <div class="line"></div><!-- /.line -->
-                </div>
+        <div class="sec-title-style-two text-center">
+
+            <h3>Already Registered <span class="color-1">?</span> <span class="color-1"> Sign In Here</span></h3>
+            <p>Explore our services and products specially curated for our registered members.</p>
+            <div class="line"></div><!-- /.line -->
+        </div>
         <div class="service-tab-content">
             <div class="single-tab-content row">
                 <div class="col-md-6">
                     <img src="assets/images/tab-1-1.jpg" alt="Awesome Image">
                 </div><!-- /.col-md-6 -->
                 <div style="background: #0e77af; padding: 20px;" class="col-md-6">
-                    <form class="subscribe-form" action="#">
+                    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="subscribe-form">
                         <div class="form-group">
                             <label>Username</label>
-                            <input class="form-control" placeholder="Username" required="" type="text">
+                            <input class="form-control" formControlName="email" placeholder="Email Address"
+                                type="text" [ngClass]="{ 'error': f.email.touched && f.email}">
                         </div>
+
+                        <div class="form-group" style="display: none">
+                                <label>Username</label>
+                                <input class="form-control" value="f.email.value" formControlName="username" placeholder="Email Address"
+                                    type="text">
+                            </div>
                         <div class="form-group"><label>Password</label>
-                            <input class="form-control" placeholder="Password" required="" type="password"></div>
+                            <input class="form-control" formControlName="password" placeholder="Password"
+                                type="password" [ngClass]="{ 'error': f.password.touched && f.password}"></div>
                         <div class="row">
                             <div class="col-xs-6 mt10-r">
                                 <div class="checkbox mb25"><label class="custom-checkbox-wrapper"><span
                                             class="custom-checkbox-container">
-                                            <input type="checkbox" value="true"><span  class="custom-checkbox-icon"></span></span>
+                                            <input type="checkbox" value="true"><span
+                                                class="custom-checkbox-icon"></span></span>
                                         <small>Remember me</small>
                                     </label>
                                 </div>
@@ -31,10 +40,17 @@
                             <div class="col-xs-6 mt10-r text-right"><a href="#"><small>Recover Password?</small></a>
                             </div>
                         </div>
-                        <button type="submit" style="  float: none;   text-transform: uppercase;  height: 52px;   width: 100%;  ">Login Now <i class="fa fa-angle-double-right"></i></button>
+                        <button [disabled]="!loginForm.valid" type="submit" style="float: none; text-transform: uppercase;height: 52px;width: 100%;">Login Now <i class="fa fa-angle-double-right"></i></button>
                         <div class="mb20"></div>
-                        <div class="text-center"><small>Not a member yet?</small><br>
-                            <a href="register.html">Register Now</a></div>
+                        <div class="text-center"><small> <a [routerLink]="'/reset-password'"> Reset Password</a></small>
+                           
+                        </div>
+                        <div class="mb20"></div>
+                        <div class="text-center"><small>Not a member yet?   <a [routerLink]="'/register'"> Register Now</a></small>
+                           
+                        </div>
+
+                           
                     </form><!-- /.service-inner-tab-content -->
                 </div><!-- /.col-md-6 -->
             </div><!-- /.single-tab-content -->

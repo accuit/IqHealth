@@ -96,7 +96,7 @@
                         <div class="col-md-4">
                             <div class="frm-control select-date">
                                 <input type="text" placeholder="MM-DD-YYYY" formControlName="bookingDate"
-                                    class="select-date-input" [ngClass]="{ 'error': submitted && f.name.bookingDate}">
+                                    class="select-date-input" [ngClass]="{ 'error': submitted && f.bookingDate}">
                                 <i class="fa fa-calendar-alt"></i>
                             </div>
                         </div>
@@ -137,7 +137,6 @@
                                                 {{doctor.FirstName}}</option>
                                         </select>
                                 </div>
-                                
                             </div>
                         </div><!-- /.col-md-6 -->
                         <div class="col-md-12">

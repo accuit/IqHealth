@@ -16,6 +16,7 @@ import { FeeStructureComponent } from './academy/fee-structure/fee-structure.com
 import { EnquiryComponent } from './enquiry/enquiry.component';
 import { LoginComponent } from './academy/account/login/login.component';
 import { RegisterComponent } from './academy/account/register/register.component';
+import { ResetPasswordComponent } from './academy/account/reset-password/reset-password.component';
 
 const routes: Routes = [
   {
@@ -86,11 +87,15 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
+  },
+  {
+    path: 'reset-password',
+    component: ResetPasswordComponent
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {useHash: true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -14,6 +14,23 @@ export class CityModel {
     Name: string;
 }
 
+export class UserMaster {
+    ID: number;
+    firstname: string;
+    lastname: string;
+    age: number;
+    mobile: string;
+    email: string;
+    password: string;
+    confirmPassword: string;
+    sex: number;
+    address: string;
+    city: string;
+    state: number;
+    userStatus: number;
+    StauserTypetus: number;
+}
+
 export class BookingMaster {
     id: number;
     firstname: string;
