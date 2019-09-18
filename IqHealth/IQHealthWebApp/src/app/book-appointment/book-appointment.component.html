@@ -1,3 +1,6 @@
+<app-top-header></app-top-header>
+<app-default-header></app-default-header>
+
 <app-inner-banner title="Book An Appointment" url="#" parent="Home" subtitle="Book Appointment"></app-inner-banner>
 
 <section class="appointment-style-two sec-pad">
@@ -96,7 +99,7 @@
                         <div class="col-md-4">
                             <div class="frm-control select-date">
                                 <input type="text" placeholder="MM-DD-YYYY" formControlName="bookingDate"
-                                    class="select-date-input" [ngClass]="{ 'error': submitted && f.name.bookingDate}">
+                                    class="select-date-input" [ngClass]="{ 'error': submitted && f.bookingDate}">
                                 <i class="fa fa-calendar-alt"></i>
                             </div>
                         </div>
@@ -105,8 +108,8 @@
                                 <div class="btn-group bootstrap-select dropup">
                                     <select formControlName="bookingTime" class="selectpicker" id="time-select"
                                         tabindex="-98">
-                                        <option value="2">09.00 am - 10.00 am</option>
-                                        <option value="1">10.01 am - 11.00 am</option>
+                                        <option value="09.00 am - 10.00 am">09.00 am - 10.00 am</option>
+                                        <option value="10.01 am - 11.00 am">10.01 am - 11.00 am</option>
                                         <option value="11.01 am - 12.00 pm">11.01 am - 12.00 pm</option>
                                         <option value="12.01 pm - 01.00 pm">12.01 pm - 01.00 pm</option>
                                         <option value="01.00 pm - 02.00 pm">01.00 pm - 02.00 pm</option>
@@ -137,7 +140,6 @@
                                                 {{doctor.FirstName}}</option>
                                         </select>
                                 </div>
-                                
                             </div>
                         </div><!-- /.col-md-6 -->
                         <div class="col-md-12">

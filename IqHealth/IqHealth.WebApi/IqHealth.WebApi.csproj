@@ -169,6 +169,8 @@
     <Compile Include="Controllers\BookingController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\DoctorsController.cs" />
+    <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="Controllers\EnquiryController.cs" />
     <Compile Include="Controllers\NotificationController.cs" />
     <Compile Include="Controllers\ServicesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -179,6 +181,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <None Include="Properties\PublishProfiles\HealthIQNew.pubxml" />
     <None Include="Properties\PublishProfiles\IQHealthApi.pubxml" />
     <Content Include="Helpers\EmailTemplates\DoctorAppointmentConfirmation.html" />
     <Content Include="Helpers\EmailTemplates\UserBookingConfirmation.html" />
@@ -193,7 +196,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Content\" />
+    <Folder Include="Content\Customer\Reports\" />
     <Folder Include="Views\Course\" />
   </ItemGroup>
   <ItemGroup>

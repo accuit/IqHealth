@@ -6,12 +6,30 @@ export class APIResponse {
     Result: any[];
     SingleResult: any;
     StatusCode: string;
-  }
-  
+}
+
 
 export class CityModel {
     id: number;
     Name: string;
+}
+
+export class UserMaster {
+    ID: number;
+    firstname: string;
+    lastname: string;
+    age: number;
+    mobile: string;
+    email: string;
+    password: string;
+    confirmPassword: string;
+    sex: number;
+    address: string;
+    city: string;
+    UserType: number;
+    state: number;
+    userStatus: number;
+    StauserTypetus: number;
 }
 
 export class BookingMaster {
@@ -35,11 +53,11 @@ export class BookingMaster {
 
 export class DoctorAppointment {
     ID: number;
-    Name : string;
-    Sex : string;
+    Name: string;
+    Sex: string;
     Age: number;
-    Email : string;
-    Mobile : string;
+    Email: string;
+    Mobile: string;
     BookingDate: Date;
     BookingTime: string;
     DoctorID: number;
@@ -47,33 +65,33 @@ export class DoctorAppointment {
 
 export class Doctor {
     ID: number;
-    FirstName : string;
-    LastName : string;
-    Email : string;
-    Mobile : string;
-    Designation : string;
-    DateOfBirth : string;
-    Experience : number;
-    Specialist : number;
-    ImageUrl : string;
-    Hospital : string;
-    About : string;
-    LogoUrl : string;
+    FirstName: string;
+    LastName: string;
+    Email: string;
+    Mobile: string;
+    Designation: string;
+    DateOfBirth: string;
+    Experience: number;
+    Specialist: number;
+    ImageUrl: string;
+    Hospital: string;
+    About: string;
+    LogoUrl: string;
     SpecialityID: number
-  }
+}
 
-  export class Speciality {
-      ID: number;
-      Speciality: string;
-      Title: string;
-      LogoUrl?: string;
-      CompanyID: number;
-  }
-
-
-  export class ServicesModel {
+export class Speciality {
     ID: number;
-    Name: string;  
+    Speciality: string;
+    Title: string;
+    LogoUrl?: string;
+    CompanyID: number;
+}
+
+
+export class ServicesModel {
+    ID: number;
+    Name: string;
     Description: string;
     ImageUrl: string;
     PageUrl: string;
@@ -82,12 +100,12 @@ export class Doctor {
     CreatedDate: string;
     UpdatedDate: string;
     IsDeleted: number;
-  }
+}
 
 
 export class PackageCategory {
     ID: number;
-    Name: string;  
+    Name: string;
     Title: string;
     SubTitle?: string;
     ImageUrl: string;
@@ -96,7 +114,7 @@ export class PackageCategory {
 
 export class PackageMaster {
     ID: number;
-    Name: string;  
+    Name: string;
     Title: string;
     SubTitle?: string;
     About: string;
@@ -111,7 +129,7 @@ export class PackageMaster {
 
 export class TestMaster {
     ID: number;
-    Name: string;  
+    Name: string;
     Type: number;
     PreTestInfo: string;
     Cost: number;

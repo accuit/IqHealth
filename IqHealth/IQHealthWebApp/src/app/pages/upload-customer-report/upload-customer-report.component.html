@@ -1,0 +1,58 @@
+<section class="blog-style-two sec-pad blog-page">
+    <div class="thm-container">
+        <div class="row">
+            <div class="col-md-8 col-sm-12 col-xs-12">
+                <div class="sidebar sidebar-left">
+                    <div class="single-sidebar appointment-sidebar">
+                        <div class="title">
+                            <h3>Upload Customer Report</h3>
+                        </div>
+                        <form [formGroup]="uploadForm" (ngSubmit)="uploadAndProgress()" class="appointment-form">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="btn-group bootstrap-select">
+                                        <button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown"  title="Select Doctors">
+                                            <span  class="filter-option pull-left"> {{selectedCustomerText}}</span>&nbsp;
+                                            <span class="bs-caret"><span class="caret"></span></span>
+                                        </button>
+    
+                                        <div class="dropdown-menu open">
+                                            <ul class="dropdown-menu inner" role="menu">
+                                                <li *ngFor="let c of customers" ><a (click)="selectCustomer(c)"> 
+                                                     <span  class="text">{{c.FirstName}}</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <select formControlName="customerID">
+                                                <option *ngFor="let c of customers" [class.selected]="{'selected':selectedCustomerID == c.ID.toString() }" [ngValue]="c.ID">
+                                                    {{c.FirstName}}</option>
+                                            </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <div class="frm-control">
+                                        <input type="text" placeholder="Comments or Notes" formControlName="comments">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    
+                                        <input type="file" (change)="upload($event.target.files)" formControlName="fileName" > 
+                                        <span> {{percentDone}} %</span> 
+                                    
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="frm-control mb0">
+                                        <button [disabled]="!uploadForm.valid" type="submit">Upload Report</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div><!-- /.col-md-12 -->
+        </div><!-- /.frm-control -->
+    </div><!-- /.col-md-12 -->
+</section>

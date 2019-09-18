@@ -6,3 +6,31 @@
 .service-style-four {
      padding-bottom: 10px; 
 }
+
+.book-btn {
+    width: 155px;
+    height: 52px;
+    display: inline-block;
+    vertical-align: baseline;
+    font-family: "Oxygen-Bold";
+    font-size: 14px;
+    text-align: center;
+    border-radius: 2px;
+    text-transform: uppercase;
+    -webkit-transition: all .4s ease;
+    -o-transition: all .4s ease;
+    transition: all .4s ease;
+}
+
+a:hover, a:visited, a:focus, a:active {
+    color: blue;
+}
+
+a {
+    color: #337ab7;
+    text-decoration: none;
+}
+
+a {
+    background-color: transparent;
+}

@@ -5,6 +5,7 @@ import { throwError } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { CourseMaster } from './academy.model';
 import { APIResponse } from '../core/app.models';
+import { OnlineEnquiry } from '../enquiry/enquiry.model';
 
 @Injectable()
 export class AcademyService {
@@ -29,6 +30,11 @@ export class AcademyService {
 
   getSubCourses(): any {
     return this.httpClient.get(this.baseUrl + 'api/courses/get-sub-courses');
+  }
+
+  submitOnlineEnquiry(enquiry: OnlineEnquiry): any {
+    return this.httpClient.post(this.baseUrl + 'api/enquiry/new', enquiry, { headers: this.headers })
+
   }
 
 

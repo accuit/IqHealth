@@ -1,3 +1,7 @@
+<app-top-header></app-top-header>
+<app-default-header></app-default-header>
+
+
 <app-inner-banner [title]="title" [url]="url" [parent]="parent" [subtitle]="subtitle">
     </app-inner-banner>
 
@@ -24,8 +28,8 @@
                             <div class="inner">
                                 <img src="assets/images/feature-2-2.png" alt="Awesome Image">
                                 <h3>Enquiry <br> Form </h3>
-                                <p>For any information <br> feel free to contact our <br> customer service.</p>
-                                <a href="#enquiry" class="more">Read More <i class="fa fa-angle-double-right"></i></a>
+                                <p>For any information <br> feel free to post your <br> queries.</p>
+                                <a [routerLink]="'/online-enquiry/2'" class="more">Start Enquiry <i class="fa fa-angle-double-right"></i></a>
                             </div><!-- /.inner -->
                         </div><!-- /.single-service-style-four -->
                     </div><!-- /.col-md-3 -->

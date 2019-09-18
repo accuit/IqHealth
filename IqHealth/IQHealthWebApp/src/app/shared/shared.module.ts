@@ -6,6 +6,9 @@ import { SidebarListComponent } from './components/sidebar-list/sidebar-list.com
 import { PriceListsComponent } from './components/price-lists/price-lists.component';
 import { RouterModule } from '@angular/router';
 import { SidebarBlogsComponent } from './components/sidebar-blogs/sidebar-blogs.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DefaultHeaderComponent } from './components/default-header/default-header.component';
+import { TopHeaderComponent } from './components/top-header/top-header.component';
 
 @NgModule({
   declarations: [
@@ -13,9 +16,14 @@ import { SidebarBlogsComponent } from './components/sidebar-blogs/sidebar-blogs.
     InnerBannerComponent,
     SidebarListComponent,
     PriceListsComponent,
-    SidebarBlogsComponent],
+    SidebarBlogsComponent,
+    DefaultHeaderComponent,
+    TopHeaderComponent
+  ],
 
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule,
     CommonModule
   ],
@@ -25,7 +33,9 @@ import { SidebarBlogsComponent } from './components/sidebar-blogs/sidebar-blogs.
     InnerBannerComponent,
     SidebarListComponent,
     PriceListsComponent,
-    SidebarBlogsComponent
+    SidebarBlogsComponent,
+    DefaultHeaderComponent,
+    TopHeaderComponent,
   ],
   
   entryComponents: [

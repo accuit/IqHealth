@@ -14,6 +14,11 @@ import { AcademyComponent } from './academy/academy.component';
 import { CoursesComponent } from './academy/courses/courses.component';
 import { FeeStructureComponent } from './academy/fee-structure/fee-structure.component';
 import { EnquiryComponent } from './enquiry/enquiry.component';
+import { LoginComponent } from './academy/account/login/login.component';
+import { RegisterComponent } from './academy/account/register/register.component';
+import { ResetPasswordComponent } from './academy/account/reset-password/reset-password.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { AuthGuard } from './authenication/auth.guard';
 
 const routes: Routes = [
   {
@@ -74,13 +79,34 @@ const routes: Routes = [
     component: FeeStructureComponent
   },
   {
-    path: 'online-enquiry',
+    path: 'online-enquiry/:id',
     component: EnquiryComponent
+  },
+  {
+    path: 'user-login',
+    component: LoginComponent
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
+  },
+  {
+    path: 'reset-password',
+    component: ResetPasswordComponent
+  },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: '**',
+    component: HomeComponent
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {useHash: true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

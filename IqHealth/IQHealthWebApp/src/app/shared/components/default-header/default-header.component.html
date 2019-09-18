@@ -12,7 +12,7 @@
 
                     <ul class="nav navbar-nav navigation-box">
                         <li class="current">
-                            <a href="#">Home</a>
+                            <a href="home">Home</a>
                         </li>
                         <li> <a [routerLink]="'/know-about-us'">About Us</a> </li>
                         <li>
@@ -27,15 +27,20 @@
                                     <li *ngFor="let p of packages"><a [routerLink]="'/package-category-details/' + p.ID">{{p.Name}}</a></li>
                                 </ul><!-- /.sub-menu --><!-- /.sub-menu -->
                         </li>
-                        <li> <a href="/our-doctors">Doctors</a> </li>
+                        <li> <a [routerLink]="'/our-doctors'">Doctors</a> </li>
                         <li>
                                 <a [routerLink]="'/academy'">Academy</a>
                                 <ul class="sub-menu">
                                     <li><a [routerLink]="'/academy/our-courses'">Our Courses</a></li>
-                                    <li><a [routerLink]="'/academy/fee-structure'">Fee Structure</a></li>
+                                    <li>
+                                        <a [routerLink]="'/academy/fee-structure'">Fee Structure</a>
+                                        <ul class="sub-menu">
+                                                <li><a [routerLink]="'/online-enquiry/2'">Online Enquiry</a></li>
+                                        </ul>
+                                    </li>
                                 </ul>
                             </li>
-                        <li>
+                        <!-- <li>
                             <a href="#">Pages</a>
                             <ul class="sub-menu">
                                 <li>
@@ -43,11 +48,11 @@
                                     <ul class="sub-menu">
                                         <li><a href="team.html">Team Style One</a></li>
                                         <li><a href="team-details.html">Doctor Details</a></li>
-                                    </ul><!-- /.sub-menu -->
+                                    </ul>
                                 </li>
                                 <li><a href="appointment.html">Appointment</a></li>
-                            </ul><!-- /.sub-menu -->
-                        </li>
+                            </ul>
+                        </li> -->
                         <!-- <li>
                             <a href="blog.html">Blog</a>
                             <ul class="sub-menu">
@@ -60,7 +65,7 @@
                     </ul>
                 </div><!-- /.navbar-collapse -->
                 <div class="right-side-box">
-                    <a href="/book-an-appointment" class="book-appointment"><i class="fas fa-calendar-alt"></i> book an
+                    <a [routerLink]="'/book-an-appointment'" class="book-appointment"><i class="fas fa-calendar-alt"></i> book an
                         appointment</a>
                 </div><!-- /.right-side-box -->
             </div><!-- /.container -->

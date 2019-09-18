@@ -1,0 +1,150 @@
+<section class="appointment-style-one sec-pad pt100 contact-page">
+    <div class="thm-container">
+        <div class="row">
+            <div class="col-md-7">
+                <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="appointment-form contact-form" novalidate="novalidate">
+                    <h3>User Registeration Form</h3>
+                    <p>Health IQ welcomes you and feel happy to add you as our member.</p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="frm-control">
+                                <input type="text" placeholder="First Name" formControlName="firstName" 
+                                [ngClass]="{ 'error': f.firstName.touched && f.firstName}">
+                            </div><!-- /.frm-control -->
+                        </div><!-- /.col-md-6 -->
+                        <div class="col-md-6">
+                            <div class="frm-control">
+                                <input type="text" placeholder="Last Name" formControlName="lastName"
+                                [ngClass]="{ 'error': f.lastName.touched && f.lastName}">
+                            </div><!-- /.frm-control -->
+                        </div><!-- /.col-md-6 -->
+                        <div class="col-md-6">
+                            <div class="frm-control">
+                                <input type="text" placeholder="Email Address" formControlName="email"
+                                [ngClass]="{ 'error': f.email.touched && f.email}">
+                            </div><!-- /.frm-control -->
+                        </div><!-- /.col-md-6 -->
+                        <div class="col-md-6">
+                            <div class="frm-control">
+                                <input type="text" placeholder="Phone No. (10-15 digits)" formControlName="mobile"
+                                [ngClass]="{ 'error': f.mobile.touched && f.mobile}">
+                            </div><!-- /.frm-control -->
+                        </div><!-- /.col-md-6 -->
+                        <div class="col-md-6">
+                            <div class="frm-control">
+                                <div class="btn-group bootstrap-select">
+                                    <button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown"
+                                        title="Select Doctors">
+                                        <span class="filter-option pull-left"> {{selectedText}}</span>&nbsp;
+                                        <span class="bs-caret"><span class="caret"></span></span>
+                                    </button>
+
+                                    <div class="dropdown-menu open">
+                                        <ul class="dropdown-menu inner" role="menu">
+                                            <li *ngFor="let u of users"><a (click)="selectUserType(u)">
+                                                    <span class="text">{{u.Text}}</span><span
+                                                        class="glyphicon glyphicon-ok check-mark"></span></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <select formControlName="userType">
+                                        <option *ngFor="let u of users"
+                                            [class.selected]="{'selected':selectedID == u.ID.toString() }"
+                                            [ngValue]="u.ID">
+                                            {{u.Text}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div><!-- /.col-md-6 -->
+                        <div class="col-md-6">
+                            <div class="frm-control">
+                                <input type="password" placeholder="Password" formControlName="password"
+                                [ngClass]="{ 'error': f.password.touched && f.password}">
+                            </div><!-- /.frm-control -->
+                        </div><!-- /.col-md-6 -->
+                        <div class="col-md-12">
+                            <div class="frm-control">
+                                <input type="text" placeholder="Address" formControlName="address">
+                            </div><!-- /.frm-control -->
+                        </div><!-- /.col-md-6 -->
+                        <div class="col-md-6">
+                            <div class="frm-control">
+                                <input type="text" placeholder="City" formControlName="city">
+                            </div><!-- /.frm-control -->
+                        </div><!-- /.col-md-6 -->
+                        <div class="col-md-6">
+                                <div class="frm-control">
+                                        <div class="btn-group bootstrap-select">
+                                            <button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown"
+                                                title="Select States">
+                                                <span class="filter-option pull-left"> {{selectedStateText}}</span>&nbsp;
+                                                <span class="bs-caret"><span class="caret"></span></span>
+                                            </button>
+        
+                                            <div class="dropdown-menu open">
+                                                <ul class="dropdown-menu inner" role="menu">
+                                                    <li *ngFor="let s of states"><a (click)="selectState(s)">
+                                                            <span class="text">{{s.name}}</span>
+                                                            <span class="glyphicon glyphicon-ok check-mark"></span></a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <select formControlName="state">
+                                                <option *ngFor="let s of states"  [class.selected]="{'selected':selectedStateID == s.id.toString() }"
+                                                    [ngValue]="s.id"> {{s.name}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                            </div><!-- /.col-md-6 -->
+                        <div class="col-md-12">
+                                <div class="frm-control mb0">
+                                    <button [disabled]="!registerForm.valid"  type="submit">Send Message</button>
+                                </div><!-- /.frm-control -->
+                            </div>
+                    </div><!-- /.row -->
+                    <div class="form-result">
+                    </div><!-- /.form-result -->
+                </form><!-- /.appointment-form -->
+            </div><!-- /.col-md-7 -->
+            <div class="col-md-5">
+                <div class="appointment-time">
+                    <div class="inner-box">
+                        <h3>Opening Hours</h3>
+                        <p>Proident sunt in culpa qui officia deserunt mollit animd laborum perspicia.</p>
+                        <div class="time-box">
+                            <div class="signle-time-box">
+                                <div class="day-name">Monday:</div><!-- /.day-name -->
+                                <div class="time-line">09:00 am - 19:00 pm</div><!-- /.time-line -->
+                            </div><!-- /.signle-time-box -->
+                            <div class="signle-time-box">
+                                <div class="day-name">Tuesday:</div><!-- /.day-name -->
+                                <div class="time-line">09:00 am - 19:00 pm</div><!-- /.time-line -->
+                            </div><!-- /.signle-time-box -->
+                            <div class="signle-time-box">
+                                <div class="day-name">Wednesday:</div><!-- /.day-name -->
+                                <div class="time-line">09:00 am - 19:00 pm</div><!-- /.time-line -->
+                            </div><!-- /.signle-time-box -->
+                            <div class="signle-time-box">
+                                <div class="day-name">Thursday:</div><!-- /.day-name -->
+                                <div class="time-line">09:00 am - 19:00 pm</div><!-- /.time-line -->
+                            </div><!-- /.signle-time-box -->
+                            <div class="signle-time-box">
+                                <div class="day-name">Friday:</div><!-- /.day-name -->
+                                <div class="time-line">09:00 am - 19:00 pm</div><!-- /.time-line -->
+                            </div><!-- /.signle-time-box -->
+                            <div class="signle-time-box">
+                                <div class="day-name">Saturday:</div><!-- /.day-name -->
+                                <div class="time-line">09:00 am - 19:00 pm</div><!-- /.time-line -->
+                            </div><!-- /.signle-time-box -->
+                            <div class="signle-time-box">
+                                <div class="day-name">Sunday:</div><!-- /.day-name -->
+                                <div class="time-line">Closed*</div><!-- /.time-line -->
+                            </div><!-- /.signle-time-box -->
+                        </div><!-- /.time-box -->
+                        <p class="notice">Treatment for Emergency Cases Only *</p><!-- /.notice -->
+                    </div><!-- /.inner-box -->
+                </div><!-- /.appointment-time -->
+            </div><!-- /.col-md-5 -->
+        </div><!-- /.row -->
+    </div><!-- /.thm-container -->
+</section>

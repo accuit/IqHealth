@@ -11,6 +11,7 @@ namespace IqHealth.Data.Persistence.Model
     [Table("UserMaster")]
     public partial class UserMaster
     {
+        [DataMember]
         public int ID { get; set; }
 
         [DataMember]
@@ -45,8 +46,10 @@ namespace IqHealth.Data.Persistence.Model
         [StringLength(50)]
         public string City { get; set; }
 
+        [DataMember]
         public int? State { get; set; }
 
+        [DataMember]
         public int UserStatus { get; set; }
 
         public DateTime CreatedDate { get; set; }
@@ -59,6 +62,11 @@ namespace IqHealth.Data.Persistence.Model
         [Required]
         [StringLength(20)]
         public string Password { get; set; }
+
+        [DataMember]
+        [NotMapped]
+        [StringLength(20)]
+        public string ConfirmPassword { get; set; }
 
         [DataMember]
         [StringLength(15)]

@@ -1,0 +1,22 @@
+<header class="header header-home-two">
+        <nav class="navbar navbar-default header-navigation stricky">
+            <div class="thm-container clearfix">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".main-navigation"
+                        aria-expanded="false"><i class="fa fa-bars"></i></button>
+                </div>
+
+                <div class="collapse navbar-collapse main-navigation mainmenu " id="main-nav-bar">
+
+                    <ul class="nav navbar-nav navigation-box">
+                        <li> <a [routerLink]="'/dashboard'">Dashboard</a> </li>
+                    </ul>
+                </div>
+                <div class="right-side-box">
+                    <a (click)="Logout()" class="book-appointment">
+                        <i class="fas fa-calendar-alt"></i> Log Out</a>
+                </div>
+            </div>
+        </nav>
+    </header>

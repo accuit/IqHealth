@@ -21,7 +21,7 @@ namespace IqHealth.Data.Persistence.Model
             SpecialityMasters = new HashSet<SpecialityMaster>();
             SubCourses = new HashSet<SubCourses>();
             //TestMasters = new HashSet<TestMaster>();
-            //UserMasters = new HashSet<UserMaster>();
+            UserMasters = new HashSet<UserMaster>();
         }
 
         [DataMember]
@@ -73,7 +73,7 @@ namespace IqHealth.Data.Persistence.Model
         //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         //public virtual ICollection<TestMaster> TestMasters { get; set; }
 
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        //public virtual ICollection<UserMaster> UserMasters { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserMaster> UserMasters { get; set; }
     }
 }

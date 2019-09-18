@@ -69,12 +69,14 @@
     <Compile Include="Model\HealthServiceMaster.cs" />
     <Compile Include="Model\Login.cs" />
     <Compile Include="Model\DoctorSpeciality.cs" />
+    <Compile Include="Model\OnlineEnquiry.cs" />
     <Compile Include="Model\PackageCategory.cs" />
     <Compile Include="Model\PackageMaster.cs" />
     <Compile Include="Model\DoctorAppointment.cs" />
     <Compile Include="Model\SubCourses.cs" />
     <Compile Include="Model\TestMaster.cs" />
     <Compile Include="Model\SpecialityMaster.cs" />
+    <Compile Include="Model\UploadedReports.cs" />
     <Compile Include="Model\UserMaster.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

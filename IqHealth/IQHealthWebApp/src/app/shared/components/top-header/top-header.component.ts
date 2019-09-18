@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-top-header',
@@ -6,10 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./top-header.component.scss']
 })
 export class TopHeaderComponent implements OnInit {
-
-  constructor() { }
+  
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  
   }
+
 
 }
