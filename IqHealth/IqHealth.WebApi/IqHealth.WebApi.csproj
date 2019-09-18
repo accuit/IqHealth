@@ -169,6 +169,7 @@
     <Compile Include="Controllers\BookingController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\DoctorsController.cs" />
+    <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\EnquiryController.cs" />
     <Compile Include="Controllers\NotificationController.cs" />
     <Compile Include="Controllers\ServicesController.cs" />
@@ -195,7 +196,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Content\" />
+    <Folder Include="Content\Customer\Reports\" />
     <Folder Include="Views\Course\" />
   </ItemGroup>
   <ItemGroup>

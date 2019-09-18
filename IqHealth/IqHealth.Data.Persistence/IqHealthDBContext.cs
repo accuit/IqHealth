@@ -38,6 +38,7 @@ namespace IqHealth.Data.Persistence
         public virtual DbSet<TestMaster> TestMasters { get; set; }
         public virtual DbSet<UserMaster> UserMasters { get; set; }
         public virtual DbSet<HealthServiceMaster> HealthServiceMasters { get; set; }
+        public virtual DbSet<UploadedReports> UploadedReports { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -156,10 +157,10 @@ namespace IqHealth.Data.Persistence
             //    .WithOptional(e => e.CompanyMaster)
             //    .HasForeignKey(e => e.CompanyID);
 
-            //modelBuilder.Entity<CompanyMaster>()
-            //    .HasMany(e => e.UserMasters)
-            //    .WithOptional(e => e.CompanyMaster)
-            //    .HasForeignKey(e => e.CompanyID);
+            modelBuilder.Entity<CompanyMaster>()
+                .HasMany(e => e.UserMasters)
+                .WithRequired(e => e.CompanyMaster)
+                .HasForeignKey(e => e.CompanyID);
 
             modelBuilder.Entity<CourseCurriculum>()
                 .Property(e => e.Name)

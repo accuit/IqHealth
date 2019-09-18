@@ -36,6 +36,28 @@ namespace IqHealth.WebApi.Controllers
                 return Request.CreateResponse(HttpStatusCode.NoContent, UserMasters);
         }
 
+        [HttpGet]
+        [Route("data/{type}")]
+        public JsonResponse<List<UserMaster>> UserMasterLogin(int type)
+        {
+            JsonResponse<List<UserMaster>> response = new JsonResponse<List<UserMaster>>();
+            var UserMaster = new List<UserMaster>();
+            try
+            {
+                response.SingleResult = _context.UserMasters.Where(x => x.UserType == type).ToList();
+                response.StatusCode =  "200";
+                response.IsSuccess =  true;
+            }
+            catch(Exception ex)
+            {
+                response.SingleResult = null;
+                response.StatusCode = "500";
+                response.IsSuccess = false;
+                response.Message =  ex.Message;
+            }
+            return response;
+        }
+
         [HttpPost()]
         [Route("login")]
         public JsonResponse<UserMaster> UserMasterLogin(UserMasterLogin u)
@@ -49,6 +71,7 @@ namespace IqHealth.WebApi.Controllers
                 response.SingleResult = UserMaster != null ? UserMaster : null;
                 response.StatusCode = UserMaster != null ? "200" : "500";
                 response.IsSuccess = UserMaster != null ? true : false;
+                response.Message = UserMaster != null ? "Successfully loggedin" : "Incorrect credentials. Please try again."; ;
             }
             else
             {

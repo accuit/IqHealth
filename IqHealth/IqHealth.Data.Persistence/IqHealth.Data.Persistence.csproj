@@ -76,6 +76,7 @@
     <Compile Include="Model\SubCourses.cs" />
     <Compile Include="Model\TestMaster.cs" />
     <Compile Include="Model\SpecialityMaster.cs" />
+    <Compile Include="Model\UploadedReports.cs" />
     <Compile Include="Model\UserMaster.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
