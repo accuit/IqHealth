@@ -16,7 +16,8 @@ export class AcademyService {
   constructor(private readonly httpClient: HttpClient) {
     this.headers = new HttpHeaders({
       'Content-Type': 'application/json; charset=utf-8',
-      'Access-Control-Allow-Origin': '*'
+      'Access-Control-Allow-Origin': '*',
+      'No-Auth':'True'
     });
   }
 

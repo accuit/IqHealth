@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { CityModel, BookingMaster, Doctor, APIResponse, DoctorAppointment } from './app.models';
 import { throwError } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { delay } from 'q';
 
 @Injectable()
 export class AppService {
@@ -14,7 +13,8 @@ export class AppService {
   constructor(private readonly httpClient: HttpClient) {
     this.headers = new HttpHeaders({
       'Content-Type': 'application/json; charset=utf-8',
-      'Access-Control-Allow-Origin': '*'
+      'Access-Control-Allow-Origin': '*',
+      'No-Auth':'True'
     });
   }
 
@@ -34,42 +34,42 @@ export class AppService {
   }
 
   getAllDoctors(): any {
-    return this.httpClient.get<Doctor[]>(this.baseUrl + 'api/doctors/data');
+    return this.httpClient.get<Doctor[]>(this.baseUrl + 'api/doctors/data', { headers: this.headers });
   }
 
   getAllServices(): any {
-    return this.httpClient.get<APIResponse>(this.baseUrl + 'api/services/data');
+    return this.httpClient.get<APIResponse>(this.baseUrl + 'api/services/data', { headers: this.headers });
   }
 
   getServiceByID(id): any {
-    return this.httpClient.get<APIResponse>(this.baseUrl + 'api/services/service-details/'+ id);
+    return this.httpClient.get<APIResponse>(this.baseUrl + 'api/services/service-details/'+ id, { headers: this.headers });
   }
 
   getAllTests(): any {
-    return this.httpClient.get(this.baseUrl + 'api/services/all-tests');
+    return this.httpClient.get(this.baseUrl + 'api/services/all-tests', { headers: this.headers });
   }
 
   getAllPackageCategories(): any {
-    return this.httpClient.get<APIResponse>(this.baseUrl + 'api/services/all-package-categories');
+    return this.httpClient.get<APIResponse>(this.baseUrl + 'api/services/all-package-categories', { headers: this.headers });
   }
 
   getPackagesByCategory(id): any {
-    return this.httpClient.get<APIResponse>(this.baseUrl + 'api/services/packages-by-category/'+ id);
+    return this.httpClient.get<APIResponse>(this.baseUrl + 'api/services/packages-by-category/'+ id, { headers: this.headers });
   }
   getAllPackages(): any {
-    return this.httpClient.get<APIResponse>(this.baseUrl + 'api/services/all-packages');
+    return this.httpClient.get<APIResponse>(this.baseUrl + 'api/services/all-packages', { headers: this.headers });
   }
 
   getPackages(): any {
-    return this.httpClient.get<APIResponse>(this.baseUrl + 'api/services/packages');
+    return this.httpClient.get<APIResponse>(this.baseUrl + 'api/services/packages', { headers: this.headers });
   }
 
   getSpecialities(): any {
-    return this.httpClient.get<APIResponse>(this.baseUrl + 'api/doctors/specialities');
+    return this.httpClient.get<APIResponse>(this.baseUrl + 'api/doctors/specialities', { headers: this.headers });
   }
 
   getDoctorsBySpeciality(id: number): any {
-    return this.httpClient.get<APIResponse>(this.baseUrl + 'api/doctors/doctors-by-speciality/' + id.toString());
+    return this.httpClient.get<APIResponse>(this.baseUrl + 'api/doctors/doctors-by-speciality/' + id.toString() , { headers: this.headers });
   }
 
 

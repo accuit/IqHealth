@@ -37,14 +37,10 @@
                                     </label>
                                 </div>
                             </div>
-                            <div class="col-xs-6 mt10-r text-right"><a href="#"><small>Recover Password?</small></a>
+                            <div class="col-xs-6 mt10-r text-right"><a [routerLink]="'/reset-password'"><small>Recover Password?</small></a>
                             </div>
                         </div>
                         <button [disabled]="!loginForm.valid" type="submit" style="float: none; text-transform: uppercase;height: 52px;width: 100%;">Login Now <i class="fa fa-angle-double-right"></i></button>
-                        <div class="mb20"></div>
-                        <div class="text-center"><small> <a [routerLink]="'/reset-password'"> Reset Password</a></small>
-                           
-                        </div>
                         <div class="mb20"></div>
                         <div class="text-center"><small>Not a member yet?   <a [routerLink]="'/register'"> Register Now</a></small>
                            
