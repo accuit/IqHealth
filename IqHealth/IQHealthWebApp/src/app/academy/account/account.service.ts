@@ -11,6 +11,8 @@ export class AccountService {
 
   constructor(private readonly httpClient: HttpClient) {
     this.headers = new HttpHeaders({
+      'Content-Type': 'application/json; charset=utf-8',
+      'Access-Control-Allow-Origin': '*',
       'No-Auth': 'True'
   });
   }
@@ -29,7 +31,7 @@ export class AccountService {
   }
 
   getUsersByType(type): any {
-    return this.httpClient.get<UserMaster[]>(this.baseUrl + 'api/users/data/'+ type);
+    return this.httpClient.get<UserMaster[]>(this.baseUrl + 'api/users/data/'+ type, { headers: this.headers });
   }
 
 

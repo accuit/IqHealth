@@ -22,11 +22,11 @@ export class AcademyService {
   }
 
   getMasterCourses(): any {
-    return this.httpClient.get(this.baseUrl + 'api/courses/data');
+    return this.httpClient.get(this.baseUrl + 'api/courses/data', { headers: this.headers });
   }
 
   getCourseDetails(id): any {
-    return this.httpClient.get<APIResponse>(this.baseUrl + 'api/courses/get-course-details/'+ id);
+    return this.httpClient.get<APIResponse>(this.baseUrl + 'api/courses/get-course-details/'+ id, { headers: this.headers });
   }
 
   getSubCourses(): any {
