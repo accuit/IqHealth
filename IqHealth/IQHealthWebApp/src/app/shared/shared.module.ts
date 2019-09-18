@@ -7,6 +7,8 @@ import { PriceListsComponent } from './components/price-lists/price-lists.compon
 import { RouterModule } from '@angular/router';
 import { SidebarBlogsComponent } from './components/sidebar-blogs/sidebar-blogs.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DefaultHeaderComponent } from './components/default-header/default-header.component';
+import { TopHeaderComponent } from './components/top-header/top-header.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     InnerBannerComponent,
     SidebarListComponent,
     PriceListsComponent,
-    SidebarBlogsComponent],
+    SidebarBlogsComponent,
+    DefaultHeaderComponent,
+    TopHeaderComponent
+  ],
 
   imports: [
     FormsModule,
@@ -28,7 +33,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     InnerBannerComponent,
     SidebarListComponent,
     PriceListsComponent,
-    SidebarBlogsComponent
+    SidebarBlogsComponent,
+    DefaultHeaderComponent,
+    TopHeaderComponent,
   ],
   
   entryComponents: [

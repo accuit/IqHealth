@@ -21,18 +21,20 @@
                     </div><!-- /.text-box -->
                 </div><!-- /.single-header-info -->
                 <div class="single-header-info">
-                   <a [routerLink]="'user-login'">
+                   
                     <div class="icon-box">
                         <i class="clinmedix-icon-shield"></i>
-                    </div><!-- /.icon-box -->
-                    <div class="text-box">
-                        <p>Get personal Access<br> <span> Login</span></p>
                     </div>
-                </a>
+                    <div class="text-box">
+                        <p><a [routerLink]="'/register'">Register</a><br> <span> 
+                            <a [routerLink]="'/user-login'">LogIn</a></span>
+                        </p>
+                    </div>
+                
                 </div>
-                <div class="single-header-info">
+                <!-- <div class="single-header-info">
                     <a href="#test-search" class="search-icon popup-with-zoom-anim search-icon"><i class="clinmedix-icon-search"></i></a>
-                </div><!-- /.single-header-info -->
+                </div> -->
             </div><!-- /.header-right-info -->
         </div><!-- /.thm-container -->
     </div><!-- /.top-header -->

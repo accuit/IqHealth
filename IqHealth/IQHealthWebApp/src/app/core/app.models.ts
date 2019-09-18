@@ -26,6 +26,7 @@ export class UserMaster {
     sex: number;
     address: string;
     city: string;
+    UserType: number;
     state: number;
     userStatus: number;
     StauserTypetus: number;

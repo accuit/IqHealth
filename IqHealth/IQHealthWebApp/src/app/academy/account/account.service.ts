@@ -11,9 +11,8 @@ export class AccountService {
 
   constructor(private readonly httpClient: HttpClient) {
     this.headers = new HttpHeaders({
-      'Content-Type': 'application/json; charset=utf-8',
-      'Access-Control-Allow-Origin': '*'
-    });
+      'No-Auth': 'True'
+  });
   }
 
 
@@ -27,6 +26,10 @@ export class AccountService {
 
   resetPassword(user: UserMaster): any {
     return this.httpClient.post(this.baseUrl + 'api/users/reset-password', user, { headers: this.headers });
+  }
+
+  getUsersByType(type): any {
+    return this.httpClient.get<UserMaster[]>(this.baseUrl + 'api/users/data/'+ type);
   }
 
 

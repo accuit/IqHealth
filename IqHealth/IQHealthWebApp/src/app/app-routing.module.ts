@@ -17,6 +17,8 @@ import { EnquiryComponent } from './enquiry/enquiry.component';
 import { LoginComponent } from './academy/account/login/login.component';
 import { RegisterComponent } from './academy/account/register/register.component';
 import { ResetPasswordComponent } from './academy/account/reset-password/reset-password.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { AuthGuard } from './authenication/auth.guard';
 
 const routes: Routes = [
   {
@@ -91,6 +93,15 @@ const routes: Routes = [
   {
     path: 'reset-password',
     component: ResetPasswordComponent
+  },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: '**',
+    component: HomeComponent
   }
 ];
 

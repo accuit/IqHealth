@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { AppService } from 'src/app/core/app.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IndianState, AppJsonService } from 'src/app/core/app.json.service';
 import { APIResponse } from 'src/app/core/app.models';
 import { AccountService } from '../account.service';
@@ -37,7 +37,8 @@ export class RegisterComponent implements OnInit {
     private formBuilder: FormBuilder,
     private readonly accountService: AccountService,
     private readonly jsonService: AppJsonService,
-    private readonly route: ActivatedRoute) {
+    private readonly route: ActivatedRoute,
+    private readonly router: Router) {
 
     this.route.paramMap.subscribe(params => {
       this.userType = params.get("id");
@@ -59,10 +60,8 @@ export class RegisterComponent implements OnInit {
     return this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      // userName: [this.f.email.value],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
-      // confirmPassword: ['', [Validators.required]],
       mobile: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(15)]],
       address: [''],
       city: [''],
@@ -82,10 +81,13 @@ export class RegisterComponent implements OnInit {
     this.inProcess = true;
     this.accountService.registerUser(this.registerForm.value)
       .subscribe((res: APIResponse) => {
-        alert(res.Message);
-        // if (res.IsSuccess) {
-        //   this.appService.sendEmailNotification('api/notification/email-appointment', this.registerForm.value);
-        // }
+        if (res.IsSuccess) {
+          alert(res.Message);
+          this.router.navigate(['user-login']);
+         // this.appService.sendEmailNotification('api/notification/email-appointment', this.registerForm.value);
+        } else {
+          alert(res.Message);
+        }
 
       });
   }
