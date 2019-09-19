@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
-  data:any=[];
+  data: any = [];
   constructor(
     private formBuilder: FormBuilder,
     private readonly router: Router,
@@ -36,6 +36,10 @@ export class LoginComponent implements OnInit {
     return this.loginForm.controls;
   }
 
+  goToHome(): void {
+    this.router.navigate(['home']);
+  }
+
   onSubmit(): any {
     if (this.loginForm.invalid) {
       console.log(this.loginForm);
@@ -45,9 +49,9 @@ export class LoginComponent implements OnInit {
       .subscribe((res: APIResponse) => {
         if (res.IsSuccess) {
           const user: UserMaster = res.SingleResult;
-          this.saveInLocal('userID', user.ID );
-          this.saveInLocal('userType', user.UserType );
-          this.saveInLocal('companyID', 2 );
+          this.saveInLocal('userID', user.ID);
+          this.saveInLocal('userType', user.UserType);
+          this.saveInLocal('companyID', 2);
           this.router.navigate(['dashboard']);
         } else {
           alert(res.Message);
@@ -58,7 +62,7 @@ export class LoginComponent implements OnInit {
 
   saveInLocal(key, val): void {
     localStorage.setItem(key, val);
-    this.data[key]= localStorage.getItem(key);
-   }
+    this.data[key] = localStorage.getItem(key);
+  }
 
 }
