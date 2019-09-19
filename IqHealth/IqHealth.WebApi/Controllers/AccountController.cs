@@ -66,7 +66,7 @@ namespace IqHealth.WebApi.Controllers
             var UserMaster = new UserMaster();
             if (!String.IsNullOrEmpty(u.email))
             {
-                UserMaster = _context.UserMasters.Where(x => x.Email == u.email && x.Password == u.password).FirstOrDefault();
+                UserMaster = _context.UserMasters.Where(x => x.Email == u.email && x.Password == u.password && x.IsDeleted == 0 && (x.CompanyID == u.companyId || x.CompanyID == 99)).FirstOrDefault();
 
                 response.SingleResult = UserMaster != null ? UserMaster : null;
                 response.StatusCode = UserMaster != null ? "200" : "500";
@@ -97,7 +97,7 @@ namespace IqHealth.WebApi.Controllers
                 response.Message = string.Format("Kindly check {0}. It is missing or in incorrect format.", response.FailedValidations[0].Split('.').LastOrDefault());
                 return response;
             }
-            var User = _context.UserMasters.Where(x => x.Email == user.Email).FirstOrDefault();
+            var User = _context.UserMasters.Where(x => x.Email == user.Email && x.IsDeleted == 0 && (x.CompanyID == user.CompanyID || x.CompanyID == 99)).FirstOrDefault();
             if (User == null)
             {
                 try
@@ -244,6 +244,7 @@ namespace IqHealth.WebApi.Controllers
         public string username { get; set; }
         public string email { get; set; }
         public string password { get; set; }
+        public int companyId { get; set; }
 
     }
 }

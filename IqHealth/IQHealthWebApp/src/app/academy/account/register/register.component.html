@@ -12,7 +12,6 @@
                                 <input type="text" placeholder="First Name" formControlName="firstName">
                                 <div *ngIf="isSubmitted && f.firstName.errors" class="invalid">
                                     <div *ngIf="f.firstName.errors.required">First Name is required</div>
-                                    <div *ngIf="f.firstName.errors.email">Email must be a valid email address</div>
                                 </div>
                             </div><!-- /.frm-control -->
                         </div><!-- /.col-md-6 -->
@@ -20,8 +19,7 @@
                             <div class="frm-control">
                                 <input type="text" placeholder="Last Name" formControlName="lastName">
                                 <div *ngIf="isSubmitted && f.lastName.errors" class="invalid">
-                                    <div *ngIf="f.firstName.errors.required">Last Name is required</div>
-                                    <div *ngIf="f.firstName.errors.lastName">Email must be a valid email address</div>
+                                    <div *ngIf="f.lastName.errors.required">Last Name is required</div>
                                 </div>
                             </div><!-- /.frm-control -->
                         </div><!-- /.col-md-6 -->
