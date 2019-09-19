@@ -14,6 +14,8 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
   data: any = [];
+  isSubmitted = false;
+
   constructor(
     private formBuilder: FormBuilder,
     private readonly router: Router,
@@ -41,6 +43,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): any {
+    this.isSubmitted = true;
     if (this.loginForm.invalid) {
       console.log(this.loginForm);
       return;

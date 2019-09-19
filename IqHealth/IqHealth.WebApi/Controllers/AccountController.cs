@@ -45,15 +45,15 @@ namespace IqHealth.WebApi.Controllers
             try
             {
                 response.SingleResult = _context.UserMasters.Where(x => x.UserType == type).ToList();
-                response.StatusCode =  "200";
-                response.IsSuccess =  true;
+                response.StatusCode = "200";
+                response.IsSuccess = true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 response.SingleResult = null;
                 response.StatusCode = "500";
                 response.IsSuccess = false;
-                response.Message =  ex.Message;
+                response.Message = ex.Message;
             }
             return response;
         }
@@ -206,14 +206,26 @@ namespace IqHealth.WebApi.Controllers
                     return response;
                 }
 
-                User.Password = user.Password;
-                user.UpdatedDate = DateTime.Now;
+                if (User.Password == user.oldPassword)
+                {
+                    User.Password = user.Password;
+                    User.UpdatedDate = DateTime.Now;
 
-                _context.Entry(user).State = EntityState.Modified;
-                response.IsSuccess = _context.SaveChanges() > 0 ? true : false;
-                response.SingleResult = user;
-                response.StatusCode = "200";
-                response.Message = "Your password has been successfully updated.";
+                    _context.Entry(User).State = EntityState.Modified;
+                    response.IsSuccess = _context.SaveChanges() > 0 ? true : false;
+                    response.SingleResult = user;
+                    response.StatusCode = "200";
+                    response.Message = "Your password has been successfully updated.";
+                }
+                else
+                {
+                    response.SingleResult = user;
+                    response.StatusCode = "200";
+                    response.Message = "User password does not match";
+                    return response;
+                }
+
+              
             }
             catch (Exception ex)
             {
