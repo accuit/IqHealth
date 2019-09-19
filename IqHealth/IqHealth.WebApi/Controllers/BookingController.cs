@@ -119,7 +119,7 @@ namespace IqHealth.WebApi.Controllers
             response.SingleResult = _context.DoctorAppointments.Where(x => x.IsDeleted == 0).ToList();
             response.StatusCode = "200";
             response.Message = "Appointment records are fetched successfully.";
-
+            response.IsSuccess = true;
             return response;
         }
 

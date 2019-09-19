@@ -1,0 +1,57 @@
+
+<section class="shop-style-one sec-pad pb0">
+    <div class="thm-container clearfix">
+        <div class="sec-title text-center">
+            <h3>Download <span class="color-1">Medical Test Reports</span></h3>
+
+        </div><!-- /.sec-title -->
+        <div *ngIf="isLoaded" class="row">
+            <div *ngFor="let R of reports" class="col-md-3 col-sm-6 col-xs-12">
+                <div class="single-shop-style-one">
+                    <div class="img-box">
+                        <img src="images/shop-1-1.jpg" alt="Awesome Image">
+                    </div><!-- /.img-box -->
+                    <div class="text-box">
+                        <a href="#"><h3>{{R.Name}}</h3></a>
+                        <span class="price">{{R.FileSize}}</span>
+                        <a href="#" class="buy-btn"><i class="fa fa-shopping-cart"></i>Download</a>
+                    </div><!-- /.text-box -->
+                </div><!-- /.single-shop-style-one -->
+            </div><!-- /.col-md-3 col-sm-6 col-xs-12 -->
+        </div><!-- /.row -->
+    </div><!-- /.thm-container -->
+</section>
+
+
+<section class="blog-style-two sec-pad blog-details-page">
+    <div class="thm-container">
+        <div class="row">
+            <!-- /.col-md-8 col-sm-12 col-xs-12 -->
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="sidebar sidebar-right">
+                    <!-- <div class="single-sidebar search-sidebar">
+                        <form class="search-form">
+                            <input type="text" placeholder="Search blog...">
+                            <button type="submit"><i class="fa fa-search"></i></button>
+                        </form>
+                    </div> -->
+                    <div class="single-sidebar category-sidebar">
+                        <div class="title">
+                            <h3>Customer Reports</h3>
+                        </div><!-- /.title -->
+                        <ul class="categories-list">
+                            <li><a href="#">Children Health Center</a><a class="pull-right">Download</a></li>
+                            <li><a href="#">Dentistry &amp; Oral Surgery</a></li>
+                            <li><a href="#">Diagnostic Imaging</a></li>
+                            <li><a href="#">Family Care Solutions</a></li>
+                            <li><a href="#">Cardiac Surgery</a></li>
+                            <li><a href="#">Eye Care Services</a></li>
+                            <li><a href="#">Outpatient Rehabilitation</a></li>
+                            <li><a href="#">Physiotherapy </a></li>
+                        </ul>
+                    </div><!-- /.single-sidebar -->
+                </div><!-- /.sidebar -->
+            </div><!-- /.col-md-4 -->
+        </div><!-- /.row -->
+    </div><!-- /.thm-container -->
+</section>

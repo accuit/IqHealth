@@ -25,4 +25,8 @@ export class PagesService {
     formData.append('userID', customerID);
     return this.http.post(this.baseUrl + 'api/employee/upload-report', formData, { reportProgress: true, observe: 'events' });
   }
+
+  getCustomerReports(userID, company) {
+    return this.http.get(this.baseUrl + 'api/customer/download-reports/' + userID + '/' + company);
+  }
 }

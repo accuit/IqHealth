@@ -31,8 +31,10 @@ namespace IqHealth.Data.Persistence.Model
         [StringLength(250)]
         public string FileLocation { get; set; }
 
+        [DataMember]
         [Required]
         public int FileSize { get; set; }
+
 
         [DataMember]
         public DateTime UploadedDate { get; set; }

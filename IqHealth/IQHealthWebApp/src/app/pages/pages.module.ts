@@ -9,9 +9,10 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UploadCustomerReportComponent } from './upload-customer-report/upload-customer-report.component';
 import { AccountHeaderComponent } from './shared/account-header/account-header.component';
 import { RouterModule } from '@angular/router';
+import { CustomerReportsComponent } from './customer/customer-reports/customer-reports.component';
 
 @NgModule({
-  declarations: [DashboardComponent, UserProfileComponent, UploadCustomerReportComponent, AccountHeaderComponent],
+  declarations: [DashboardComponent, UserProfileComponent, UploadCustomerReportComponent, AccountHeaderComponent, CustomerReportsComponent],
   imports: [
     CommonModule,
     FormsModule,
