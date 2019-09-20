@@ -79,7 +79,7 @@ export class UploadCustomerReportComponent implements OnInit {
   }
 
   getCustomers() {
-    this.accountService.getUsersByType(this.userType)
+    this.accountService.getUsersByType(1)
       .subscribe((res: APIResponse) => {
         if (res.IsSuccess) {
           this.customers = res.SingleResult

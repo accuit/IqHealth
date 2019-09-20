@@ -25,18 +25,6 @@ namespace IqHealth.WebApi.Controllers
         }
 
         [HttpGet]
-        [Route("data")]
-        public HttpResponseMessage GetTestData()
-        {
-            List<UserMaster> UserMasters = new List<UserMaster>();
-            UserMasters = _context.UserMasters.ToList();
-            if (UserMasters.Count > 0)
-                return Request.CreateResponse(HttpStatusCode.OK, UserMasters);
-            else
-                return Request.CreateResponse(HttpStatusCode.NoContent, UserMasters);
-        }
-
-        [HttpGet]
         [Route("data/{type}")]
         public JsonResponse<List<UserMaster>> UserMasterLogin(int type)
         {
@@ -44,7 +32,7 @@ namespace IqHealth.WebApi.Controllers
             var UserMaster = new List<UserMaster>();
             try
             {
-                response.SingleResult = _context.UserMasters.Where(x => x.UserType == type).ToList();
+                response.SingleResult = _context.UserMasters.Where(x => x.UserType == type && x.IsDeleted == 0).ToList();
                 response.StatusCode = "200";
                 response.IsSuccess = true;
             }

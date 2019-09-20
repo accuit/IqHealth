@@ -9,12 +9,12 @@
             <div *ngFor="let R of reports" class="col-md-3 col-sm-6 col-xs-12">
                 <div class="single-shop-style-one">
                     <div class="img-box">
-                        <img src="images/shop-1-1.jpg" alt="Awesome Image">
+                        <img src="assets/images/medical-reports.jpg" width="80%" alt="Awesome Image">
                     </div><!-- /.img-box -->
                     <div class="text-box">
-                        <a href="#"><h3>{{R.Name}}</h3></a>
+                        <a href="#"><h3>{{R.FileName}}</h3></a>
                         <span class="price">{{R.FileSize}}</span>
-                        <a href="#" class="buy-btn"><i class="fa fa-shopping-cart"></i>Download</a>
+                        <a href="'http://localhost:65114/' + {{R.FileLocation}}" class="buy-btn"><i class="fa fa-shopping-cart"></i>Download</a>
                     </div><!-- /.text-box -->
                 </div><!-- /.single-shop-style-one -->
             </div><!-- /.col-md-3 col-sm-6 col-xs-12 -->

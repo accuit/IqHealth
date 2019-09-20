@@ -12,14 +12,19 @@ export class AuthInterceptor implements HttpInterceptor {
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-        if (req.headers.get('No-Auth') == "True")
+        if (req.headers.get('No-Auth') == "True") {
+            req.clone({
+                headers: req.headers.set("Company", '2')
+            });
             return next.handle(req.clone());
+        }
 
         if (localStorage.getItem('userID') != null) {
             const clonedreq = req.clone({
                 headers: req.headers
-                .set("UserID", this.getFromLocal('userID'))
-                .set("UserType", this.getFromLocal('userType'))
+                    .set("UserID", this.getFromLocal('userID'))
+                    .set("UserType", this.getFromLocal('userType'))
+                    .set("Company", '2')
             });
             return next.handle(clonedreq)
         }
