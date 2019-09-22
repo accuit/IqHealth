@@ -5,30 +5,42 @@
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
             <div class="item active slide-1" style="background-image: url(http://html.tonatheme.com/2019/clinmedix/images/banner-2-1.jpg);background-position: left center;">
-
                 <div class="carousel-caption">
                     <div class="thm-container">
                         <div class="box valign-middle">
                             <div class="content ">
                                 <div class="icon-box" data-animation="animated fadeInUp"><i class="clinmedix-icon-analysis"></i><i class="clinmedix-icon-cardiogram-1"></i><i class="clinmedix-icon-pills2"></i></div><!-- /.icon-box -->
-                                <h3 data-animation="animated fadeInUp">Revolutionized Facilities </h3>
-                                <p data-animation="animated fadeInDown">Tempor incididunt ut labore et dolore magna aliqua anim sed veniam quis nostrud <br> exercitation aliquip duis aute irure dolor reprehenderit voluptate </p>
-                                <a href="#" class="banner-btn" data-animation="animated fadeInDown">Our Services</a>
+                                <h3 data-animation="animated fadeInUp">Doctor On A Click </h3>
+                                <p data-animation="animated fadeInDown">Book an online appointment<br> for any doctor of your choice. </p>
+                                <a [routerLink]="'/book-an-appointment'" class="banner-btn" data-animation="animated fadeInDown">Book Appointment</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="item slide-2" style="background-image: url(http://html.tonatheme.com/2019/clinmedix/images/banner-2-2.jpg);background-position: center center;">
-
                 <div class="carousel-caption">
                     <div class="thm-container">
                         <div class="box valign-middle">
                             <div class="content pull-right">
                                 <div class="icon-box" data-animation="animated fadeInUp"><i class="clinmedix-icon-analysis"></i><i class="clinmedix-icon-cardiogram-1"></i><i class="clinmedix-icon-pills2"></i></div><!-- /.icon-box -->
-                                <h3 data-animation="animated fadeInUp">Revolutionized Facilities </h3>
-                                <p data-animation="animated fadeInDown">Tempor incididunt ut labore et dolore magna aliqua anim sed veniam quis nostrud <br> exercitation aliquip duis aute irure dolor reprehenderit voluptate </p>
-                                <a href="#" class="banner-btn" data-animation="animated fadeInDown">Our Services</a>
+                                <h3 data-animation="animated fadeInUp">Revolutionized Packages </h3>
+                                <p data-animation="animated fadeInDown">Our Health packages are <br> specially curated for you. </p>
+                                <a [routerLink]="'/package-category-list'" class="banner-btn" data-animation="animated fadeInDown">Our Packages</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item slide-2" style="background-image: url(assets/images/banner-2-3.jpg);background-position: center center;">
+                <div class="carousel-caption">
+                    <div class="thm-container">
+                        <div class="box valign-middle">
+                            <div class="content">
+                                <div class="icon-box" data-animation="animated fadeInUp"><i class="clinmedix-icon-analysis"></i><i class="clinmedix-icon-cardiogram-1"></i><i class="clinmedix-icon-pills2"></i></div><!-- /.icon-box -->
+                                <h3 data-animation="animated fadeInUp">Medical Courses </h3>
+                                <p data-animation="animated fadeInDown">Health IQ provide world class <br> courses for medical students. </p>
+                                <a [routerLink]="'/academy'" class="banner-btn" data-animation="animated fadeInDown">Our Courses</a>
                             </div>
                         </div>
                     </div>
@@ -48,58 +60,45 @@
 
     <app-find-doctor></app-find-doctor>
 
-    <section class="feature-style-two sec-pad">
-        <div class="thm-container">
-            <div class="sec-title-style-two text-center">
-                
-                <div class="line"></div><!-- /.line -->
-                <h3>Consistent in <span class="color-1">Patient Safety</span> & <span class="color-1">Quality Measures</span> <br> With Our Top Priority Doctors Performence</h3>
-            </div><!-- /.sec-title-style-two -->
-            <div class="row">
-                <div class="col-md-3 col-sm-6 col-xs-12 hvr-bounce-to-bottom">
-                    <div class="single-feature-style-two text-center">
-                        <div class="inner">
-                            <img src="http://html.tonatheme.com/2019/clinmedix/images/feature-2-1.png" alt="Awesome Image"/>
-                            <h3>Full Equipment <br> Laboratory</h3>
-                            <p>Mollit animid acusm yus laborum <br> erspiciatis unde omnis natus error <br> ipsum mque lorem tius</p>
-                            <a href="#" class="more">Read More <i class="fa fa-angle-double-right"></i></a>
-                        </div><!-- /.inner -->
-                    </div><!-- /.single-service-style-four -->
-                </div><!-- /.col-md-3 -->
-                <div class="col-md-3 col-sm-6 col-xs-12 hvr-bounce-to-bottom">
-                    <div class="single-feature-style-two text-center">
-                        <div class="inner">
-                            <img src="http://html.tonatheme.com/2019/clinmedix/images/feature-2-2.png" alt="Awesome Image"/>
-                            <h3>Key Quality <br> Measures </h3>
-                            <p>Mollit animid acusm yus laborum <br> erspiciatis unde omnis natus error <br> ipsum mque lorem tius</p>
-                            <a href="#" class="more">Read More <i class="fa fa-angle-double-right"></i></a>
-                        </div><!-- /.inner -->
-                    </div><!-- /.single-service-style-four -->
-                </div><!-- /.col-md-3 -->
-                <div class="col-md-3 col-sm-6 col-xs-12 hvr-bounce-to-bottom">
-                    <div class="single-feature-style-two text-center">
-                        <div class="inner">
-                            <img src="http://html.tonatheme.com/2019/clinmedix/images/feature-2-3.png" alt="Awesome Image"/>
-                            <h3>Specialist <br> Doctors Team</h3>
-                            <p>Mollit animid acusm yus laborum <br> erspiciatis unde omnis natus error <br> ipsum mque lorem tius</p>
-                            <a href="#" class="more">Read More <i class="fa fa-angle-double-right"></i></a>
-                        </div><!-- /.inner -->
-                    </div><!-- /.single-service-style-four -->
-                </div><!-- /.col-md-3 -->
-                <div class="col-md-3 col-sm-6 col-xs-12 hvr-bounce-to-bottom">
-                    <div class="single-feature-style-two text-center">
-                        <div class="inner">
-                            <img src="http://html.tonatheme.com/2019/clinmedix/images/feature-2-4.png" alt="Awesome Image"/>
-                            <h3>Medical <br> Importance</h3>
-                            <p>Mollit animid acusm yus laborum <br> erspiciatis unde omnis natus error <br> ipsum mque lorem tius</p>
-                            <a href="#" class="more">Read More <i class="fa fa-angle-double-right"></i></a>
-                        </div><!-- /.inner -->
-                    </div><!-- /.single-service-style-four -->
-                </div><!-- /.col-md-3 -->
-            </div><!-- /.row -->
-        </div><!-- /.thm-container -->
-    </section><!-- /.service-style-four -->
-
+    <section class="service-style-three sec-pad" style=" margin-top: 100px;">
+            <div class="thm-container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="single-service-style-three text-center js-tilt">
+                            <div class="inner-box">
+                                <i class="clinmedix-icon-drugs"></i>
+                                <h3>Get Better Health</h3>
+                            </div><!-- /.inner-box -->
+                        </div><!-- /.single-service-style-three -->
+                    </div><!-- /.col-md-3 -->
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="single-service-style-three text-center js-tilt">
+                            <div class="inner-box">
+                                <i class="clinmedix-icon-doctor"></i>
+                                <h3>Lisenced Doctors</h3>
+                            </div><!-- /.inner-box -->
+                        </div><!-- /.single-service-style-three -->
+                    </div><!-- /.col-md-3 -->
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="single-service-style-three text-center js-tilt">
+                            <div class="inner-box">
+                                <i class="clinmedix-icon-ambulance1"></i>
+                                <h3>Best Packages</h3>
+                            </div><!-- /.inner-box -->
+                        </div><!-- /.single-service-style-three -->
+                    </div><!-- /.col-md-3 -->
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="single-service-style-three text-center js-tilt">
+                            <div class="inner-box">
+                                <i class="clinmedix-icon-date"></i>
+                                <h3>Easy Appointments</h3>
+                            </div><!-- /.inner-box -->
+                        </div><!-- /.single-service-style-three -->
+                    </div><!-- /.col-md-3 -->
+                </div><!-- /.row -->
+            </div><!-- /.thm-container -->
+        </section><!-- /.service-style-three sec-pad -->
+        
     <section class="parallax-section" style="background-image: url(assets/images/subscribe-bg-1-1.jpg); background-attachment: fixed; background-position: center center;">
         <div class="container">
             <h1>If you are a patient seeking quality healthcare <br> at affordable prices!.</h1>

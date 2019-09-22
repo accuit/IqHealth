@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppJsonService } from '../core/app.json.service';
 
 @Component({
   selector: 'app-footer',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  services: any;
+  constructor(private readonly service: AppJsonService) { }
 
   ngOnInit() {
+    this.services = this.service.getAllServices();
   }
+
+
 
 }

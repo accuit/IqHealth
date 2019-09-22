@@ -24,7 +24,7 @@
                         <!-- /.sub-menu -->
                     </li>
                     <li>
-                        <a [routerLink]="'/package-category-list'">Packages</a>
+                        <a>Packages</a>
                         <ul *ngIf="isloaded" class="sub-menu">
                             <li *ngFor="let p of packages"><a
                                     [routerLink]="'/package-category-details/' + p.ID">{{p.Name}}</a></li>
