@@ -83,7 +83,7 @@
                         <div class="col-md-5">
                             <div class="frm-control">
                                 <input type="text" placeholder="Mobile" formControlName="mobile">
-                                <div *ngIf="isSubmitted && f.mobile.errors" class="invalid">
+                                <div *ngIf="submitted && f.mobile.errors" class="invalid">
                                     <div *ngIf="f.mobile.errors.required">Mobile Number is required</div>
                                     <div *ngIf="f.mobile.errors.minlength">Mobile must be at least 10 characters</div>
                                 </div>
