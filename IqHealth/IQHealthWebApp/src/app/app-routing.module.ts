@@ -19,6 +19,7 @@ import { RegisterComponent } from './academy/account/register/register.component
 import { ResetPasswordComponent } from './academy/account/reset-password/reset-password.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AuthGuard } from './authenication/auth.guard';
+import { BookATestComponent } from './book-a-test/book-a-test.component';
 
 const routes: Routes = [
   {
@@ -73,6 +74,10 @@ const routes: Routes = [
   {
     path: 'academy/our-courses',
     component: CoursesComponent
+  },
+  {
+    path: 'book-a-test',
+    component: BookATestComponent
   },
   {
     path: 'academy/fee-structure',

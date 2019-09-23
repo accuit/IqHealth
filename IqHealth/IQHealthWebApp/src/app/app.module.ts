@@ -31,6 +31,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { PagesModule } from './pages/pages.module';
 import { AuthGuard } from './authenication/auth.guard';
 import { AuthInterceptor } from './authenication/auth.interceptor';
+import { BookATestComponent } from './book-a-test/book-a-test.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { AuthInterceptor } from './authenication/auth.interceptor';
     ServiceDetailsComponent,
     ContactUsComponent,
     AboutUsComponent,
-    EnquiryComponent
+    EnquiryComponent,
+    BookATestComponent
   ],
   imports: [
     ReactiveFormsModule,

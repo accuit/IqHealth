@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AppService } from '../core/app.service';
 import { Doctor, APIResponse } from '../core/app.models';
 import { delay } from 'q';
+import { AppJsonService } from '../core/app.json.service';
 
 
 @Component({
@@ -23,14 +24,17 @@ export class BookAppointmentComponent implements OnInit {
   selectedID: any;
   selectedText= 'Select Doctors';
 
+  allTimings = [];
+  selectedTimeText= 'Choose Booking Time';
+
   constructor(
     private formBuilder: FormBuilder,
     private readonly appService: AppService,
-    private route: ActivatedRoute) {
+    private readonly route: ActivatedRoute,
+    private readonly jsonService: AppJsonService) {
 
     this.route.paramMap.subscribe(params => {
       var paramId = params.get("type");
-      console.log(params.get('type'))
       if (paramId == 'opd') {
         this.isOpd = true;
         this.doctorsList = []
@@ -47,6 +51,11 @@ export class BookAppointmentComponent implements OnInit {
     this.selectedID = doctor.ID;
     this.selectedText = doctor.FirstName;
     this.appointmentForm.controls['doctorID'].setValue( doctor.ID); 
+  }
+
+  selectTiming(time){
+    this.selectedTimeText = time;
+    this.appointmentForm.controls['bookingTime'].setValue( time); 
   }
 
   getDoctors() {
@@ -67,13 +76,15 @@ export class BookAppointmentComponent implements OnInit {
       age: [''],
       sex: [''],
       bookingDate: ['', Validators.required],
-      bookingTime: [''],
-      doctorID: [this.isOpd ? 15 : '', Validators.required]
+      bookingTime: ['', Validators.required],
+      doctorID: [this.isOpd ? 15 : '', Validators.required],
+      companyID:[2]
     });
 
   }
 
   ngOnInit() {
+    this.allTimings = this.jsonService.getTimings();
     this.appointmentForm = this.loadForm();
   }
 
