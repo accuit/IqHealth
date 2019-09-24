@@ -89,8 +89,8 @@
                                 </div>
                             </div><!-- /.frm-control -->
                         </div><!-- /.col-md-6 -->
-                        <div class="col-md-4">
-                            <div class="frm-control">
+                        <div class="col-md-5">
+                            <div class="frm-control" style="border: 1px solid #cac6c6;border-style: none none solid none;">
                                     <label class="radio-inline">
                                             <input type="radio" name="sex" formControlName="sex" id="male" value="1"> Male
                                         </label>
@@ -100,9 +100,12 @@
 
                             </div><!-- /.frm-control -->
                         </div><!-- /.col-md-6 -->
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <div class="frm-control">
                                 <input type="text" placeholder="Age" formControlName="age">
+                                <div *ngIf="submitted && f.age.errors" class="invalid">
+                                        <div *ngIf="f.age.errors.maxlength">Max Age can be 99</div>
+                                    </div>
                             </div><!-- /.frm-control -->
                         </div><!-- /.col-md-6 -->
                         <div class="col-md-4">
@@ -169,7 +172,6 @@
                         </div><!-- /.col-md-12 -->
                     </div><!-- /.row -->
                     <div class="form-result">
-                        {{appointmentForm.value | json}}
                     </div>
                 </form>
                 <br>

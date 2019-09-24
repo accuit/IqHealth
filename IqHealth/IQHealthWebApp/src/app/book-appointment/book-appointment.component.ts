@@ -73,11 +73,11 @@ export class BookAppointmentComponent implements OnInit {
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       mobile: ['', [Validators.required, Validators.minLength(10)]],
-      age: [''],
+      age: ['', Validators.maxLength(2)],
       sex: [''],
       bookingDate: ['', Validators.required],
       bookingTime: ['', Validators.required],
-      doctorID: [this.isOpd ? 15 : '', Validators.required],
+      doctorID: ['', Validators.required],
       companyID:[2]
     });
 

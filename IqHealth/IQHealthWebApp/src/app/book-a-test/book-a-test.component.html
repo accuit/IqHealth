@@ -8,34 +8,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="appointment-sidebar sidebar-left">
-                    <div class="single-appointment-sidebar overview">
-                        <div class="title">
-                            <h3>Booking Overview</h3>
-                            <p>Review your appointment details</p>
-                        </div><!-- /.title -->
-                        <ul class="infos">
-                            <li>
-                                <span class="type">Service:</span>
-                                <span class="option">Neurology & Neurosurgery</span>
-                            </li>
-                            <li>
-                                <span class="type">Dr. Name:</span>
-                                <span class="option">Dr. Andrian Henry</span>
-                            </li>
-                            <li>
-                                <span class="type">Fee:</span>
-                                <span class="option">$100/Consultation</span>
-                            </li>
-                            <li>
-                                <span class="type">Date:</span>
-                                <span class="option">October 15, 2018</span>
-                            </li>
-                            <li>
-                                <span class="type">Time:</span>
-                                <span class="option">04:00 PM</span>
-                            </li>
-                        </ul><!-- /.infos -->
-                    </div><!-- /.single-appointment-sidebar overview -->
+
                     <div class="single-appointment-sidebar availability">
                         <div class="title">
                             <h3>availability</h3>
@@ -64,6 +37,9 @@
                             <div class="frm-control">
                                 <input type="text" formControlName="firstName" placeholder="First Name"
                                     class="single-input-primary">
+                                <div *ngIf="submitted && f.firstName.errors" class="invalid">
+                                    <div *ngIf="f.firstName.errors.required">First Name is required</div>
+                                </div>
                             </div>
                             <div class="frm-control">
                                 <input type="text" formControlName="bookingDate" useValueAsDate type="date"
@@ -72,7 +48,8 @@
                                     <div *ngIf="f.bookingDate.errors.required">Booking Date is required</div>
                                 </div>
                             </div>
-                            <div class="frm-control">
+                            <div class="frm-control" style="  border: 1px solid #cac6c6;   border-style: none none solid none;">
+                                Gender:
                                 <label class="radio-inline">
                                     <input type="radio" name="sex" formControlName="sex" id="male" value="1"> Male
                                 </label>
@@ -89,13 +66,7 @@
                                     <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
                                 </div>
                             </div>
-                            <div class="frm-control">
-                                <input type="text" formControlName="city" placeholder="Enter City"
-                                    class="single-input-primary">
-                                <div *ngIf="submitted && f.city.errors" class="invalid">
-                                    <div *ngIf="f.city.errors.required">City is required</div>
-                                </div>
-                            </div>
+
                         </div>
                         <div class="col-md-6">
                             <div class="frm-control">
@@ -139,6 +110,16 @@
                                 </div>
                             </div>
                             <div class="frm-control">
+                                <input type="text" formControlName="city" placeholder="Enter City"
+                                    class="single-input-primary">
+                                <div *ngIf="submitted && f.city.errors" class="invalid">
+                                    <div *ngIf="f.city.errors.required">City is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="frm-control" style="border: 1px solid #cac6c6;border-style: none none solid none;">
+                                <span> Sample Collection at: </span>
                                 <label class="radio-inline">
                                     <input type="radio" name="collectionType" formControlName="collectionType"
                                         id="visit" value="1"> Centre Visit
@@ -152,10 +133,14 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="col-md-12">
                             <div class="frm-control">
                                 <input type="text" formControlName="address" placeholder="Address"
                                     class="single-input-primary">
+                                <div *ngIf="submitted && f.address.errors" class="invalid">
+                                    <div *ngIf="f.address.errors.required">Address is required</div>
+                                </div>
                             </div>
                         </div>
 
@@ -163,12 +148,17 @@
                             <div class="frm-control">
                                 <input type="text" formControlName="landmark" placeholder="Landmark"
                                     class="single-input-primary">
+                                <div *ngIf="submitted && f.landmark.errors" class="invalid">
+                                    <div *ngIf="f.landmark.errors.required">Landmark is required</div>
+                                </div>
                             </div>
                             <div class="frm-control">
                                 <div class="btn-group bootstrap-select">
                                     <button type="button" class="btn dropdown-toggle btn-default"
                                         data-toggle="dropdown">
-                                        <span class="filter-option pull-left"> {{selectedPText}}</span>&nbsp;
+                                        <span class="filter-option pull-left"
+                                            [ngClass]="{'invalid': submitted && f.packageID.errors}">
+                                            {{selectedPText}}</span>&nbsp;
                                         <span class="bs-caret"><span class="caret"></span></span>
                                     </button>
 
@@ -197,19 +187,22 @@
                             <div class="frm-control">
                                 <input type="text" formControlName="age" placeholder="Patient Age"
                                     class="single-input-primary">
+                                <div *ngIf="submitted && f.age.errors" class="invalid">
+                                    <div *ngIf="f.age.errors.required">Age is required</div>
+                                    <div *ngIf="f.age.errors.maxlength">Max Age can be 99</div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <button class="genric-btn success-border circle arrow">Submit
-                            <span class="lnr lnr-arrow-right"></span>
-                        </button>
-                    </div>
+                    <div class="col-md-12">
+                        <div class="frm-control">
+                            <button type="submit">Submit</button>
+                            <button type="reset">Reset</button>
+                        </div><!-- /.frm-control -->
+                    </div><!-- /.col-md-12 -->
 
                 </form>
-                <br>
 
-                {{ bookingForm.value | json}}
 
             </div><!-- /.col-md-8 -->
         </div><!-- /.row -->

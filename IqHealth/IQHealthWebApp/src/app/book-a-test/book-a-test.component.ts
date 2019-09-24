@@ -42,17 +42,18 @@ export class BookATestComponent implements OnInit {
       lastName: ['', Validators.required],
       email: ['', Validators.required],
       mobile: ['', [Validators.required, Validators.minLength(10)]],
-      age: ['', [Validators.required, Validators.max(100), Validators.maxLength(3)]],
+      age: ['', [Validators.required, Validators.max(100), Validators.maxLength(2)]],
       sex: ['', Validators.required],
       address: ['', Validators.required],
       bookingDate: ['', Validators.required],
       landmark: ['', Validators.required],
       bookingTime: ['', Validators.required],
       city: ['', Validators.required],
-      pincode: ['', Validators.required],
+      pincode: [''],
       collectionType: ['', Validators.required],
       testID: [''],
-      packageID: ['', Validators.required]
+      packageID: ['', Validators.required],
+      companyID: [2, Validators.required],
     });
   }
 
