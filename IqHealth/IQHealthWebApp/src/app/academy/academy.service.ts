@@ -30,7 +30,7 @@ export class AcademyService {
   }
 
   getSubCourses(): any {
-    return this.httpClient.get(this.baseUrl + 'api/courses/get-sub-courses');
+    return this.httpClient.get(this.baseUrl + 'api/courses/get-sub-courses', { headers: this.headers });
   }
 
   submitOnlineEnquiry(enquiry: OnlineEnquiry): any {

@@ -1,4 +1,10 @@
-
 <app-account-header></app-account-header>
 
-<app-upload-customer-report [userID]="userID" [userType]="userType"></app-upload-customer-report>
+<div *ngIf="userType==3">
+    <app-upload-customer-report [userID]="userID" [userType]="userType"></app-upload-customer-report>
+</div>
+
+
+<div *ngIf="userType==1">
+    <app-customer-reports [userID]="userID" [userType]="userType"></app-customer-reports>
+</div>

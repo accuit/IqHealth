@@ -2,43 +2,53 @@
     <div class="thm-container">
         <div class="row">
             <div class="col-md-7">
-                <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="appointment-form contact-form" novalidate="novalidate">
+                <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="appointment-form contact-form"
+                    novalidate="novalidate">
                     <h3>User Registeration Form</h3>
                     <p>Health IQ welcomes you and feel happy to add you as our member.</p>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="frm-control">
-                                <input type="text" placeholder="First Name" formControlName="firstName" 
-                                [ngClass]="{ 'error': f.firstName.touched && f.firstName}">
+                                <input type="text" placeholder="First Name" formControlName="firstName">
+                                <div *ngIf="isSubmitted && f.firstName.errors" class="invalid">
+                                    <div *ngIf="f.firstName.errors.required">First Name is required</div>
+                                </div>
                             </div><!-- /.frm-control -->
                         </div><!-- /.col-md-6 -->
                         <div class="col-md-6">
                             <div class="frm-control">
-                                <input type="text" placeholder="Last Name" formControlName="lastName"
-                                [ngClass]="{ 'error': f.lastName.touched && f.lastName}">
+                                <input type="text" placeholder="Last Name" formControlName="lastName">
+                                <div *ngIf="isSubmitted && f.lastName.errors" class="invalid">
+                                    <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+                                </div>
                             </div><!-- /.frm-control -->
                         </div><!-- /.col-md-6 -->
                         <div class="col-md-6">
                             <div class="frm-control">
-                                <input type="text" placeholder="Email Address" formControlName="email"
-                                [ngClass]="{ 'error': f.email.touched && f.email}">
+                                <input type="text" placeholder="Email Address" formControlName="email">
+                                <div *ngIf="isSubmitted && f.email.errors" class="invalid">
+                                    <div *ngIf="f.email.errors.required">Email is required</div>
+                                    <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                                </div>
                             </div><!-- /.frm-control -->
                         </div><!-- /.col-md-6 -->
                         <div class="col-md-6">
                             <div class="frm-control">
-                                <input type="text" placeholder="Phone No. (10-15 digits)" formControlName="mobile"
-                                [ngClass]="{ 'error': f.mobile.touched && f.mobile}">
+                                <input type="text" placeholder="Phone No. (10-15 digits)" formControlName="mobile">
+                                <div *ngIf="isSubmitted && f.mobile.errors" class="invalid">
+                                    <div *ngIf="f.mobile.errors.required">Mobile Number is required</div>
+                                    <div *ngIf="f.mobile.errors.minlength">Mobile must be at least 10 characters</div>
+                                </div>
                             </div><!-- /.frm-control -->
                         </div><!-- /.col-md-6 -->
                         <div class="col-md-6">
                             <div class="frm-control">
                                 <div class="btn-group bootstrap-select">
                                     <button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown"
-                                        title="Select Doctors">
-                                        <span class="filter-option pull-left"> {{selectedText}}</span>&nbsp;
+                                        title="Select User">
+                                        <span class="filter-option pull-left" [ngClass]="{'invalid': isSubmitted && f.userType.errors}"> {{selectedText}}</span>&nbsp;
                                         <span class="bs-caret"><span class="caret"></span></span>
                                     </button>
-
                                     <div class="dropdown-menu open">
                                         <ul class="dropdown-menu inner" role="menu">
                                             <li *ngFor="let u of users"><a (click)="selectUserType(u)">
@@ -58,8 +68,12 @@
                         </div><!-- /.col-md-6 -->
                         <div class="col-md-6">
                             <div class="frm-control">
-                                <input type="password" placeholder="Password" formControlName="password"
-                                [ngClass]="{ 'error': f.password.touched && f.password}">
+                                <input type="password" placeholder="Password" formControlName="password">
+                                <div *ngIf="isSubmitted && f.password.errors" class="invalid">
+                                    <div *ngIf="f.password.errors.required">Password is required</div>
+                                    <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters
+                                    </div>
+                                </div>
                             </div><!-- /.frm-control -->
                         </div><!-- /.col-md-6 -->
                         <div class="col-md-12">
@@ -73,34 +87,35 @@
                             </div><!-- /.frm-control -->
                         </div><!-- /.col-md-6 -->
                         <div class="col-md-6">
-                                <div class="frm-control">
-                                        <div class="btn-group bootstrap-select">
-                                            <button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown"
-                                                title="Select States">
-                                                <span class="filter-option pull-left"> {{selectedStateText}}</span>&nbsp;
-                                                <span class="bs-caret"><span class="caret"></span></span>
-                                            </button>
-        
-                                            <div class="dropdown-menu open">
-                                                <ul class="dropdown-menu inner" role="menu">
-                                                    <li *ngFor="let s of states"><a (click)="selectState(s)">
-                                                            <span class="text">{{s.name}}</span>
-                                                            <span class="glyphicon glyphicon-ok check-mark"></span></a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <select formControlName="state">
-                                                <option *ngFor="let s of states"  [class.selected]="{'selected':selectedStateID == s.id.toString() }"
-                                                    [ngValue]="s.id"> {{s.name}}</option>
-                                            </select>
-                                        </div>
+                            <div class="frm-control">
+                                <div class="btn-group bootstrap-select">
+                                    <button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown"
+                                        title="Select States">
+                                        <span class="filter-option pull-left" > {{selectedStateText}}</span>&nbsp;
+                                        <span class="bs-caret"><span class="caret"></span></span>
+                                    </button>
+
+                                    <div class="dropdown-menu open">
+                                        <ul class="dropdown-menu inner" role="menu">
+                                            <li *ngFor="let s of states"><a (click)="selectState(s)">
+                                                    <span class="text">{{s.name}}</span>
+                                                    <span class="glyphicon glyphicon-ok check-mark"></span></a>
+                                            </li>
+                                        </ul>
                                     </div>
-                            </div><!-- /.col-md-6 -->
-                        <div class="col-md-12">
-                                <div class="frm-control mb0">
-                                    <button [disabled]="!registerForm.valid"  type="submit">Send Message</button>
-                                </div><!-- /.frm-control -->
+                                    <select formControlName="state">
+                                        <option *ngFor="let s of states"
+                                            [class.selected]="{'selected':selectedStateID == s.id.toString() }"
+                                            [ngValue]="s.id"> {{s.name}}</option>
+                                    </select>
+                                </div>
                             </div>
+                        </div><!-- /.col-md-6 -->
+                        <div class="col-md-12">
+                            <div class="frm-control mb0">
+                                <button type="submit">Submit</button>
+                            </div><!-- /.frm-control -->
+                        </div>
                     </div><!-- /.row -->
                     <div class="form-result">
                     </div><!-- /.form-result -->

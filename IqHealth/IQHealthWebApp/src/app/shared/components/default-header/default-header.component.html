@@ -1,46 +1,58 @@
 <header class="header header-home-two">
-        <nav class="navbar navbar-default header-navigation stricky">
-            <div class="thm-container clearfix">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".main-navigation"
-                        aria-expanded="false"><i class="fa fa-bars"></i></button>
-                </div>
+    <nav class="navbar navbar-default header-navigation stricky">
+        <div class="thm-container clearfix">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target=".main-navigation" aria-expanded="false"><i class="fa fa-bars"></i></button>
+            </div>
 
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse main-navigation mainmenu " id="main-nav-bar">
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse main-navigation mainmenu " id="main-nav-bar">
 
-                    <ul class="nav navbar-nav navigation-box">
-                        <li class="current">
-                            <a href="home">Home</a>
-                        </li>
-                        <li> <a [routerLink]="'/know-about-us'">About Us</a> </li>
-                        <li>
-                                <a [routerLink]="'/services-list'">Services</a>
-                                <ul *ngIf="isloaded" class="sub-menu">
-                                    <li *ngFor="let s of services"><a [routerLink]="'/service-details/' + s.ID">{{s.Name}}</a></li>
-                                </ul><!-- /.sub-menu --><!-- /.sub-menu -->
+                <ul class="nav navbar-nav navigation-box">
+                    <li class="current">
+                        <a href="/#/home">Home</a>
+                    </li>
+                    <li> <a [routerLink]="'/know-about-us'">About Us</a> </li>
+                    <li>
+                        <a [routerLink]="'/services-list'">Services</a>
+                        <ul *ngIf="isloaded" class="sub-menu">
+                            <li *ngFor="let s of services"><a [routerLink]="'/service-details/' + s.ID">{{s.Name}}</a>
                             </li>
-                        <li>
-                                <a [routerLink]="'/package-category-list'">Packages</a>
-                                <ul *ngIf="isloaded" class="sub-menu">
-                                    <li *ngFor="let p of packages"><a [routerLink]="'/package-category-details/' + p.ID">{{p.Name}}</a></li>
-                                </ul><!-- /.sub-menu --><!-- /.sub-menu -->
-                        </li>
-                        <li> <a [routerLink]="'/our-doctors'">Doctors</a> </li>
-                        <li>
-                                <a [routerLink]="'/academy'">Academy</a>
+                        </ul><!-- /.sub-menu -->
+                        <!-- /.sub-menu -->
+                    </li>
+                    <li>
+                        <a>Packages</a>
+                        <ul *ngIf="isloaded" class="sub-menu">
+                            <li *ngFor="let p of packages"><a
+                                    [routerLink]="'/package-category-details/' + p.ID">{{p.Name}}</a></li>
+                        </ul><!-- /.sub-menu -->
+                        <!-- /.sub-menu -->
+                    </li>
+                    <li> <a [routerLink]="'/our-doctors'">Doctors</a> </li>
+                    <li>
+                        <a [routerLink]="'/academy'">Academy</a>
+                        <ul class="sub-menu">
+                            <li><a [routerLink]="'/academy/our-courses'">Our Courses</a></li>
+                            <li>
+                                <a [routerLink]="'/academy/fee-structure'">Fee Structure</a>
                                 <ul class="sub-menu">
-                                    <li><a [routerLink]="'/academy/our-courses'">Our Courses</a></li>
-                                    <li>
-                                        <a [routerLink]="'/academy/fee-structure'">Fee Structure</a>
-                                        <ul class="sub-menu">
-                                                <li><a [routerLink]="'/online-enquiry/2'">Online Enquiry</a></li>
-                                        </ul>
-                                    </li>
+                                    <li><a [routerLink]="'/online-enquiry/2'">Online Enquiry</a></li>
                                 </ul>
                             </li>
-                        <!-- <li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a>Account</a>
+                        <ul class="sub-menu">
+                            <li><a [routerLink]="'/user-login'">Login</a></li>
+                            <li> <a [routerLink]="'/register'">Register</a> </li>
+                        </ul>
+                    </li>
+                    <!-- <li>
                             <a href="#">Pages</a>
                             <ul class="sub-menu">
                                 <li>
@@ -53,7 +65,7 @@
                                 <li><a href="appointment.html">Appointment</a></li>
                             </ul>
                         </li> -->
-                        <!-- <li>
+                    <!-- <li>
                             <a href="blog.html">Blog</a>
                             <ul class="sub-menu">
                                 <li><a href="blog.html">Blog One</a></li>
@@ -61,13 +73,14 @@
                                 <li><a href="blog-details.html">Blog Details</a></li>
                             </ul>
                         </li> -->
-                        <li> <a [routerLink]="'/contact-us'">Contact</a> </li>
-                    </ul>
-                </div><!-- /.navbar-collapse -->
-                <div class="right-side-box">
-                    <a [routerLink]="'/book-an-appointment'" class="book-appointment"><i class="fas fa-calendar-alt"></i> book an
-                        appointment</a>
-                </div><!-- /.right-side-box -->
-            </div><!-- /.container -->
-        </nav>
-    </header><!-- /.header -->
+                    <li> <a [routerLink]="'/contact-us'">Contact</a> </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+            <div class="right-side-box">
+                <a [routerLink]="'/book-an-appointment'" class="book-appointment"><i class="fas fa-calendar-alt"></i>
+                    book an
+                    appointment</a>
+            </div><!-- /.right-side-box -->
+        </div><!-- /.container -->
+    </nav>
+</header><!-- /.header -->

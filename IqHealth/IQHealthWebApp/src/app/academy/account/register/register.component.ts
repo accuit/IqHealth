@@ -19,7 +19,7 @@ export class UserType {
 export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
-  submitted = false;
+  isSubmitted = false;
   selectedText = 'Select User Type';
   selectedStateText= 'Select Your State';
   inProcess: any;
@@ -61,7 +61,7 @@ export class RegisterComponent implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
       mobile: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(15)]],
       address: [''],
       city: [''],
@@ -73,7 +73,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(): any {
-    this.submitted = true;
+    this.isSubmitted = true;
     if (this.registerForm.invalid) {
       console.log(this.registerForm);
       return;

@@ -1,0 +1,224 @@
+<app-top-header></app-top-header>
+<app-default-header></app-default-header>
+
+<app-inner-banner title="Book A Test" url="#" parent="Home" subtitle="Book Medical Test"></app-inner-banner>
+
+<section class="appointment-style-two sec-pad">
+    <div class="thm-container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="appointment-sidebar sidebar-left">
+                    <div class="single-appointment-sidebar overview">
+                        <div class="title">
+                            <h3>Booking Overview</h3>
+                            <p>Review your appointment details</p>
+                        </div><!-- /.title -->
+                        <ul class="infos">
+                            <li>
+                                <span class="type">Service:</span>
+                                <span class="option">Neurology & Neurosurgery</span>
+                            </li>
+                            <li>
+                                <span class="type">Dr. Name:</span>
+                                <span class="option">Dr. Andrian Henry</span>
+                            </li>
+                            <li>
+                                <span class="type">Fee:</span>
+                                <span class="option">$100/Consultation</span>
+                            </li>
+                            <li>
+                                <span class="type">Date:</span>
+                                <span class="option">October 15, 2018</span>
+                            </li>
+                            <li>
+                                <span class="type">Time:</span>
+                                <span class="option">04:00 PM</span>
+                            </li>
+                        </ul><!-- /.infos -->
+                    </div><!-- /.single-appointment-sidebar overview -->
+                    <div class="single-appointment-sidebar availability">
+                        <div class="title">
+                            <h3>availability</h3>
+                        </div><!-- /.title -->
+                        <ul class="infos">
+                            <li>
+                                <span class="type">Monday to Friday</span>
+                                <span class="option">09:00 am - 19:00 pm</span>
+                            </li>
+                            <li>
+                                <span class="type">Saturday</span>
+                                <span class="option">08:00 am - 17:00 pm</span>
+                            </li>
+                            <li>
+                                <span class="type">Sunday</span>
+                                <span class="option">Emergency Only</span>
+                            </li>
+                        </ul><!-- /.infos -->
+                    </div><!-- /.single-appointment-sidebar availability -->
+                </div><!-- /.appointment-sidebar -->
+            </div><!-- /.col-md-4 -->
+            <div class="col-md-8">
+                <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()" class="appointment-form contact-form">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="frm-control">
+                                <input type="text" formControlName="firstName" placeholder="First Name"
+                                    class="single-input-primary">
+                            </div>
+                            <div class="frm-control">
+                                <input type="text" formControlName="bookingDate" useValueAsDate type="date"
+                                    placeholder="Booking Date" class="single-input-primary">
+                                <div *ngIf="submitted && f.bookingDate.errors" class="invalid">
+                                    <div *ngIf="f.bookingDate.errors.required">Booking Date is required</div>
+                                </div>
+                            </div>
+                            <div class="frm-control">
+                                <label class="radio-inline">
+                                    <input type="radio" name="sex" formControlName="sex" id="male" value="1"> Male
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="sex" formControlName="sex" id="female" value="2"> Female
+                                </label>
+
+                            </div><!-- /.frm-control -->
+
+                            <div class="frm-control">
+                                <input type="text" formControlName="email" placeholder="Email Address"
+                                    class="single-input-primary">
+                                <div *ngIf="submitted && f.email.errors" class="invalid">
+                                    <div *ngIf="f.email.errors.required">Email is required</div>
+                                    <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                                </div>
+                            </div>
+
+                            <div class=" mt-10">
+                                <div class="frm-control">
+                                    <input type="text" formControlName="city" placeholder="Enter City"
+                                        class="single-input-primary">
+                                    <div *ngIf="submitted && f.city.errors" class="invalid">
+                                        <div *ngIf="f.city.errors.required">City is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="frm-control">
+                                <input type="text" formControlName="lastName" placeholder="Last Name"
+                                    class="single-input-primary">
+                                <div *ngIf="submitted && f.lastName.errors" class="invalid">
+                                    <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+                                </div>
+                            </div>
+                            <div class="frm-control">
+                                <div class="frm-control">
+                                    <div class="btn-group bootstrap-select">
+                                        <button type="button" class="btn dropdown-toggle btn-default"
+                                            data-toggle="dropdown">
+                                            <span class="filter-option pull-left"
+                                                [ngClass]="{'invalid': submitted && f.bookingTime.errors}">
+                                                {{selectedTimeText}}</span>&nbsp;
+                                            <span class="bs-caret"><span class="caret"></span></span>
+                                        </button>
+                                        <div class="dropdown-menu open">
+                                            <ul class="dropdown-menu inner" role="menu">
+                                                <li *ngFor="let u of allTimings"><a (click)="selectTiming(u)">
+                                                        <span class="text">{{u}}</span><span
+                                                            class="glyphicon glyphicon-ok check-mark"></span></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <select formControlName="bookingTime">
+                                            <option *ngFor="let u of allTimings" [ngValue]="u">
+                                                {{u}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="frm-control">
+                                <input type="text" formControlName="mobile" placeholder="Mobile Number (min 10 digits)"
+                                    class="single-input-primary">
+                                <div *ngIf="submitted && f.mobile.errors" class="invalid">
+                                    <div *ngIf="f.mobile.errors.required">Mobile Number is required</div>
+                                    <div *ngIf="f.mobile.errors.minlength">Mobile must be at least 10 characters
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="frm-control">
+                                <label class="radio-inline">
+                                    <input type="radio" name="collectionType" formControlName="collectionType"
+                                        id="visit" value="1"> Centre Visit
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="collectionType" formControlName="collectionType" id="home"
+                                        value="2"> Home
+                                </label>
+                                <div *ngIf="submitted && f.collectionType.errors" class="invalid">
+                                    <div *ngIf="f.collectionType.errors.required">Collection Centre is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="frm-control">
+                                <input type="text" formControlName="address" placeholder="Address"
+                                    class="single-input-primary">
+                            </div>
+                        </div>
+
+                        <div class="col-md-8">
+                            <div class="frm-control">
+                                <input type="text" formControlName="landmark" placeholder="Landmark"
+                                    class="single-input-primary">
+                            </div>
+                            <div class="frm-control">
+                                <div class="btn-group bootstrap-select">
+                                    <button type="button" class="btn dropdown-toggle btn-default"
+                                        data-toggle="dropdown">
+                                        <span class="filter-option pull-left"> {{selectedPText}}</span>&nbsp;
+                                        <span class="bs-caret"><span class="caret"></span></span>
+                                    </button>
+
+                                    <div class="dropdown-menu open">
+                                        <ul class="dropdown-menu inner" role="menu">
+                                            <li *ngFor="let p of allPackages"><a (click)="selectPackage(p)">
+                                                    <span class="text">{{p.Name}}</span><span
+                                                        class="glyphicon glyphicon-ok check-mark"></span></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <select formControlName="packageID">
+                                        <option *ngFor="let p of allPackages"
+                                            [class.selected]="{'selected':selectedPID == p.ID.toString() }"
+                                            [ngValue]="p.ID">
+                                            {{p.Name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="frm-control">
+                                <input type="text" formControlName="pincode" placeholder="Pin Code"
+                                    class="single-input-primary">
+                            </div>
+                            <div class="frm-control">
+                                <input type="text" formControlName="age" placeholder="Patient Age"
+                                    class="single-input-primary">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <button class="genric-btn success-border circle arrow">Submit
+                            <span class="lnr lnr-arrow-right"></span>
+                        </button>
+                    </div>
+
+                </form>
+                <br>
+
+                {{ bookingForm.value | json}}
+
+            </div><!-- /.col-md-8 -->
+        </div><!-- /.row -->
+    </div><!-- /.thm-container -->
+</section>

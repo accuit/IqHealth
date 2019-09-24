@@ -22,6 +22,7 @@ export class UserMaster {
     mobile: string;
     email: string;
     password: string;
+    oldPassword: string;
     confirmPassword: string;
     sex: number;
     address: string;

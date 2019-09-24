@@ -64,6 +64,11 @@ namespace IqHealth.Data.Persistence.Model
         public string Password { get; set; }
 
         [DataMember]
+        [StringLength(20)]
+        [NotMapped]
+        public string oldPassword { get; set; }
+
+        [DataMember]
         [NotMapped]
         [StringLength(20)]
         public string ConfirmPassword { get; set; }

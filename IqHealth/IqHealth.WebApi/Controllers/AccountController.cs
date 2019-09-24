@@ -25,18 +25,6 @@ namespace IqHealth.WebApi.Controllers
         }
 
         [HttpGet]
-        [Route("data")]
-        public HttpResponseMessage GetTestData()
-        {
-            List<UserMaster> UserMasters = new List<UserMaster>();
-            UserMasters = _context.UserMasters.ToList();
-            if (UserMasters.Count > 0)
-                return Request.CreateResponse(HttpStatusCode.OK, UserMasters);
-            else
-                return Request.CreateResponse(HttpStatusCode.NoContent, UserMasters);
-        }
-
-        [HttpGet]
         [Route("data/{type}")]
         public JsonResponse<List<UserMaster>> UserMasterLogin(int type)
         {
@@ -44,16 +32,16 @@ namespace IqHealth.WebApi.Controllers
             var UserMaster = new List<UserMaster>();
             try
             {
-                response.SingleResult = _context.UserMasters.Where(x => x.UserType == type).ToList();
-                response.StatusCode =  "200";
-                response.IsSuccess =  true;
+                response.SingleResult = _context.UserMasters.Where(x => x.UserType == type && x.IsDeleted == 0).ToList();
+                response.StatusCode = "200";
+                response.IsSuccess = true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 response.SingleResult = null;
                 response.StatusCode = "500";
                 response.IsSuccess = false;
-                response.Message =  ex.Message;
+                response.Message = ex.Message;
             }
             return response;
         }
@@ -66,7 +54,7 @@ namespace IqHealth.WebApi.Controllers
             var UserMaster = new UserMaster();
             if (!String.IsNullOrEmpty(u.email))
             {
-                UserMaster = _context.UserMasters.Where(x => x.Email == u.email && x.Password == u.password).FirstOrDefault();
+                UserMaster = _context.UserMasters.Where(x => x.Email == u.email && x.Password == u.password && x.IsDeleted == 0 && (x.CompanyID == u.companyId || x.CompanyID == 99)).FirstOrDefault();
 
                 response.SingleResult = UserMaster != null ? UserMaster : null;
                 response.StatusCode = UserMaster != null ? "200" : "500";
@@ -97,7 +85,7 @@ namespace IqHealth.WebApi.Controllers
                 response.Message = string.Format("Kindly check {0}. It is missing or in incorrect format.", response.FailedValidations[0].Split('.').LastOrDefault());
                 return response;
             }
-            var User = _context.UserMasters.Where(x => x.Email == user.Email).FirstOrDefault();
+            var User = _context.UserMasters.Where(x => x.Email == user.Email && x.IsDeleted == 0 && (x.CompanyID == user.CompanyID || x.CompanyID == 99)).FirstOrDefault();
             if (User == null)
             {
                 try
@@ -206,14 +194,26 @@ namespace IqHealth.WebApi.Controllers
                     return response;
                 }
 
-                User.Password = user.Password;
-                user.UpdatedDate = DateTime.Now;
+                if (User.Password == user.oldPassword)
+                {
+                    User.Password = user.Password;
+                    User.UpdatedDate = DateTime.Now;
 
-                _context.Entry(user).State = EntityState.Modified;
-                response.IsSuccess = _context.SaveChanges() > 0 ? true : false;
-                response.SingleResult = user;
-                response.StatusCode = "200";
-                response.Message = "Your password has been successfully updated.";
+                    _context.Entry(User).State = EntityState.Modified;
+                    response.IsSuccess = _context.SaveChanges() > 0 ? true : false;
+                    response.SingleResult = user;
+                    response.StatusCode = "200";
+                    response.Message = "Your password has been successfully updated.";
+                }
+                else
+                {
+                    response.SingleResult = user;
+                    response.StatusCode = "200";
+                    response.Message = "User password does not match";
+                    return response;
+                }
+
+              
             }
             catch (Exception ex)
             {
@@ -232,6 +232,7 @@ namespace IqHealth.WebApi.Controllers
         public string username { get; set; }
         public string email { get; set; }
         public string password { get; set; }
+        public int companyId { get; set; }
 
     }
 }

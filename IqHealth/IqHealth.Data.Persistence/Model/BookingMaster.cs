@@ -52,6 +52,11 @@ namespace IqHealth.Data.Persistence.Model
 
         [Required]
         [DataMember]
+        public string BookingTime { get; set; }
+        
+
+        [Required]
+        [DataMember]
         public int CollectionType { get; set; }
 
         [Required]
