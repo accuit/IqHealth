@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
   environmentName: 'QA',
-  apiUrl: 'http://accuitsolar.com/'
+  apiUrl: 'http://health-iq.in/'
 };

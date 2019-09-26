@@ -50,7 +50,6 @@ namespace IqHealth.Data.Persistence.Model
         [DataMember]
         public DateTime? BookingDate { get; set; }
 
-        [Required]
         [DataMember]
         public string BookingTime { get; set; }
         
