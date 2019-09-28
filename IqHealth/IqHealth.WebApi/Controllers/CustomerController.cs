@@ -21,11 +21,11 @@ namespace IqHealth.WebApi.Controllers
         }
 
         [HttpGet()]
-        [Route("download-reports/{id}/{customer}")]
-        public JsonResponse<List<UploadedReports>> GetCustomerReports(int id, int customer)
+        [Route("download-reports/{id}")]
+        public JsonResponse<List<UploadedReports>> GetCustomerReports(int id)
         {
             JsonResponse<List<UploadedReports>> response = new JsonResponse<List<UploadedReports>>();
-            response.SingleResult = _context.UploadedReports.Where(x => x.UserID == id && x.CompanyID == customer).ToList();
+            response.SingleResult = _context.UploadedReports.Where(x => x.UserID == id).ToList();
             response.StatusCode = "200";
             response.Message = "Reports fetched successfully.";
             response.IsSuccess = true;

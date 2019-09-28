@@ -27,6 +27,6 @@ export class PagesService {
   }
 
   getCustomerReports(userID, company) {
-    return this.http.get(this.baseUrl + 'api/customer/download-reports/' + userID + '/' + company);
+    return this.http.get(this.baseUrl + 'api/customer/download-reports/' + userID );
   }
 }
