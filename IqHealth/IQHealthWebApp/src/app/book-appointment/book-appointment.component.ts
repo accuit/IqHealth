@@ -22,10 +22,10 @@ export class BookAppointmentComponent implements OnInit {
   isOpd = false;
   isLoaded = false;
   selectedID: any;
-  selectedText= 'Select Doctors';
+  selectedText = 'Select Doctors';
 
   allTimings = [];
-  selectedTimeText= 'Choose Booking Time';
+  selectedTimeText = 'Choose Booking Time';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -50,12 +50,12 @@ export class BookAppointmentComponent implements OnInit {
   selectDoctor(doctor) {
     this.selectedID = doctor.ID;
     this.selectedText = doctor.FirstName;
-    this.appointmentForm.controls['doctorID'].setValue( doctor.ID); 
+    this.appointmentForm.controls['doctorID'].setValue(doctor.ID);
   }
 
-  selectTiming(time){
+  selectTiming(time) {
     this.selectedTimeText = time;
-    this.appointmentForm.controls['bookingTime'].setValue( time); 
+    this.appointmentForm.controls['bookingTime'].setValue(time);
   }
 
   getDoctors() {
@@ -78,7 +78,7 @@ export class BookAppointmentComponent implements OnInit {
       bookingDate: ['', Validators.required],
       bookingTime: ['', Validators.required],
       doctorID: ['', Validators.required],
-      companyID:[2]
+      companyID: [2]
     });
 
   }
@@ -95,7 +95,6 @@ export class BookAppointmentComponent implements OnInit {
   onSubmit(): any {
     this.submitted = true;
     if (this.appointmentForm.invalid) {
-      console.log(this.appointmentForm);
       return;
     }
     this.inProcess = true;
@@ -103,11 +102,10 @@ export class BookAppointmentComponent implements OnInit {
     this.appService.submitDoctorAppointment(this.appointmentForm.value)
       .subscribe((res: APIResponse) => {
         this.showSpinner = false;
-        alert(res.Message);
         if (res.IsSuccess) {
           this.appService.sendEmailNotification('api/notification/email-appointment', this.appointmentForm.value);
         }
-
+        this.appointmentForm.reset();
       });
   }
 }

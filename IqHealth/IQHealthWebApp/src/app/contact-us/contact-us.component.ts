@@ -1,4 +1,4 @@
-import { Component, OnInit, Self } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
 
 declare var GMaps: any; 
@@ -11,33 +11,6 @@ declare var GMaps: any;
 export class ContactUsComponent implements OnInit {
 
 sha: any;
-//  mapName = Self.arguments('id');
-//  mapLat = Self.bind('map-lat');
-//  mapLng = Self.bind('map-lng');
-//  iconPath = Self.bind('icon-path');
-//  mapZoom = Self.bind('map-zoom');
-//  mapTitle = Self.bind('map-title');
-//  markers = Self.bind('markers');
-  
-  constructor() { 
-  //   this.sha =  new GMaps({
-  //     div: '#'+this.mapName,
-  //     scrollwheel: false,
-  //     lat: this.mapLat,
-  //     lng: this.mapLng,
-  //     // styles: styles,
-  //     zoom: this.mapZoom
-  // });
-  }
-
-
-
-  // instance of fuction while Document ready event   
-// jQuery(document).on('ready', function () {
-//     (function ($) {
-//         gMap();
-//     })(jQuery);
-// });
 
   ngOnInit() {
     this.gMap();

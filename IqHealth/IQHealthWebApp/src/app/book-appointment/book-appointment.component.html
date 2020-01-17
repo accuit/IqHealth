@@ -129,6 +129,9 @@
                                             </li>
                                         </ul>
                                     </div>
+                                    <div *ngIf="submitted && f.doctorID.errors" class="invalid">
+                                        <div *ngIf="f.doctorID.errors.required">Please select doctor</div>
+                                    </div>
                                     <select formControlName="doctorID">
                                             <option *ngFor="let doctor of doctorsList" [class.selected]="{'selected':selectedID == doctor.ID.toString() }" [ngValue]="doctor.ID">
                                                 {{doctor.FirstName}}</option>
