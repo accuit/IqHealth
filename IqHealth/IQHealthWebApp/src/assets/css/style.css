@@ -51,11 +51,11 @@
 @import url(../css/owl.theme.default.min.css);
 /* @import url(../css/nouislider.css); */
 @import url(../css/nouislider.pips.css);
-@import url(http://html.tonatheme.com/2019/clinmedix/css/jquery.bootstrap-touchspin.css);
-@import url(http://html.tonatheme.com/2019/clinmedix/css/magnific-popup.css);
+@import url(../css/jquery.bootstrap-touchspin.css);
+@import url(../css/magnific-popup.css);
 @import url(../css/animate.min.css);
 @import url(../css/hover-min.css);
-@import url(http://html.tonatheme.com/2019/clinmedix/css/twentytwenty.css);
+@import url(../css/twentytwenty.css);
 @import url(../css/jquery.bxslider.min.css);
 @import url(../plugins/fontawesome-5/css/fontawesome-all.min.css);
 @import url(../plugins/icofont/css/icofont.css);
