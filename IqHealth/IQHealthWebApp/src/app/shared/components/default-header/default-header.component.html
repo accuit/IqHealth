@@ -11,10 +11,10 @@
             <div class="collapse navbar-collapse main-navigation mainmenu " id="main-nav-bar">
 
                 <ul class="nav navbar-nav navigation-box">
-                    <li> <a href="/#/home"><i class="fa fa-home"></i></a> </li>
-                    <li> <a [routerLink]="'/know-about-us'">About Us</a> </li>
+                    <li> <a href="/"><i class="fa fa-home"></i></a> </li>
+                    <li> <a href="/know-about-us">About Us</a> </li>
                     <li>
-                        <a [routerLink]="'/services-list'">Services</a>
+                        <a href="/services-list">Services</a>
                         <ul *ngIf="isloaded" class="sub-menu">
                             <li *ngFor="let s of services"><a [routerLink]="'/service-details/' + s.ID">{{s.Name}}</a>
                             </li>
@@ -24,28 +24,24 @@
                     <li>
                         <a>Packages</a>
                         <ul *ngIf="isloaded" class="sub-menu">
-                            <li *ngFor="let p of packages"><a
-                                    [routerLink]="'/package-category-details/' + p.ID">{{p.Name}}</a></li>
+                            <li *ngFor="let p of packages"><a  [routerLink]="'/package-category-details/' + p.ID">{{p.Name}}</a></li>
                         </ul><!-- /.sub-menu -->
                         <!-- /.sub-menu -->
                     </li>
-                    <li><a [routerLink]="'/book-a-test'">Book A Test</a> </li>
-                    <li><a [routerLink]="'/our-doctors'">Doctors</a> </li>
-                    <li><a [routerLink]="'/academy'">Academy</a>
+                    <li><a href="/book-a-test">Book A Test</a> </li>
+                    <li><a href="/our-doctors">Doctors</a> </li>
+                    <li><a href="/academy">Academy</a>
                         <ul class="sub-menu">
-                            <li><a [routerLink]="'/academy/our-courses'">Our Courses</a></li>
-                            <li>
-                                <a [routerLink]="'/academy/fee-structure'">Fee Structure</a>
-                            </li>
-                            <li><a [routerLink]="'/online-enquiry/2'">Online Enquiry</a></li>
+                            <li><a href="/academy/our-courses">Our Courses</a></li>
+                            <li><a href="/academy/fee-structure">Fee Structure</a></li>
+                            <li><a href="/online-enquiry/2">Online Enquiry</a></li>
                         </ul>
                     </li>
-                    <li> <a [routerLink]="'/contact-us'">Contact</a> </li>
+                    <li> <a href="/contact-us">Contact</a> </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
             <div class="right-side-box">
-                <a [routerLink]="'/book-an-appointment'" class="book-appointment"><i class="fas fa-calendar-alt"></i>
-                    book an appointment</a>
+                <a href="/book-an-appointment" class="book-appointment"><i class="fas fa-calendar-alt"></i> book an appointment</a>
             </div><!-- /.right-side-box -->
         </div><!-- /.container -->
     </nav>
