@@ -31,22 +31,33 @@
             <h3>Our Doctors are Setting the New Standards <br> in <span class="color-1">Medical Research</span></h3>
             <div class="line"></div><!-- /.line -->
         </div><!-- /.sec-title -->
-        <div *ngIf="isLoaded" class="row">
+        <div *ngIf="isLoaded && doctors.length > 0" class="row">
             <div *ngFor="let doctor of doctors" class="col-md-3 col-sm-6 col-xs-12">
                 <div class="single-team-style-one">
                     <div class="img-box">
                         <img [src]="'assets/images/doctors/'+ doctor.ID + '.jpg'" alt="{{doctor.FirstName}}" />
-        
+
                     </div><!-- /.img-box -->
                     <div class="text-box">
                         <a href="#">
                             <h3>{{doctor.FirstName}} {{doctor.LastName}}</h3>
                         </a>
                         <p>{{doctor.Specialist}}</p>
-                        <a href="/#/book-an-appointment" class="book-btn">Fix Appointment <i class="fa fa-angle-double-right"></i></a>
+                        <a href="/#/book-an-appointment" class="book-btn">Fix Appointment <i
+                                class="fa fa-angle-double-right"></i></a>
                     </div><!-- /.text-box -->
                 </div><!-- /.single-team-style-one -->
             </div><!-- /.col-md-3 col-sm-6 col-xs-12 -->
         </div><!-- /.row -->
+        <div class="row" *ngIf="isLoaded && doctors.length == 0">
+            <div class="col-md-6">
+                <h3>No results found.</h3>
+            </div>
+            <div class="col-md-6">
+                <form action="#" class="subscribe-form clearfix">
+                    <button (click)="resetDoctorsList()" type="submit">See All Doctors<i class="fa fa-angle-double-right"></i></button>
+                </form>
+            </div>
+        </div>
     </div><!-- /.thm-container -->
 </section><!-- /.team-style-one -->

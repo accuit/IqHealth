@@ -1,4 +1,3 @@
-
 <app-top-header></app-top-header>
 <app-default-header></app-default-header>
 
@@ -23,28 +22,28 @@
                         <p>{{ category.Name }} package category contains following Test Packages.</p>
                         <br>
                         <br>
-                        <div class="row">
-                                <div *ngFor="let p of packages" class="col-md-6">
-                                    <div class="single-price-box">
-                                        <div class="sub-title">
-                                            <h4>{{p.Name}}
-                                                    <span class="price" style="float: right;">{{p.Cost}}</span>
-                                            </h4>
-                                        </div><!-- /.sub-title -->
-                                        <div class="price-box">
-                                            <div *ngFor="let t of p.TestMasters" class="single-price clearfix">
-                                                <span class="name">{{t.Name}}</span>
-                                                <!-- <span class="price">t.Type</span> -->
-                                            </div><!-- /.single-price -->
-                                        </div><!-- /.price-box -->
-                                    </div><!-- /.single-price-box -->
-                                    <br>
-                                </div><!-- /.col-md-6 -->
-                              
-                            </div><!-- /.row -->
+                        <div *ngIf="packages && packages.length > 0" class="row">
+                            <div *ngFor="let p of packages" class="col-md-6">
+                                <div class="single-price-box">
+                                    <div class="sub-title">
+                                        <h4>{{p.Name}}
+                                            <span class="price" style="float: right;">{{p.Cost}}</span>
+                                        </h4>
+                                    </div><!-- /.sub-title -->
+                                    <div class="price-box">
+                                        <div *ngFor="let t of p.TestMasters" class="single-price clearfix">
+                                            <span class="name">{{t.Name}}</span>
+                                            <!-- <span class="price">t.Type</span> -->
+                                        </div><!-- /.single-price -->
+                                    </div><!-- /.price-box -->
+                                </div><!-- /.single-price-box -->
+                                <br>
+                            </div><!-- /.col-md-6 -->
+
+                        </div><!-- /.row -->
 
                     </div>
-                   
+
                 </div><!-- /.service-pricing -->
             </div>
         </div><!-- /.row -->

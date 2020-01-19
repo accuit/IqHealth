@@ -5,8 +5,8 @@
                 <h3>{{data.page}}</h3>
             </div>
             <ul class="categories-list">
-                <li *ngFor="let item of data.list" [ngClass]="{'active':item.ID == data.activeID}" (click)="change(item.ID, $event)">
-                    <a>{{item.Name}} </a>
+                <li *ngFor="let item of data.list" style="cursor: pointer;" [ngClass]="{'active':item.ID == data.activeID}" (click)="change(item.ID, $event)">
+                    <a [routerLink]="['/package-category-details', item.ID]">{{item.Name}} </a>
                 </li>
             </ul>
         </div>

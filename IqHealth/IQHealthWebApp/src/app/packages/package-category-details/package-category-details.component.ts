@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { SideBarListModel } from 'src/app/core/sidebar-list.model';
 import { PackageCategory, PackageMaster, APIResponse } from 'src/app/core/app.models';
 import { AppService } from 'src/app/core/app.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import * as _ from 'underscore';
 
 @Component({
   selector: 'app-package-category-details',
@@ -22,8 +23,9 @@ export class PackageCategoryDetailsComponent implements OnInit {
   packageDetails: any;
   activeID: any;
   isloaded: boolean = false;
-  
+
   constructor(private route: ActivatedRoute,
+    private router: Router,
     private readonly service: AppService) {
     this.route.paramMap.subscribe(params => {
       this.activeID = params.get("id");
@@ -32,12 +34,12 @@ export class PackageCategoryDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.service.getAllPackageCategories()
-    .subscribe((data: APIResponse) => {
-      this.isloaded = true;
-      this.categories = data.SingleResult;
-      this.loadCategoryPage();
-    })
-    
+      .subscribe((data: APIResponse) => {
+        this.isloaded = true;
+        this.categories = data.SingleResult;
+        this.loadCategoryPage();
+      })
+
   }
 
   loadCategoryPage(): any {
@@ -48,30 +50,32 @@ export class PackageCategoryDetailsComponent implements OnInit {
       activeID: this.activeID
     }
 
-      this.category = this.categories.filter(x=>x.ID == Number(this.activeID))[0];
-      this.packages = this.service.getPackagesByCategory(this.activeID)
+    this.category = this.categories.filter(x => x.ID == Number(this.activeID))[0];
+    console.log(this.packages);
+    this.packages = this.service.getPackagesByCategory(this.category.ID)
       .subscribe((data: APIResponse) => {
         this.isloaded = true;
         this.packages = data.SingleResult;
-        console.log(this.packages);
       })
 
-      this.title = this.category.Name;
-      this.subtitle = this.title;
-    
+    this.title = this.category.Name;
+    this.subtitle = this.title;
+
   }
 
   displayPackages(event) {
-    this.category = this.categories.filter(x=>x.ID == Number(event))[0];
+
+    this.category = this.categories.filter(x => x.ID == Number(event))[0];
     this.title = this.category.Name;
     this.subtitle = this.title;
 
     if (this.isloaded)
-      this.packages =  this.service.getPackagesByCategory(event)
-      .subscribe((data: APIResponse) => {
-        this.isloaded = true;
-        this.packages = data.SingleResult;
-      })
-  }
+      this.packages = this.service.getPackagesByCategory(event)
+        .subscribe((data: APIResponse) => {
+          this.isloaded = true;
+          this.packages = data.SingleResult;
+        })
+
+   }
 
 }
