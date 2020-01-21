@@ -62,6 +62,7 @@ export class DoctorAppointment {
     BookingDate: Date;
     BookingTime: string;
     DoctorID: number;
+    CompanyID: number = 2;
 }
 
 export class Doctor {

@@ -15,15 +15,15 @@
                     <li> <a href="/know-about-us">About Us</a> </li>
                     <li>
                         <a href="/services-list">Services</a>
-                        <ul *ngIf="isloaded" class="sub-menu">
+                        <ul class="sub-menu">
                             <li *ngFor="let s of services"><a [routerLink]="'/service-details/' + s.ID">{{s.Name}}</a>
                             </li>
                         </ul><!-- /.sub-menu -->
                         <!-- /.sub-menu -->
                     </li>
                     <li>
-                        <a>Packages</a>
-                        <ul *ngIf="isloaded" class="sub-menu">
+                        <a href="package-category-details/1">Packages</a>
+                        <ul class="sub-menu">
                             <li *ngFor="let p of packages"><a  [routerLink]="'/package-category-details/' + p.ID">{{p.Name}}</a></li>
                         </ul><!-- /.sub-menu -->
                         <!-- /.sub-menu -->

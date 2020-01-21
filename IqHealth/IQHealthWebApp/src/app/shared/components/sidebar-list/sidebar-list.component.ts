@@ -9,6 +9,7 @@ import { SideBarListModel } from 'src/app/core/sidebar-list.model';
 export class SidebarListComponent {
 
   @Input('data') data: SideBarListModel;
+  @Input('redirect-url') url : string;
   @Output() valueChange = new EventEmitter();
 
   constructor(private readonly el: ElementRef,

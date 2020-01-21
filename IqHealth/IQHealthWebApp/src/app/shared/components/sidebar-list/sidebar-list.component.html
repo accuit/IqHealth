@@ -6,7 +6,7 @@
             </div>
             <ul class="categories-list">
                 <li *ngFor="let item of data.list" style="cursor: pointer;" [ngClass]="{'active':item.ID == data.activeID}" (click)="change(item.ID, $event)">
-                    <a [routerLink]="['/package-category-details', item.ID]">{{item.Name}} </a>
+                    <a [routerLink]="[url, item.ID]">{{item.Name}} </a>
                 </li>
             </ul>
         </div>

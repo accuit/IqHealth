@@ -7,7 +7,7 @@
 <section class="blog-style-two sec-pad blog-page">
     <div class="thm-container">
         <div *ngIf="isloaded" class="row">
-            <app-sidebar-list (valueChange)='displayPackages($event)' [data]="sidebar"></app-sidebar-list>
+            <app-sidebar-list (valueChange)='displayPackages($event)' [redirect-url]="'/package-category-details'" [data]="sidebar"></app-sidebar-list>
             <div class="col-md-8 col-sm-12 col-xs-12">
                 <div class="service-details-content ">
                     <div class="img-box">
@@ -41,8 +41,14 @@
                             </div><!-- /.col-md-6 -->
 
                         </div><!-- /.row -->
+                        
+                        <div *ngIf="isloading" class="preloader home-two">
+                            <div class="spinner"></div>
+                        </div>
 
                     </div>
+
+                 
 
                 </div><!-- /.service-pricing -->
             </div>

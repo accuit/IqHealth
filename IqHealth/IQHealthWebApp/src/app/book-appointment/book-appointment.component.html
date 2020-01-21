@@ -15,15 +15,15 @@
                         <ul class="infos">
                             <li>
                                 <span class="type">Monday to Friday</span>
-                                <span class="option">09:00 am - 19:00 pm</span>
+                                <span class="option">07:00 am - 08:00 pm</span>
                             </li>
                             <li>
                                 <span class="type">Saturday</span>
-                                <span class="option">08:00 am - 17:00 pm</span>
+                                <span class="option">07:00 am - 08:00 pm</span>
                             </li>
                             <li>
                                 <span class="type">Sunday</span>
-                                <span class="option">Emergency Only</span>
+                                <span class="option">07:00 am - 04:00 pm</span>
                             </li>
                         </ul><!-- /.infos -->
                     </div><!-- /.single-appointment-sidebar availability -->
@@ -33,8 +33,9 @@
                 <form [formGroup]="appointmentForm" (ngSubmit)="onSubmit()" class="appointment-form contact-form">
                     <h3>Need an <span class="color-1">Advice</span> from <span class="color-2">Expert Doctor?</span>
                         Get an Appointment Today!</h3>
-                    <p>To speak with a representative, Call us <span>1-258-985-703</span></p>
+                    <p>To speak with a representative, Call us <span>+91-801-792-6291</span></p>
                     <div class="row">
+                        <input type="text" style="display: none;" formControlName="companyID">
                         <div class="col-md-6">
                             <div class="frm-control">
                                 <input type="text" placeholder="Your Name" formControlName="name">

@@ -3,7 +3,6 @@ import { SideBarListModel } from 'src/app/core/sidebar-list.model';
 import { PackageCategory, PackageMaster, APIResponse } from 'src/app/core/app.models';
 import { AppService } from 'src/app/core/app.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import * as _ from 'underscore';
 
 @Component({
   selector: 'app-package-category-details',
@@ -23,9 +22,9 @@ export class PackageCategoryDetailsComponent implements OnInit {
   packageDetails: any;
   activeID: any;
   isloaded: boolean = false;
+  isloading = true;
 
   constructor(private route: ActivatedRoute,
-    private router: Router,
     private readonly service: AppService) {
     this.route.paramMap.subscribe(params => {
       this.activeID = params.get("id");
@@ -51,10 +50,12 @@ export class PackageCategoryDetailsComponent implements OnInit {
     }
 
     this.category = this.categories.filter(x => x.ID == Number(this.activeID))[0];
-    console.log(this.packages);
+    console.log(this.category);
     this.packages = this.service.getPackagesByCategory(this.category.ID)
       .subscribe((data: APIResponse) => {
+        this.isloading = false;
         this.isloaded = true;
+        console.log(this.packages);
         this.packages = data.SingleResult;
       })
 
@@ -70,12 +71,15 @@ export class PackageCategoryDetailsComponent implements OnInit {
     this.subtitle = this.title;
 
     if (this.isloaded)
-      this.packages = this.service.getPackagesByCategory(event)
-        .subscribe((data: APIResponse) => {
-          this.isloaded = true;
-          this.packages = data.SingleResult;
-        })
+      this.isloading = true;
+    this.service.getPackagesByCategory(event)
+      .subscribe((data: APIResponse) => {
+        this.isloading = false;
+        console.log(this.packages);
+        this.isloaded = true;
+        this.packages = data.SingleResult;
+      })
 
-   }
+  }
 
 }

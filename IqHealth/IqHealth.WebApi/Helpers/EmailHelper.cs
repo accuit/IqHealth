@@ -48,7 +48,7 @@ namespace IqHealth.WebApi.Helpers
             email.Body = body;
             email.Priority = 2;
             email.IsAttachment = false;
-            return SendEmail(email);
+            return SendEmail(email, Convert.ToInt32(model.CompanyID));
         }
 
         public int PrepareAndSendAppointmentEmail(DoctorAppointment model)
@@ -72,23 +72,24 @@ namespace IqHealth.WebApi.Helpers
             email.Body = body;
             email.Priority = 2;
             email.IsAttachment = false;
-            return SendEmail(email);
+            return SendEmail(email, Convert.ToInt32(model.CompanyID));
         }
 
 
-        public int SendEmail(EmailNotification emailmodel)
+        public int SendEmail(EmailNotification emailmodel, int companyId)
         {
             string fromPass, fromAddress, fromName = "";
 
             MailMessage message = new MailMessage();
             SmtpClient smtpClient = new SmtpClient();
             bool isDebugMode = ConfigurationManager.AppSettings["IsDebugMode"] == "Y" ? true : false;
-            message.Subject = ConfigurationManager.AppSettings["Subject"].ToString();
+            message.Subject = getConfigValue(companyId, "Subject");
             try
             {
-                if (!string.IsNullOrEmpty(ConfigurationManager.AppSettings["CCAddress"]))
+
+                if (!string.IsNullOrEmpty(getConfigValue(companyId, "CCAddress")))
                 {
-                    emailmodel.CcEmail = ConfigurationManager.AppSettings["CCAddress"];
+                    emailmodel.CcEmail = getConfigValue(companyId, "CCAddress");
                     message.CC.Add(emailmodel.CcEmail);
                 }
 
@@ -107,11 +108,11 @@ namespace IqHealth.WebApi.Helpers
                 {
 
                     smtpClient.EnableSsl = ConfigurationManager.AppSettings["IsSSL"].ToString() == "Y" ? true : false;
-                    fromName = ConfigurationManager.AppSettings["FromName"].ToString();
-                    fromAddress = ConfigurationManager.AppSettings["FromEmail"].ToString();
-                    fromPass = ConfigurationManager.AppSettings["Password"];
-                    smtpClient.Port = Convert.ToInt32(ConfigurationManager.AppSettings["SMTPPort"]);
-                    smtpClient.Host = ConfigurationManager.AppSettings["SMTPHost"];
+                    fromName = getConfigValue(companyId, "FromName");
+                    fromAddress = getConfigValue(companyId, "FromEmail");
+                    fromPass = getConfigValue(companyId, "Password");
+                    smtpClient.Port = Convert.ToInt32(getConfigValue(companyId, "SMTPPort"));
+                    smtpClient.Host = getConfigValue(companyId, "SMTPHost");
                     message.To.Add(emailmodel.ToEmail);
                 }
 
@@ -129,6 +130,13 @@ namespace IqHealth.WebApi.Helpers
             {
                 return (int)AspectEnums.EmailStatus.Failed;
             }
+        }
+
+        private string getConfigValue(int companyID, string configName)
+        {
+            string config = ConfigurationManager.AppSettings[configName].ToString();
+
+            return config.Split(',').ToArray()[(companyID + 1)];
         }
 
     }

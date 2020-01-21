@@ -14,7 +14,7 @@ export class AppService {
     this.headers = new HttpHeaders({
       'Content-Type': 'application/json; charset=utf-8',
       'Access-Control-Allow-Origin': '*',
-      'No-Auth':'True'
+      'No-Auth': 'True'
     });
   }
 
@@ -42,7 +42,7 @@ export class AppService {
   }
 
   getServiceByID(id): any {
-    return this.httpClient.get<APIResponse>(this.baseUrl + 'api/services/service-details/'+ id, { headers: this.headers });
+    return this.httpClient.get<APIResponse>(this.baseUrl + 'api/services/service-details/' + id, { headers: this.headers });
   }
 
   getAllTests(): any {
@@ -54,7 +54,7 @@ export class AppService {
   }
 
   getPackagesByCategory(id): any {
-    return this.httpClient.get<APIResponse>(this.baseUrl + 'api/services/packages-by-category/'+ id, { headers: this.headers });
+    return this.httpClient.get<APIResponse>(this.baseUrl + 'api/services/packages-by-category/' + id, { headers: this.headers });
   }
   getAllPackages(): any {
     return this.httpClient.get<APIResponse>(this.baseUrl + 'api/services/all-packages', { headers: this.headers });
@@ -69,7 +69,7 @@ export class AppService {
   }
 
   getDoctorsBySpeciality(id: number): any {
-    return this.httpClient.get<APIResponse>(this.baseUrl + 'api/doctors/doctors-by-speciality/' + id.toString() , { headers: this.headers });
+    return this.httpClient.get<APIResponse>(this.baseUrl + 'api/doctors/doctors-by-speciality/' + id.toString(), { headers: this.headers });
   }
 
 
