@@ -82,16 +82,16 @@ namespace IqHealth.WebApi.Helpers
 
             MailMessage message = new MailMessage();
             SmtpClient smtpClient = new SmtpClient();
-            bool isDebugMode = ConfigurationManager.AppSettings["IsDebugMode"] == "Y" ? true : false;
-            message.Subject = getConfigValue(companyId, "Subject");
+            bool isDebugMode = ConfigurationManager.AppSettings["IsDebugMode"] == "N" ? true : false;
+            message.Subject = getConfigValue(companyId, AspectEnums.ConfigKeys.Subject);
             try
             {
 
-                if (!string.IsNullOrEmpty(getConfigValue(companyId, "CCAddress")))
-                {
-                    emailmodel.CcEmail = getConfigValue(companyId, "CCAddress");
-                    message.CC.Add(emailmodel.CcEmail);
-                }
+                //if (!string.IsNullOrEmpty(getConfigValue(companyId, "CCAddress")))
+                //{
+                //    emailmodel.CcEmail = getConfigValue(companyId, "CCAddress");
+                //    message.CC.Add(emailmodel.CcEmail);
+                //}
 
                 if (isDebugMode)
                 {
@@ -107,12 +107,12 @@ namespace IqHealth.WebApi.Helpers
                 else
                 {
 
-                    smtpClient.EnableSsl = ConfigurationManager.AppSettings["IsSSL"].ToString() == "Y" ? true : false;
-                    fromName = getConfigValue(companyId, "FromName");
-                    fromAddress = getConfigValue(companyId, "FromEmail");
-                    fromPass = getConfigValue(companyId, "Password");
-                    smtpClient.Port = Convert.ToInt32(getConfigValue(companyId, "SMTPPort"));
-                    smtpClient.Host = getConfigValue(companyId, "SMTPHost");
+                    smtpClient.EnableSsl = getConfigValue(companyId, AspectEnums.ConfigKeys.IsSSL) == "Y" ? true : false;
+                    fromName = getConfigValue(companyId, AspectEnums.ConfigKeys.FromName);
+                    fromAddress = getConfigValue(companyId, AspectEnums.ConfigKeys.FromEmail);
+                    fromPass = getConfigValue(companyId, AspectEnums.ConfigKeys.Password);
+                    smtpClient.Port = Convert.ToInt32(getConfigValue(companyId, AspectEnums.ConfigKeys.SMTPPort));
+                    smtpClient.Host = getConfigValue(companyId, AspectEnums.ConfigKeys.SMTPHost);
                     message.To.Add(emailmodel.ToEmail);
                 }
 
@@ -132,11 +132,19 @@ namespace IqHealth.WebApi.Helpers
             }
         }
 
-        private string getConfigValue(int companyID, string configName)
+        private string getConfigValue(int companyID, AspectEnums.ConfigKeys key)
         {
-            string config = ConfigurationManager.AppSettings[configName].ToString();
+            string config = AppUtil.GetAppSettings(key);
+            if(config.Contains(','))
+            {
+                return config.Split(',').ToArray()[(companyID - 1)];
+            }
+            else
+            {
+                return config;
+            }
 
-            return config.Split(',').ToArray()[(companyID + 1)];
+            
         }
 
     }

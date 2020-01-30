@@ -8,6 +8,19 @@ namespace IqHealth.Data.Persistence
 {
     public static class AspectEnums
     {
+
+        public enum ConfigKeys
+        {
+            Company,
+            SMTPHost,
+            FromName,
+            FromEmail,
+            Password,
+            SMTPPort,
+            IsSSL,
+            Subject
+        }
+
         public enum EmailStatus
         {
             None = 0,
