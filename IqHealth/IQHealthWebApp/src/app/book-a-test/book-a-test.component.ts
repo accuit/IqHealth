@@ -79,6 +79,11 @@ export class BookATestComponent implements OnInit {
 
   }
 
+  Reset(): void {
+    this.submitted = false;
+    this.loadForm();
+  }
+
   selectTiming(time) {
     this.selectedTimeText = time;
     this.bookingForm.controls['bookingTime'].setValue(time);

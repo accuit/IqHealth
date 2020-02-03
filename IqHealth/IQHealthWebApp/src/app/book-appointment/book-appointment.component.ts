@@ -74,13 +74,18 @@ export class BookAppointmentComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       mobile: ['', [Validators.required, Validators.minLength(10)]],
       age: ['', Validators.maxLength(2)],
-      sex: [''],
+      sex: ['', Validators.required],
       bookingDate: ['', Validators.required],
       bookingTime: ['', Validators.required],
       doctorID: ['', Validators.required],
       companyID: [2]
     });
 
+  }
+
+  reset(): void {
+    this.submitted = false;
+    this.loadForm();
   }
 
   ngOnInit() {
@@ -105,7 +110,7 @@ export class BookAppointmentComponent implements OnInit {
         if (res.IsSuccess) {
           this.appService.sendEmailNotification('api/notification/email-appointment', this.appointmentForm.value);
         }
-        this.appointmentForm.reset();
+        this.reset();
       });
   }
 }

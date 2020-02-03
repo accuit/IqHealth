@@ -63,70 +63,69 @@
                             </div><!-- /.frm-control -->
                         </div><!-- /.col-md-6 -->
                         <div class="col-md-5">
-                            <div class="frm-control" style="border: 1px solid #cac6c6;border-style: none none solid none;">
-                                    <label class="radio-inline">
-                                            <input type="radio" name="sex" formControlName="sex" id="male" value="1"> Male
-                                        </label>
-                                        <label class="radio-inline">
-                                                <input type="radio" name="sex" formControlName="sex" id="female" value="2"> Female
-                                            </label>
-
+                            <div class="frm-control"
+                                style="border: 1px solid #cac6c6;border-style: none none solid none;">
+                                <label class="radio-inline">
+                                    <input type="radio" name="sex" formControlName="sex" id="male" value="1"> Male
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="sex" formControlName="sex" id="female" value="2"> Female
+                                </label>
+                                <div *ngIf="submitted && f.sex.errors" class="invalid">
+                                    <div *ngIf="f.sex.errors.required">Gender is required</div>
+                                </div>
                             </div><!-- /.frm-control -->
                         </div><!-- /.col-md-6 -->
                         <div class="col-md-2">
                             <div class="frm-control">
                                 <input type="text" placeholder="Age" formControlName="age">
                                 <div *ngIf="submitted && f.age.errors" class="invalid">
-                                        <div *ngIf="f.age.errors.maxlength">Max Age can be 99</div>
-                                    </div>
+                                    <div *ngIf="f.age.errors.maxlength">Max Age can be 99</div>
+                                </div>
                             </div><!-- /.frm-control -->
                         </div><!-- /.col-md-6 -->
+
                         <div class="col-md-4">
-                            <div class="frm-control select-datedate">
-                                <input type="text" placeholder="MM-DD-YYYY" formControlName="bookingDate"
-                                useValueAsDate type="date" class="select-date-input" >
-                                    <div *ngIf="submitted && f.bookingDate.errors" class="invalid">
-                                        <div *ngIf="f.bookingDate.errors.required">Booking Date is required</div>
+                            <div class="frm-control">
+                                <div class="btn-group bootstrap-select">
+                                    <button type="button" class="btn dropdown-toggle btn-default"
+                                        data-toggle="dropdown">
+                                        <span class="filter-option pull-left"
+                                            [ngClass]="{'invalid': submitted && f.bookingTime.errors}">
+                                            {{selectedTimeText}}</span>&nbsp;
+                                        <span class="bs-caret"><span class="caret"></span></span>
+                                    </button>
+                                    <div class="dropdown-menu open">
+                                        <ul class="dropdown-menu inner" role="menu">
+                                            <li *ngFor="let u of allTimings"><a (click)="selectTiming(u)">
+                                                    <span class="text">{{u}}</span><span
+                                                        class="glyphicon glyphicon-ok check-mark"></span></a>
+                                            </li>
+                                        </ul>
                                     </div>
-                               
+                                    <select formControlName="bookingTime">
+                                        <option *ngFor="let u of allTimings" [ngValue]="u">
+                                            {{u}}
+                                        </option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-4">
-                                <div class="frm-control">
-                                    <div class="btn-group bootstrap-select">
-                                        <button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown">
-                                            <span class="filter-option pull-left" [ngClass]="{'invalid': submitted && f.bookingTime.errors}"> {{selectedTimeText}}</span>&nbsp;
-                                            <span class="bs-caret"><span class="caret"></span></span>
-                                        </button>
-                                        <div class="dropdown-menu open">
-                                            <ul class="dropdown-menu inner" role="menu">
-                                                <li *ngFor="let u of allTimings"><a (click)="selectTiming(u)">
-                                                        <span class="text">{{u}}</span><span
-                                                            class="glyphicon glyphicon-ok check-mark"></span></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <select formControlName="bookingTime">
-                                            <option *ngFor="let u of allTimings" [ngValue]="u">
-                                                {{u}}
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>                           
-                        </div>
-                        <div class="col-md-4">
-                             
+
                             <div class="frm-control">
                                 <div class="btn-group bootstrap-select">
-                                    <button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown"  title="Select Doctors">
-                                        <span  class="filter-option pull-left"> {{selectedText}}</span>&nbsp;
+                                    <button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown"
+                                        title="Select Doctors">
+                                        <span class="filter-option pull-left"> {{selectedText}}</span>&nbsp;
                                         <span class="bs-caret"><span class="caret"></span></span>
                                     </button>
 
                                     <div class="dropdown-menu open">
                                         <ul class="dropdown-menu inner" role="menu">
-                                            <li *ngFor="let doctor of doctorsList" ><a (click)="selectDoctor(doctor)"> 
-                                                 <span  class="text">{{doctor.FirstName}}</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+                                            <li *ngFor="let doctor of doctorsList"><a (click)="selectDoctor(doctor)">
+                                                    <span class="text">{{doctor.FirstName}}</span><span
+                                                        class="glyphicon glyphicon-ok check-mark"></span></a>
                                             </li>
                                         </ul>
                                     </div>
@@ -134,16 +133,27 @@
                                         <div *ngIf="f.doctorID.errors.required">Please select doctor</div>
                                     </div>
                                     <select formControlName="doctorID">
-                                            <option *ngFor="let doctor of doctorsList" [class.selected]="{'selected':selectedID == doctor.ID.toString() }" [ngValue]="doctor.ID">
-                                                {{doctor.FirstName}}</option>
-                                        </select>
+                                        <option *ngFor="let doctor of doctorsList"
+                                            [class.selected]="{'selected':selectedID == doctor.ID.toString() }"
+                                            [ngValue]="doctor.ID">
+                                            {{doctor.FirstName}}</option>
+                                    </select>
                                 </div>
                             </div>
-                        </div><!-- /.col-md-6 -->
+                        </div>
+                        <div class="col-md-4">
+                            <div class="frm-control select-datedate">
+                                <input type="text" placeholder="MM-DD-YYYY" formControlName="bookingDate" useValueAsDate
+                                    type="date" class="select-date-input">
+                                <div *ngIf="submitted && f.bookingDate.errors" class="invalid">
+                                    <div *ngIf="f.bookingDate.errors.required">Booking Date is required</div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="col-md-12">
                             <div class="frm-control mb0">
                                 <button type="submit">Submit</button>
-                                <button type="reset">Reset</button>
+                                <button type="reset" (click)="reset()">Reset</button>
                             </div><!-- /.frm-control -->
                         </div><!-- /.col-md-12 -->
                     </div><!-- /.row -->
@@ -151,7 +161,7 @@
                     </div>
                 </form>
                 <br>
-               
+
             </div><!-- /.col-md-8 -->
         </div><!-- /.row -->
     </div><!-- /.thm-container -->
