@@ -18,7 +18,7 @@ export class EnquiryComponent implements OnInit {
   subtitle: string = 'Find Doctors';
   parent: string = 'Home';
   isLoaded = false;
-
+  submitted = false;
   enquiryType: number = 1;
   enquiryTypeName: string = 'General Enquiry Form';
   urlParams: any;
@@ -53,6 +53,11 @@ export class EnquiryComponent implements OnInit {
 
   }
 
+  reset(): void {
+    this.submitted = false;
+    this.loadForm();
+  }
+
   loadSubCourses() {
     this.service.getSubCourses()
       .subscribe((data: APIResponse) => {
@@ -70,7 +75,7 @@ export class EnquiryComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.enquiryForm =  this.loadForm();
+    this.loadForm();
 
   }
 
@@ -84,8 +89,10 @@ export class EnquiryComponent implements OnInit {
       });
   }
 
+  get f() { return this.enquiryForm.controls; }
+
   loadForm(): any {
-    return this.formBuilder.group({
+    this.enquiryForm = this.formBuilder.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       phone: ['', [Validators.required, Validators.minLength(10)]],
@@ -107,6 +114,7 @@ export class EnquiryComponent implements OnInit {
   }
 
   onSubmit(): any {
+    this.submitted = true;
     if (this.enquiryForm.invalid) {
       console.log(this.enquiryForm);
       return;
@@ -115,6 +123,7 @@ export class EnquiryComponent implements OnInit {
     this.service.submitOnlineEnquiry(this.enquiryForm.value)
       .subscribe((res: APIResponse) => {
         alert(res.Message);
+        this.reset();
         if (res.IsSuccess) {
           this.appService.sendEmailNotification('api/notification/email-appointment', this.enquiryForm.value);
         }

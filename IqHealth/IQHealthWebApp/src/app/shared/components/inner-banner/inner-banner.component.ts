@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class InnerBannerComponent implements OnInit {
 
   @Input('title') title: string;
-  @Input('url') url: string;
+  @Input('url') url = '/';
   @Input('subtitle') subtitle: string;
   @Input('parent') parent: string;
 

@@ -79,7 +79,7 @@ export class BookATestComponent implements OnInit {
 
   }
 
-  Reset(): void {
+  reset(): void {
     this.submitted = false;
     this.loadForm();
   }
