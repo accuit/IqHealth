@@ -32,9 +32,14 @@ namespace IqHealth.Data.Persistence.Model
         [StringLength(145)]
         public string Name { get; set; }
 
+        public string PhoneNumber { get; set; }
+
         [DataMember]
         [StringLength(1000)]
         public string LogoUrl { get; set; }
+
+        [DataMember]
+        public string PrimaryEmail { get; set; }
 
         [DataMember]
         [StringLength(500)]

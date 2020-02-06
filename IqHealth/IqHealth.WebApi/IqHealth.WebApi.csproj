@@ -186,6 +186,7 @@
     <None Include="Properties\PublishProfiles\HealthIQNew.pubxml" />
     <None Include="Properties\PublishProfiles\IQHealthApi.pubxml" />
     <Content Include="Helpers\EmailTemplates\DoctorAppointmentConfirmation.html" />
+    <Content Include="Helpers\EmailTemplates\OnlineEnquiryResponse.html" />
     <Content Include="Helpers\EmailTemplates\UserBookingConfirmation.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

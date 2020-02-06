@@ -18,7 +18,18 @@ namespace IqHealth.Data.Persistence
             Password,
             SMTPPort,
             IsSSL,
-            Subject
+            Subject,
+            CCAddress,
+            LogoUrl,
+            Phone
+        }
+
+        public enum CompanyInfo
+        {
+            Name,
+            Email,
+            Logo,
+            CustomerCareNo
         }
 
         public enum EmailStatus

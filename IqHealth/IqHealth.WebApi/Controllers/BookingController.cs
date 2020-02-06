@@ -1,15 +1,12 @@
 ﻿using IqHealth.Data.Persistence;
 using IqHealth.Data.Persistence.DTO;
 using IqHealth.Data.Persistence.Model;
-using IqHealth.WebApi.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using System.Web.Http.Cors;
-using System.Web.Http.Description;
 
 namespace IqHealth.WebApi.Controllers
 {
@@ -75,7 +72,7 @@ namespace IqHealth.WebApi.Controllers
 
         [HttpPost]
         [Route("add")]
-        public JsonResponse<int> AddBooking(BookingMaster appointment)
+        public JsonResponse<int> AddBooking(BookingMaster booking)
         {
             JsonResponse<int> response = new JsonResponse<int>();
 
@@ -88,16 +85,16 @@ namespace IqHealth.WebApi.Controllers
             }
             try
             {
-                appointment.CreatedDate = DateTime.Now;
-                appointment.IsDeleted = 0;
-                _context.BookingMasters.Add(appointment);
+                booking.CreatedDate = DateTime.Now;
+                booking.IsDeleted = 0;
+                _context.BookingMasters.Add(booking);
                 response.IsSuccess = _context.SaveChanges() > 0 ? true : false;
 
                 if (response.IsSuccess)
                 {
                     response.StatusCode = "200";
-                    response.Message = "Your appointment is successfully fixed.";
-                    response.SingleResult = appointment.ID;
+                    response.Message = "Your medical test has been booked successfully. We will send you email shortly.";
+                    response.SingleResult = booking.ID;
                 }
             }
             catch (Exception ex)

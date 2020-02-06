@@ -16,14 +16,14 @@ export class BookAppointmentComponent implements OnInit {
 
   appointmentForm: FormGroup;
   submitted = false;
-  inProcess: any;
+  status: any;
   showSpinner: boolean;
   doctorsList: Doctor[];
   isOpd = false;
   isLoaded = false;
   selectedID: any;
   selectedText = 'Select Doctors';
-
+  message: string;
   allTimings = [];
   selectedTimeText = 'Choose Booking Time';
 
@@ -73,7 +73,7 @@ export class BookAppointmentComponent implements OnInit {
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       mobile: ['', [Validators.required, Validators.minLength(10)]],
-      age: ['', Validators.maxLength(2)],
+      age: ['', [Validators.required, Validators.maxLength(2)]],
       sex: ['', Validators.required],
       bookingDate: ['', Validators.required],
       bookingTime: ['', Validators.required],
@@ -85,7 +85,7 @@ export class BookAppointmentComponent implements OnInit {
 
   reset(): void {
     this.submitted = false;
-    this.loadForm();
+    this.appointmentForm.reset();
   }
 
   ngOnInit() {
@@ -102,15 +102,26 @@ export class BookAppointmentComponent implements OnInit {
     if (this.appointmentForm.invalid) {
       return;
     }
-    this.inProcess = true;
     this.showSpinner = true;
     this.appService.submitDoctorAppointment(this.appointmentForm.value)
       .subscribe((res: APIResponse) => {
         this.showSpinner = false;
         if (res.IsSuccess) {
+          this.status = "Success";
+          this.message = res.Message;
           this.appService.sendEmailNotification('api/notification/email-appointment', this.appointmentForm.value);
+          this.reset();
+          
+        } else {
+          this.status = "Fail";
+          this.message = res.Message;
+          return;
         }
-        this.reset();
-      });
+      },
+        err => {
+          this.status = "Fail";
+          this.message = 'An error occured. Try again later.'
+          this.appService.handleError(err);
+        });
   }
 }

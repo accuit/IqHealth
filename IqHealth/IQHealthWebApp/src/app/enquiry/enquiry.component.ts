@@ -22,6 +22,8 @@ export class EnquiryComponent implements OnInit {
   enquiryType: number = 1;
   enquiryTypeName: string = 'General Enquiry Form';
   urlParams: any;
+  status: string;
+  message: string;
 
   enquiryForm: FormGroup;
 
@@ -29,6 +31,7 @@ export class EnquiryComponent implements OnInit {
   doctors: Doctor[] = [];
   selectedID: any;
   selectedText = 'Select Course';
+  showSpinner: boolean;
 
   constructor(private readonly service: AcademyService,
     private readonly formBuilder: FormBuilder,
@@ -55,7 +58,7 @@ export class EnquiryComponent implements OnInit {
 
   reset(): void {
     this.submitted = false;
-    this.loadForm();
+    this.enquiryForm.reset();
   }
 
   loadSubCourses() {
@@ -116,18 +119,29 @@ export class EnquiryComponent implements OnInit {
   onSubmit(): any {
     this.submitted = true;
     if (this.enquiryForm.invalid) {
-      console.log(this.enquiryForm);
       return;
     }
-
+    this.showSpinner = true;
     this.service.submitOnlineEnquiry(this.enquiryForm.value)
       .subscribe((res: APIResponse) => {
-        alert(res.Message);
-        this.reset();
+        this.showSpinner = false;
         if (res.IsSuccess) {
-          this.appService.sendEmailNotification('api/notification/email-appointment', this.enquiryForm.value);
+          this.status = "Success";
+          this.message = res.Message;
+          this.appService.sendEmailNotification('api/notification/email-enquiry', this.enquiryForm.value);
+          this.reset();
+          
+        } else {
+          this.status = "Fail";
+          this.message = res.Message;
+          return;
         }
 
+      },
+      err => {
+        this.status = "Fail";
+        this.message = 'An error occured. Try again later.'
+        this.appService.handleError(err);
       });
   }
 

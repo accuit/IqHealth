@@ -4288,7 +4288,7 @@ body.active-preloader-ovh {
 * 10. fun fact styles 
 ***************************/
 .fun-fact-style-one {
-  background: #A7196C url(../images/fun-fact-bg-1-1.jpg) no-repeat center center;
+  background: #A7196C url(../../assets/images/fun-fact-bg-1-1.jpg) no-repeat center center;
   background-size: cover;
   padding-top: 115px;
   padding-bottom: 125px;

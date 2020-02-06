@@ -8,11 +8,12 @@
     <div class="thm-container">
         <div class="row">
             <div class="col-md-7">
-                <form [formGroup]="enquiryForm" (ngSubmit)="onSubmit()" class="appointment-form contact-form" novalidate="novalidate">
+                <form [formGroup]="enquiryForm" (ngSubmit)="onSubmit()" class="appointment-form" novalidate="novalidate">
                     <h3>{{enquiryTypeName}}</h3>
                     <p>Send us your contact information for anything you need and we’ll be happy to assist you!</p>
                     <div class="row">
                         <div class="col-md-6">
+                            <input type="text" style="display: none;" formControlName="companyID">
                             <div class="frm-control">
                                 <input type="text" placeholder="Full Name" formControlName="name">
                                 <div *ngIf="submitted && f.name.errors" class="invalid">
@@ -75,7 +76,12 @@
                                 <div *ngIf="submitted && f.message.errors" class="invalid">
                                     <div *ngIf="f.message.errors.required">Messsage is required</div>
                                 </div>
-                                <button type="submit">Submit & Download</button>
+                                <div *ngIf="status==='Success'" class="alert alert-success alert-dismissible" role="alert">{{ message }}</div>
+                            <div *ngIf="status==='Fail'" class="alert alert-danger alert-dismissible" role="alert">{{ message }}</div>
+                            
+                                <button *ngIf="!showSpinner" type="submit">Submit & Download</button>
+                                <button *ngIf="showSpinner" type="submit">Sending Request...</button>
+                                
                                 <!-- <button type="reset" (click)="reset()">Reset</button> -->
                             </div><!-- /.frm-control -->
                         

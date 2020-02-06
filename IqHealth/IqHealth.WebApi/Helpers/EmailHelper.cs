@@ -15,13 +15,8 @@ namespace IqHealth.WebApi.Helpers
 {
     public class EmailHelper
     {
-        public static readonly string EMAIL_SENDER = "xyz.abc@outlook.com"; // change it to actual sender email id or get it from UI input  
-        public static readonly string EMAIL_CREDENTIALS = "*******"; // Provide credentials   
-        public static readonly string SMTP_CLIENT = "smtp-mail.outlook.com"; // as we are using outlook so we have provided smtp-mail.outlook.com   
-        public static readonly string EMAIL_BODY = "Reset your Password <a href='http://{0}.safetychain.com/api/Account/forgotPassword?{1}'>Here.</a>";
 
-
-        public int PrepareAndSendEmail(BookingMaster model)
+        public int PrepareAndSendBookingEmail(BookingMaster model)
         {
 
             string body = string.Empty;
@@ -39,6 +34,11 @@ namespace IqHealth.WebApi.Helpers
             body = body.Replace("{Address}", model.Address);
             body = body.Replace("{Landmark}", model.Landmark);
             body = body.Replace("{PinCode}", model.PinCode);
+
+            var C = GetCompanyDetails(Convert.ToInt32(model.CompanyID));
+            body = body.Replace("{Company}", C.Name);
+            body = body.Replace("{ContactNo}", C.PhoneNumber);
+            body = body.Replace("{Logo}", C.LogoUrl);
 
 
             EmailNotification email = new EmailNotification();
@@ -65,6 +65,38 @@ namespace IqHealth.WebApi.Helpers
             body = body.Replace("{Email}", model.Email);
             body = body.Replace("{Mobile}", model.Mobile);
 
+            var C = GetCompanyDetails(Convert.ToInt32(model.CompanyID));
+            body = body.Replace("{Company}", C.Name);
+            body = body.Replace("{ContactNo}", C.PhoneNumber);
+            body = body.Replace("{Logo}", C.LogoUrl);
+
+            EmailNotification email = new EmailNotification();
+            email.ToEmail = model.Email;
+            email.Status = (int)AspectEnums.EmailStatus.Pending;
+            email.Message = body;
+            email.Body = body;
+            email.Priority = 2;
+            email.IsAttachment = false;
+            return SendEmail(email, Convert.ToInt32(model.CompanyID));
+        }
+
+        public int PrepareAndSendEnquiryEmail(OnlineEnquiry model)
+        {
+            string body = string.Empty;
+            using (StreamReader reader = new StreamReader(System.Web.HttpContext.Current.Server.MapPath("~/Helpers/EmailTemplates/OnlineEnquiryResponse.html")))
+            {
+                body = reader.ReadToEnd();
+            }
+
+            var C = GetCompanyDetails(model.CompanyID);
+
+            body = body.Replace("{Name}", model.Name);
+            
+            body = body.Replace("{Company}", C.Name);
+            body = body.Replace("{ContactNo}", C.PhoneNumber);
+            body = body.Replace("{Logo}", C.LogoUrl);
+
+
             EmailNotification email = new EmailNotification();
             email.ToEmail = model.Email;
             email.Status = (int)AspectEnums.EmailStatus.Pending;
@@ -82,16 +114,16 @@ namespace IqHealth.WebApi.Helpers
 
             MailMessage message = new MailMessage();
             SmtpClient smtpClient = new SmtpClient();
-            bool isDebugMode = ConfigurationManager.AppSettings["IsDebugMode"] == "N" ? true : false;
+            bool isDebugMode = ConfigurationManager.AppSettings["IsDebugMode"] == "Y" ? true : false;
             message.Subject = getConfigValue(companyId, AspectEnums.ConfigKeys.Subject);
             try
             {
 
-                //if (!string.IsNullOrEmpty(getConfigValue(companyId, "CCAddress")))
-                //{
-                //    emailmodel.CcEmail = getConfigValue(companyId, "CCAddress");
-                //    message.CC.Add(emailmodel.CcEmail);
-                //}
+                if (!string.IsNullOrEmpty(getConfigValue(companyId, AspectEnums.ConfigKeys.CCAddress)))
+                {
+                    emailmodel.CcEmail = getConfigValue(companyId, AspectEnums.ConfigKeys.CCAddress);
+                    message.CC.Add(emailmodel.CcEmail);
+                }
 
                 if (isDebugMode)
                 {
@@ -126,16 +158,17 @@ namespace IqHealth.WebApi.Helpers
                 return (int)AspectEnums.EmailStatus.Sent;
 
             }
-            catch
+            catch (Exception ex)
             {
+
                 return (int)AspectEnums.EmailStatus.Failed;
             }
         }
 
-        private string getConfigValue(int companyID, AspectEnums.ConfigKeys key)
+        private static string getConfigValue(int companyID, AspectEnums.ConfigKeys key)
         {
             string config = AppUtil.GetAppSettings(key);
-            if(config.Contains(','))
+            if (config.Contains(','))
             {
                 return config.Split(',').ToArray()[(companyID - 1)];
             }
@@ -144,7 +177,19 @@ namespace IqHealth.WebApi.Helpers
                 return config;
             }
 
-            
+
+        }
+
+        public static CompanyMaster GetCompanyDetails(int id)
+        {
+            CompanyMaster c = new CompanyMaster();
+            c.ID = id;
+            c.Name = getConfigValue(id, AspectEnums.ConfigKeys.FromName);
+            c.PrimaryEmail = getConfigValue(id, AspectEnums.ConfigKeys.FromEmail);
+            c.LogoUrl = getConfigValue(id, AspectEnums.ConfigKeys.LogoUrl);
+            c.PhoneNumber = getConfigValue(id, AspectEnums.ConfigKeys.Phone);
+
+            return c;
         }
 
     }

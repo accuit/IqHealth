@@ -24,7 +24,7 @@ namespace IqHealth.WebApi.Controllers
             try
             {
                 EmailHelper eHelper = new EmailHelper();
-                int status =  eHelper.PrepareAndSendEmail(model);
+                int status =  eHelper.PrepareAndSendBookingEmail(model);
                
                 if (status == (int)AspectEnums.EmailStatus.Sent)
                 {
@@ -62,6 +62,43 @@ namespace IqHealth.WebApi.Controllers
                
                 EmailHelper eHelper = new EmailHelper();
                 int status = eHelper.PrepareAndSendAppointmentEmail(model);
+                if (status == (int)AspectEnums.EmailStatus.Sent)
+                {
+                    response.Message = string.Format("Email successfully sent to {0} at {1}.", model.Name, model.Email);
+                    response.StatusCode = "200";
+                    response.IsSuccess = true;
+                    response.SingleResult = status;
+                }
+                else
+                {
+                    response.Message = string.Format("Could not send email to {0} at {1}.", model.Name, model.Email);
+                    response.StatusCode = "500";
+                    response.IsSuccess = false;
+                    response.SingleResult = status;
+                }
+            }
+            catch (Exception ex)
+            {
+                response.IsSuccess = false;
+                response.Message = ex.Message;
+                response.StatusCode = "500";
+                response.SingleResult = 0;
+            }
+
+            return response;
+        }
+
+        [Route("email-enquiry")]
+        [HttpPost]
+        public JsonResponse<int> SendEnquiryEmail(OnlineEnquiry model)
+        {
+            JsonResponse<int> response = new JsonResponse<int>();
+
+            try
+            {
+
+                EmailHelper eHelper = new EmailHelper();
+                int status = eHelper.PrepareAndSendEnquiryEmail(model);
                 if (status == (int)AspectEnums.EmailStatus.Sent)
                 {
                     response.Message = string.Format("Email successfully sent to {0} at {1}.", model.Name, model.Email);

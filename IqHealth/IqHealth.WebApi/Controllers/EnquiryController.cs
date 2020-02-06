@@ -45,7 +45,7 @@ namespace IqHealth.WebApi.Controllers
                 if (response.IsSuccess)
                 {
                     response.StatusCode = "200";
-                    response.Message = "Your enquiry is successfully posted.";
+                    response.Message = "Your enquiry is successfully posted.  We will send you email shortly.";
                     response.SingleResult = appointment.ID;
                 }
             }

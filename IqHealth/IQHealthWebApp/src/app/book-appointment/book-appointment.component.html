@@ -30,7 +30,7 @@
                 </div><!-- /.appointment-sidebar -->
             </div><!-- /.col-md-4 -->
             <div class="col-md-8">
-                <form [formGroup]="appointmentForm" (ngSubmit)="onSubmit()" class="appointment-form contact-form">
+                <form [formGroup]="appointmentForm" (ngSubmit)="onSubmit()" class="appointment-form">
                     <h3>Need an <span class="color-1">Advice</span> from <span class="color-2">Expert Doctor?</span>
                         Get an Appointment Today!</h3>
                     <p>To speak with a representative, Call us <span>+91-801-792-6291</span></p>
@@ -80,6 +80,7 @@
                             <div class="frm-control">
                                 <input type="text" placeholder="Age" formControlName="age">
                                 <div *ngIf="submitted && f.age.errors" class="invalid">
+                                    <div *ngIf="f.age.errors.required">Age can not be empty.</div>
                                     <div *ngIf="f.age.errors.maxlength">Max Age can be 99</div>
                                 </div>
                             </div><!-- /.frm-control -->
@@ -151,8 +152,12 @@
                             </div>
                         </div>
                         <div class="col-md-12">
+                            <div *ngIf="status==='Success'" class="alert alert-success alert-dismissible" role="alert">{{ message }}</div>
+                            <div *ngIf="status==='Fail'" class="alert alert-danger alert-dismissible" role="alert">{{ message }}</div>
                             <div class="frm-control mb0">
-                                <button type="submit">Submit</button>
+                                <button *ngIf="!showSpinner" type="submit">Submit</button>
+                                <button *ngIf="showSpinner" type="submit">Sending Request...</button>
+                                
                                 <button type="reset" (click)="reset()">Reset</button>
                             </div><!-- /.frm-control -->
                         </div><!-- /.col-md-12 -->

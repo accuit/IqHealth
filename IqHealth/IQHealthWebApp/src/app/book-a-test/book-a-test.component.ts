@@ -23,6 +23,8 @@ export class BookATestComponent implements OnInit {
   allTimings = [];
   selectedTimeID: any;
   selectedTimeText = 'Choose Booking Time';
+  status: string;
+  message: string;
 
   constructor(private formBuilder: FormBuilder, private readonly appService: AppService, private readonly jsonService: AppJsonService) { }
 
@@ -68,12 +70,20 @@ export class BookATestComponent implements OnInit {
     this.appService.submitBooking(this.bookingForm.value)
       .subscribe((res: APIResponse) => {
         this.showSpinner = false;
-        alert(res.Message);
         if (res.IsSuccess) {
-          //  this.appService.sendEmailNotification('api/notification/email-booking', this.bookingForm.value);
+          this.status = "Success";
+          this.message = res.Message;
+          this.appService.sendEmailNotification('api/notification/email-booking', this.bookingForm.value);
+          this.reset();
+        } else {
+          this.status = "Fail";
+          this.message = res.Message;
+          return;
         }
       },
         err => {
+          this.status = "Fail";
+          this.message = 'An error occured. Try again later.'
           this.appService.handleError(err);
         })
 
@@ -81,7 +91,7 @@ export class BookATestComponent implements OnInit {
 
   reset(): void {
     this.submitted = false;
-    this.loadForm();
+    this.bookingForm.reset();
   }
 
   selectTiming(time) {
