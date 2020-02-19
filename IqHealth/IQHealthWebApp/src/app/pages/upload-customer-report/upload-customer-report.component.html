@@ -19,7 +19,7 @@
                                         <div class="dropdown-menu open">
                                             <ul class="dropdown-menu inner" role="menu">
                                                 <li *ngFor="let c of customers" ><a (click)="selectCustomer(c)"> 
-                                                     <span  class="text">{{c.FirstName}}</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+                                                     <span  class="text">{{ c.FirstName }} {{ c.LastName }}</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
                                                 </li>
                                             </ul>
                                         </div>

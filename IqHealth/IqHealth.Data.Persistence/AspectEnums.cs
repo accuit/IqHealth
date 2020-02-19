@@ -40,6 +40,14 @@ namespace IqHealth.Data.Persistence
             Sent = 3
         }
 
+        public enum AccountStatus
+        {
+            Pending = 0,
+            Active = 1,
+            InActive = 2
+
+        }
+
         public enum Sex
         {
             Male = 1,

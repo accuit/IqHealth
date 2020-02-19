@@ -3,6 +3,7 @@ using IqHealth.Data.Persistence.DTO;
 using IqHealth.Data.Persistence.Model;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -25,6 +26,8 @@ namespace IqHealth.WebApi.Controllers
         public JsonResponse<List<UploadedReports>> GetCustomerReports(int id)
         {
             JsonResponse<List<UploadedReports>> response = new JsonResponse<List<UploadedReports>>();
+            var data = _context.UploadedReports.AsEnumerable<UploadedReports>().Where(x => x.UserID == id).Select(x => new { x.ID, x.FileName});
+
             response.SingleResult = _context.UploadedReports.Where(x => x.UserID == id).ToList();
             response.StatusCode = "200";
             response.Message = "Reports fetched successfully.";

@@ -20,12 +20,12 @@ import { ResetPasswordComponent } from './academy/account/reset-password/reset-p
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AuthGuard } from './authenication/auth.guard';
 import { BookATestComponent } from './book-a-test/book-a-test.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
+    component: HomeComponent
   },
   {
     path: 'home',
@@ -106,7 +106,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    component: LoginComponent
+    component: PagenotfoundComponent
   }
 ];
 

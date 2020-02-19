@@ -28,7 +28,7 @@ namespace IqHealth.Data.Persistence.Model
 
         [DataMember]
         [Required]
-        public byte File { get; set; }
+        public byte[] File { get; set; }
 
 
         [DataMember]

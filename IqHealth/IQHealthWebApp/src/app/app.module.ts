@@ -32,6 +32,7 @@ import { PagesModule } from './pages/pages.module';
 import { AuthGuard } from './authenication/auth.guard';
 import { AuthInterceptor } from './authenication/auth.interceptor';
 import { BookATestComponent } from './book-a-test/book-a-test.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { BookATestComponent } from './book-a-test/book-a-test.component';
     ContactUsComponent,
     AboutUsComponent,
     EnquiryComponent,
-    BookATestComponent
+    BookATestComponent,
+    PagenotfoundComponent
   ],
   imports: [
     ReactiveFormsModule,

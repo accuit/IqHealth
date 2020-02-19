@@ -90,6 +90,8 @@ namespace IqHealth.WebApi.Controllers
             {
                 try
                 {
+                    user.UserStatus = (int)AspectEnums.AccountStatus.Pending;
+                    user.CreatedDate = DateTime.Now;
                     _context.UserMasters.Add(user);
                     response.SingleResult = _context.SaveChanges();
                     response.StatusCode = response.SingleResult > 0 ? "200" : "500";
