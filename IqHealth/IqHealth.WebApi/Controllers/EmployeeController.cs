@@ -72,7 +72,7 @@ namespace IqHealth.WebApi.Controllers
                 {
                     int UserID = Convert.ToInt32(httpRequest.Headers["UserID"]);
                     int UserType = Convert.ToInt32(httpRequest.Headers["UserType"]);
-                    int CompanyID = Convert.ToInt32(httpRequest.Headers["CompanyID"]);
+                    int CompanyID = Convert.ToInt32(httpRequest.Headers["Company"]);
 
                     int CustomerID = Convert.ToInt32(httpRequest.Form["UserID"]);
 

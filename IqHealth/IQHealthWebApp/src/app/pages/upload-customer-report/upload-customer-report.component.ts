@@ -56,8 +56,7 @@ export class UploadCustomerReportComponent implements OnInit {
 
   uploadAndProgress() {
     console.log(this.files);
-    this.pageService
-      .uploadCustomerReport(this.files, this.userID)
+    this.pageService.uploadCustomerReport(this.files, this.selectedCustomerID)
       .subscribe(event => {
         if (event.type === HttpEventType.UploadProgress) {
           this.percentDone = Math.round((100 * event.loaded) / event.total);
