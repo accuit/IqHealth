@@ -18,11 +18,12 @@ export class PagesService {
     });
   }
 
-  uploadCustomerReport(files: File[], customerID: string): Observable<any> {
+  uploadCustomerReport(files: File[], customerID: string, userID): Observable<any> {
     const formData: FormData = new FormData();
     Array.from(files).forEach(f => formData.append('file', f))
 
-    formData.append('userID', customerID);
+    formData.append('customerID', customerID);
+    formData.append('userID', userID);
     return this.http.post(this.baseUrl + 'api/employee/upload-report', formData, { reportProgress: true, observe: 'events' });
   }
 

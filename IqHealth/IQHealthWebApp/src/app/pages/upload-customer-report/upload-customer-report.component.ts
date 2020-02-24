@@ -15,10 +15,12 @@ export class UploadCustomerReportComponent implements OnInit {
   uploadForm: FormGroup;
   submitted = false;
   selectedCustomerID: any;
-  selectedCustomerText = "Select Customer";
+  selectedCustomerText = 'Select Customer';
   customers: UserMaster[] = [];
   isLoaded = false;
   files: any;
+  isUploading = false;
+  message: string = 'Processing...';
 
   percentDone: number;
   uploadSuccess: boolean;
@@ -30,7 +32,7 @@ export class UploadCustomerReportComponent implements OnInit {
     private formBuilder: FormBuilder,
     private readonly accountService: AccountService,
     private readonly pageService: PagesService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.getCustomers();
@@ -55,17 +57,19 @@ export class UploadCustomerReportComponent implements OnInit {
   }
 
   uploadAndProgress() {
-    console.log(this.files);
-    this.pageService.uploadCustomerReport(this.files, this.selectedCustomerID)
+    this.isUploading = true;
+    this.pageService.uploadCustomerReport(this.files, this.selectedCustomerID, this.userID)
       .subscribe(event => {
         if (event.type === HttpEventType.UploadProgress) {
           this.percentDone = Math.round((100 * event.loaded) / event.total);
         } else if (event instanceof HttpResponse) {
           if (event.body.IsSuccess) {
-            alert("Report successfully uploaded.");
             this.uploadSuccess = true;
+            this.isUploading = false;
+            this.uploadForm.reset();
+            this.message = 'Report successfully uploaded.';
           } else {
-            alert(event.body.message);
+            this.message = event.body.Message;
           }
         }
       });
