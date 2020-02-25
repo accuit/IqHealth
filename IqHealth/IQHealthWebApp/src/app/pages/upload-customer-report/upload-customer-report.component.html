@@ -20,7 +20,7 @@
                                         <div class="dropdown-menu open">
                                             <ul class="dropdown-menu inner" role="menu">
                                                 <li *ngFor="let c of customers"><a (click)="selectCustomer(c)">
-                                                        <span class="text">{{ c.FirstName }} {{ c.LastName }}</span>
+                                                        <span class="text">{{ c.FirstName }} {{ c.LastName }} ({{ c.Mobile }})</span>
                                                         <span class="glyphicon glyphicon-ok check-mark"></span></a>
                                                 </li>
                                             </ul>
@@ -29,34 +29,33 @@
                                             <option *ngFor="let c of customers"
                                                 [class.selected]="{'selected':selectedCustomerID == c.ID.toString() }"
                                                 [ngValue]="c.ID">
-                                                {{c.FirstName}}</option>
+                                                {{ c.FirstName }} {{ c.LastName }} ({{ c.Mobile }})</option>
                                         </select>
                                     </div>
                                 </div>
 
-                                <div class="col-md-6">
+                                <!-- <div class="col-md-6">
                                     <div class="frm-control">
                                         <input type="text" placeholder="Comments or Notes" formControlName="comments">
                                     </div>
-                                </div>
+                                </div> -->
 
-                                <div class="col-md-12">
-                                    <input type="file" (change)="upload($event.target.files)"
-                                        formControlName="fileName">
-                                    <span> Upload Status: {{percentDone}} %</span>
+                                <div class="col-md-6">
+                                    <input type="file" accept=".pdf" (change)="upload($event.target.files)" formControlName="fileName">
+                                    <span *ngIf="isUploading"> Upload Status: {{percentDone}} %</span>
                                 </div>
 
                                 <div class="col-md-12">
                                     
                                     <div class="frm-control mb0">
-                                        <button *ngIf="!isUploading" [disabled]="!uploadForm.valid" type="submit">Upload
+                                        <button *ngIf="!isUploading" [disabled]="!uploadForm.valid && !isError" type="submit">Upload
                                             Report</button>
                                         <button *ngIf="isUploading" type="button">Uploading...</button>
                                     </div>
                                     <br>
                                     <div *ngIf="uploadSuccess" class="alert alert-success alert-dismissible"
                                         role="alert">{{ message }}</div>
-                                    <div *ngIf="isUploading && !uploadSuccess"
+                                    <div *ngIf="isError"
                                         class="alert alert-danger alert-dismissible" role="alert">{{ message }}</div>
                                 </div>
                             </div>

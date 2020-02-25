@@ -5,6 +5,8 @@ using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
+using System.Data.Entity;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
@@ -16,17 +18,17 @@ using System.Web.UI.WebControls;
 
 namespace IqHealth.WebApi.Controllers
 {
-    [RoutePrefix("api/employee")]
-    public class EmployeeController : ApiController
+    [RoutePrefix("api/upload")]
+    public class UploadController : ApiController
     {
         private readonly IqHealthDBContext _context;
 
-        public EmployeeController()
+        public UploadController()
         {
             _context = new IqHealthDBContext();
         }
 
-        protected int UploadFile( HttpPostedFile file, UploadedReports U)
+        protected int UploadFile(HttpPostedFile file, UploadedReports U)
         {
 
             using (Stream fs = file.InputStream)
@@ -37,19 +39,20 @@ namespace IqHealth.WebApi.Controllers
                     string constr = ConfigurationManager.ConnectionStrings["IqHealthConnection"].ConnectionString;
                     using (MySqlConnection con = new MySqlConnection(constr))
                     {
-                        string query = "INSERT INTO `UploadedReports`(`UserID`,`FileName` ,`UploadedDate`,`UploadedBy` ,`CompanyID`,`File`) " +
+                        string query = "INSERT INTO `UploadedReports`(`UserID`,`FileName` ,`UploadedDate`,`UploadedBy` ,`CompanyID`,`File`)  OUTPUT INSERTED.ID" +
                             "VALUES (@CustomerID, @FileName, @UploadedDate, @UploadedBy, @CompanyID, @File)";
                         using (MySqlCommand cmd = new MySqlCommand(query))
                         {
                             cmd.Connection = con;
                             cmd.Parameters.AddWithValue("@CustomerID", U.UserID);
                             cmd.Parameters.AddWithValue("@FileName", file.FileName);
+                            cmd.Parameters.AddWithValue("@FilePath", U.FilePath);
                             cmd.Parameters.AddWithValue("@UploadedDate", DateTime.Now);
                             cmd.Parameters.AddWithValue("@UploadedBy", U.UploadedBy);
                             cmd.Parameters.AddWithValue("@CompanyID", U.CompanyID);
                             cmd.Parameters.AddWithValue("@File", null);
                             con.Open();
-                            int id = cmd.ExecuteNonQuery();
+                            int id = (Int32)cmd.ExecuteNonQuery();
                             con.Close();
                             return id;
                         }
@@ -60,7 +63,7 @@ namespace IqHealth.WebApi.Controllers
 
 
         [HttpPost]
-        [Route("upload-report")]
+        [Route("medical-report")]
         public JsonResponse<int> UploadCustomerReport()
         {
             JsonResponse<int> response = new JsonResponse<int>();
@@ -74,9 +77,7 @@ namespace IqHealth.WebApi.Controllers
                     int EmpID = Convert.ToInt32(httpRequest.Headers["UserID"]);
                     int UserType = Convert.ToInt32(httpRequest.Headers["UserType"]);
                     int CompanyID = Convert.ToInt32(httpRequest.Headers["Company"]);
-
                     int CustomerID = Convert.ToInt32(httpRequest.Form["customerID"]);
-
 
                     foreach (string file in httpRequest.Files)
                     {
@@ -85,8 +86,12 @@ namespace IqHealth.WebApi.Controllers
                         U.UploadedBy = EmpID;
                         U.UserID = CustomerID;
                         U.FileName = postedFile.FileName;
+                        U.FilePath = postedFile.FileName;
                         U.CompanyID = CompanyID;
-                        U.ID = UploadFile(postedFile, U);
+                        U.UploadedDate = DateTime.Now;
+                        U.FileType = (int)AspectEnums.FileType.MedicalReport;
+                        _context.UploadedReports.Add(U);
+                        _context.SaveChanges();
                         response.SingleResult = U.ID;
                         SaveFileInFolder(postedFile, U);
                     }
@@ -101,6 +106,13 @@ namespace IqHealth.WebApi.Controllers
                 }
 
             }
+            catch (DataException ex)
+            {
+                response.SingleResult = 0;
+                response.StatusCode = "500";
+                response.IsSuccess = false;
+                response.Message = "File with this name has already uploaded. Rename and try again.";
+            }
             catch (Exception ex)
             {
                 response.SingleResult = 0;
@@ -112,7 +124,7 @@ namespace IqHealth.WebApi.Controllers
         }
 
 
-        private static void SaveFileInFolder(HttpPostedFile postedFile, UploadedReports U)
+        private async void SaveFileInFolder(HttpPostedFile postedFile, UploadedReports U)
         {
             var docfiles = new List<string>();
 
@@ -121,8 +133,12 @@ namespace IqHealth.WebApi.Controllers
             var filePath = folder + "/" + savedFileName;
             System.IO.Directory.CreateDirectory(folder);
             postedFile.SaveAs(filePath);
-
             docfiles.Add(filePath);
+
+            U.FilePath = filePath;
+            U.FileName = savedFileName;
+            _context.Entry(U).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
 
 
         }

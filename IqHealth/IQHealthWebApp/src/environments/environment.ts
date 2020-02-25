@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   environmentName: 'QA',
-  apiUrl: 'http://localhost:65114/'
+  apiUrl: 'http://localhost:8087/'
 };
 
 /*

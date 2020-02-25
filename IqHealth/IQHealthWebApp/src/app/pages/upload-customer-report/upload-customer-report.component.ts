@@ -5,6 +5,7 @@ import { AppJsonService } from "src/app/core/app.json.service";
 import { APIResponse, UserMaster } from "src/app/core/app.models";
 import { HttpResponse, HttpEventType } from "@angular/common/http";
 import { PagesService } from "../pages.service";
+import { UserTypeEnum } from '../shared/model/enums';
 
 @Component({
   selector: "app-upload-customer-report",
@@ -27,6 +28,7 @@ export class UploadCustomerReportComponent implements OnInit {
 
   @Input("userID") userID: string;
   @Input("userType") userType: string;
+  isError: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -51,12 +53,18 @@ export class UploadCustomerReportComponent implements OnInit {
       companyID: [2, Validators.required]
     });
   }
+
   upload(files: File[]) {
     //pick from one of the 4 styles of file uploads below
     this.files = files;
   }
 
   uploadAndProgress() {
+    if (this.files[0].type !== 'application/pdf') {
+      this.isError = true;
+      this.message = 'Please upload pdf report only.';
+      return;
+    }
     this.isUploading = true;
     this.pageService.uploadCustomerReport(this.files, this.selectedCustomerID, this.userID)
       .subscribe(event => {
@@ -65,13 +73,16 @@ export class UploadCustomerReportComponent implements OnInit {
         } else if (event instanceof HttpResponse) {
           if (event.body.IsSuccess) {
             this.uploadSuccess = true;
-            this.isUploading = false;
             this.uploadForm.reset();
             this.message = 'Report successfully uploaded.';
           } else {
             this.message = event.body.Message;
+            this.isError = true;
+            return;
           }
         }
+        this.isUploading = false;
+        this.isError = false;
       });
   }
 
@@ -82,7 +93,7 @@ export class UploadCustomerReportComponent implements OnInit {
   }
 
   getCustomers() {
-    this.accountService.getUsersByType(1).subscribe((res: APIResponse) => {
+    this.accountService.getUsersByType(UserTypeEnum.Customer).subscribe((res: APIResponse) => {
       if (res.IsSuccess) {
         this.customers = res.SingleResult;
         this.isLoaded = true;
