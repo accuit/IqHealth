@@ -1,6 +1,7 @@
 ﻿using IqHealth.Data.Persistence;
 using IqHealth.Data.Persistence.DTO;
 using IqHealth.Data.Persistence.Model;
+using Microsoft.AspNetCore.Hosting;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -12,18 +13,21 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.UI.WebControls;
 
 namespace IqHealth.WebApi.Controllers
 {
-    [RoutePrefix("api/upload")]
-    public class UploadController : ApiController
+    [RoutePrefix("api/reports")]
+    public class ReportsController : ApiController
     {
         private readonly IqHealthDBContext _context;
+        private readonly IHostingEnvironment host;
 
-        public UploadController()
+        public ReportsController()
         {
             _context = new IqHealthDBContext();
         }
@@ -63,7 +67,7 @@ namespace IqHealth.WebApi.Controllers
 
 
         [HttpPost]
-        [Route("medical-report")]
+        [Route("upload-diagnostic")]
         public JsonResponse<int> UploadCustomerReport()
         {
             JsonResponse<int> response = new JsonResponse<int>();
@@ -90,6 +94,18 @@ namespace IqHealth.WebApi.Controllers
                         U.CompanyID = CompanyID;
                         U.UploadedDate = DateTime.Now;
                         U.FileType = (int)AspectEnums.FileType.MedicalReport;
+
+                        var fileExist = _context.UploadedReports.Where(x => x.FileName == U.FileName && x.CompanyID == U.CompanyID).FirstOrDefault();
+                        if(fileExist != null)
+                        {
+                            response.StatusCode = "200";
+                            response.IsSuccess = false;
+                            response.Message = "File with name " + U.FileName + " already exist. Rename and try again.";
+                            response.SingleResult = 0;
+                            return response;
+                        }
+
+
                         _context.UploadedReports.Add(U);
                         _context.SaveChanges();
                         response.SingleResult = U.ID;
@@ -111,7 +127,7 @@ namespace IqHealth.WebApi.Controllers
                 response.SingleResult = 0;
                 response.StatusCode = "500";
                 response.IsSuccess = false;
-                response.Message = "File with this name has already uploaded. Rename and try again.";
+                response.Message = ex.InnerException.Message;
             }
             catch (Exception ex)
             {
@@ -128,7 +144,7 @@ namespace IqHealth.WebApi.Controllers
         {
             var docfiles = new List<string>();
 
-            string savedFileName = U.ID + "_" + postedFile.FileName;
+            string savedFileName = postedFile.FileName;
             string folder = HttpContext.Current.Server.MapPath("~/Content/DiagnosticReports/" + U.UserID);
             var filePath = folder + "/" + savedFileName;
             System.IO.Directory.CreateDirectory(folder);
@@ -141,6 +157,58 @@ namespace IqHealth.WebApi.Controllers
             await _context.SaveChangesAsync();
 
 
+        }
+
+        [HttpGet()]
+        [Route("get-user-files/{id}")]
+        public JsonResponse<List<UploadedReports>> GetCustomerReports(int id)
+        {
+            JsonResponse<List<UploadedReports>> response = new JsonResponse<List<UploadedReports>>();
+            var data = _context.UploadedReports.AsEnumerable<UploadedReports>().Where(x => x.UserID == id).Select(x => new { x.ID, x.FileName });
+
+            response.SingleResult = _context.UploadedReports.Where(x => x.UserID == id).ToList();
+            response.StatusCode = "200";
+            response.Message = "Reports fetched successfully.";
+            response.IsSuccess = true;
+
+            return response;
+        }
+
+        [HttpGet]
+        [Route("getFile/{name}/{userID}")]
+        public HttpResponseMessage GetFile(string name, int userID)
+        {
+            //Create HTTP Response.
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK);
+
+            //Set the File Path.
+            string filePath = HttpContext.Current.Server.MapPath("~/Content/DiagnosticReports/" + userID + "/") + name;
+
+            //Check whether File exists.
+            if (!File.Exists(filePath))
+            {
+                //Throw 404 (Not Found) exception if File not found.
+                response.StatusCode = HttpStatusCode.NotFound;
+                response.ReasonPhrase = string.Format("File not found: {0} .", name);
+                throw new HttpResponseException(response);
+            }
+
+            //Read the File into a Byte Array.
+            byte[] bytes = File.ReadAllBytes(filePath);
+
+            //Set the Response Content.
+            response.Content = new ByteArrayContent(bytes);
+
+            //Set the Response Content Length.
+            response.Content.Headers.ContentLength = bytes.LongLength;
+
+            //Set the Content Disposition Header Value and FileName.
+            response.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment");
+            response.Content.Headers.ContentDisposition.FileName = name;
+
+            //Set the File Content Type.
+            response.Content.Headers.ContentType = new MediaTypeHeaderValue(MimeMapping.GetMimeMapping(name));
+            return response;
         }
     }
 }

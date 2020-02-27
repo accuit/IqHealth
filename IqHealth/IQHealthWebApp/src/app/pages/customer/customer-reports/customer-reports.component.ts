@@ -12,21 +12,28 @@ export class CustomerReportsComponent implements OnInit {
 
   reports: UploadedReports[] = [];
   isLoaded = false;
+  downloadUrl = 'http://localhost:65114/api/reports/getFile/';
 
   @Input('userID') userID: string;
   @Input('userType') userType: string;
+
   constructor(
-
     private readonly service: PagesService) {
-
   }
 
   ngOnInit() {
-    this.getUserReports(this.userID, 2);
+    this.getUserReports(this.userID);
   }
 
-  getUserReports(userID, companyID) {
-    this.service.getCustomerReports(userID, companyID)
+  downLoadReport(name){
+    this.service.download(name, this.userID).subscribe(res => {
+      window.open(window.URL.createObjectURL(res));
+    });
+  }
+
+
+  getUserReports(userID) {
+    this.service.getCustomerReports(userID)
       .subscribe((res: APIResponse) => {
         if (res.IsSuccess) {
           this.reports = res.SingleResult;
