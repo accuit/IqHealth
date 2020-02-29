@@ -43,9 +43,6 @@ namespace IqHealth.Data.Persistence
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<UploadedReports>()
-                .Property(x => x.File).HasColumnType("MediumBlob");
-
             modelBuilder.Entity<BookingMaster>()
                 .Property(e => e.FirstName)
                 .IsUnicode(false);

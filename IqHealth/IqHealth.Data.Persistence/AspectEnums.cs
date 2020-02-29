@@ -45,7 +45,14 @@ namespace IqHealth.Data.Persistence
             Pending = 0,
             Active = 1,
             InActive = 2
+        }
 
+        public enum FileType
+        {
+            MedicalReport = 1,
+            ExamReport = 2,
+            CourseDocument = 3,
+            Invoice = 4
         }
 
         public enum Sex
