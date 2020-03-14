@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppService } from '../core/app.service';
 import { APIResponse, Speciality, Doctor, ServicesModel } from '../core/app.models';
 import { AppJsonService } from '../core/app.json.service';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -14,13 +15,30 @@ export class HomeComponent implements OnInit {
   specialities: Speciality[] = [];
   doctors: Doctor[] = [];
   services: ServicesModel[] = [];
+  data = {
+    name: 'Health IQ | Improve yourself',
+    bio: 'We care for you.',
+    image: 'assets/images/logo.png'
+  };
 
-  constructor(private readonly service: AppService, private readonly jsonService: AppJsonService) {
+  constructor(private readonly service: AppService, private readonly jsonService: AppJsonService,
+    private title: Title, private meta: Meta) {
 
   }
 
   ngOnInit() {
     this.loadServicesList();
+  }
+
+  seoData(){
+    this.title.setTitle(this.data.name);
+    this.meta.addTags([
+      { name: 'twitter:card', content: 'summary' },
+      { name: 'og:url', content: '/about' },
+      { name: 'og:title', content: this.data.name },
+      { name: 'og:description', content: this.data.bio },
+      { name: 'og:image', content: this.data.image }
+    ]);
   }
 
   loadSpecialities(): any {

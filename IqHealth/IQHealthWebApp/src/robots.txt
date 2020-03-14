@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://health-iq.in/sitemap.xml
