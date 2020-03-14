@@ -3,8 +3,7 @@
         <div class="thm-container clearfix">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target=".main-navigation" aria-expanded="false"><i class="fa fa-bars"></i></button>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".main-navigation" aria-expanded="false"><i class="fa fa-bars"></i></button>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -18,14 +17,16 @@
                         <ul class="sub-menu">
                             <li *ngFor="let s of services"><a [routerLink]="'/service-details/' + s.ID">{{s.Name}}</a>
                             </li>
-                        </ul><!-- /.sub-menu -->
+                        </ul>
+                        <!-- /.sub-menu -->
                         <!-- /.sub-menu -->
                     </li>
                     <li>
                         <a href="package-category-details/1">Packages</a>
                         <ul class="sub-menu">
-                            <li *ngFor="let p of packages"><a  [routerLink]="'/package-category-details/' + p.ID">{{p.Name}}</a></li>
-                        </ul><!-- /.sub-menu -->
+                            <li *ngFor="let p of packages"><a [routerLink]="'/package-category-details/' + p.ID">{{p.Name}}</a></li>
+                        </ul>
+                        <!-- /.sub-menu -->
                         <!-- /.sub-menu -->
                     </li>
                     <li><a href="/book-a-test">Book A Test</a> </li>
@@ -37,12 +38,17 @@
                             <li><a href="/online-enquiry/2">Online Enquiry</a></li>
                         </ul>
                     </li>
+                    <li> <a href="/career">Career</a> </li>
                     <li> <a href="/contact-us">Contact</a> </li>
                 </ul>
-            </div><!-- /.navbar-collapse -->
+            </div>
+            <!-- /.navbar-collapse -->
             <div class="right-side-box">
                 <a href="/book-an-appointment" class="book-appointment"><i class="fas fa-calendar-alt"></i> book an appointment</a>
-            </div><!-- /.right-side-box -->
-        </div><!-- /.container -->
+            </div>
+            <!-- /.right-side-box -->
+        </div>
+        <!-- /.container -->
     </nav>
-</header><!-- /.header -->
+</header>
+<!-- /.header -->

@@ -31,6 +31,7 @@ namespace IqHealth.WebApi.Controllers
             List<HealthServiceMaster> services = new List<HealthServiceMaster>();
             try
             {
+
                 services = _context.HealthServiceMasters.Where(x => x.IsDeleted == 0).ToList();
                 if (services != null)
                 {
