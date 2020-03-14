@@ -28,6 +28,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.loadServicesList();
+    this.seoData();
   }
 
   seoData(){
