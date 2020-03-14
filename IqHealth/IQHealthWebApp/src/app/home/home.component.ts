@@ -44,17 +44,6 @@ export class HomeComponent implements OnInit {
     ]);
   }
 
-  seoData(){
-    this.title.setTitle(this.data.name);
-    this.meta.addTags([
-      { name: 'twitter:card', content: 'summary' },
-      { name: 'og:url', content: '/about' },
-      { name: 'og:title', content: this.data.name },
-      { name: 'og:description', content: this.data.bio },
-      { name: 'og:image', content: this.data.image }
-    ]);
-  }
-
   loadSpecialities(): any {
     this.service.getSpecialities()
       .subscribe((data: APIResponse) => {
