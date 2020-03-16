@@ -59,6 +59,42 @@ namespace IqHealth.WebApi.Controllers
             return response;
         }
 
+        [HttpPost]
+        [Route("post-job")]
+        public JsonResponse<int> SubmitJobApplication(JobApplication application)
+        {
+            JsonResponse<int> response = new JsonResponse<int>();
+
+            if (!ModelState.IsValid)
+            {
+
+                response.FailedValidations = ModelState.Keys.ToArray();
+                response.Message = string.Format("Kindly check {0}. It is missing or in incorrect format.", response.FailedValidations[0].Split('.').LastOrDefault());
+                return response;
+            }
+            try
+            {
+                application.CreatedDate = DateTime.Now;
+                _context.JobApplications.Add(application);
+                response.IsSuccess = _context.SaveChanges() > 0 ? true : false;
+
+                if (response.IsSuccess)
+                {
+                    response.StatusCode = "200";
+                    response.Message = "Your resume is successfully posted.  We will send you email shortly.";
+                    response.SingleResult = application.ID;
+                }
+            }
+            catch (Exception ex)
+            {
+                response.IsSuccess = false;
+                response.StatusCode = "500";
+                response.Message = ex.Message;
+            }
+
+            return response;
+        }
+
 
     }
 }
