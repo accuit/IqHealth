@@ -9,6 +9,7 @@ import { SidebarBlogsComponent } from './components/sidebar-blogs/sidebar-blogs.
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DefaultHeaderComponent } from './components/default-header/default-header.component';
 import { TopHeaderComponent } from './components/top-header/top-header.component';
+import { ModalBoxComponent } from './components/modal-box/modal-box.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { TopHeaderComponent } from './components/top-header/top-header.component
     PriceListsComponent,
     SidebarBlogsComponent,
     DefaultHeaderComponent,
-    TopHeaderComponent
+    TopHeaderComponent,
+    ModalBoxComponent
   ],
 
   imports: [
@@ -36,8 +38,9 @@ import { TopHeaderComponent } from './components/top-header/top-header.component
     SidebarBlogsComponent,
     DefaultHeaderComponent,
     TopHeaderComponent,
+    ModalBoxComponent
   ],
-  
+
   entryComponents: [
     InnerBannerComponent
   ]

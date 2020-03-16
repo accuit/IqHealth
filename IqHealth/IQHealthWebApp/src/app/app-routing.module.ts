@@ -21,6 +21,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AuthGuard } from './authenication/auth.guard';
 import { BookATestComponent } from './book-a-test/book-a-test.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { CareerComponent } from './career/career.component';
 
 const routes: Routes = [
   {
@@ -99,6 +100,10 @@ const routes: Routes = [
   {
     path: 'reset-password',
     component: ResetPasswordComponent
+  },
+  {
+    path: 'career',
+    component: CareerComponent
   },
   {
     path: 'dashboard',

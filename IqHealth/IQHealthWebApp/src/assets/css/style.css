@@ -9369,3 +9369,16 @@ body.active-preloader-ovh {
 .help-section .image-column .inner-column .testimonial-boxed .owl-dots{
   display: none;
 }
+
+.card {
+  color: #444;
+  background-color: #fff;
+  box-shadow: rgba(0,0,0,0.117647) 0 1px 6px, rgba(0,0,0,0.117647) 0 1px 4px;
+  -webkit-transition: all 150ms ease-in;
+  -moz-transition: all 150ms ease-in;
+  transition: all 150ms ease-in;
+  padding: 15px;
+  margin: 10px;
+  border-radius: 0;
+  position: relative;
+}
