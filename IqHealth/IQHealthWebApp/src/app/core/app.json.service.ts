@@ -13,7 +13,7 @@ export class AppJsonService {
         {
             "ID": 1,
             "Name": "Pathalogy",
-            "Description": "Leela HealthCare basically aims at improving life’s of others. In terms of pathology, it is a medical specialty that determines the cause and nature of diseases by examining and testing body tissues (from biopsies and pap smears, for example) and bodily fluids (from samples including blood and urine). The results from these pathology tests help Doctors diagnose and treat patients correctly. Basically, an integral part of clinical diagnosis",
+            "Description": "Health IQ basically aims at improving life’s of others. In terms of pathology, it is a medical specialty that determines the cause and nature of diseases by examining and testing body tissues (from biopsies and pap smears, for example) and bodily fluids (from samples including blood and urine). The results from these pathology tests help Doctors diagnose and treat patients correctly. Basically, an integral part of clinical diagnosis",
             "ImageUrl": "../../assets/img/services images/pathology .jpg",
             "PageUrl": "page3 url (if any)",
             "CreatedDate": "2016-03-22T09:27:52",
@@ -129,7 +129,7 @@ export class AppJsonService {
         {
             "ID": 7,
             "Name": "Diabetes Care Clinic",
-            "Description": "Diabetes is a hassle-some disease. At Leela HealthCare, we take the stress out of diabetes. We provide everything a diabetic might need, under one roof. Right from diagnosis to speaking to a dietician, educator, diabetologist. As a patient, you don’t have to keep going from pillar to post. We help patients manage Type 1, 2, gestational or prediabetes. Our evaluations, physical exams and treatments are geared to detect and prevent complications brought on by the disease. Our medical team can help you create routines for nutrition and exercise to prevent diabetes if you are prediabetes. For some type 2 patients, we may be able to control diabetes without medication through weight loss, diet and exercise. Our goal is to provide the best possible solution for your particular diagnosis. There are many ways to treat diabetes. Our doctors gives you options and works with you to design a plan that fits your lifestyle so you can successfully live with diabetes. Along with diet, exercise, oral medications, insulin and non-insulin injections, we also have expertise in insulin pump and continuous glucose monitoring.",
+            "Description": "Diabetes is a hassle-some disease. At Health IQ, we take the stress out of diabetes. We provide everything a diabetic might need, under one roof. Right from diagnosis to speaking to a dietician, educator, diabetologist. As a patient, you don’t have to keep going from pillar to post. We help patients manage Type 1, 2, gestational or prediabetes. Our evaluations, physical exams and treatments are geared to detect and prevent complications brought on by the disease. Our medical team can help you create routines for nutrition and exercise to prevent diabetes if you are prediabetes. For some type 2 patients, we may be able to control diabetes without medication through weight loss, diet and exercise. Our goal is to provide the best possible solution for your particular diagnosis. There are many ways to treat diabetes. Our doctors gives you options and works with you to design a plan that fits your lifestyle so you can successfully live with diabetes. Along with diet, exercise, oral medications, insulin and non-insulin injections, we also have expertise in insulin pump and continuous glucose monitoring.",
             "ImageUrl": "../../assets/img/services images/diabetes-.jpg",
             "PageUrl": null,
             "CreatedDate": "2019-08-08T09:27:52",
@@ -144,7 +144,7 @@ export class AppJsonService {
         {
             "ID": 8,
             "Name": "Endrocrinology",
-            "Description": "The department of endocrinology at Leela HealthCare offers the best treatment modalities available for endocrine disorders to provide accurate and comprehensive care for its patients suffering from various endocrine diseases.\r",
+            "Description": "The department of endocrinology at Health IQ offers the best treatment modalities available for endocrine disorders to provide accurate and comprehensive care for its patients suffering from various endocrine diseases.\r",
             "ImageUrl": "../../assets/img/services images/endrocrinology.jpg",
             "PageUrl": null,
             "CreatedDate": "2019-08-08T09:27:52",
@@ -159,7 +159,7 @@ export class AppJsonService {
         {
             "ID": 9,
             "Name": "Ortho Clinic",
-            "Description": "The department of orthopaedic at Leela HealthCare offers the best treatment modalities available for ortho ailments to provide accurate and comprehensive care for its patients suffering from various ortho problems. In addition, efficient occupational therapists, physiotherapists and pain management experts work towards the quick rehabilitation of the patient leading to a better quality of life",
+            "Description": "The department of orthopaedic at Health IQ offers the best treatment modalities available for ortho ailments to provide accurate and comprehensive care for its patients suffering from various ortho problems. In addition, efficient occupational therapists, physiotherapists and pain management experts work towards the quick rehabilitation of the patient leading to a better quality of life",
             "ImageUrl": "../../assets/img/services images/ortho-clinic.jpg",
             "PageUrl": null,
             "CreatedDate": "2019-08-08T09:27:52",
@@ -174,7 +174,7 @@ export class AppJsonService {
         {
             "ID": 10,
             "Name": "Physiotherapy",
-            "Description": "Physiotherapy is a health science that aims in rehabilitation and enhance individuals with movement chaos by utilizing evidence-based, natural process like motivation, exercise, education, advocacy and adapted tools. Physiotherapists study subjects like neuroscience,physiology and anatomy for developing attitudes and skills that are very much required for health prevention, education, rehabilitation and treatment of the patients with disabilities and physical ailments.It is sad to say that there are still many educated people in India who think that physiotherapy is only related to a few exercises. Physiotherapy is a science in itself. One might be suffering from cardiopulmonary ,orthopaedic, paediatric, neurology, sports injury, congenital abnormality, to name a few, where physical management becomes as a essential part of the rehabilitation process and some times is the only process. Why physiotherapy at Leela HealthCare? At Leela HealthCare our clinic run by experienced team of doctors and paramedics.  We have all type modern Electrotherapy equipments,exercise Theraphy,Manual Theraphy,here patient can get Acupuncture Treatment facility also apart with these. We basically try to alleviate the pain through various modern techniques or tools that can be used by the experience team of doctors and paramedics.\r \"",
+            "Description": "Physiotherapy is a health science that aims in rehabilitation and enhance individuals with movement chaos by utilizing evidence-based, natural process like motivation, exercise, education, advocacy and adapted tools. Physiotherapists study subjects like neuroscience,physiology and anatomy for developing attitudes and skills that are very much required for health prevention, education, rehabilitation and treatment of the patients with disabilities and physical ailments.It is sad to say that there are still many educated people in India who think that physiotherapy is only related to a few exercises. Physiotherapy is a science in itself. One might be suffering from cardiopulmonary ,orthopaedic, paediatric, neurology, sports injury, congenital abnormality, to name a few, where physical management becomes as a essential part of the rehabilitation process and some times is the only process. Why physiotherapy at Health IQ? At Health IQ our clinic run by experienced team of doctors and paramedics.  We have all type modern Electrotherapy equipments,exercise Theraphy,Manual Theraphy,here patient can get Acupuncture Treatment facility also apart with these. We basically try to alleviate the pain through various modern techniques or tools that can be used by the experience team of doctors and paramedics.\r \"",
             "ImageUrl": "../../assets/img/services images/physiotherapy.jpg",
             "PageUrl": null,
             "CreatedDate": "2019-08-08T09:27:52",
@@ -230,7 +230,7 @@ export class AppJsonService {
         {
             "ID": 13,
             "Name": "Nutrition / Dietician",
-            "Description": "Dietetics is about healthy eating practices which act as a preventive and curative means and pave the foundation for a healthier life. At Leela HealthCare, we regularly counsel our patients about a nutritious, balanced diet that consists of carbohydrates, fats, proteins, minerals, vitamins and electrolytes for their general well-being. Good nutrition is essential for normal organ development and function, normal reproduction, growth and maintenance of muscles and tissue, optimum activity and working efficiency, building resistance to infection and in repairing body damage or injury. The Nutrition and Dietetics team at Leela HealthCare aims to improve the clinical, biochemical, cellular and psychological status of individuals experiencing complications or side effects of various treatments by providing adequate nutrition and related information.",
+            "Description": "Dietetics is about healthy eating practices which act as a preventive and curative means and pave the foundation for a healthier life. At Health IQ, we regularly counsel our patients about a nutritious, balanced diet that consists of carbohydrates, fats, proteins, minerals, vitamins and electrolytes for their general well-being. Good nutrition is essential for normal organ development and function, normal reproduction, growth and maintenance of muscles and tissue, optimum activity and working efficiency, building resistance to infection and in repairing body damage or injury. The Nutrition and Dietetics team at Health IQ aims to improve the clinical, biochemical, cellular and psychological status of individuals experiencing complications or side effects of various treatments by providing adequate nutrition and related information.",
             "ImageUrl": "../../assets/img/services images/nutrition-dietician.jpg",
             "PageUrl": null,
             "CreatedDate": "2019-08-08T09:27:52",

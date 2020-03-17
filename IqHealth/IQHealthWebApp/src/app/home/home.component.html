@@ -2,218 +2,272 @@
 <app-default-header></app-default-header>
 
 <div id="minimal-bootstrap-carousel" class="carousel slide carousel-fade slider-home-two" data-ride="carousel">
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner" role="listbox">
-            <div class="item active slide-1" style="background-image: url(assets/images/banner-2-1.jpg);background-position: left center;">
-                <div class="carousel-caption">
-                    <div class="thm-container">
-                        <div class="box valign-middle">
-                            <div class="content ">
-                                <div class="icon-box" data-animation="animated fadeInUp"><i class="clinmedix-icon-analysis"></i><i class="clinmedix-icon-cardiogram-1"></i><i class="clinmedix-icon-pills2"></i></div><!-- /.icon-box -->
-                                <h3 data-animation="animated fadeInUp">Free OPD :- For Details click <a href="/book-an-appointment">here</a> </h3>
-                                <p data-animation="animated fadeInDown">Book a diagnostic test  of your choice now. </p>
-                                <a [routerLink]="'/book-an-appointment'" class="banner-btn" data-animation="animated fadeInDown">Book A Test</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="item slide-2" style="background-image: url(assets/images/banner-2-2.jpg);background-position: center center;">
-                <div class="carousel-caption">
-                    <div class="thm-container">
-                        <div class="box valign-middle">
-                            <div class="content pull-right">
-                                <div class="icon-box" data-animation="animated fadeInUp"><i class="clinmedix-icon-analysis"></i><i class="clinmedix-icon-cardiogram-1"></i><i class="clinmedix-icon-pills2"></i></div><!-- /.icon-box -->
-                                <h3 data-animation="animated fadeInUp">Revolutionized Packages </h3>
-                                <p data-animation="animated fadeInDown">Our Health packages are <br> specially curated for you. </p>
-                                <a [routerLink]="'/package-category-list'" class="banner-btn" data-animation="animated fadeInDown">Our Packages</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="item slide-2" style="background-image: url(assets/images/banner-2-3.jpg);background-position: center center;">
-                <div class="carousel-caption">
-                    <div class="thm-container">
-                        <div class="box valign-middle">
-                            <div class="content">
-                                <div class="icon-box" data-animation="animated fadeInUp"><i class="clinmedix-icon-analysis"></i><i class="clinmedix-icon-cardiogram-1"></i><i class="clinmedix-icon-pills2"></i></div><!-- /.icon-box -->
-                                <h3 data-animation="animated fadeInUp">Medical Courses </h3>
-                                <p data-animation="animated fadeInDown">Health IQ provide world class <br> courses for medical students. </p>
-                                <a [routerLink]="'/academy'" class="banner-btn" data-animation="animated fadeInDown">Our Courses</a>
-                            </div>
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+        <div class="item active slide-1" style="background-image: url(assets/images/banner-2-1.jpg);background-position: left center;">
+            <div class="carousel-caption">
+                <div class="thm-container">
+                    <div class="box valign-middle">
+                        <div class="content ">
+                            <div class="icon-box" data-animation="animated fadeInUp"><i class="clinmedix-icon-analysis"></i><i class="clinmedix-icon-cardiogram-1"></i><i class="clinmedix-icon-pills2"></i></div>
+                            <!-- /.icon-box -->
+                            <h3 data-animation="animated fadeInUp">Free OPD :- For Details click <a href="/book-an-appointment">here</a> </h3>
+                            <p data-animation="animated fadeInDown">Book a diagnostic test of your choice now. </p>
+                            <a [routerLink]="'/book-an-appointment'" class="banner-btn" data-animation="animated fadeInDown">Book A Test</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Controls -->
-        <a class="left carousel-control" href="#minimal-bootstrap-carousel" role="button" data-slide="prev">
-            <i class="fa fa-angle-left"></i>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="right carousel-control" href="#minimal-bootstrap-carousel" role="button" data-slide="next">
-            <i class="fa fa-angle-right"></i>
-            <span class="sr-only">Next</span>
-        </a>
+        <div class="item slide-2" style="background-image: url(assets/images/banner-2-2.jpg);background-position: center center;">
+            <div class="carousel-caption">
+                <div class="thm-container">
+                    <div class="box valign-middle">
+                        <div class="content pull-right">
+                            <div class="icon-box" data-animation="animated fadeInUp"><i class="clinmedix-icon-analysis"></i><i class="clinmedix-icon-cardiogram-1"></i><i class="clinmedix-icon-pills2"></i></div>
+                            <!-- /.icon-box -->
+                            <h3 data-animation="animated fadeInUp">Revolutionized Packages </h3>
+                            <p data-animation="animated fadeInDown">Our Health packages are <br> specially curated for you. </p>
+                            <a [routerLink]="'/package-category-list'" class="banner-btn" data-animation="animated fadeInDown">Our Packages</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item slide-2" style="background-image: url(assets/images/banner-2-3.jpg);background-position: center center;">
+            <div class="carousel-caption">
+                <div class="thm-container">
+                    <div class="box valign-middle">
+                        <div class="content">
+                            <div class="icon-box" data-animation="animated fadeInUp"><i class="clinmedix-icon-analysis"></i><i class="clinmedix-icon-cardiogram-1"></i><i class="clinmedix-icon-pills2"></i></div>
+                            <!-- /.icon-box -->
+                            <h3 data-animation="animated fadeInUp">Medical Courses </h3>
+                            <p data-animation="animated fadeInDown">Health IQ provide world class <br> courses for medical students. </p>
+                            <a [routerLink]="'/academy'" class="banner-btn" data-animation="animated fadeInDown">Our Courses</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    <!-- Controls -->
+    <a class="left carousel-control" href="#minimal-bootstrap-carousel" role="button" data-slide="prev">
+        <i class="fa fa-angle-left"></i>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#minimal-bootstrap-carousel" role="button" data-slide="next">
+        <i class="fa fa-angle-right"></i>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
 
-    <app-find-doctor></app-find-doctor>
+<app-find-doctor></app-find-doctor>
 
-    <section class="feature-style-four sec-pad">
-        <div class="thm-container">
-            <div class="sec-title-style-two text-center">
-                <!-- <span class="tag-line">LEADER IN THE FIELD OF MEDICAL INDUSTRY</span> -->
-                <div class="line"></div><!-- /.line -->
-                <h3>With Over <span class="color-5">10 Years Of Experience</span>, HEALTH IQ <br> Offers 100% Quality Service With <span class="color-6">Best Staff</span></h3>
-                <p>WE AT HEALTH IQ aim at providing life better through quality care and services that set community standards, exceed patient’s expectations and provides in a caring, convenient, cost-effective and accessible manner. We strive to deliver healthcare compassionately and always act with integrity. Our ethics and compliance programme is an integral part of what we do.</p>
-            </div><!-- /.sec-title-style-two -->
-        </div><!-- /.thm-container -->
-        <div class="thm-container feature-content-box">            
-            <div class="row">
-                <div class="col-md-4 col-sm-6 col-xs-12 hvr-bounce-to-bottom">
-                    <div class="single-feature-style-four">
-                        <div class="inner-box">
-                            <div class="icon-box">
-                                <img src="assets/images/feature-4-1.png" alt="Awesome Image">
-                            </div><!-- /.icon-box -->
-                            <a href="#">
-                                <h3>International Certification</h3>
-                            </a>
-                            <p>ISO 9001:2015 certified organisation by UKAS body and all Tests performed at Apollo Diagnostics (NABL,CAP Accrediated Laboratory)</p>
-                        </div><!-- /.inner-box -->
-                    </div><!-- /.single-feature-style-four -->
-                </div><!-- /.col-md-4 -->
-                <div class="col-md-4 col-sm-6 col-xs-12 hvr-bounce-to-bottom">
-                    <div class="single-feature-style-four">
-                        <div class="inner-box">
-                            <div class="icon-box">
-                                <img src="assets/images/feature-4-2.png" alt="Awesome Image">
-                            </div><!-- /.icon-box -->
-                            <a href="#">
-                                <h3>Doctors &amp; Team</h3>
-                            </a>
-                            <p>Dedicated Team of Experienced Doctors and staffs from Healthcare Sector. The only clinic in Kolkata to provide special benefits for transgenders.</p>
-                        </div><!-- /.inner-box -->
-                    </div><!-- /.single-feature-style-four -->
-                </div><!-- /.col-md-4 -->
-                <div class="col-md-4 col-sm-6 col-xs-12 hvr-bounce-to-bottom col-lg-offset-0 col-md-offset-0 col-sm-offset-3 col-xs-offset-0">
-                    <div class="single-feature-style-four">
-                        <div class="inner-box">
-                            <div class="icon-box">
-                                <img src="assets/images/feature-4-3.png" alt="Awesome Image">
-                            </div><!-- /.icon-box -->
-                            <a href="#">
-                                <h3>Healthcare &amp; Services</h3>
-                            </a>
-                            <p>Advance facilities for Paedtric,Gynae,Diabetes,Physiotheraphy and many <a href="/services">more…</a></p>
-                        </div><!-- /.inner-box -->
-                    </div><!-- /.single-feature-style-four -->
-                </div><!-- /.col-md-4 -->
-            </div><!-- /.row -->
-        </div><!-- /.thm-container -->
-    </section>
-
-    <section class="parallax-section" style="background-image: url(assets/images/subscribe-bg-1-1.jpg); background-attachment: fixed; background-position: center center;">
-        <div class="container">
-            <h1>If you are a patient seeking quality healthcare <br> at affordable prices!.</h1>
-            <div class="text">Excepteur sint occaecat cupidatat non proident sunt culpa qui officia ex deserunt <br> mollit in anim id est laborum sed ut perspiciatis unde omnis.</div>
-            <div class="link-btn"><a href="/#/book-an-appointment" class="theme-btn">Make An Appointment</a></div>
+<section class="feature-style-four sec-pad">
+    <div class="thm-container">
+        <div class="sec-title-style-two text-center">
+            <!-- <span class="tag-line">LEADER IN THE FIELD OF MEDICAL INDUSTRY</span> -->
+            <div class="line"></div>
+            <!-- /.line -->
+            <h3>With Over <span class="color-5">10 Years Of Experience</span>, HEALTH IQ <br> Offers 100% Quality Service With <span class="color-6">Best Staff</span></h3>
+            <p>WE AT HEALTH IQ aim at providing life better through quality care and services that set community standards, exceed patient’s expectations and provides in a caring, convenient, cost-effective and accessible manner. We strive to deliver healthcare
+                compassionately and always act with integrity. Our ethics and compliance programme is an integral part of what we do.</p>
         </div>
-    </section>
-
-    <section  class="service-style-six sec-pad">
-            <div class="thm-container">
-                <div class="sec-title text-center">
-                    <img src="assets/images/sec-title-icon-2.png" alt="Awesome Image" />
-                    <h3>Our Services</h3>
-                    <!-- <p>Mollit animid acusm est laborum sed dolore perspiciatis unde omnis iste natus error volt sit ipsum dui <br> mque lorem tium  ipsum tempor incididunt ut labore et dolore magna aliqua </p> -->
-                    <div class="line"></div><!-- /.line -->
-                </div><!-- /.sec-title -->
-                <div class="service-style-six-carousel owl-theme owl-carousel">
-                    <div *ngFor="let S of services" class="item">
-                        <div class="single-service-style-six">
-                            <div class="img-box">
-                                <img height="250px" [src]="'assets/images/services/'+ S.ID + '.jpg'" alt="S.Name"/>
-                            </div><!-- /.img-box -->
-                            <div class="text-box">
-                                <div class="inner-box hvr-bounce-to-bottom">
-                                    <div class="content">
-                                        <a href="#"><h3>{{S.Name}}</h3></a>
-                                        <p>{{ S.Description | slice:0:100 }}</p>
-                                        <a [routerLink]="'/service-details/'+ S.ID" class="more"><i class="fa fa-angle-double-right"></i></a>
-                                    </div><!-- /.content -->
-                                </div><!-- /.inner-box -->
-                            </div><!-- /.text-box -->
-                        </div><!-- /.single-service-style-six -->
-                    </div><!-- /.item -->
-                </div><!-- /.service-style-six-carousel -->
-            </div><!-- /.thm-container -->
-        </section><!-- /.service-style-six -->
-    
-        <section class="parallax-section" style="background-image: url(assets/images/medical-student.jpg); background-attachment: fixed; background-position: center center;">
-            <div class="container">
-                <h1>If you are an medical aspirant and seeking courses <br> at affordable prices!.</h1>
-                <div class="text">At Health IQ we are committed to provide industry standard courses. <br> We offer multiple courses that helps you build your career.</div>
-                <div class="link-btn"><a [routerLink]="'/online-enquiry/2'" class="theme-btn">Enquiry Now</a></div>
+        <!-- /.sec-title-style-two -->
+    </div>
+    <!-- /.thm-container -->
+    <div class="thm-container feature-content-box">
+        <div class="row">
+            <div class="col-md-4 col-sm-6 col-xs-12 hvr-bounce-to-bottom">
+                <div class="single-feature-style-four">
+                    <div class="inner-box">
+                        <div class="icon-box">
+                            <img src="assets/images/feature-4-1.png" alt="Awesome Image">
+                        </div>
+                        <!-- /.icon-box -->
+                        <a href="#">
+                            <h3>International Certification</h3>
+                        </a>
+                        <p>HealthIQ is an ISO 9001:2015 certified organisation.</p>
+                    </div>
+                    <!-- /.inner-box -->
+                </div>
+                <!-- /.single-feature-style-four -->
             </div>
-        </section>
-    <section class="about-style-two sec-pad pt100">
-        <div class="thm-container">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="about-style-two-content">
-                        <h3>LIVE BY  <span class="color-one">CHOICE </span> NOT BY <span class="color-two">CHANCE</span></h3>
-                        <!-- <p class="highlight"> A LEADER IN THE FIELD OF MEDICAL IS ONE WHO KNOWS THE ART OF PROPER MEDICAL KNOWLEDGE WITH THE PROPER ART OF HEALING.
+            <!-- /.col-md-4 -->
+            <div class="col-md-4 col-sm-6 col-xs-12 hvr-bounce-to-bottom">
+                <div class="single-feature-style-four">
+                    <div class="inner-box">
+                        <div class="icon-box">
+                            <img src="assets/images/feature-4-2.png" alt="Awesome Image">
+                        </div>
+                        <!-- /.icon-box -->
+                        <a href="#">
+                            <h3>Doctors &amp; Team</h3>
+                        </a>
+                        <p>Dedicated Team of Experienced Doctors and staffs from Healthcare Sector. The only clinic in Kolkata to provide special benefits for transgenders.</p>
+                    </div>
+                    <!-- /.inner-box -->
+                </div>
+                <!-- /.single-feature-style-four -->
+            </div>
+            <!-- /.col-md-4 -->
+            <div class="col-md-4 col-sm-6 col-xs-12 hvr-bounce-to-bottom col-lg-offset-0 col-md-offset-0 col-sm-offset-3 col-xs-offset-0">
+                <div class="single-feature-style-four">
+                    <div class="inner-box">
+                        <div class="icon-box">
+                            <img src="assets/images/feature-4-3.png" alt="Awesome Image">
+                        </div>
+                        <!-- /.icon-box -->
+                        <a href="#">
+                            <h3>Healthcare &amp; Services</h3>
+                        </a>
+                        <p>Advance facilities for Paedtric,Gynae,Diabetes,Physiotheraphy and many <a href="/services">more…</a></p>
+                    </div>
+                    <!-- /.inner-box -->
+                </div>
+                <!-- /.single-feature-style-four -->
+            </div>
+            <!-- /.col-md-4 -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.thm-container -->
+</section>
+
+<section class="parallax-section" style="background-image: url(assets/images/subscribe-bg-1-1.jpg); background-attachment: fixed; background-position: center center;">
+    <div class="container">
+        <h1>If you are a patient seeking quality healthcare <br> at affordable prices!.</h1>
+        <div class="text">Excepteur sint occaecat cupidatat non proident sunt culpa qui officia ex deserunt <br> mollit in anim id est laborum sed ut perspiciatis unde omnis.</div>
+        <div class="link-btn"><a href="/#/book-an-appointment" class="theme-btn">Make An Appointment</a></div>
+    </div>
+</section>
+
+<section class="service-style-six sec-pad">
+    <div class="thm-container">
+        <div class="sec-title text-center">
+            <img src="assets/images/sec-title-icon-2.png" alt="Awesome Image" />
+            <h3>Our Services</h3>
+            <!-- <p>Mollit animid acusm est laborum sed dolore perspiciatis unde omnis iste natus error volt sit ipsum dui <br> mque lorem tium  ipsum tempor incididunt ut labore et dolore magna aliqua </p> -->
+            <div class="line"></div>
+            <!-- /.line -->
+        </div>
+        <!-- /.sec-title -->
+        <div class="service-style-six-carousel owl-theme owl-carousel">
+            <div *ngFor="let S of services" class="item">
+                <div class="single-service-style-six">
+                    <div class="img-box">
+                        <img height="250px" [src]="'assets/images/services/'+ S.ID + '.jpg'" alt="S.Name" />
+                    </div>
+                    <!-- /.img-box -->
+                    <div class="text-box">
+                        <div class="inner-box hvr-bounce-to-bottom">
+                            <div class="content">
+                                <a href="#">
+                                    <h3>{{S.Name}}</h3>
+                                </a>
+                                <p>{{ S.Description | slice:0:100 }}</p>
+                                <a [routerLink]="'/service-details/'+ S.ID" class="more"><i class="fa fa-angle-double-right"></i></a>
+                            </div>
+                            <!-- /.content -->
+                        </div>
+                        <!-- /.inner-box -->
+                    </div>
+                    <!-- /.text-box -->
+                </div>
+                <!-- /.single-service-style-six -->
+            </div>
+            <!-- /.item -->
+        </div>
+        <!-- /.service-style-six-carousel -->
+    </div>
+    <!-- /.thm-container -->
+</section>
+<!-- /.service-style-six -->
+
+<section class="parallax-section" style="background-image: url(assets/images/medical-student.jpg); background-attachment: fixed; background-position: center center;">
+    <div class="container">
+        <h1>If you are an medical aspirant and seeking courses <br> at affordable prices!.</h1>
+        <div class="text">At Health IQ we are committed to provide industry standard courses. <br> We offer multiple courses that helps you build your career.</div>
+        <div class="link-btn"><a [routerLink]="'/online-enquiry/2'" class="theme-btn">Enquiry Now</a></div>
+    </div>
+</section>
+<section class="about-style-two sec-pad pt100">
+    <div class="thm-container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="about-style-two-content">
+                    <h3>LIVE BY <span class="color-one">CHOICE </span> NOT BY <span class="color-two">CHANCE</span></h3>
+                    <!-- <p class="highlight"> A LEADER IN THE FIELD OF MEDICAL IS ONE WHO KNOWS THE ART OF PROPER MEDICAL KNOWLEDGE WITH THE PROPER ART OF HEALING.
                             BECAUSE PATIENT IS NOT A CONDITION BUT A HUMAN BEING.</p> -->
-                        <div class="about-feature-box">
-                            <div class="top-box">
-                                <div class="icon-box">
-                                    <img src="assets/images/about-2-i-1.png" alt="Awesome Image"/>
-                                </div><!-- /.icon-box -->
-                                <div class="text-box">
-                                    <h4> ISO 9001:2015 certified from UKAS</h4>
-                                </div><!-- /.text-box -->
-                            </div><!-- /.top-box -->
-                            <p>We are an ISO 9001:2015 certified organisation from UKAS. Health IQ is committed to foster patient care, research and education with State-of-the-Art health care. With the motto of "Improve Yourself “, Health IQ aspires to deliver paramedical education and healthcare facilities that would be within the reach of all.</p>
-                        </div><!-- /.about-feature-box -->
-                        <div class="about-feature-box">
-                            <div class="top-box">
-                                <div class="icon-box">
-                                    <img src="assets/images/about-2-i-2.png" alt="Awesome Image"/>
-                                </div><!-- /.icon-box -->
-                                <div class="text-box">
-                                    <h4>Top Quality Patient Care System</h4>
-                                </div><!-- /.text-box -->
-                            </div><!-- /.top-box -->
-                            <p> We at Health IQ aim at providing life better through quality care and services that set community standards, exceed patient’s expectations and provides in a caring, convenient, cost-effective and accessible manner. We strive to deliver healthcare compassionately and always act with integrity. 
-                                Our ethics and compliance programme is an integral part of what we do.</p>
-                        </div><!-- /.about-feature-box -->
-                    </div><!-- /.about-style-two-content -->
-                </div><!-- /.col-md-6 -->
-                <div class="col-md-6">
-                    <img src="assets/images/about-2-1.jpg" alt="Awesome Image"/>
-                </div><!-- /.col-md-6 -->
-            </div><!-- /.row -->
-        </div><!-- /.thm-container -->
-    </section><!-- /.about-style-two -->
+                    <div class="about-feature-box">
+                        <div class="top-box">
+                            <div class="icon-box">
+                                <img src="assets/images/about-2-i-1.png" alt="Awesome Image" />
+                            </div>
+                            <!-- /.icon-box -->
+                            <div class="text-box">
+                                <h4> ISO 9001:2015 certified from UKAS</h4>
+                            </div>
+                            <!-- /.text-box -->
+                        </div>
+                        <!-- /.top-box -->
+                        <p>We are an ISO 9001:2015 certified organisation from UKAS. Health IQ is committed to foster patient care, research and education with State-of-the-Art health care. With the motto of "Improve Yourself “, Health IQ aspires to deliver
+                            paramedical education and healthcare facilities that would be within the reach of all.</p>
+                    </div>
+                    <!-- /.about-feature-box -->
+                    <div class="about-feature-box">
+                        <div class="top-box">
+                            <div class="icon-box">
+                                <img src="assets/images/about-2-i-2.png" alt="Awesome Image" />
+                            </div>
+                            <!-- /.icon-box -->
+                            <div class="text-box">
+                                <h4>Top Quality Patient Care System</h4>
+                            </div>
+                            <!-- /.text-box -->
+                        </div>
+                        <!-- /.top-box -->
+                        <p> We at Health IQ aim at providing life better through quality care and services that set community standards, exceed patient’s expectations and provides in a caring, convenient, cost-effective and accessible manner. We strive to
+                            deliver healthcare compassionately and always act with integrity. Our ethics and compliance programme is an integral part of what we do.</p>
+                    </div>
+                    <!-- /.about-feature-box -->
+                </div>
+                <!-- /.about-style-two-content -->
+            </div>
+            <!-- /.col-md-6 -->
+            <div class="col-md-6">
+                <img src="assets/images/about-2-1.jpg" alt="Awesome Image" />
+            </div>
+            <!-- /.col-md-6 -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.thm-container -->
+</section>
+<!-- /.about-style-two -->
 
-    <section class="fun-fact-style-one">
-        <div class="thm-container">
-            <div class="row">
-                <div class="col-md-1 col-sm-6 col-xs-12">
-                    <!-- /.single-fun-fact -->
-                </div><!-- /.col-md-3 -->
-                <div class="col-md-8 col-sm-6 col-xs-12">
-                    <div class="single-fun-fact">
-                        <h3><span class="">FREE OPD SERVICES</span></h3>
-                        <p>Only on Tuesday Morning</p>
-                    </div><!-- /.single-fun-fact -->
-                </div><!-- /.col-md-3 -->
-                
-                <!-- /.col-md-3 -->
-            </div><!-- /.row -->
-        </div><!-- /.thm-container -->
-    </section>
+<section class="fun-fact-style-one">
+    <div class="thm-container">
+        <div class="row">
+            <div class="col-md-1 col-sm-6 col-xs-12">
+                <!-- /.single-fun-fact -->
+            </div>
+            <!-- /.col-md-3 -->
+            <div class="col-md-8 col-sm-6 col-xs-12">
+                <div class="single-fun-fact">
+                    <h3><span class="">FREE OPD SERVICES</span></h3>
+                    <p>Only on Tuesday Morning</p>
+                </div>
+                <!-- /.single-fun-fact -->
+            </div>
+            <!-- /.col-md-3 -->
 
-    <script src="assets/js/owl.carousel.min.js"></script>
+            <!-- /.col-md-3 -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.thm-container -->
+</section>
+
+<script src="assets/js/owl.carousel.min.js"></script>

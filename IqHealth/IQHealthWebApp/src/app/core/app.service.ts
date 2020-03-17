@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { CityModel, BookingMaster, Doctor, APIResponse, DoctorAppointment } from './app.models';
+import { CityModel, BookingMaster, Doctor, APIResponse, DoctorAppointment, JobApplication } from './app.models';
 import { throwError } from 'rxjs';
 import { environment } from '../../environments/environment';
 
@@ -79,7 +79,10 @@ export class AppService {
 
   submitDoctorAppointment(appointment: DoctorAppointment): any {
     return this.httpClient.post(this.baseUrl + 'api/bookings/new-appointment', appointment, { headers: this.headers })
+  }
 
+  submitJobApplication(application: JobApplication): any {
+    return this.httpClient.post(this.baseUrl + 'api/enquiry/post-job', application, { headers: this.headers })
   }
 
   public sendEmailNotification(url: string, params: any): any {

@@ -65,6 +65,20 @@ export class DoctorAppointment {
     CompanyID: number = 2;
 }
 
+export class JobApplication {
+    ID: number;
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
+    resumeText: string;
+    address: string;
+    city: string;
+    state: string;
+    zipCode: string;
+    CompanyID: number = 2;
+}
+
 export class Doctor {
     ID: number;
     FirstName: string;
