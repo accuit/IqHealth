@@ -24,6 +24,7 @@ export class ModalBoxComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.renderer.setAttribute(this.modal.nativeElement, 'id', this.Id);
+    this.message = '';
   }
 
   loadForm(): any {

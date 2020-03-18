@@ -82,6 +82,7 @@ export class DoctorsListComponent implements OnInit {
       .subscribe((data: APIResponse) => {
         this.isLoaded = true;
         this.doctors = data.SingleResult;
+        console.log(this.doctors);
         this.executeParams();
       })
   }
