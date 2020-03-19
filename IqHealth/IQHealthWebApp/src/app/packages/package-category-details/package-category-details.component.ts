@@ -23,6 +23,7 @@ export class PackageCategoryDetailsComponent implements OnInit {
   activeID: any;
   isloaded: boolean = false;
   isloading = true;
+  live = false;
 
   constructor(private route: ActivatedRoute,
     private readonly service: AppService) {

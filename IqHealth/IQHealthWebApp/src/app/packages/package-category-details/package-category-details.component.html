@@ -4,16 +4,20 @@
 <app-inner-banner *ngIf="isloaded" [title]="title" [url]="url" [parent]="parent" [subtitle]="subtitle">
 </app-inner-banner>
 
-<section class="blog-style-two sec-pad blog-page">
+<div *ngIf="!live" style="text-align: center;">
+    <img src="https://www.kingsportparksandrecreation.org/wp-content/uploads/comingsoon.jpg" />
+</div>
+
+<section *ngIf="live" class="blog-style-two sec-pad blog-page">
     <div class="thm-container">
         <div *ngIf="isloaded" class="row">
             <app-sidebar-list (valueChange)='displayPackages($event)' [redirect-url]="'/package-category-details'" [data]="sidebar"></app-sidebar-list>
             <div class="col-md-8 col-sm-12 col-xs-12">
                 <div class="service-details-content ">
                     <div class="img-box">
-                        <img [src]="'assets/images/package-categories/'+ category.ID + '.jpg'" style="max-height: 400px"
-                            alt="{{ category.Name }}" />
-                    </div><!-- /.img-box -->
+                        <img [src]="'assets/images/package-categories/'+ category.ID + '.jpg'" style="max-height: 400px" alt="{{ category.Name }}" />
+                    </div>
+                    <!-- /.img-box -->
                     <br>
                     <div *ngIf="isloaded" class="text-box">
                         <br>
@@ -29,29 +33,39 @@
                                         <h4>{{p.Name}}
                                             <span class="price" style="float: right;">{{p.Cost}}</span>
                                         </h4>
-                                    </div><!-- /.sub-title -->
+                                    </div>
+                                    <!-- /.sub-title -->
                                     <div class="price-box">
                                         <div *ngFor="let t of p.TestMasters" class="single-price clearfix">
                                             <span class="name">{{t.Name}}</span>
                                             <!-- <span class="price">t.Type</span> -->
-                                        </div><!-- /.single-price -->
-                                    </div><!-- /.price-box -->
-                                </div><!-- /.single-price-box -->
+                                        </div>
+                                        <!-- /.single-price -->
+                                    </div>
+                                    <!-- /.price-box -->
+                                </div>
+                                <!-- /.single-price-box -->
                                 <br>
-                            </div><!-- /.col-md-6 -->
+                            </div>
+                            <!-- /.col-md-6 -->
 
-                        </div><!-- /.row -->
-                        
+                        </div>
+                        <!-- /.row -->
+
                         <div *ngIf="isloading" class="preloader home-two">
                             <div class="spinner"></div>
                         </div>
 
                     </div>
 
-                 
 
-                </div><!-- /.service-pricing -->
+
+                </div>
+                <!-- /.service-pricing -->
             </div>
-        </div><!-- /.row -->
-    </div><!-- /.thm-container -->
-</section><!-- /.blog-style-two -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.thm-container -->
+</section>
+<!-- /.blog-style-two -->
