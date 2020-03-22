@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, Route } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { BookAppointmentComponent } from './book-appointment/book-appointment.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
@@ -23,7 +23,7 @@ import { BookATestComponent } from './book-a-test/book-a-test.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { CareerComponent } from './career/career.component';
 
-const routes: Routes = [
+const routes: Route[] = [
   {
     path: '',
     redirectTo: 'home',
