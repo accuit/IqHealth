@@ -11,6 +11,7 @@ export class InnerBannerComponent implements OnInit {
   @Input('url') url = '/';
   @Input('subtitle') subtitle: string;
   @Input('parent') parent: string;
+  @Input('caption') caption: string = '';
 
   constructor() { }
 
