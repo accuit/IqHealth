@@ -22,6 +22,10 @@ import { AuthGuard } from './authenication/auth.guard';
 import { BookATestComponent } from './book-a-test/book-a-test.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { CareerComponent } from './career/career.component';
+import { PartnerWithUsComponent } from './partner-with-us/partner-with-us.component';
+import { HealthcareUnitComponent } from './partner-with-us/healthcare-unit/healthcare-unit.component';
+import { CorporateTieUpComponent } from './partner-with-us/corporate-tie-up/corporate-tie-up.component';
+import { OrganizeCampComponent } from './partner-with-us/organize-camp/organize-camp.component';
 
 const routes: Route[] = [
   {
@@ -76,6 +80,22 @@ const routes: Route[] = [
   {
     path: 'academy/our-courses',
     component: CoursesComponent
+  },
+  {
+    path: 'partner-with-us',
+    component: PartnerWithUsComponent
+  },
+  {
+    path: 'partner-with-us/healthcare-unit',
+    component: HealthcareUnitComponent
+  },
+  {
+    path: 'partner-with-us/corporate-tie-up',
+    component: CorporateTieUpComponent
+  },
+  {
+    path: 'partner-with-us/organize-free-camp',
+    component: OrganizeCampComponent
   },
   {
     path: 'book-a-test',
