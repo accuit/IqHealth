@@ -2,7 +2,7 @@
 <app-default-header></app-default-header>
 
 
-<app-inner-banner [title]="'Health Care Unit'" [url]="'/'" [parent]="'partner with us'" subtitle="health care unit" [caption]="'Join us to grow together as an esteemed organization'">
+<app-inner-banner [title]="'Health Care Unit'" [url]="'/partner-with-us'" [parent]="'partner with us'" subtitle="health care unit" [caption]="'Join us to grow together as an esteemed organization'">
 </app-inner-banner>
 
 <section _ngcontent-sbk-c2="" class="about-style-two sec-pad pt100">
@@ -10,7 +10,6 @@
         <div _ngcontent-sbk-c2="" class="row">
             <div _ngcontent-sbk-c2="" class="col-md-6">
                 <div _ngcontent-sbk-c2="" class="about-style-two-content">
-                    <h3 _ngcontent-sbk-c2="">LIVE BY <span _ngcontent-sbk-c2="" class="color-one">CHOICE </span> NOT BY <span _ngcontent-sbk-c2="" class="color-two">CHANCE</span></h3>
                     <div _ngcontent-sbk-c2="" class="about-feature-box">
                         <div _ngcontent-sbk-c2="" class="top-box">
                             <div _ngcontent-sbk-c2="" class="icon-box"><img _ngcontent-sbk-c2="" alt="Awesome Image" src="assets/images/about-2-i-1.png"></div>
@@ -33,12 +32,12 @@
                     </div>
                 </div>
             </div>
-            <div _ngcontent-sbk-c2="" class="col-md-6"><img _ngcontent-sbk-c2="" alt="Awesome Image" src="assets/images/about-2-1.jpg"></div>
+            <div _ngcontent-sbk-c2="" class="col-md-6"><img height="370px" alt="Awesome Image" src="assets/images/about-2-1.jpg"></div>
         </div>
     </div>
 </section>
 
-<section class="about-style-one white-bg sec-pad about-page" style="background-color: #f3f1f1;">
+<section class="about-style-one white-bg about-page" style="background-color: #f3f1f1;">
     <div class="thm-container">
         <div class="row">
             <div class="col-md-6">
@@ -93,71 +92,94 @@
     <div class="thm-container">
         <div class="row">
             <div class="col-md-7">
-                <form action="#" class="appointment-form contact-form" novalidate="novalidate">
-                    <h3>Need an <span class="color-1">Advice</span> from <span class="color-2">Expert Doctor?</span> Get an Appointment Today!</h3>
-                    <p>To speak with a representative, Call us <span>1-258-985-703</span></p>
+                <form [formGroup]="partnerForm" (ngSubmit)="onSubmit()" class="appointment-form">
+                    <h3>Be our business partner. Join Us</h3>
+                    <p>To speak with a representative, Call us <span>+91-801-792-6291</span></p>
                     <div class="row">
+                        <input type="text" style="display: none;" formControlName="companyID">
                         <div class="col-md-6">
                             <div class="frm-control">
-                                <input type="text" placeholder="Your Name" name="name">
+                                <input type="text" placeholder="Your Name*" formControlName="name">
+                                <div *ngIf="submitted && f.name.errors" class="invalid">
+                                    <div *ngIf="f.name.errors.required"> Name is required</div>
+                                </div>
                             </div>
-                            <!-- /.frm-control -->
                         </div>
                         <!-- /.col-md-6 -->
                         <div class="col-md-6">
                             <div class="frm-control">
-                                <input type="text" placeholder="Email" name="email">
+                                <input type="text" placeholder="Email*" formControlName="email">
+                                <div *ngIf="submitted && f.email.errors" class="invalid">
+                                    <div *ngIf="f.email.errors.required">Email is required</div>
+                                    <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                                </div>
                             </div>
                             <!-- /.frm-control -->
                         </div>
                         <!-- /.col-md-6 -->
-                        <div class="col-md-6">
-                            <div class="frm-control select-date">
-                                <input type="text" placeholder="Select Day" class="select-date-input hasDatepicker" name="select-date" id="dp1584989168164">
-                                <i class="fa fa-calendar-alt"></i>
-                                <!-- /.fa -->
-                            </div>
-                            <!-- /.frm-control -->
-                        </div>
-                        <!-- /.col-md-6 -->
-                        <div class="col-md-6">
+                        <div class="col-md-5">
                             <div class="frm-control">
-                                <div class="btn-group bootstrap-select"><button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" data-id="time-select" title="09.00 am - 10.00 am"><span class="filter-option pull-left">09.00 am - 10.00 am</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button>
+                                <input type="text" placeholder="Mobile*" formControlName="mobile">
+                                <div *ngIf="submitted && f.mobile.errors" class="invalid">
+                                    <div *ngIf="f.mobile.errors.required">Mobile Number is required</div>
+                                    <div *ngIf="f.mobile.errors.minlength">Mobile must be at least 10 characters</div>
+                                </div>
+                            </div>
+                            <!-- /.frm-control -->
+                        </div>
+                        <!-- /.col-md-6 -->
+
+                        <div class="col-md-8">
+                            <div class="frm-control">
+                                <input type="text" placeholder="Address" formControlName="address">
+                            </div>
+                            <!-- /.frm-control -->
+                        </div>
+                        <div class="col-md-4">
+                            <div class="frm-control">
+                                <div class="btn-group bootstrap-select">
+                                    <button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown">
+                                        <span class="filter-option pull-left"
+                                            [ngClass]="{'invalid': submitted && f.city.errors}">
+                                            {{selectedCityText}}</span>&nbsp;
+                                        <span class="bs-caret"><span class="caret"></span></span>
+                                    </button>
                                     <div class="dropdown-menu open">
                                         <ul class="dropdown-menu inner" role="menu">
-                                            <li data-original-index="0" class="selected"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">09.00 am - 10.00 am</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
-                                            <li data-original-index="1"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">10.01 am - 11.00 am</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
-                                            <li data-original-index="2"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">11.01 am - 12.00 pm</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
-                                            <li data-original-index="3"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">12.01 pm - 01.00 pm</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
+                                            <li *ngFor="let u of allCities">
+                                                <a (click)="selectCity(u.Name)">
+                                                    <span class="text">{{u.Name}}</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+                                            </li>
                                         </ul>
-                                    </div><select name="time-select" class="selectpicker" id="time-select" tabindex="-98">
-                                    <option value="1">09.00 am - 10.00 am</option>
-                                    <option value="1">10.01 am - 11.00 am</option>
-                                    <option value="1">11.01 am - 12.00 pm</option>
-                                    <option value="1">12.01 pm - 01.00 pm</option>
-                                </select></div>
-                                <!-- /#time-select -->
+                                    </div>
+                                    <select formControlName="city">
+                                        <option *ngFor="let u of allCities" [ngValue]="u.Name">
+                                            {{u.Name}}
+                                        </option>
+                                    </select>
+                                </div>
                             </div>
-                            <!-- /.frm-control -->
                         </div>
-                        <!-- /.col-md-6 -->
+
                         <div class="col-md-12">
+                            <div *ngIf="status==='Success'" class="alert alert-success alert-dismissible" role="alert">{{ message }}</div>
+                            <div *ngIf="status==='Fail'" class="alert alert-danger alert-dismissible" role="alert">{{ message }}</div>
                             <div class="frm-control mb0">
-                                <textarea name="message" id="message" placeholder="Message"></textarea>
-                                <!-- /#message -->
-                                <button type="submit">Send Request <i class="fa fa-angle-double-right"></i></button>
+                                <button *ngIf="!showSpinner" type="submit">Submit</button>
+                                <button *ngIf="showSpinner" type="submit">Sending Request...</button>
+                                <span>&nbsp; &nbsp; </span>
+                                <button type="reset" (click)="reset()">Reset</button>
                             </div>
                             <!-- /.frm-control -->
                         </div>
                         <!-- /.col-md-12 -->
                     </div>
-                    <!-- /.row -->
                 </form>
                 <!-- /.appointment-form -->
             </div>
             <!-- /.col-md-7 -->
             <div class="col-md-5">
-                <img src="../../../assets/images/appointment-1-1.png" class="appointment-doc" alt="">
+                <img src="../../../assets/images/appointment-1-1.png" class="appointment-doc" alt="book business with health iq">
             </div>
             <!-- /.col-md-5 -->
         </div>

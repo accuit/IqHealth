@@ -4012,7 +4012,26 @@ body.active-preloader-ovh {
     background-color: transparent;
     width: 190px;
     height: 52px;
-    background: #333333;
+    background: #02a69b;
+    color: #FFFFFF;
+    font-family: "Oxygen-Bold";
+    font-size: 16px;
+    text-align: center;
+    line-height: 52px;
+    text-transform: uppercase;
+    -webkit-transition: all .4s ease;
+    -o-transition: all .4s ease;
+    transition: all .4s ease;
+    margin-top: 35px;
+}
+
+.appointment-style-one .appointment-form button[type=reset] {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    width: 190px;
+    height: 52px;
+    background: #02a69b;
     color: #FFFFFF;
     font-family: "Oxygen-Bold";
     font-size: 16px;
@@ -4026,6 +4045,10 @@ body.active-preloader-ovh {
 }
 
 .appointment-style-one .appointment-form button[type=submit]:hover {
+    background: #AB1C6E;
+}
+
+.appointment-style-one .appointment-form button[type=reset]:hover {
     background: #AB1C6E;
 }
 
@@ -4043,7 +4066,11 @@ body.active-preloader-ovh {
 }
 
 .appointment-style-one.contact-page .appointment-form button[type=submit]:hover {
-    background: #333333;
+    background: #02a69b;
+}
+
+.appointment-style-one.contact-page .appointment-form button[type=reset]:hover {
+    background: #02a69b;
 }
 
 .appointment-style-one.contact-page .appointment-form textarea {

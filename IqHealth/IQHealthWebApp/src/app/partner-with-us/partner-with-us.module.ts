@@ -5,12 +5,19 @@ import { CorporateTieUpComponent } from './corporate-tie-up/corporate-tie-up.com
 import { OrganizeCampComponent } from './organize-camp/organize-camp.component';
 import { PartnerWithUsComponent } from './partner-with-us.component';
 import { SharedModule } from '../shared/shared.module';
+import { PartnerService } from './partner.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [PartnerWithUsComponent , HealthcareUnitComponent, CorporateTieUpComponent, OrganizeCampComponent],
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
     CommonModule,
     SharedModule
+  ],
+  providers:[
+    PartnerService
   ]
 })
 export class PartnerWithUsModule { }
