@@ -39,7 +39,7 @@ export class OrganizeCampComponent implements OnInit {
       address: [''],
       city: [''],
       state: [''],
-      expectedCount:[''],
+      expectedCount:['', Validators.required],
       companyID: [2]
     });
 

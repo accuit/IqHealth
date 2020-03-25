@@ -33,6 +33,22 @@ export class AppService {
     return cities;
   }
 
+  getAllDesignation(): any {
+
+    const designations  = [
+      { id: 1, Name: 'Manager' },
+      { id: 2, Name: 'Sr. manager' },
+      { id: 3, Name: 'Associate' },
+      { id: 4, Name: 'CEO' },
+      { id: 5, Name: 'CTO' },
+      { id: 6, Name: 'Facility Manager' },
+      { id: 7, Name: 'Assitant Vice President (AVP)' },
+      { id: 8, Name: 'Vice President (VP)' }
+    ]
+
+    return designations;
+  }
+
   getAllDoctors(): any {
     return this.httpClient.get<Doctor[]>(this.baseUrl + 'api/doctors/data', { headers: this.headers });
   }
