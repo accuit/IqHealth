@@ -12,6 +12,8 @@ export class InnerBannerComponent implements OnInit {
   @Input('subtitle') subtitle: string;
   @Input('parent') parent: string;
   @Input('caption') caption: string = '';
+  @Input('banner-image') bannerImage? = '';
+  @Input('show-title') showTitle: boolean = true;
 
   constructor() { }
 
