@@ -1,0 +1,16 @@
+.checkbox-inline input[type=checkbox],
+.radio input[type=radio],
+.radio-inline input[type=radio] {
+    position: absolute;
+    margin-top: 4px\9;
+    margin-left: 50%;
+    color: #d9e2e2;
+}
+
+input[type=checkbox],
+input[type=radio] {
+    margin: 4px 0 0;
+    margin-top: 1px\9;
+    line-height: normal;
+    height: 20px
+}

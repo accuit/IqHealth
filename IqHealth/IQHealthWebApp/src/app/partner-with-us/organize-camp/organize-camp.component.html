@@ -1,0 +1,193 @@
+<app-top-header></app-top-header>
+<app-default-header></app-default-header>
+
+
+<app-inner-banner [title]="'Organize Free Camp'" [url]="'/partner-with-us'" [parent]="'partner with us'" subtitle="health care unit" [caption]="'Join us to grow together as an esteemed organization'">
+</app-inner-banner>
+
+<section class="services-section-two">
+    <div class="container">
+        <div class="sec-title-style-two text-center">
+
+            <h3>Organize <span class="color-1">Free Camp</span> with <span class="color-1">Health IQ</span></h3>
+            <p>Free medical camps are set up with a sacred aim to bring awareness amongst the deprived population of the country who have no access to basic healthcare services or knowledge about the diseases they are suffering from. So, medical camps provide
+                free medical advice, medicine to the unfortunate people and refer for specialized treatment or surgery whenever it is required.</p>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="single-service-style-five text-center">
+                    <div class="icon-box">
+                        <i class="clinmedix-icon-heart-1"></i>
+                        <a href="#">
+                            <h3>RWA Health Check Up</h3>
+                        </a>
+                        <p>Health IQ would organize Free RWA Health Check-up Camps in order to raise mass awareness about health & importance of regular health check-ups.</p>
+                    </div>
+                    <!-- /.icon-box -->
+                </div>
+                <!-- /.single-service-style-five -->
+            </div>
+            <!-- /.col-md-4 -->
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="single-service-style-five text-center">
+                    <div class="icon-box">
+                        <i class="clinmedix-icon-doctor2"></i>
+                        <a href="#">
+                            <h3>Certified Professionals</h3>
+                        </a>
+                        <p>During these health camps, our team of certified professionals will provide Free Weight, Blood Pressure, Body Mass Index, Cholesterol/Sugar Test.</p>
+                    </div>
+                    <!-- /.icon-box -->
+                </div>
+                <!-- /.single-service-style-five -->
+            </div>
+            <!-- /.col-md-4 -->
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="single-service-style-five text-center">
+                    <div class="icon-box">
+                        <i class="clinmedix-icon-chemical1"></i>
+                        <a href="#">
+                            <h3>Advance Labs</h3>
+                        </a>
+                        <p>With our advanced state-of-the-art laboratories, we ensure accurate results every time. You can view your test reports digitally on webportal.</p>
+                    </div>
+                    <!-- /.icon-box -->
+                </div>
+                <!-- /.single-service-style-five -->
+            </div>
+        </div>
+    </div>
+</section>
+<section class="about-style-one white-bg about-page sec-pad" style="background-color: #f3f1f1;">
+    <div class="thm-container">
+        <div class="row">
+            <div class="sec-title text-center">
+                <h3>Our Camp Gallery</h3>
+                <div class="line"></div>
+                <!-- /.line -->
+            </div>
+            <div class="service-style-six-carousel owl-theme owl-carousel">
+                <div *ngFor="let S of services" class="item">
+                    <div class="single-service-style-six">
+                        <div class="img-box">
+                            <img height="250px" [src]="'assets/images/services/'+ S.ID + '.jpg'" alt="S.Name" />
+                        </div>
+                        <!-- /.img-box -->
+                    </div>
+                </div>
+                <!-- /.item -->
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.thm-container -->
+</section>
+
+<section class="appointment-style-one home-two">
+    <div class="thm-container">
+        <div class="row">
+            <div class="col-md-7">
+                <form [formGroup]="partnerForm" (ngSubmit)="onSubmit()" class="appointment-form">
+                    <h3>Be our business partner. Join Us</h3>
+                    <p>To speak with a representative, Call us <span>+91-801-792-6291</span></p>
+                    <div class="row">
+                        <input type="text" style="display: none;" formControlName="companyID">
+                        <div class="col-md-6">
+                            <div class="frm-control">
+                                <input type="text" placeholder="Your Name*" formControlName="name">
+                                <div *ngIf="submitted && f.name.errors" class="invalid">
+                                    <div *ngIf="f.name.errors.required"> Name is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.col-md-6 -->
+                        <div class="col-md-5">
+                            <div class="frm-control">
+                                <input type="text" placeholder="Email Address*" formControlName="email">
+                                <div *ngIf="submitted && f.email.errors" class="invalid">
+                                    <div *ngIf="f.email.errors.required">Email is required</div>
+                                    <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                                </div>
+                            </div>
+                            <!-- /.frm-control -->
+                        </div>
+                        <!-- /.col-md-6 -->
+                        <div class="col-md-5">
+                            <div class="frm-control">
+                                <input type="text" placeholder="Mobile*" formControlName="mobile">
+                                <div *ngIf="submitted && f.mobile.errors" class="invalid">
+                                    <div *ngIf="f.mobile.errors.required">Mobile Number is required.</div>
+                                    <div *ngIf="f.mobile.errors.minlength">Mobile must be at least 10 characters.</div>
+                                </div>
+                            </div>
+                            <!-- /.frm-control -->
+                        </div>
+                        <!-- /.col-md-6 -->
+                        <div class="col-md-5">
+                            <div class="frm-control">
+                                <input type="number" placeholder="Expected people*" formControlName="expectedCount">
+                                <div *ngIf="submitted && f.expectedCount.errors" class="invalid">
+                                    <div *ngIf="f.expectedCount.errors.required">Expected Numbers are required.</div>
+                                </div>
+                            </div>
+                            <!-- /.frm-control -->
+                        </div>
+                        <div class="col-md-8">
+                            <div class="frm-control">
+                                <input type="text" placeholder="Place/ Society/ Organization" formControlName="address">
+                            </div>
+                            <!-- /.frm-control -->
+                        </div>
+                        <div class="col-md-4">
+                            <div class="frm-control">
+                                <div class="btn-group bootstrap-select">
+                                    <button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown">
+                                        <span class="filter-option pull-left"
+                                            [ngClass]="{'invalid': submitted && f.city.errors}">
+                                            {{selectedCityText}}</span>&nbsp;
+                                        <span class="bs-caret"><span class="caret"></span></span>
+                                    </button>
+                                    <div class="dropdown-menu open">
+                                        <ul class="dropdown-menu inner" role="menu">
+                                            <li *ngFor="let u of allCities">
+                                                <a (click)="selectCity(u.Name)">
+                                                    <span class="text">{{u.Name}}</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <select formControlName="city">
+                                        <option *ngFor="let u of allCities" [ngValue]="u.Name">
+                                            {{u.Name}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div *ngIf="status==='Success'" class="alert alert-success alert-dismissible" role="alert">{{ message }}</div>
+                            <div *ngIf="status==='Fail'" class="alert alert-danger alert-dismissible" role="alert">{{ message }}</div>
+                            <div class="frm-control mb0">
+                                <button *ngIf="!showSpinner" type="submit">Submit</button>
+                                <button *ngIf="showSpinner" type="submit">Sending Request...</button>
+                                <span>&nbsp; &nbsp; </span>
+                                <button type="reset" (click)="reset()">Reset</button>
+                            </div>
+                            <br>
+                            <!-- /.frm-control -->
+                        </div>
+                        <!-- /.col-md-12 -->
+                    </div>
+                </form>
+                <!-- /.appointment-form -->
+            </div>
+            <!-- /.col-md-7 -->
+            <div class="col-md-5">
+                <img src="../../../assets/images/free-camp.jpg" width="500px" class="appointment-doc" alt="book business with health iq">
+            </div>
+            <!-- /.col-md-5 -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.thm-container -->
+</section>

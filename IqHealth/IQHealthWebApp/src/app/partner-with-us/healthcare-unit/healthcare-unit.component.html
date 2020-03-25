@@ -1,0 +1,189 @@
+<app-top-header></app-top-header>
+<app-default-header></app-default-header>
+
+
+<app-inner-banner [title]="'Health Care Unit'" [url]="'/partner-with-us'" [parent]="'partner with us'" subtitle="health care unit" [caption]="'Join us to grow together as an esteemed organization'">
+</app-inner-banner>
+
+<section _ngcontent-sbk-c2="" class="about-style-two sec-pad pt100">
+    <div _ngcontent-sbk-c2="" class="thm-container">
+        <div _ngcontent-sbk-c2="" class="row">
+            <div _ngcontent-sbk-c2="" class="col-md-6">
+                <div _ngcontent-sbk-c2="" class="about-style-two-content">
+                    <div _ngcontent-sbk-c2="" class="about-feature-box">
+                        <div _ngcontent-sbk-c2="" class="top-box">
+                            <div _ngcontent-sbk-c2="" class="icon-box"><img _ngcontent-sbk-c2="" alt="Awesome Image" src="assets/images/about-2-i-1.png"></div>
+                            <div _ngcontent-sbk-c2="" class="text-box">
+                                <h4 _ngcontent-sbk-c2=""> Healthcare Industry in India</h4>
+                            </div>
+                        </div>
+                        <p _ngcontent-sbk-c2="">Today, India ranks 145 out of 195 countries as per the Healthcare Access & Quality Index. Healthcare market in India is expected to reach US $372billion by 2022, driving by rising incomes, greater health awareness and lifestyle
+                            diseases. An India Health & Wellness Services report says that the Indian Healthcare Industry will increase to Rs. 8.6 trillion (133.44 billion USD) by the year 2022</p>
+                    </div>
+                    <div _ngcontent-sbk-c2="" class="about-feature-box">
+                        <div _ngcontent-sbk-c2="" class="top-box">
+                            <div _ngcontent-sbk-c2="" class="icon-box"><img _ngcontent-sbk-c2="" alt="Awesome Image" src="assets/images/about-2-i-2.png"></div>
+                            <div _ngcontent-sbk-c2="" class="text-box">
+                                <h4 _ngcontent-sbk-c2="">Top Quality Patient Care System</h4>
+                            </div>
+                        </div>
+                        <p _ngcontent-sbk-c2=""> Finding out the opportunity of growth, Health IQ, a healthcare service provider in Eastern India is taking the franchise route to actualize its vision of establishing a hi-end chain of affordable diagnostic centres and paramedical
+                            academy across the Country, apart from setting up owned centres.</p>
+                    </div>
+                </div>
+            </div>
+            <div _ngcontent-sbk-c2="" class="col-md-6"><img height="370px" alt="Awesome Image" src="assets/images/about-2-1.jpg"></div>
+        </div>
+    </div>
+</section>
+
+<section class="about-style-one white-bg about-page" style="background-color: #f3f1f1;">
+    <div class="thm-container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="about-style-one-content">
+                    <h4>Why partner with us?</h4>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-6 col-xs-12">
+                            <ul class="list-items">
+                                <li><i class="fa fa-check"></i>Dedicated Team of Experienced Doctors and staffs from Healthcare Sector.</li>
+                                <li><i class="fa fa-check"></i>Live Interaction Platform for learning of Paramedical Students in West Bengal after State Faculty.</li>
+                                <li><i class="fa fa-check"></i>Smart Reports for 1st time in Eastern India.</li>
+                                <li><i class="fa fa-check"></i>Minimal investment and low running costs.</li>
+                                <li><i class="fa fa-check"></i>Best ROI(Return on Investment) in the market.</li>
+                            </ul>
+                            <!-- /.list-items -->
+                        </div>
+                        <!-- /.col-md-5 -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.about-style-one-content -->
+            </div>
+            <!-- /.col-md-6 -->
+            <div class="col-md-6">
+                <div class="about-style-one-content">
+                    <h4>Health IQ Center</h4>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-6 col-xs-12">
+                            <ul class="list-items">
+                                <li><i class="fa fa-check"></i>Anyone who can dedicate time for business growth and aims to be a successful entrepreneur.</li>
+                                <li><i class="fa fa-check"></i>The proposed collection center should be located in a visible, easily accessible, medically active location, preferably on the main road.</li>
+                                <li><i class="fa fa-check"></i>An approximate investment of Rs. 3.00 – 5.00 lacs apart from infrastructure development as per Health IQ standards.</li>
+                                <li><i class="fa fa-check"></i>Should be situated on the ground floor with area of around 200 - 500 sq. ft space, whether leased, rented or owned (preferably with washroom facility).</li>
+                                <li><i class="fa fa-check"></i>Work Timings 7.00 AM - 8.00 PM.</li>
+                            </ul>
+                            <!-- /.list-items -->
+                        </div>
+                        <!-- /.col-md-5 -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.about-style-one-content -->
+            </div>
+            <!-- /.col-md-6 -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.thm-container -->
+</section>
+
+<section class="appointment-style-one home-two">
+    <div class="thm-container">
+        <div class="row">
+            <div class="col-md-7">
+                <form [formGroup]="partnerForm" (ngSubmit)="onSubmit()" class="appointment-form">
+                    <h3>Be our business partner. Join Us</h3>
+                    <p>To speak with a representative, Call us <span>+91-801-792-6291</span></p>
+                    <div class="row">
+                        <input type="text" style="display: none;" formControlName="companyID">
+                        <div class="col-md-6">
+                            <div class="frm-control">
+                                <input type="text" placeholder="Your Name*" formControlName="name">
+                                <div *ngIf="submitted && f.name.errors" class="invalid">
+                                    <div *ngIf="f.name.errors.required"> Name is required</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.col-md-6 -->
+                        <div class="col-md-6">
+                            <div class="frm-control">
+                                <input type="text" placeholder="Email*" formControlName="email">
+                                <div *ngIf="submitted && f.email.errors" class="invalid">
+                                    <div *ngIf="f.email.errors.required">Email is required</div>
+                                    <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                                </div>
+                            </div>
+                            <!-- /.frm-control -->
+                        </div>
+                        <!-- /.col-md-6 -->
+                        <div class="col-md-5">
+                            <div class="frm-control">
+                                <input type="text" placeholder="Mobile*" formControlName="mobile">
+                                <div *ngIf="submitted && f.mobile.errors" class="invalid">
+                                    <div *ngIf="f.mobile.errors.required">Mobile Number is required</div>
+                                    <div *ngIf="f.mobile.errors.minlength">Mobile must be at least 10 characters</div>
+                                </div>
+                            </div>
+                            <!-- /.frm-control -->
+                        </div>
+                        <!-- /.col-md-6 -->
+
+                        <div class="col-md-8">
+                            <div class="frm-control">
+                                <input type="text" placeholder="Address" formControlName="address">
+                            </div>
+                            <!-- /.frm-control -->
+                        </div>
+                        <div class="col-md-4">
+                            <div class="frm-control">
+                                <div class="btn-group bootstrap-select">
+                                    <button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown">
+                                        <span class="filter-option pull-left"
+                                            [ngClass]="{'invalid': submitted && f.city.errors}">
+                                            {{selectedCityText}}</span>&nbsp;
+                                        <span class="bs-caret"><span class="caret"></span></span>
+                                    </button>
+                                    <div class="dropdown-menu open">
+                                        <ul class="dropdown-menu inner" role="menu">
+                                            <li *ngFor="let u of allCities">
+                                                <a (click)="selectCity(u.Name)">
+                                                    <span class="text">{{u.Name}}</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <select formControlName="city">
+                                        <option *ngFor="let u of allCities" [ngValue]="u.Name">
+                                            {{u.Name}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div *ngIf="status==='Success'" class="alert alert-success alert-dismissible" role="alert">{{ message }}</div>
+                            <div *ngIf="status==='Fail'" class="alert alert-danger alert-dismissible" role="alert">{{ message }}</div>
+                            <div class="frm-control mb0">
+                                <button *ngIf="!showSpinner" type="submit">Submit</button>
+                                <button *ngIf="showSpinner" type="submit">Sending Request...</button>
+                                <span>&nbsp; &nbsp; </span>
+                                <button type="reset" (click)="reset()">Reset</button>
+                            </div>
+                            <!-- /.frm-control -->
+                        </div>
+                        <!-- /.col-md-12 -->
+                    </div>
+                </form>
+                <!-- /.appointment-form -->
+            </div>
+            <!-- /.col-md-7 -->
+            <div class="col-md-5">
+                <img src="../../../assets/images/appointment-1-1.png" class="appointment-doc" alt="book business with health iq">
+            </div>
+            <!-- /.col-md-5 -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.thm-container -->
+</section>

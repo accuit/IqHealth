@@ -34,6 +34,7 @@ import { AuthInterceptor } from './authenication/auth.interceptor';
 import { BookATestComponent } from './book-a-test/book-a-test.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { CareerComponent } from './career/career.component';
+import { PartnerWithUsModule } from './partner-with-us/partner-with-us.module';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { CareerComponent } from './career/career.component';
     SharedModule,
     AcademyModule,
     AccountModule,
-    PagesModule
+    PagesModule,
+    PartnerWithUsModule
   ],
   providers: [
     { provide: 'LOCALSTORAGE', useFactory: getLocalStorage },
