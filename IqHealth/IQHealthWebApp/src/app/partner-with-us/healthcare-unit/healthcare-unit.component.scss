@@ -14,3 +14,10 @@ input[type=radio] {
     line-height: normal;
     height: 20px
 }
+
+.parallax-section {
+    position: relative;
+    padding: 5px 0;
+    background-size: cover;
+    background-position: center;
+}
