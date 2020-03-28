@@ -40,6 +40,9 @@ namespace IqHealth.Data.Persistence
         public virtual DbSet<UserMaster> UserMasters { get; set; }
         public virtual DbSet<HealthServiceMaster> HealthServiceMasters { get; set; }
         public virtual DbSet<UploadedReports> UploadedReports { get; set; }
+        public virtual DbSet<PartnerEnquiry> PartnerEnquiries { get; set; }
+        public virtual DbSet<CorporateTieUpEnquiry> CorporateTieUpEnquiries { get; set; }
+        public virtual DbSet<OrganizeCampEnquiry> OrganizeCampEnquiry { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

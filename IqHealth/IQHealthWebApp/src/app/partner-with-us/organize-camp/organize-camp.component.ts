@@ -12,7 +12,7 @@ import { AppJsonService } from 'src/app/core/app.json.service';
 })
 export class OrganizeCampComponent implements OnInit {
 
-  partnerForm: FormGroup;
+  organizeCampForm: FormGroup;
   submitted = false;
   showSpinner: boolean;
   status: string;
@@ -25,7 +25,7 @@ export class OrganizeCampComponent implements OnInit {
     private readonly notificationService: AppService, private readonly jsonService: AppJsonService) { }
 
   ngOnInit() {
-    this.partnerForm = this.loadForm();
+    this.organizeCampForm = this.loadForm();
     this.allCities = this.notificationService.getAllCities();
     this.services = this.jsonService.getAllServices();
 
@@ -47,31 +47,31 @@ export class OrganizeCampComponent implements OnInit {
 
   reset(): void {
     this.submitted = false;
-    this.partnerForm.reset();
+    this.organizeCampForm.reset();
   }
 
   get f() {
-    return this.partnerForm.controls;
+    return this.organizeCampForm.controls;
   }
 
   selectCity(city) {
-    this.selectedCityText = city;
-    this.partnerForm.controls['city'].setValue(city);
+    this.selectedCityText = city.Name;
+    this.organizeCampForm.controls['city'].setValue(city.id);
   }
 
   onSubmit(): any {
     this.submitted = true;
-    if (this.partnerForm.invalid) {
+    if (this.organizeCampForm.invalid) {
       return;
     }
     this.showSpinner = true;
-    this.service.submitPartnerRequest(this.partnerForm.value)
+    this.service.submitOrganizeCampEnquiry(this.organizeCampForm.value)
       .subscribe((res: APIResponse) => {
         this.showSpinner = false;
         if (res.IsSuccess) {
           this.status = "Success";
           this.message = res.Message;
-          this.notificationService.sendEmailNotification('api/notification/email-appointment', this.partnerForm.value);
+          this.notificationService.sendEmailNotification('api/notification/email-appointment', this.organizeCampForm.value);
           this.reset();
           
         } else {

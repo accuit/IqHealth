@@ -50,8 +50,8 @@ export class HealthcareUnitComponent implements OnInit {
   }
 
   selectCity(city) {
-    this.selectedCityText = city;
-    this.partnerForm.controls['city'].setValue(city);
+    this.selectedCityText = city.Name;
+    this.partnerForm.controls['city'].setValue(city.id);
   }
 
   onSubmit(): any {
@@ -60,7 +60,7 @@ export class HealthcareUnitComponent implements OnInit {
       return;
     }
     this.showSpinner = true;
-    this.service.submitPartnerRequest(this.partnerForm.value)
+    this.service.submitPartnerEnquiry(this.partnerForm.value)
       .subscribe((res: APIResponse) => {
         this.showSpinner = false;
         if (res.IsSuccess) {
