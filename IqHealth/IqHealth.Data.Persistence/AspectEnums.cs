@@ -47,6 +47,14 @@ namespace IqHealth.Data.Persistence
             InActive = 2
         }
 
+        public enum EnquiryStatus
+        {
+            Received = 0,
+            Hold = 1,
+            InProcess = 2,
+            Completed = 3
+        }
+
         public enum FileType
         {
             MedicalReport = 1,

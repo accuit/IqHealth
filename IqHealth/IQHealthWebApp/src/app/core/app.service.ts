@@ -37,7 +37,7 @@ export class AppService {
 
     const designations  = [
       { id: 1, Name: 'Manager' },
-      { id: 2, Name: 'Sr. manager' },
+      { id: 2, Name: 'HR' },
       { id: 3, Name: 'Associate' },
       { id: 4, Name: 'CEO' },
       { id: 5, Name: 'CTO' },
