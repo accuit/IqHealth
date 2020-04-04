@@ -59,6 +59,44 @@ namespace IqHealth.WebApi.Controllers
             return response;
         }
 
+        [HttpPost]
+        [Route("contact-us-enquiry")]
+        public JsonResponse<int> ContactUsEnquiry(ContactUsEnquiry enquiry)
+        {
+            JsonResponse<int> response = new JsonResponse<int>();
+
+            if (!ModelState.IsValid)
+            {
+
+                response.FailedValidations = ModelState.Keys.ToArray();
+                response.Message = string.Format("Kindly check {0}. It is missing or in incorrect format.", response.FailedValidations[0].Split('.').LastOrDefault());
+                return response;
+            }
+            try
+            {
+                enquiry.CreatedDate = DateTime.Now;
+                enquiry.Status = (int)AspectEnums.EnquiryStatus.Received;
+                _context.ContactUsEnquiry.Add(enquiry);
+                response.IsSuccess = _context.SaveChanges() > 0 ? true : false;
+
+                if (response.IsSuccess)
+                {
+                    response.StatusCode = "200";
+                    response.Message = "Your enquiry is successfully posted.  We will send you email shortly.";
+                    response.SingleResult = enquiry.ID;
+                }
+            }
+            catch (Exception ex)
+            {
+                response.IsSuccess = false;
+                response.StatusCode = "500";
+                response.Message = ex.Message;
+            }
+
+            return response;
+        }
+
+
 
         [HttpPost]
         [Route("partner-enquiry")]
@@ -76,7 +114,7 @@ namespace IqHealth.WebApi.Controllers
             try
             {
                 partner.CreatedDate = DateTime.Now;
-                partner.State = (int)AspectEnums.EnquiryStatus.Received;
+                partner.Status = (int)AspectEnums.EnquiryStatus.Received;
                 _context.PartnerEnquiries.Add(partner);
                 response.IsSuccess = _context.SaveChanges() > 0 ? true : false;
 
@@ -113,7 +151,7 @@ namespace IqHealth.WebApi.Controllers
             try
             {
                 enquiry.CreatedDate = DateTime.Now;
-                enquiry.State = (int)AspectEnums.EnquiryStatus.Received;
+                enquiry.Status = (int)AspectEnums.EnquiryStatus.Received;
                 _context.CorporateTieUpEnquiries.Add(enquiry);
                 response.IsSuccess = _context.SaveChanges() > 0 ? true : false;
 

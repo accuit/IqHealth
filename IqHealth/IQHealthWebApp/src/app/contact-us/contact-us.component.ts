@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { APIResponse } from '../core/app.models';
+import { AppService } from '../core/app.service';
 
 declare var GMaps: any; 
 
@@ -11,9 +14,59 @@ declare var GMaps: any;
 export class ContactUsComponent implements OnInit {
 
 sha: any;
+isLoaded = false;
+submitted = false;
+status: string;
+message: string;
+enquiryForm: FormGroup;
+showSpinner: boolean;
+
+constructor(private readonly formBuilder: FormBuilder, private readonly appService: AppService) {}
 
   ngOnInit() {
     this.gMap();
+    this.loadForm();
+  }
+
+  loadForm(): any {
+    this.enquiryForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email, Validators.maxLength(150)]],
+      mobile: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+      message: ['', [Validators.required, Validators.maxLength(1000)]],
+      companyID: [2]
+    });
+  }
+
+  reset(): void {
+    this.submitted = false;
+    this.enquiryForm.reset();
+  }
+
+  get f() { return this.enquiryForm.controls; }
+
+
+  onSubmit(): any {
+    this.submitted = true;
+    if (this.enquiryForm.invalid) {
+      return;
+    }
+    this.showSpinner = true;
+    this.appService.submitContactUsForm(this.enquiryForm.value)
+      .subscribe((res: APIResponse) => {
+        this.showSpinner = false;
+        if (res.IsSuccess) {
+          this.status = "Success";
+          this.message = res.Message;
+          this.appService.sendEmailNotification('api/notification/email-appointment', this.enquiryForm.value);
+          this.reset();
+          
+        } else {
+          this.status = "Fail";
+          this.message = res.Message;
+          return;
+        }
+      })
   }
 
   gMap () {

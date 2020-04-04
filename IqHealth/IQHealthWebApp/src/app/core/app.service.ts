@@ -50,7 +50,7 @@ export class AppService {
   }
 
   getAllDoctors(): any {
-    return this.httpClient.get<Doctor[]>(this.baseUrl + 'api/doctors/data', { headers: this.headers });
+    return this.httpClient.get<Doctor[]>(this.baseUrl + 'api/doctors/data/2', { headers: this.headers });
   }
 
   getAllServices(): any {
@@ -97,6 +97,10 @@ export class AppService {
     return this.httpClient.post(this.baseUrl + 'api/bookings/new-appointment', appointment, { headers: this.headers })
   }
 
+  submitContactUsForm(enquiry: any): any {
+    return this.httpClient.post(this.baseUrl + 'api/enquiry/contact-us-enquiry', enquiry, { headers: this.headers })
+  }
+
   submitJobApplication(application: JobApplication): any {
     return this.httpClient.post(this.baseUrl + 'api/enquiry/post-job', application, { headers: this.headers })
   }
@@ -106,6 +110,8 @@ export class AppService {
       .subscribe((res: APIResponse) => {
         if (res.IsSuccess)
           console.log('Email successfully sent.');
+          else
+          console.log(res.Message);
       },
         err => {
           this.handleError(err);

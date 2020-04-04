@@ -1,9 +1,9 @@
 <app-top-header></app-top-header>
 <app-default-header></app-default-header>
 
-<app-inner-banner title="Contact Health IQ" url="#" parent="Home" subtitle="Contact Us"></app-inner-banner>
 
-<div #mymap class="google-map" id="contact-google-map" data-map-lat="22.5267089" data-map-lng="88.3449872" data-icon-path="http://localhost:4200/assets/images/map-pointer.png" data-map-title="Brooklyn, New York, United Kingdom" data-map-zoom="18" data-markers='{
+<div #mymap class="google-map" id="contact-google-map" height="200px" data-map-lat="22.5267089" data-map-lng="88.3449872" data-icon-path="http://localhost:4200/assets/images/map-pointer.png" data-map-title="GARIA STATION ROAD, Kolkata-84" data-map-zoom="18"
+    data-markers='{
           "marker-1": [22.5267089, 88.3449872, "<h4>Main Clinic</h4><p>47,GARIA STATION ROAD, Kolkata-84, INDIA</p>"]
       }'>
 
@@ -12,29 +12,43 @@
 <section class="contact-info-style-one text-center">
     <div class="thm-container">
         <div class="row">
-            <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="col-md-3 col-sm-6 col-xs-12">
                 <div class="single-contact-info-style-one">
                     <div class="inner-box">
                         <div class="icon-box">
-                            <img src="../../assets/images/contact-info-1-2.png" alt="Awesome Image" />
+                            <img src="../../assets/images/contact-info-1-2.png" alt="Heaalth IQ Corporate Office" />
                         </div>
                         <!-- /.icon-box -->
-                        <h3>Our Location</h3>
+                        <h3>Corporate Office</h3>
                         <p>47,GARIA STATION ROAD, Kolkata-84 <br>Nearest Metro:- Sahid Khudiram Metro</p>
                     </div>
                     <!-- /.inner-box -->
                 </div>
                 <!-- /.single-contact-info-style-one -->
             </div>
-            <!-- /.col-md-4 -->
-            <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="col-md-3 col-sm-6 col-xs-12">
                 <div class="single-contact-info-style-one">
                     <div class="inner-box">
                         <div class="icon-box">
-                            <img src="../../assets/images/contact-info-1-1.png" alt="Health IQ" />
+                            <img src="../../assets/images/contact-info-1-2.png" alt="Health IQ Registered Office" />
                         </div>
                         <!-- /.icon-box -->
-                        <h3>phone us </h3>
+                        <h3>Registered Office</h3>
+                        <p>5, Central Road, Jadavpur, Kolkata <br>West Bengal,India-700032</p>
+                    </div>
+                    <!-- /.inner-box -->
+                </div>
+                <!-- /.single-contact-info-style-one -->
+            </div>
+            <!-- /.col-md-4 -->
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="single-contact-info-style-one">
+                    <div class="inner-box">
+                        <div class="icon-box">
+                            <img src="../../assets/images/contact-info-1-1.png" alt="Health IQ mobile Number" />
+                        </div>
+                        <!-- /.icon-box -->
+                        <h3>mobile us </h3>
                         <p><span>+ 91-8017926291/92</span> <br>24/7 Helpline: 101</p>
                     </div>
                     <!-- /.inner-box -->
@@ -42,7 +56,7 @@
                 <!-- /.single-contact-info-style-one -->
             </div>
             <!-- /.col-md-4 -->
-            <div class="col-md-4 col-sm-6 col-xs-12 col-lg-offset-0 col-md-offset-0 col-sm-offset-3 col-xs-offset-0">
+            <div class="col-md-3 col-sm-6 col-xs-12 col-lg-offset-0 col-md-offset-0 col-sm-offset-3 col-xs-offset-0">
                 <div class="single-contact-info-style-one">
                     <div class="inner-box">
                         <div class="icon-box">
@@ -62,4 +76,79 @@
     </div>
     <!-- /.thm-container -->
 </section>
-<!-- /.contact-info-style-one -->
+<section class="appointment-style-one contact-us">
+    <div class="thm-container">
+        <div class="row">
+            <div class="col-md-12">
+                <form [formGroup]="enquiryForm" (ngSubmit)="onSubmit()" class="appointment-form">
+                    <h3>Send us your query now.</h3>
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div class="col-md-6">
+                                <input type="text" style="display: none;" formControlName="companyID">
+                                <div class="frm-control">
+                                    <input type="text" placeholder="Full Name" formControlName="name">
+                                    <div *ngIf="submitted && f.name.errors" class="invalid">
+                                        <div *ngIf="f.name.errors.required"> Name is required</div>
+                                    </div>
+                                </div>
+                                <!-- /.frm-control -->
+                            </div>
+                            <div class="col-md-6">
+                                <div class="frm-control">
+                                    <input type="text" placeholder="10 Digit Mobile No." formControlName="mobile">
+                                    <div *ngIf="submitted && f.mobile.errors" class="invalid">
+                                        <div *ngIf="f.mobile.errors.required">10 digit Mobile Number is required</div>
+                                        <div *ngIf="f.mobile.errors.minlength || f.mobile.errors.maxlength">Mobile must be of 10 digits</div>
+                                    </div>
+                                </div>
+                                <!-- /.frm-control -->
+                            </div>
+                            <div class="col-md-12">
+                                <div class="frm-control">
+                                    <input type="text" placeholder="Email Address" formControlName="email">
+                                    <div *ngIf="submitted && f.email.errors" class="invalid">
+                                        <div *ngIf="f.email.errors.required">Email is required</div>
+                                        <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                                        <div *ngIf="f.email.errors.email.maxlength">Email should be less than 150 characters.</div>
+                                    </div>
+                                </div>
+                                <!-- /.frm-control -->
+                            </div>
+                            <div class="col-md-12">
+                                <div class="frm-control mb0">
+                                    <textarea name="message" rows="1" formControlName="message" placeholder="Write Your Query"></textarea>
+                                    <div *ngIf="submitted && f.message.errors" class="invalid">
+                                        <div *ngIf="f.message.errors.required">Messsage is required</div>
+                                        <div *ngIf="f.message.errors.maxlength">Maximum 1000 characters allowed.</div>
+                                    </div>
+                                    <div *ngIf="status==='Success'" class="alert alert-success alert-dismissible" role="alert">{{ message }}</div>
+                                    <div *ngIf="status==='Fail'" class="alert alert-danger alert-dismissible" role="alert">{{ message }}</div>
+
+                                    <button *ngIf="!showSpinner" type="submit">Submit</button>
+                                    <button *ngIf="showSpinner" type="submit">Sending Request...</button>
+
+                                    <!-- <button type="reset" (click)="reset()">Reset</button> -->
+                                </div>
+                                <!-- /.frm-control -->
+                            </div>
+                            <!-- /.col-md-12 -->
+                        </div>
+                        <div class="col-md-5">
+                            <img src="../../../assets/images/contact-us.jpg" width="500px" class="appointment-doc" alt="book business with health iq">
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                    <div class="form-result">
+
+                    </div>
+                    <!-- /.form-result -->
+                </form>
+                <!-- /.appointment-form -->
+            </div>
+            <!-- /.col-md-7 -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.thm-container -->
+</section>

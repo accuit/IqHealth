@@ -4093,6 +4093,13 @@ body.active-preloader-ovh {
     padding-top: 80px;
 }
 
+.appointment-style-one.contact-us {
+    background: #0B5078 url(../images/appointment-bg-1-1.png) center center no-repeat;
+    background-size: cover;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
 .appointment-style-one.home-two .appointment-form {
     padding-top: 35px;
 }
@@ -6518,7 +6525,7 @@ a.ui-button:active,
 
 #contact-google-map {
     width: 100%;
-    height: 550px;
+    height: 300px;
 }
 
 #home-three-google-map {

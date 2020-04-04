@@ -218,9 +218,10 @@
 
 .product-img img {
     position: absolute;
-    left: -69px;
     z-index: -1;
-    top: 28px;
+    width: 375px;
+    height: 332px;
+    top: -16px
 }
 
 .green-tick ul {
