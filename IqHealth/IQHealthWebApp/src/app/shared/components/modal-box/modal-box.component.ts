@@ -46,6 +46,7 @@ export class ModalBoxComponent implements OnInit, AfterViewInit {
       // state: ['', Validators.required],
       // zipCode: ['', Validators.required],
       resumeText: [''],
+      subject:['Online application for job.'],
       companyID: [2]
     });
 
@@ -81,7 +82,7 @@ export class ModalBoxComponent implements OnInit, AfterViewInit {
       return;
     }
     this.showSpinner = true;
-    this.applicationForm.patchValue({ companyID: 2 })
+    this.applicationForm.patchValue({ companyID: 2, subject: "Online application for job." })
     this.isUploading = true;
     this.appService.submitJobApplication(this.applicationForm.value)
       .subscribe((res: APIResponse) => {
@@ -91,7 +92,7 @@ export class ModalBoxComponent implements OnInit, AfterViewInit {
             this.appService.uploadResume(this.files, '2', res.SingleResult);
           this.status = "Success";
           this.message = res.Message;
-          this.appService.sendEmailNotification('api/notification/email-appointment', this.applicationForm.value);
+          this.appService.sendEmailNotification('', this.applicationForm.value);
           setTimeout(() => {
             this.uploadSuccess = true;
           }, 5000);
@@ -105,12 +106,12 @@ export class ModalBoxComponent implements OnInit, AfterViewInit {
         this.isUploading = false;
         this.isError = false;
       },
-      error => {
-        this.message = 'Something went wrong. Try again.' 
-        this.isError = true;
-        return;
-      }
-      
+        error => {
+          this.message = 'Something went wrong. Try again.'
+          this.isError = true;
+          return;
+        }
+
       );
   }
 

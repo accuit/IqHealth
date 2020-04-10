@@ -1,4 +1,5 @@
-﻿using IqHealth.Data.Persistence;
+﻿using AutoMapper;
+using IqHealth.Data.Persistence;
 using IqHealth.Data.Persistence.DTO;
 using IqHealth.Data.Persistence.Model;
 using System;
@@ -80,10 +81,48 @@ namespace IqHealth.WebApi.Helpers
             return SendEmail(email, Convert.ToInt32(model.CompanyID));
         }
 
+        public int PrepareAndSendEmail<T>(T model, string otherDetails = "") where T : EmailModel
+        {
+            string body = string.Empty;
+            using (StreamReader reader = new StreamReader(HttpContext.Current.Server.MapPath("~/Helpers/EmailTemplates/OnlineEnquiry.html")))
+            {
+                body = reader.ReadToEnd();
+            }
+            body = body.Replace("{Name}", model.Name = string.IsNullOrEmpty(model.Name) ? (model.FirstName + " " + model.LastName) : model.Name);
+
+            if (model.Age > 0)
+                body = body.Replace("{Age}", model.Age.ToString());
+            if (model.Sex > 0)
+                body = body.Replace("{Sex}", model.Sex == 1 ? "Male" : "Female");
+            if (model.BookingDate != null)
+                body = body.Replace("{BookingDate}", model.BookingDate.ToString());
+
+            body = body.Replace("{Email}", model.Email);
+            body = body.Replace("{Mobile}", model.Mobile == null ? model.Phone : model.Mobile);
+            body = body.Replace("{Message}", model.Message);
+            body = body.Replace("{Subject}", model.Subject);
+            body = body.Replace("{Other}", otherDetails);
+
+            var C = GetCompanyDetails(Convert.ToInt16(model.CompanyID));
+            body = body.Replace("{Company}", C.Name);
+            body = body.Replace("{ContactNo}", C.PhoneNumber);
+            body = body.Replace("{Logo}", C.LogoUrl);
+
+            EmailNotification email = new EmailNotification();
+            email.ToEmail = model.Email;
+            email.Status = (int)AspectEnums.EmailStatus.Pending;
+            email.Message = body;
+            email.Body = body;
+            email.Priority = 2;
+            email.IsAttachment = false;
+            email.Subject = model.Subject;
+            return SendEmail(email, Convert.ToInt32(model.CompanyID));
+        }
+
         public int PrepareAndSendEnquiryEmail(OnlineEnquiry model)
         {
             string body = string.Empty;
-            using (StreamReader reader = new StreamReader(System.Web.HttpContext.Current.Server.MapPath("~/Helpers/EmailTemplates/OnlineEnquiryResponse.html")))
+            using (StreamReader reader = new StreamReader(HttpContext.Current.Server.MapPath("~/Helpers/EmailTemplates/OnlineEnquiryResponse.html")))
             {
                 body = reader.ReadToEnd();
             }
@@ -91,7 +130,7 @@ namespace IqHealth.WebApi.Helpers
             var C = GetCompanyDetails(model.CompanyID);
 
             body = body.Replace("{Name}", model.Name);
-            
+
             body = body.Replace("{Company}", C.Name);
             body = body.Replace("{ContactNo}", C.PhoneNumber);
             body = body.Replace("{Logo}", C.LogoUrl);
@@ -115,19 +154,18 @@ namespace IqHealth.WebApi.Helpers
             MailMessage message = new MailMessage();
             SmtpClient smtpClient = new SmtpClient();
             bool isDebugMode = ConfigurationManager.AppSettings["IsDebugMode"] == "Y" ? true : false;
-            message.Subject = getConfigValue(companyId, AspectEnums.ConfigKeys.Subject);
+            message.Subject = string.IsNullOrEmpty(emailmodel.Subject) ?  getConfigValue(companyId, AspectEnums.ConfigKeys.Subject): emailmodel.Subject;
             try
             {
 
                 if (!string.IsNullOrEmpty(getConfigValue(companyId, AspectEnums.ConfigKeys.CCAddress)))
                 {
                     emailmodel.CcEmail = getConfigValue(companyId, AspectEnums.ConfigKeys.CCAddress);
-                    message.CC.Add(emailmodel.CcEmail);
+                    message.Bcc.Add(emailmodel.CcEmail);
                 }
 
                 if (isDebugMode)
                 {
-
                     message.To.Add(ConfigurationManager.AppSettings["DbugToEmail"].ToString());
                     fromAddress = ConfigurationManager.AppSettings["DbugFromEmail"].ToString();
                     smtpClient.EnableSsl = ConfigurationManager.AppSettings["DbugIsSSL"].ToString() == "Y" ? true : false;
@@ -150,7 +188,7 @@ namespace IqHealth.WebApi.Helpers
 
                 smtpClient.Credentials = new NetworkCredential(fromAddress, fromPass);
                 message.BodyEncoding = Encoding.UTF8;
-                message.From = new System.Net.Mail.MailAddress(fromAddress, fromName);
+                message.From = new MailAddress(fromAddress, fromName);
                 message.IsBodyHtml = true;
                 message.Body = emailmodel.Body;
                 smtpClient.Send(message);
@@ -162,6 +200,11 @@ namespace IqHealth.WebApi.Helpers
             {
 
                 return (int)AspectEnums.EmailStatus.Failed;
+            }
+            finally
+            {
+                message.Dispose();
+                smtpClient.Dispose();
             }
         }
 
@@ -193,4 +236,6 @@ namespace IqHealth.WebApi.Helpers
         }
 
     }
+
+
 }
