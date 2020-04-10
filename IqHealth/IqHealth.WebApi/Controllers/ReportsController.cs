@@ -1,6 +1,7 @@
 ﻿using IqHealth.Data.Persistence;
 using IqHealth.Data.Persistence.DTO;
 using IqHealth.Data.Persistence.Model;
+using IqHealth.WebApi.Helpers;
 using Microsoft.AspNetCore.Hosting;
 using MySql.Data.MySqlClient;
 using System;
@@ -93,7 +94,7 @@ namespace IqHealth.WebApi.Controllers
                         U.FilePath = postedFile.FileName;
                         U.CompanyID = CompanyID;
                         U.UploadedDate = DateTime.Now;
-                        U.FileType = (int)AspectEnums.FileType.MedicalReport;
+                        U.FileType = (int)AspectEnums.FileType.DiagnosticReport;
 
                         var fileExist = _context.UploadedReports.Where(x => x.FileName == U.FileName && x.CompanyID == U.CompanyID).FirstOrDefault();
                         if(fileExist != null)
@@ -140,22 +141,32 @@ namespace IqHealth.WebApi.Controllers
         }
 
 
-        private async void SaveFileInFolder(HttpPostedFile postedFile, UploadedReports U)
+        private async void SaveFileInFolder(HttpPostedFile file, UploadedReports U)
         {
-            var docfiles = new List<string>();
+        
+            try
+            {
+                var filePath = U.UserID.ToString();
+                string fileName = U.UserID.ToString() + "_" + DateTime.Now.ToLongDateString();
+                string fileDirectory = AppUtil.GetUploadDirectory(AspectEnums.FileType.DiagnosticReport) + filePath;
 
-            string savedFileName = postedFile.FileName;
-            string folder = HttpContext.Current.Server.MapPath("~/Content/DiagnosticReports/" + U.UserID);
-            var filePath = folder + "/" + savedFileName;
-            System.IO.Directory.CreateDirectory(folder);
-            postedFile.SaveAs(filePath);
-            docfiles.Add(filePath);
+                if (!Directory.Exists(fileDirectory))
+                    Directory.CreateDirectory(fileDirectory);
 
-            U.FilePath = filePath;
-            U.FileName = savedFileName;
-            _context.Entry(U).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
+                if (file != null)
+                {
+                    file.SaveAs(fileDirectory + file.FileName);
 
+                    U.FilePath = filePath;
+                    U.FileName = file.FileName;
+                    _context.Entry(U).State = EntityState.Modified;
+                    await _context.SaveChangesAsync().ConfigureAwait(false);
+                }
+            }
+            catch (Exception e)
+            {
+                //ActivityLog.SetLog("Image uploading failed! Message: " + e.Message + " Inner Ex: " + e.InnerException, LogLoc.INFO);
+            }
 
         }
 

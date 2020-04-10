@@ -4,9 +4,12 @@ using IqHealth.Data.Persistence.Model;
 using IqHealth.WebApi.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.Http.Description;
@@ -225,15 +228,29 @@ namespace IqHealth.WebApi.Controllers
             }
             try
             {
+                var app = _context.JobApplications.Where(x => x.Email == application.Email).FirstOrDefault();
                 application.CreatedDate = DateTime.Now;
-                _context.JobApplications.Add(application);
+
+                if (app != null)
+                {
+                    app.Email = application.Email;
+                    app.FirstName = application.FirstName;
+                    app.LastName = application.LastName;
+                    app.ResumeText = application.ResumeText;
+                    app.Phone = application.Phone;
+                    app.CreatedDate = application.CreatedDate;
+                    _context.Entry(app).State = EntityState.Modified;
+                }
+                else
+                    _context.JobApplications.Add(application);
+
                 response.IsSuccess = _context.SaveChanges() > 0 ? true : false;
 
                 if (response.IsSuccess)
                 {
                     response.StatusCode = "200";
                     response.Message = "Your resume is successfully posted.  We will send you email shortly.";
-                    response.SingleResult = application.ID;
+                    response.SingleResult = application.ID == 0 ? app.ID : application.ID;
                 }
             }
             catch (Exception ex)
@@ -246,6 +263,61 @@ namespace IqHealth.WebApi.Controllers
             return response;
         }
 
+        [HttpPost]
+        [Route("upload-cv")]
+        public JsonResponse<int> UploadCV()
+        {
+            JsonResponse<int> response = new JsonResponse<int>();
 
+            try
+            {
+                var httpRequest = HttpContext.Current.Request;
+                if (httpRequest.Files.Count > 0)
+                {
+                    int applicationID = Convert.ToInt32(httpRequest.Form["applicationID"]);
+                    int companyID = Convert.ToInt32(httpRequest.Form["companyID"]);
+
+                    foreach (string file in httpRequest.Files)
+                    {
+                        UploadedReports U = new UploadedReports();
+                        var postedFile = httpRequest.Files[file];
+
+                        var application = _context.JobApplications.Where(x => x.ID == applicationID && x.CompanyID == companyID).FirstOrDefault();
+                        if (application != null)
+                            StoreResume(postedFile, application);
+
+                    }
+                    response.StatusCode = "200";
+                    response.IsSuccess = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                response.IsSuccess = false;
+                response.StatusCode = "500";
+                response.Message = ex.Message;
+            }
+
+            return response;
+        }
+
+        private async void StoreResume(HttpPostedFile file, JobApplication jobApplication)
+        {
+                string fileName = jobApplication.Phone + "_" + jobApplication.Email + ""+ Path.GetExtension(file.FileName);
+                string fileDirectory = AppUtil.GetUploadDirectory(AspectEnums.FileType.Resume);
+
+                if (!Directory.Exists(fileDirectory))
+                    Directory.CreateDirectory(fileDirectory);
+
+                if (file != null)
+                {
+                    file.SaveAs(fileDirectory + fileName);
+
+                    jobApplication.ResumePath = fileDirectory + fileName;
+                    _context.Entry(jobApplication).State = EntityState.Modified;
+                    await _context.SaveChangesAsync().ConfigureAwait(false);
+                }
+
+        }
     }
 }

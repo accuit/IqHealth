@@ -4094,9 +4094,9 @@ body.active-preloader-ovh {
 }
 
 .appointment-style-one.contact-us {
-    background: #0B5078 url(../images/appointment-bg-1-1.png) center center no-repeat;
+    background: #eaebec url(../images/appointment-bg-1-1.png) center center no-repeat;
     background-size: cover;
-    padding-top: 20px;
+    padding-top: 50px;
     padding-bottom: 20px;
 }
 

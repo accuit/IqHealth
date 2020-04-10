@@ -57,10 +57,11 @@ namespace IqHealth.Data.Persistence
 
         public enum FileType
         {
-            MedicalReport = 1,
+            DiagnosticReport = 1,
             ExamReport = 2,
             CourseDocument = 3,
-            Invoice = 4
+            Invoice = 4,
+            Resume = 5
         }
 
         public enum Sex

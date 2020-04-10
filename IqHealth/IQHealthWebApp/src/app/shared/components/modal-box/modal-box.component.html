@@ -10,7 +10,7 @@
                         <div class="modal-header  ct-modal-header">
                             <div class="ct-modal-header-content">
                                 <div class="ct-modal-header-left">
-                                    <div class="ct-modal-job-title">Health IQ Job Openings</div>
+                                    <div class="ct-modal-job-title">Health IQ Job Application</div>
                                     <span class="ct-modal-loc">We are hiring</span>
                                 </div>
                             </div>
@@ -21,55 +21,50 @@
                                     <div class="job-form-fields">
                                         <div class="form-group" [ngClass]="{'has-error': submitted && f.firstName.errors}">
                                             <label id="resumator-firstname-label" for="resumator-firstname-value" class="control-label">First Name*<i class="asterisk">*</i></label>
-                                            <input type="text" id="resumator-firstName-value" formControlName="firstName" value="" class="form-control">
+                                            <input type="text" formControlName="firstName" class="form-control">
                                         </div>
 
                                         <div class="form-group" [ngClass]="{'has-error': submitted && f.lastName.errors}">
                                             <label id="resumator-lastname-label" for="resumator-lastname-value" class="control-label">Last Name<i class="asterisk">*</i></label>
-                                            <input type="text" id="resumator-lastname-value" formControlName="lastName" value="" class="form-control">
+                                            <input type="text" formControlName="lastName" class="form-control">
                                         </div>
 
                                         <div class="form-group" [ngClass]="{'has-error': submitted && f.email.errors}">
                                             <label id="resumator-email-label" for="resumator-email-value" class="control-label">Email Address<i class="asterisk">*</i></label>
-                                            <input type="email" id="resumator-email-value" formControlName="email" value="" class="form-control">
+                                            <input type="email" formControlName="email" class="form-control">
+                                            <div *ngIf="submitted && f.email.errors && f.email.errors.email" class="control-label" style="text-align: right;">Invalid email address entered.</div>
                                         </div>
 
                                         <div class="form-group" [ngClass]="{'has-error': submitted && f.phone.errors}">
                                             <label id="resumator-phone-label" for="resumator-phone-value" class="control-label">Phone<i class="asterisk">*</i></label>
                                             <input type="tel" id="resumator-phone-value" formControlName="phone" maxlength="50" class="form-control" value="">
+                                            <div *ngIf="submitted && f.phone.errors && (f.phone.errors.minlength || f.phone.errors.maxlength)" class="control-label" style="text-align: right;">Only 10 digits are allowed.</div>
                                         </div>
 
                                         <div class="form-group" id="resumator-address">
-                                            <label id="resumator-address-label" for="resumator-address-value" class="control-label">Address</label>
+                                            <label id="resumator-address-label" for="resumator-address-value" class="control-label">City</label>
                                             <div class="resumator-input" id="resumator-address-field">
-                                                <input type="text" id="resumator-address-value" formControlName="address" maxlength="255" class="form-control" value="" placeholder="Address">
+                                                <!-- <input type="text" id="resumator-address-value" formControlName="address" maxlength="255" class="form-control" value="" placeholder="Address"> -->
                                                 <div class="row">
                                                     <div class="col col-xs-5">
                                                         <input type="text" id="resumator-city-value" formControlName="city" maxlength="255" class="form-control" value="" placeholder="City">
                                                     </div>
-                                                    <div class="col col-xs-4">
+                                                    <!-- <div class="col col-xs-4">
                                                         <input type="text" id="resumator-state-value" formControlName="state" maxlength="50" class="form-control" value="" placeholder="State/Province">
-                                                    </div>
-                                                    <div class="col col-xs-3">
+                                                    </div> -->
+                                                    <!-- <div class="col col-xs-3">
                                                         <input type="text" id="resumator-postal-value" formControlName="zipCode" maxlength="50" class="form-control" value="" placeholder="Postal">
-                                                    </div>
+                                                    </div> -->
                                                 </div>
                                             </div>
                                         </div>
                                         <input type="text" formControlName="companyID" style="visibility: hidden;" placeholder="City">
                                         <div id="resumator-resume" class="form-group">
                                             <label id="resumator-resume-label" for="resumator-resume-value" class="control-label">Resume<i class="asterisk">*</i></label>
-                                            <div id="resumator-resume-options" class="resumator-resume-text">
-                                                <a id="resumator-choose-upload" class="resumator-resume-action" href="#">Attach resume</a> or
-                                                <a id="resumator-choose-paste" class="resumator-resume-action" href="#">Paste resume</a>
-                                            </div>
                                             <div id="resumator-resume-upload-wrapper" class="none">
-                                                <div class="resumator-resume-text">
-                                                    Attach resume as .pdf, .doc, .docx, .odt, .txt, or .rtf (limit 5MB) or
-                                                    <a id="resumator-resume-switch-paste" class="resumator-resume-action" href="#">Paste resume</a>
-                                                </div>
                                                 <div class="resumator-input" id="resumator-resume-field">
-                                                    <input type="hidden" name="MAX_FILE_SIZE" value="10585760"><input type="file" class="" id="resumator-resume-value" name="resumator-resume-value"> </div>
+                                                    <input type="file" formControlName="fileName" accept=".pdf" (change)="upload($event.target.files)">
+                                                </div>
                                             </div>
                                             <div id="resumator-resume-paste-wrapper" class="resumator-resume-text none">
                                                 <div class="resumator-input">
@@ -80,7 +75,8 @@
                                         <div *ngIf="status==='Success'" class="alert alert-success alert-dismissible" role="alert">{{ message }}</div>
                                         <div *ngIf="status==='Fail'" class="alert alert-danger alert-dismissible" role="alert">{{ message }}</div>
                                         <div class="form-group">
-                                            <button style="background-color:#02a69b;color:whitesmoke;" type="submit" class="btn">Submit Application</button>
+                                            <button *ngIf="!isUploading" style="background-color:#02a69b;color:whitesmoke;" [disabled]="submitted && !applicationForm.valid && !isError" type="submit" class="btn">Submit Application</button>
+                                            <button *ngIf="isUploading" style="background-color:#02a69b;color:whitesmoke;" disabled="true" class="btn" type="button">Processing...</button>
                                         </div>
                                     </div>
                                 </form>

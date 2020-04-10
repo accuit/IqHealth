@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { CityModel, BookingMaster, Doctor, APIResponse, DoctorAppointment, JobApplication } from './app.models';
-import { throwError } from 'rxjs';
+import { throwError, Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 @Injectable()
@@ -35,7 +35,7 @@ export class AppService {
 
   getAllDesignation(): any {
 
-    const designations  = [
+    const designations = [
       { id: 1, Name: 'Manager' },
       { id: 2, Name: 'HR' },
       { id: 3, Name: 'Associate' },
@@ -105,17 +105,26 @@ export class AppService {
     return this.httpClient.post(this.baseUrl + 'api/enquiry/post-job', application, { headers: this.headers })
   }
 
+  uploadResume(files: File[], companyID: string, applicationID): void {
+    const formData: FormData = new FormData();
+    Array.from(files).forEach(f => formData.append('file', f))
+
+    formData.append('companyID', companyID);
+    formData.append('applicationID', applicationID);
+    this.httpClient.post(this.baseUrl + 'api/enquiry/upload-cv', formData, { reportProgress: true, observe: 'events' })
+      .subscribe(x => {
+        console.log(x);
+      })
+  }
+
   public sendEmailNotification(url: string, params: any): any {
     this.httpClient.post(this.baseUrl + url, params, { headers: this.headers })
       .subscribe((res: APIResponse) => {
         if (res.IsSuccess)
           console.log('Email successfully sent.');
-          else
+        else
           console.log(res.Message);
-      },
-        err => {
-          this.handleError(err);
-        })
+      })
   }
 
   public handleError(error: HttpErrorResponse) {

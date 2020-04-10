@@ -346,6 +346,21 @@ namespace IqHealth.WebApi.Helpers
             return replacedString2;
         }
 
+        public static string GetUploadDirectory(AspectEnums.FileType fileType)
+        {
+            string fileDirectory = HttpContext.Current.Server.MapPath("~/Content");
+            switch (fileType)
+            {
+                case AspectEnums.FileType.DiagnosticReport:
+                    fileDirectory = fileDirectory + @"\DiagnosticReports";
+                    break;
+                case AspectEnums.FileType.Resume:
+                    fileDirectory = fileDirectory + @"\Resumes\";
+                    break;
+            }
+            return fileDirectory;
+        }
+
         /// <summary>
         /// Method to generate unique keys
         /// </summary>

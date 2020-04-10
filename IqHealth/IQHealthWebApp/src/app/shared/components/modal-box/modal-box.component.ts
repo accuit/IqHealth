@@ -2,6 +2,7 @@ import { Component, Input, ElementRef, Renderer2, AfterViewInit, ViewChild, OnIn
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { APIResponse } from 'src/app/core/app.models';
 import { AppService } from 'src/app/core/app.service';
+import { error } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-modal-box',
@@ -18,7 +19,13 @@ export class ModalBoxComponent implements OnInit, AfterViewInit {
   jsonService: any;
   showSpinner: boolean;
   status: string;
-  message: any;
+  files: any;
+  isUploading = false;
+  message: string = 'Processing...';
+
+  percentDone: number;
+  uploadSuccess: boolean;
+  isError: boolean;
 
   constructor(private readonly appService: AppService, private formBuilder: FormBuilder, private readonly renderer: Renderer2) { }
 
@@ -33,14 +40,20 @@ export class ModalBoxComponent implements OnInit, AfterViewInit {
       lastName: ['', [Validators.required, Validators.maxLength(50)]],
       email: ['', [Validators.required, Validators.email]],
       phone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
-      address: ['', [Validators.required, Validators.maxLength(500)]],
-      city: ['', Validators.required],
-      state: ['', Validators.required],
-      zipCode: ['', Validators.required],
-      resumeText: ['', Validators.required],
+      fileName: [""],
+      // address: ['', [Validators.required, Validators.maxLength(500)]],
+      city: [''],
+      // state: ['', Validators.required],
+      // zipCode: ['', Validators.required],
+      resumeText: [''],
       companyID: [2]
     });
 
+  }
+
+  upload(files: File[]) {
+    //pick from one of the 4 styles of file uploads below
+    this.files = files;
   }
 
   reset(): void {
@@ -49,8 +62,8 @@ export class ModalBoxComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    // this.allTimings = this.jsonService.getTimings();
     this.applicationForm = this.loadForm();
+    this.reset();
   }
 
   get f() {
@@ -62,27 +75,43 @@ export class ModalBoxComponent implements OnInit, AfterViewInit {
     if (this.applicationForm.invalid) {
       return;
     }
+    if (this.files && this.files[0].type !== 'application/pdf') {
+      this.isError = true;
+      this.message = 'Please upload only pdf file.';
+      return;
+    }
     this.showSpinner = true;
+    this.applicationForm.patchValue({ companyID: 2 })
+    this.isUploading = true;
     this.appService.submitJobApplication(this.applicationForm.value)
       .subscribe((res: APIResponse) => {
         this.showSpinner = false;
-        if (res.IsSuccess) {
+        if (res.IsSuccess && res.SingleResult > 0) {
+          if (this.files)
+            this.appService.uploadResume(this.files, '2', res.SingleResult);
           this.status = "Success";
           this.message = res.Message;
-          // this.appService.sendEmailNotification('api/notification/email-appointment', this.applicationForm.value);
-          this.reset();
-          
+          this.appService.sendEmailNotification('api/notification/email-appointment', this.applicationForm.value);
+          setTimeout(() => {
+            this.uploadSuccess = true;
+          }, 5000);
+
         } else {
-          this.status = "Fail";
           this.message = res.Message;
+          this.isError = true;
           return;
         }
+        this.reset();
+        this.isUploading = false;
+        this.isError = false;
       },
-        err => {
-          this.status = "Fail";
-          this.message = 'An error occured. Try again later.'
-          this.appService.handleError(err);
-        });
+      error => {
+        this.message = 'Something went wrong. Try again.' 
+        this.isError = true;
+        return;
+      }
+      
+      );
   }
 
 }

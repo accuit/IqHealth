@@ -51,12 +51,10 @@ export class PackageCategoryDetailsComponent implements OnInit {
     }
 
     this.category = this.categories.filter(x => x.ID == Number(this.activeID))[0];
-    console.log(this.category);
     this.packages = this.service.getPackagesByCategory(this.category.ID)
       .subscribe((data: APIResponse) => {
         this.isloading = false;
         this.isloaded = true;
-        console.log(this.packages);
         this.packages = data.SingleResult;
       })
 
