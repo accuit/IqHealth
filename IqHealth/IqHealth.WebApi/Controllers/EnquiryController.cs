@@ -1,4 +1,5 @@
-﻿using IqHealth.Data.Persistence;
+﻿using HealthIQ.CommonLayer.AuditLog;
+using IqHealth.Data.Persistence;
 using IqHealth.Data.Persistence.DTO;
 using IqHealth.Data.Persistence.Model;
 using IqHealth.WebApi.Helpers;
@@ -218,6 +219,7 @@ namespace IqHealth.WebApi.Controllers
         public JsonResponse<int> SubmitJobApplication(JobApplication application)
         {
             JsonResponse<int> response = new JsonResponse<int>();
+            ActivityLog.SetLog(" enquiry post job called.", LogLoc.INFO);
 
             if (!ModelState.IsValid)
             {
@@ -268,7 +270,7 @@ namespace IqHealth.WebApi.Controllers
         public JsonResponse<int> UploadCV()
         {
             JsonResponse<int> response = new JsonResponse<int>();
-
+            
             try
             {
                 var httpRequest = HttpContext.Current.Request;
@@ -296,6 +298,7 @@ namespace IqHealth.WebApi.Controllers
                 response.IsSuccess = false;
                 response.StatusCode = "500";
                 response.Message = ex.Message;
+                ActivityLog.SetLog("Error Message: " + ex.Message + " Inner Ex: " + ex.InnerException, LogLoc.ERROR);
             }
 
             return response;

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Serialization;
+﻿using log4net.Config;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,7 @@ namespace IqHealth.WebApi
             //json.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
 
             GlobalConfiguration.Configure(WebApiConfig.Register);
+            //XmlConfigurator.Configure();
         }
     }
 }
