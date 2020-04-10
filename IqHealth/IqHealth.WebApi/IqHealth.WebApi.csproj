@@ -264,6 +264,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\HealthIQ.CommonLayer.AuditLog\HealthIQ.CommonLayer.AuditLog.csproj">
+      <Project>{518fd54b-a499-4650-b0d0-332f26652a78}</Project>
+      <Name>HealthIQ.CommonLayer.AuditLog</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IqHealth.Data.Persistence\IqHealth.Data.Persistence.csproj">
       <Project>{07dbd09d-135e-41a0-a39d-7b5be74d4f3d}</Project>
       <Name>IqHealth.Data.Persistence</Name>
