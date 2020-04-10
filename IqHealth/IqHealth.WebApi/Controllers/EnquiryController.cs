@@ -1,4 +1,5 @@
-﻿using IqHealth.Data.Persistence;
+﻿using HealthIQ.CommonLayer.AuditLog;
+using IqHealth.Data.Persistence;
 using IqHealth.Data.Persistence.DTO;
 using IqHealth.Data.Persistence.Model;
 using IqHealth.WebApi.Helpers;
@@ -20,6 +21,7 @@ namespace IqHealth.WebApi.Controllers
     public class EnquiryController : ApiController
     {
         private readonly IqHealthDBContext _context;
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         public EnquiryController()
         {
@@ -219,11 +221,14 @@ namespace IqHealth.WebApi.Controllers
         {
             JsonResponse<int> response = new JsonResponse<int>();
 
+            log.Info("[Started] SubmitJobApplication");
+
             if (!ModelState.IsValid)
             {
 
                 response.FailedValidations = ModelState.Keys.ToArray();
                 response.Message = string.Format("Kindly check {0}. It is missing or in incorrect format.", response.FailedValidations[0].Split('.').LastOrDefault());
+                log.Info("[Invalid Request] " + response.Message);
                 return response;
             }
             try
@@ -233,7 +238,7 @@ namespace IqHealth.WebApi.Controllers
 
                 if (app != null)
                 {
-                    app.Email = application.Email;
+                    log.Info("Email " + app.Email + " already exists. Updating data.");
                     app.FirstName = application.FirstName;
                     app.LastName = application.LastName;
                     app.ResumeText = application.ResumeText;
@@ -248,6 +253,7 @@ namespace IqHealth.WebApi.Controllers
 
                 if (response.IsSuccess)
                 {
+                    log.Info("Email " + application.Email + " applied for a job successfully.");
                     response.StatusCode = "200";
                     response.Message = "Your resume is successfully posted.  We will send you email shortly.";
                     response.SingleResult = application.ID == 0 ? app.ID : application.ID;
@@ -258,8 +264,10 @@ namespace IqHealth.WebApi.Controllers
                 response.IsSuccess = false;
                 response.StatusCode = "500";
                 response.Message = ex.Message;
+                log.Error("Error Message: " + ex.Message + " Inner Ex: " + ex.InnerException);
             }
 
+            log.Info("[Finished] SubmitJobApplication"); ;
             return response;
         }
 
@@ -268,7 +276,7 @@ namespace IqHealth.WebApi.Controllers
         public JsonResponse<int> UploadCV()
         {
             JsonResponse<int> response = new JsonResponse<int>();
-
+            log.Info("[Started] Upload CV");
             try
             {
                 var httpRequest = HttpContext.Current.Request;
@@ -276,6 +284,8 @@ namespace IqHealth.WebApi.Controllers
                 {
                     int applicationID = Convert.ToInt32(httpRequest.Form["applicationID"]);
                     int companyID = Convert.ToInt32(httpRequest.Form["companyID"]);
+
+                    log.Debug("Upload CV for ApplicationID: " + applicationID);
 
                     foreach (string file in httpRequest.Files)
                     {
@@ -296,28 +306,34 @@ namespace IqHealth.WebApi.Controllers
                 response.IsSuccess = false;
                 response.StatusCode = "500";
                 response.Message = ex.Message;
+                log.Error("Error Message: " + ex.Message + " Inner Ex: " + ex.InnerException);
+                log.Error("[Failed] Upload CV");
             }
-
+            log.Debug("[Finished] Upload CV");
             return response;
         }
 
-        private async void StoreResume(HttpPostedFile file, JobApplication jobApplication)
+        private async void StoreResume(HttpPostedFile file, JobApplication job)
         {
-                string fileName = jobApplication.Phone + "_" + jobApplication.Email + ""+ Path.GetExtension(file.FileName);
-                string fileDirectory = AppUtil.GetUploadDirectory(AspectEnums.FileType.Resume);
+            log.Info("[Started] StoreResume");
+            string fileName = job.Phone + "_" + job.Email + "" + Path.GetExtension(file.FileName);
+            string fileDirectory = AppUtil.GetUploadDirectory(AspectEnums.FileType.Resume);
 
-                if (!Directory.Exists(fileDirectory))
-                    Directory.CreateDirectory(fileDirectory);
+            log.Debug("[Started] [StoreResume] FileName: " + fileName + " and File Directory: " + fileDirectory);
 
-                if (file != null)
-                {
-                    file.SaveAs(fileDirectory + fileName);
+            if (!Directory.Exists(fileDirectory))
+                Directory.CreateDirectory(fileDirectory);
 
-                    jobApplication.ResumePath = fileDirectory + fileName;
-                    _context.Entry(jobApplication).State = EntityState.Modified;
-                    await _context.SaveChangesAsync().ConfigureAwait(false);
-                }
+            if (file != null)
+            {
+                file.SaveAs(fileDirectory + fileName);
 
+                job.ResumePath = fileDirectory + fileName;
+                _context.Entry(job).State = EntityState.Modified;
+                await _context.SaveChangesAsync().ConfigureAwait(false);
+                log.Info("[EntitySaved] Successfully saved CV on ResumePath: " + job.ResumePath);
+            }
+            log.Info("[Finished] StoreResume");
         }
     }
 }

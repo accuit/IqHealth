@@ -16,6 +16,7 @@ namespace IqHealth.WebApi.Controllers
     public class DoctorsController : ApiController
     {
         private readonly IqHealthDBContext _context;
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         public DoctorsController()
         {
@@ -27,7 +28,7 @@ namespace IqHealth.WebApi.Controllers
         public JsonResponse<List<DoctorMaster>> GetDoctors(int id = 99)
         {
             JsonResponse<List<DoctorMaster>> response = new JsonResponse<List<DoctorMaster>>();
-
+            log.Info("Started GetDoctors");
             try
             {
                 List<DoctorMaster> doctors = _context.DoctorMasters.Where(x => x.IsDeleted == 0 && x.CompanyID == id).OrderBy(x=>x.Sequence).ToList();
@@ -51,7 +52,7 @@ namespace IqHealth.WebApi.Controllers
                 response.IsSuccess = false;
                 response.Message = ex.Message;
             }
-
+            log.Info("Finshed GetDoctors");
             return response;
         }
 
@@ -60,7 +61,7 @@ namespace IqHealth.WebApi.Controllers
         public JsonResponse<List<SpecialityMaster>> GetSpecialities()
         {
             JsonResponse<List<SpecialityMaster>> response = new JsonResponse<List<SpecialityMaster>>();
-
+            log.Info("Started GetSpecialities");
             List<SpecialityMaster> doctors = _context.SpecialityMasters.Where(x => x.IsDeleted == 0).ToList();
             if (doctors != null)
             {
@@ -84,7 +85,7 @@ namespace IqHealth.WebApi.Controllers
         public JsonResponse<List<DoctorSpeciality>> GetDocSpeciality(int id = 0)
         {
             JsonResponse<List<DoctorSpeciality>> response = new JsonResponse<List<DoctorSpeciality>>();
-
+            log.Info("Started GetDocSpeciality");
             try
             {
                 List<DoctorSpeciality> specialities = _context.DoctorSpecialities.SqlQuery("SELECT DoctorSpecialities.ID, DoctorSpecialities.SpecialityID, DoctorSpecialities.DoctorID, DoctorMaster.FirstName,  DoctorMaster.LastName, SpecialityMaster.Title  FROM DoctorSpecialities INNER JOIN DoctorMaster ON DoctorSpecialities.DoctorID = DoctorMaster.ID INNER JOIN SpecialityMaster ON DoctorSpecialities.SpecialityID = SpecialityMaster.ID WHERE DoctorMaster.CompanyID = " + id +"").ToList();
