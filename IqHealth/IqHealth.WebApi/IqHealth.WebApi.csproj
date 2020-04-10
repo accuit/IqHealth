@@ -50,6 +50,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=9.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.9.0.0\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.3.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
       <HintPath>..\packages\BouncyCastle.1.8.3.1\lib\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
@@ -243,6 +246,7 @@
     <None Include="Properties\PublishProfiles\HealthIQNew.pubxml" />
     <None Include="Properties\PublishProfiles\IQHealthApi.pubxml" />
     <Content Include="Helpers\EmailTemplates\DoctorAppointmentConfirmation.html" />
+    <Content Include="Helpers\EmailTemplates\OnlineEnquiry.html" />
     <Content Include="Helpers\EmailTemplates\OnlineEnquiryResponse.html" />
     <Content Include="Helpers\EmailTemplates\UserBookingConfirmation.html" />
     <Content Include="Web.config">

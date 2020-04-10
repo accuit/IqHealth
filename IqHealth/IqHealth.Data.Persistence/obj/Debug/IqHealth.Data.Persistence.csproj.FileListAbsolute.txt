@@ -9,3 +9,4 @@ C:\PROJECTS\IqHealth\IqHealth\IqHealth.Data.Persistence\bin\Debug\MySql.Data.Ent
 C:\PROJECTS\IqHealth\IqHealth\IqHealth.Data.Persistence\obj\Debug\IqHealth.Data.Persistence.csproj.CopyComplete
 C:\PROJECTS\IqHealth\IqHealth\IqHealth.Data.Persistence\obj\Debug\IqHealth.Data.Persistence.dll
 C:\PROJECTS\IqHealth\IqHealth\IqHealth.Data.Persistence\obj\Debug\IqHealth.Data.Persistence.pdb
+C:\PROJECTS\IQHealth\IqHealth\IqHealth.Data.Persistence\obj\Debug\IqHealth.Data.Persistence.csprojAssemblyReference.cache

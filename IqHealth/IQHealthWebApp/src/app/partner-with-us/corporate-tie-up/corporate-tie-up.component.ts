@@ -43,6 +43,7 @@ export class CorporateTieUpComponent implements OnInit {
   reset(): void {
     this.submitted = false;
     this.corporateForm.reset();
+    this.showSpinner = false;
   }
 
   get f() {
@@ -60,13 +61,14 @@ export class CorporateTieUpComponent implements OnInit {
       return;
     }
     this.showSpinner = true;
+    this.corporateForm.patchValue({ companyID: 2 })
     this.service.submitCorporateEnquiry(this.corporateForm.value)
       .subscribe((res: APIResponse) => {
         this.showSpinner = false;
         if (res.IsSuccess) {
           this.status = "Success";
           this.message = res.Message;
-          this.notificationService.sendEmailNotification('api/notification/email-appointment', this.corporateForm.value);
+          this.notificationService.sendEmailNotification('send-corporate-email', this.corporateForm.value);
           this.reset();
           
         } else {
@@ -74,11 +76,6 @@ export class CorporateTieUpComponent implements OnInit {
           this.message = res.Message;
           return;
         }
-      },
-        err => {
-          this.status = "Fail";
-          this.message = 'An error occured. Try again later.'
-          //this.appService.handleError(err);
-        });
+      });
   }
 }

@@ -118,7 +118,8 @@ export class AppService {
   }
 
   public sendEmailNotification(url: string, params: any): any {
-    this.httpClient.post(this.baseUrl + url, params, { headers: this.headers })
+    url = url ? url : 'send-email';
+    this.httpClient.post(this.baseUrl + 'api/notification/' + url, params, { headers: this.headers })
       .subscribe((res: APIResponse) => {
         if (res.IsSuccess)
           console.log('Email successfully sent.');
