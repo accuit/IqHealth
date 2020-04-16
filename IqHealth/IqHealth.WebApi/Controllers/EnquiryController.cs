@@ -52,6 +52,7 @@ namespace IqHealth.WebApi.Controllers
                     response.StatusCode = "200";
                     response.Message = "Your enquiry is successfully posted.  We will send you email shortly.";
                     response.SingleResult = appointment.ID;
+                    log.Info("[Success] NewEnquiry for Email: " + appointment.Email);
                 }
             }
             catch (Exception ex)
@@ -89,6 +90,7 @@ namespace IqHealth.WebApi.Controllers
                     response.StatusCode = "200";
                     response.Message = "Your enquiry is successfully posted.  We will send you email shortly.";
                     response.SingleResult = enquiry.ID;
+                    log.Info("[Success] ContactUsEnquiry for Email: " + enquiry.Email);
                 }
             }
             catch (Exception ex)
@@ -128,6 +130,7 @@ namespace IqHealth.WebApi.Controllers
                     response.StatusCode = "200";
                     response.Message = "Your enquiry is successfully posted.  We will send you email shortly.";
                     response.SingleResult = partner.ID;
+                    log.Info("[Success] PartnerEnquiry for Email: " + partner.Email);
                 }
             }
             catch (Exception ex)
@@ -165,6 +168,7 @@ namespace IqHealth.WebApi.Controllers
                     response.StatusCode = "200";
                     response.Message = "Your enquiry is successfully posted.  We will send you email shortly.";
                     response.SingleResult = enquiry.ID;
+                    log.Info("[Success] CorporateEnquiry for Email: " + enquiry.Email);
                 }
             }
             catch (Exception ex)
@@ -182,7 +186,7 @@ namespace IqHealth.WebApi.Controllers
         public JsonResponse<int> OrganizeCamp(OrganizeCampEnquiry enquiry)
         {
             JsonResponse<int> response = new JsonResponse<int>();
-
+            log.Info("[Started] OrganizeCamp");
             if (!ModelState.IsValid)
             {
 
@@ -202,7 +206,9 @@ namespace IqHealth.WebApi.Controllers
                     response.StatusCode = "200";
                     response.Message = "Your enquiry is successfully posted.  We will send you email shortly.";
                     response.SingleResult = enquiry.ID;
+                    log.Info("[Success] OrganizeCamp");
                 }
+                
             }
             catch (Exception ex)
             {
@@ -210,7 +216,7 @@ namespace IqHealth.WebApi.Controllers
                 response.StatusCode = "500";
                 response.Message = ex.Message;
             }
-
+            log.Info("[Finished] OrganizeCamp");
             return response;
         }
 

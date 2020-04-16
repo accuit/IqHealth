@@ -54,7 +54,7 @@ export class AppService {
   }
 
   getAllServices(): any {
-    return this.httpClient.get<APIResponse>(this.baseUrl + 'api/services/data', { headers: this.headers });
+    return this.httpClient.get<APIResponse>(this.baseUrl + 'api/services/data/2', { headers: this.headers });
   }
 
   getServiceByID(id): any {

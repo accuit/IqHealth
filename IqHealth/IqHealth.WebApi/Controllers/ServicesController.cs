@@ -17,6 +17,7 @@ namespace IqHealth.WebApi.Controllers
     public class ServicesController : ApiController
     {
         private readonly IqHealthDBContext _context;
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         public ServicesController()
         {
@@ -24,15 +25,15 @@ namespace IqHealth.WebApi.Controllers
         }
 
         [HttpGet]
-        [Route("data")]
-        public JsonResponse<List<HealthServiceMaster>> GetServices()
+        [Route("data/{id}")]
+        public JsonResponse<List<HealthServiceMaster>> GetServices(int id)
         {
             JsonResponse<List<HealthServiceMaster>> response = new JsonResponse<List<HealthServiceMaster>>();
             List<HealthServiceMaster> services = new List<HealthServiceMaster>();
             try
             {
 
-                services = _context.HealthServiceMasters.Where(x => x.IsDeleted == 0).ToList();
+                services = _context.HealthServiceMasters.Where(x => x.IsDeleted == 0 && x.CompanyID == id).ToList();
                 if (services != null)
                 {
                     foreach (var item in services)
