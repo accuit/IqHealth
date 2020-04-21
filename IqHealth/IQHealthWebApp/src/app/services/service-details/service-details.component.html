@@ -11,34 +11,41 @@
             <div class="col-md-8 col-sm-12 col-xs-12">
                 <div class="service-details-content">
                     <div class="img-box">
-                        <img [src]="'assets/images/services/'+ servicedetails.ID + '.jpg'" style="max-height: 400px"
-                            alt="Awesome Image" />
-                    </div><!-- /.img-box -->
+                        <img [src]="'assets/images/services/'+ servicedetails.ID + '.jpg'" style="max-height: 400px" alt="Awesome Image" />
+                    </div>
+                    <!-- /.img-box -->
                     <div class="text-box">
                         <br>
                         <br>
                         <h3 class="post-title">{{ servicedetails.Name }}</h3>
                         <br>
-                        <p>{{ servicedetails.Description }}</p>
+                        <p [innerHtml]="servicedetails.Description"></p>
                         <br>
-                        <div *ngIf="servicedetails.ServicesInclList && servicedetails.ServicesInclList.length > 0"
-                            class="service-approach">
+                        <div *ngIf="servicedetails.ServicesInclList && servicedetails.ServicesInclList.length > 0" class="service-approach">
                             <div class="title-box">
                                 <h3>Service Includes</h3>
                                 <br>
                                 <p class="highlight" *ngFor="let item of servicedetails.ServicesInclList">{{item}}</p>
-                            </div><!-- /.title-box -->
+                            </div>
+                            <!-- /.title-box -->
                             <br>
                             <br>
 
-                        </div><!-- /.service-approach -->
+                        </div>
+                        <!-- /.service-approach -->
 
-                    </div><!-- /.text-box -->
-                </div><!-- /.service-details-content -->
-            </div><!-- /.col-md-8 -->
-        </div><!-- /.row -->
+                    </div>
+                    <!-- /.text-box -->
+                </div>
+                <!-- /.service-details-content -->
+            </div>
+            <!-- /.col-md-8 -->
+        </div>
+        <!-- /.row -->
         <div *ngIf="!isLoaded" class="preloader home-two">
             <div class="spinner"></div>
         </div>
-    </div><!-- /.thm-container -->
-</section><!-- /.blog-style-two -->
+    </div>
+    <!-- /.thm-container -->
+</section>
+<!-- /.blog-style-two -->

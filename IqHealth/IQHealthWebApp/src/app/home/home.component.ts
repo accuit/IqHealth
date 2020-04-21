@@ -23,12 +23,14 @@ export class HomeComponent implements OnInit {
 
   constructor(private readonly service: AppService, private readonly jsonService: AppJsonService,
     private title: Title, private meta: Meta) {
-
+      this.loadServicesList();
   }
 
   ngOnInit() {
-    this.loadServicesList();
-    this.seoData();
+    setTimeout(() => {
+      this.seoData();
+    }, 100);
+    
   }
 
   seoData(){
@@ -46,6 +48,7 @@ export class HomeComponent implements OnInit {
     this.service.getSpecialities()
       .subscribe((data: APIResponse) => {
         this.isLoaded = true;
+        
         this.specialities = data.SingleResult;
       })
   }
@@ -60,7 +63,12 @@ export class HomeComponent implements OnInit {
 
   loadServicesList(): any {
     this.services = this.jsonService.getAllServices();
-
+    // this.service.getAllServices()
+    // .subscribe((data: APIResponse) => {
+    //   this.isLoaded = true;
+    //   this.services = data.SingleResult;
+    //   console.log(JSON.stringify(data.SingleResult));
+    // })
   }
 
 }
