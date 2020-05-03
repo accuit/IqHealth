@@ -35,6 +35,7 @@ import { BookATestComponent } from './book-a-test/book-a-test.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { CareerComponent } from './career/career.component';
 import { PartnerWithUsModule } from './partner-with-us/partner-with-us.module';
+import { SeoModule } from './seo/seo.module';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { PartnerWithUsModule } from './partner-with-us/partner-with-us.module';
     AcademyModule,
     AccountModule,
     PagesModule,
-    PartnerWithUsModule
+    PartnerWithUsModule,
+    SeoModule
   ],
   providers: [
     { provide: 'LOCALSTORAGE', useFactory: getLocalStorage },

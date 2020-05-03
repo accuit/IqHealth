@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from 'src/app/core/app.service';
 import { APIResponse, ServicesModel } from 'src/app/core/app.models';
+import { MetaTagService } from 'src/app/seo/meta-tags/meta-tag.service';
 
 @Component({
   selector: 'app-services-list',
@@ -16,10 +17,20 @@ export class ServicesListComponent implements OnInit {
   isloaded: boolean;
   services: ServicesModel[];
 
-  constructor(private readonly service: AppService) { }
+  constructor(private readonly service: AppService, private readonly tags: MetaTagService) { }
 
   ngOnInit() {
+    this.addMetaTags();
     this.loadServicesList();
+  }
+
+  addMetaTags(): void {
+    this.tags.setTitle('Diagnostic care services | Health IQ');
+    this.tags.setSocialMediaTags(
+      'https://health-iq.in/services-list', 
+      'Diagnostic care services | Health IQ',
+      'Health IQ Provides best diagnostic services in Kolkata.',
+      'corona-safety.png');
   }
 
   loadServicesList(): any {
