@@ -63,7 +63,7 @@ import { PartnerWithUsModule } from './partner-with-us/partner-with-us.module';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     SharedModule,
     AcademyModule,
