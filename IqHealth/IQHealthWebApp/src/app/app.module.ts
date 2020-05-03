@@ -64,7 +64,7 @@ import { SeoModule } from './seo/seo.module';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     SharedModule,
     AcademyModule,
