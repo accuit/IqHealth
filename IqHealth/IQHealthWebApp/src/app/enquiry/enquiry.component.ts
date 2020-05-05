@@ -128,7 +128,7 @@ export class EnquiryComponent implements OnInit {
         if (res.IsSuccess) {
           this.status = "Success";
           this.message = res.Message;
-          this.appService.sendEmailNotification('api/notification/email-enquiry', this.enquiryForm.value);
+          this.appService.sendEmailNotification('email-enquiry', this.enquiryForm.value);
           this.reset();
           
         } else {

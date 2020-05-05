@@ -73,7 +73,7 @@ export class BookATestComponent implements OnInit {
         if (res.IsSuccess) {
           this.status = "Success";
           this.message = res.Message;
-          this.appService.sendEmailNotification('api/notification/email-booking', this.bookingForm.value);
+          this.appService.sendEmailNotification('email-booking', this.bookingForm.value);
           this.reset();
         } else {
           this.status = "Fail";

@@ -66,7 +66,7 @@ export class HealthcareUnitComponent implements OnInit {
         if (res.IsSuccess) {
           this.status = "Success";
           this.message = res.Message;
-          this.notificationService.sendEmailNotification('api/notification/email-appointment', this.partnerForm.value);
+          this.notificationService.sendEmailNotification('email-appointment', this.partnerForm.value);
           this.reset();
           
         } else {

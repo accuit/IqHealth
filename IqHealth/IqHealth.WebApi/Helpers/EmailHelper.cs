@@ -16,6 +16,7 @@ namespace IqHealth.WebApi.Helpers
 {
     public class EmailHelper
     {
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         public int PrepareAndSendBookingEmail(BookingMaster model)
         {
@@ -163,7 +164,7 @@ namespace IqHealth.WebApi.Helpers
                     emailmodel.CcEmail = getConfigValue(companyId, AspectEnums.ConfigKeys.CCAddress);
                     message.Bcc.Add(emailmodel.CcEmail);
                 }
-
+                log.Debug("isDebugMode " + isDebugMode);
                 if (isDebugMode)
                 {
                     message.To.Add(ConfigurationManager.AppSettings["DbugToEmail"].ToString());
@@ -176,7 +177,6 @@ namespace IqHealth.WebApi.Helpers
                 }
                 else
                 {
-
                     smtpClient.EnableSsl = getConfigValue(companyId, AspectEnums.ConfigKeys.IsSSL) == "Y" ? true : false;
                     fromName = getConfigValue(companyId, AspectEnums.ConfigKeys.FromName);
                     fromAddress = getConfigValue(companyId, AspectEnums.ConfigKeys.FromEmail);
@@ -185,7 +185,7 @@ namespace IqHealth.WebApi.Helpers
                     smtpClient.Host = getConfigValue(companyId, AspectEnums.ConfigKeys.SMTPHost);
                     message.To.Add(emailmodel.ToEmail);
                 }
-
+                log.Info("Sending Email to : " + message.To + " from account " + fromAddress + " having host and port: " + smtpClient.Host + " & " + smtpClient.Port );
                 smtpClient.Credentials = new NetworkCredential(fromAddress, fromPass);
                 message.BodyEncoding = Encoding.UTF8;
                 message.From = new MailAddress(fromAddress, fromName);
@@ -198,7 +198,7 @@ namespace IqHealth.WebApi.Helpers
             }
             catch (Exception ex)
             {
-
+                log.Error("Error Sending Email " + ex.InnerException);
                 return (int)AspectEnums.EmailStatus.Failed;
             }
             finally

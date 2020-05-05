@@ -118,7 +118,7 @@ export class AppService {
   }
 
   public sendEmailNotification(url: string, params: any): any {
-    url = url ? url : 'send-email';
+    url = '' ? 'send-email' : url;
     this.httpClient.post(this.baseUrl + 'api/notification/' + url, params, { headers: this.headers })
       .subscribe((res: APIResponse) => {
         if (res.IsSuccess)

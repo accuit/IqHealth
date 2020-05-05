@@ -58,7 +58,7 @@ constructor(private readonly formBuilder: FormBuilder, private readonly appServi
         if (res.IsSuccess) {
           this.status = "Success";
           this.message = res.Message;
-          this.appService.sendEmailNotification('api/notification/email-appointment', this.enquiryForm.value);
+          this.appService.sendEmailNotification('email-appointment', this.enquiryForm.value);
           this.reset();
           
         } else {

@@ -16,6 +16,8 @@ namespace IqHealth.WebApi.Controllers
     [RoutePrefix("api/notification")]
     public class NotificationController : ApiController
     {
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         [Route("email-booking")]
         [HttpPost]
         public JsonResponse<int> SendBookingEmail(BookingMaster model)
@@ -74,6 +76,7 @@ namespace IqHealth.WebApi.Controllers
             int status = eHelper.PrepareAndSendEmail(email, otherContent);
             if (status == (int)AspectEnums.EmailStatus.Sent)
             {
+                log.Info(string.Format("Email successfully sent to {0} at {1}.", model.Name, model.Email));
                 response.Message = string.Format("Email successfully sent to {0} at {1}.", model.Name, model.Email);
                 response.StatusCode = "200";
                 response.IsSuccess = true;
@@ -81,6 +84,7 @@ namespace IqHealth.WebApi.Controllers
             }
             else
             {
+                log.Info(string.Format("Could not send email to {0} at {1}.", model.Name, model.Email));
                 response.Message = string.Format("Could not send email to {0} at {1}.", model.Name, model.Email);
                 response.StatusCode = "500";
                 response.IsSuccess = false;
@@ -101,6 +105,7 @@ namespace IqHealth.WebApi.Controllers
             int status = eHelper.PrepareAndSendEmail(model);
             if (status == (int)AspectEnums.EmailStatus.Sent)
             {
+                log.Info(string.Format("Email successfully sent to {0} at {1}.", model.Name, model.Email));
                 response.Message = string.Format("Email successfully sent to {0} at {1}.", model.Name, model.Email);
                 response.StatusCode = "200";
                 response.IsSuccess = true;
@@ -108,6 +113,7 @@ namespace IqHealth.WebApi.Controllers
             }
             else
             {
+                log.Info(string.Format("Could not send email to {0} at {1}.", model.Name, model.Email));
                 response.Message = string.Format("Could not send email to {0} at {1}.", model.Name, model.Email);
                 response.StatusCode = "500";
                 response.IsSuccess = false;
@@ -133,6 +139,7 @@ namespace IqHealth.WebApi.Controllers
                 int status = eHelper.PrepareAndSendAppointmentEmail(model);
                 if (status == (int)AspectEnums.EmailStatus.Sent)
                 {
+                    log.Info(string.Format("Email successfully sent to {0} at {1}.", model.Name, model.Email));
                     response.Message = string.Format("Email successfully sent to {0} at {1}.", model.Name, model.Email);
                     response.StatusCode = "200";
                     response.IsSuccess = true;
@@ -140,6 +147,7 @@ namespace IqHealth.WebApi.Controllers
                 }
                 else
                 {
+                    log.Debug(string.Format("Could not send email to {0} at {1}.", model.Name, model.Email));
                     response.Message = string.Format("Could not send email to {0} at {1}.", model.Name, model.Email);
                     response.StatusCode = "500";
                     response.IsSuccess = false;
@@ -170,6 +178,7 @@ namespace IqHealth.WebApi.Controllers
                 int status = eHelper.PrepareAndSendEnquiryEmail(model);
                 if (status == (int)AspectEnums.EmailStatus.Sent)
                 {
+                    log.Info(string.Format("Email successfully sent to {0} at {1}.", model.Name, model.Email));
                     response.Message = string.Format("Email successfully sent to {0} at {1}.", model.Name, model.Email);
                     response.StatusCode = "200";
                     response.IsSuccess = true;
@@ -177,6 +186,7 @@ namespace IqHealth.WebApi.Controllers
                 }
                 else
                 {
+                    log.Debug(string.Format("Could not send email to {0} at {1}.", model.Name, model.Email));
                     response.Message = string.Format("Could not send email to {0} at {1}.", model.Name, model.Email);
                     response.StatusCode = "500";
                     response.IsSuccess = false;

@@ -5,8 +5,7 @@
 export const environment = {
   production: false,
   environmentName: 'QA',
-  apiUrl: 'https://health-iq.in/'
-  // apiUrl: 'http://localhost:65114/'
+  apiUrl: 'http://localhost:65114/'
 };
 
 /*

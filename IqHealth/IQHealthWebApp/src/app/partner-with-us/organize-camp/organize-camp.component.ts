@@ -71,7 +71,7 @@ export class OrganizeCampComponent implements OnInit {
         if (res.IsSuccess) {
           this.status = "Success";
           this.message = res.Message;
-          this.notificationService.sendEmailNotification('api/notification/email-appointment', this.organizeCampForm.value);
+          this.notificationService.sendEmailNotification('email-appointment', this.organizeCampForm.value);
           this.reset();
           
         } else {

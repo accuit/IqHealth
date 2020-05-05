@@ -60,6 +60,7 @@ namespace IqHealth.WebApi.Controllers
                 response.IsSuccess = false;
                 response.StatusCode = "500";
                 response.Message = ex.Message;
+                log.Error("NewEnquiry for Email: " + ex.Message);
             }
 
             return response;
