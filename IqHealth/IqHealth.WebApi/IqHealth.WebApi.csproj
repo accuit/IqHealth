@@ -248,6 +248,7 @@
     <Content Include="Helpers\EmailTemplates\DoctorAppointmentConfirmation.html" />
     <Content Include="Helpers\EmailTemplates\OnlineEnquiry.html" />
     <Content Include="Helpers\EmailTemplates\OnlineEnquiryResponse.html" />
+    <Content Include="Helpers\EmailTemplates\Student_Enquiry.html" />
     <Content Include="Helpers\EmailTemplates\UserBookingConfirmation.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

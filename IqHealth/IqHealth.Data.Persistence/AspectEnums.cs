@@ -55,6 +55,16 @@ namespace IqHealth.Data.Persistence
             Completed = 3
         }
 
+        public enum EnquiryType
+        {
+            ContactUs = 1,
+            Student = 2,
+            CustomerReport = 2,
+            PartnerWithUs = 3,
+            DoctorAppointment = 4,
+            BookAtest = 5
+        }
+
         public enum FileType
         {
             DiagnosticReport = 1,

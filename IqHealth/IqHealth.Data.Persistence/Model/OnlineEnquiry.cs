@@ -83,6 +83,11 @@ namespace IqHealth.Data.Persistence.Model
 
         [DataMember]
         public DateTime? CreatedDate { get; set; }
+
+        [NotMapped]
+        [DataMember]
+        public int EnquiryType { get; set; }
+
     }
 
 

@@ -5,6 +5,7 @@ import { APIResponse, Doctor } from '../core/app.models';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { AppService } from '../core/app.service';
+import { EnquiryTypeEnum } from '../pages/shared/model/enums';
 
 @Component({
   selector: 'app-enquiry',
@@ -37,23 +38,7 @@ export class EnquiryComponent implements OnInit {
     private readonly formBuilder: FormBuilder,
     private readonly route: ActivatedRoute,
     private readonly appService: AppService) {
-    
-      this.route.paramMap.subscribe(params => {
-        this.enquiryType = Number(params.get("id"));
-      });
-  
-      if (this.enquiryType === 2){
-        this.loadSubCourses();
-        this.enquiryTypeName = 'Enquiry For Courses.';
-      }
-      if (this.enquiryType === 3) {
-        this.loadDoctors();
-        this.enquiryTypeName = 'Enquiry For Doctors.';
-      }
-      if (this.enquiryType === 4){
-        this.enquiryTypeName = 'Download Our Brouchure';
-      }
-
+    this.enquiryType = EnquiryTypeEnum.Student
   }
 
   reset(): void {
@@ -78,19 +63,23 @@ export class EnquiryComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (this.enquiryType === EnquiryTypeEnum.Student) {
+      this.loadSubCourses();
+      this.enquiryTypeName = 'Enquiry For Courses.';
+    }
     this.loadForm();
 
   }
 
-  executeParams(): void {
-    this.route.queryParams
-      .subscribe(params => {
-        this.urlParams = params;
-        if (params.type) {  // type 1= general type, 2 = course, 3 = doctor type , 4 = download brouchure
-          this.enquiryType = params.type;
-        }
-      });
-  }
+  // executeParams(): void {
+  //   this.route.queryParams
+  //     .subscribe(params => {
+  //       this.urlParams = params;
+  //       if (params.type) {  // type 1= general type, 2 = course, 3 = doctor type , 4 = download brouchure
+  //         this.enquiryType = params.type;
+  //       }
+  //     });
+  // }
 
   get f() { return this.enquiryForm.controls; }
 
@@ -101,15 +90,16 @@ export class EnquiryComponent implements OnInit {
       phone: ['', [Validators.required, Validators.minLength(10)]],
       age: [''],
       message: ['', [Validators.required]],
-      subject: [this.enquiryTypeName, [Validators.required]],
+      subject: [this.enquiryTypeName],
       type: [this.enquiryType],
-      typeValue: [this.selectedID, Validators.required],
+      typeValue: [this.selectedID],
       address: [''],
       place: [''],
       city: [''],
       state: [''],
       country: [1],
       captchaText: [''],
+      enquiryType: [EnquiryTypeEnum.Student],
       captchaVerified: [0],
       companyID: [2]
     });
@@ -122,6 +112,7 @@ export class EnquiryComponent implements OnInit {
       return;
     }
     this.showSpinner = true;
+    this.enquiryForm.patchValue({ enquiryType: EnquiryTypeEnum.Student });
     this.service.submitOnlineEnquiry(this.enquiryForm.value)
       .subscribe((res: APIResponse) => {
         this.showSpinner = false;
@@ -130,7 +121,7 @@ export class EnquiryComponent implements OnInit {
           this.message = res.Message;
           this.appService.sendEmailNotification('email-enquiry', this.enquiryForm.value);
           this.reset();
-          
+
         } else {
           this.status = "Fail";
           this.message = res.Message;
@@ -138,11 +129,11 @@ export class EnquiryComponent implements OnInit {
         }
 
       },
-      err => {
-        this.status = "Fail";
-        this.message = 'An error occured. Try again later.'
-        this.appService.handleError(err);
-      });
+        err => {
+          this.status = "Fail";
+          this.message = 'An error occured. Try again later.'
+          this.appService.handleError(err);
+        });
   }
 
   selectCourse(course: SubCourses) {

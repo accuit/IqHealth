@@ -106,7 +106,7 @@ const routes: Route[] = [
     component: FeeStructureComponent
   },
   {
-    path: 'online-enquiry/:id',
+    path: 'online-enquiry',
     component: EnquiryComponent
   },
   {

@@ -175,7 +175,16 @@ namespace IqHealth.WebApi.Controllers
             {
 
                 EmailHelper eHelper = new EmailHelper();
-                int status = eHelper.PrepareAndSendEnquiryEmail(model);
+                int status = 0;
+                if (model.Type == (int)AspectEnums.EnquiryType.Student)
+                {
+                    status = eHelper.PrepareAndSendStudentEnquiryEmail(model);
+                }
+                else
+                {
+                    status = eHelper.PrepareAndSendEnquiryEmail(model);
+                }
+
                 if (status == (int)AspectEnums.EmailStatus.Sent)
                 {
                     log.Info(string.Format("Email successfully sent to {0} at {1}.", model.Name, model.Email));

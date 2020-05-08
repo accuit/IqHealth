@@ -19,8 +19,10 @@
                                 <div *ngIf="submitted && f.name.errors" class="invalid">
                                     <div *ngIf="f.name.errors.required"> Name is required</div>
                                 </div>
-                            </div><!-- /.frm-control -->
-                        </div><!-- /.col-md-6 -->
+                            </div>
+                            <!-- /.frm-control -->
+                        </div>
+                        <!-- /.col-md-6 -->
                         <div class="col-md-6">
                             <div class="frm-control">
                                 <input type="text" placeholder="Email Address" formControlName="email">
@@ -28,8 +30,10 @@
                                     <div *ngIf="f.email.errors.required">Email is required</div>
                                     <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
                                 </div>
-                            </div><!-- /.frm-control -->
-                        </div><!-- /.col-md-6 -->
+                            </div>
+                            <!-- /.frm-control -->
+                        </div>
+                        <!-- /.col-md-6 -->
                         <div class="col-md-6">
                             <div class="frm-control">
                                 <input type="text" placeholder="Mobile No." formControlName="phone">
@@ -37,25 +41,30 @@
                                     <div *ngIf="f.phone.errors.required">Mobile Number is required</div>
                                     <div *ngIf="f.phone.errors.minlength">Mobile must be of 10 numbers</div>
                                 </div>
-                            </div><!-- /.frm-control -->
-                        </div><!-- /.col-md-6 -->
+                            </div>
+                            <!-- /.frm-control -->
+                        </div>
+                        <!-- /.col-md-6 -->
                         <div class="col-md-6">
                             <div class="frm-control">
                                 <input type="text" placeholder="Place" formControlName="place">
-                            </div><!-- /.frm-control -->
-                        </div><!-- /.col-md-6 -->
+                            </div>
+                            <!-- /.frm-control -->
+                        </div>
+                        <!-- /.col-md-6 -->
                         <div *ngIf="enquiryType===2 && isLoaded" class="col-md-12">
                             <div class="frm-control">
                                 <div class="frm-control">
                                     <div class="btn-group bootstrap-select">
-                                        <button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown"  title="Select Courses">
+                                        <button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" title="Select Courses">
                                             <span  class="filter-option pull-left"> {{selectedText}}</span>&nbsp;
                                             <span class="bs-caret"><span class="caret"></span></span>
                                         </button>
                                         <div class="dropdown-menu open">
                                             <ul class="dropdown-menu inner" role="menu">
-                                                <li *ngFor="let c of subCourses" ><a (click)="selectCourse(c)"> 
-                                                     <span  class="text">{{c.Name}}</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+                                                <li *ngFor="let c of subCourses">
+                                                    <a (click)="selectCourse(c)">
+                                                        <span class="text">{{c.Name}}</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -66,31 +75,37 @@
                                                 <option *ngFor="let c of subCourses" [class.selected]="{'selected':selectedID == c.ID.toString() }" [ngValue]="c.ID">
                                                     {{c.Name}}</option>
                                         </select>
-                                    </div>  
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="frm-control mb0">
-                                <textarea name="message" formControlName="message"  placeholder="Write Your Query"></textarea>
+                                <textarea name="message" formControlName="message" placeholder="Write Your Query"></textarea>
                                 <div *ngIf="submitted && f.message.errors" class="invalid">
                                     <div *ngIf="f.message.errors.required">Messsage is required</div>
                                 </div>
                                 <div *ngIf="status==='Success'" class="alert alert-success alert-dismissible" role="alert">{{ message }}</div>
-                            <div *ngIf="status==='Fail'" class="alert alert-danger alert-dismissible" role="alert">{{ message }}</div>
-                            
-                                <button *ngIf="!showSpinner" type="submit">Submit & Download</button>
-                                <button *ngIf="showSpinner" type="submit">Sending Request...</button>
-                                
-                                <!-- <button type="reset" (click)="reset()">Reset</button> -->
-                            </div><!-- /.frm-control -->
-                        
-                        </div><!-- /.col-md-12 -->
+                                <div *ngIf="status==='Fail'" class="alert alert-danger alert-dismissible" role="alert">{{ message }}</div>
 
-                    </div><!-- /.row -->
-                    <div class="form-result"></div><!-- /.form-result -->
-                </form><!-- /.appointment-form -->
-            </div><!-- /.col-md-7 -->
+                                <button *ngIf="!showSpinner" type="submit">Submit</button>
+                                <button *ngIf="showSpinner" type="submit">Sending Request...</button>
+
+                                <!-- <button type="reset" (click)="reset()">Reset</button> -->
+                            </div>
+                            <!-- /.frm-control -->
+
+                        </div>
+                        <!-- /.col-md-12 -->
+
+                    </div>
+                    <!-- /.row -->
+                    <div class="form-result"></div>
+                    <!-- /.form-result -->
+                </form>
+                <!-- /.appointment-form -->
+            </div>
+            <!-- /.col-md-7 -->
             <div class="col-md-5">
                 <div class="appointment-time">
                     <div class="inner-box">
@@ -98,15 +113,23 @@
                         <p>Below is the list of available course you can enquiry for.</p>
                         <div class="time-box">
                             <div *ngFor="let c of subCourses" class="signle-time-box">
-                                <div class="day-name">{{c.Name}}</div><!-- /.day-name -->
+                                <div class="day-name">{{c.Name}}</div>
+                                <!-- /.day-name -->
                                 <!-- <div class="time-line">09:00 am - 19:00 pm</div> -->
-                            </div><!-- /.signle-time-box -->
-                           
-                        </div><!-- /.time-box -->
+                            </div>
+                            <!-- /.signle-time-box -->
+
+                        </div>
+                        <!-- /.time-box -->
                         <!-- <p class="notice">Treatment for Emergency Cases Only *</p> -->
-                    </div><!-- /.inner-box -->
-                </div><!-- /.appointment-time -->
-            </div><!-- /.col-md-5 -->
-        </div><!-- /.row -->
-    </div><!-- /.thm-container -->
+                    </div>
+                    <!-- /.inner-box -->
+                </div>
+                <!-- /.appointment-time -->
+            </div>
+            <!-- /.col-md-5 -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.thm-container -->
 </section>

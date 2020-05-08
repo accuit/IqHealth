@@ -147,6 +147,30 @@ namespace IqHealth.WebApi.Helpers
             return SendEmail(email, Convert.ToInt32(model.CompanyID));
         }
 
+        public int PrepareAndSendStudentEnquiryEmail(OnlineEnquiry model)
+        {
+            string body = string.Empty;
+            using (StreamReader reader = new StreamReader(HttpContext.Current.Server.MapPath("~/Helpers/EmailTemplates/Student_Enquiry.html")))
+            {
+                body = reader.ReadToEnd();
+            }
+
+            body = body.Replace("{Name}", model.Name);
+            body = body.Replace("{Email}", model.Email);
+            body = body.Replace("{Mobile}", model.Phone);
+
+            EmailNotification email = new EmailNotification();
+            email.ToEmail = model.Email;
+            email.Status = (int)AspectEnums.EmailStatus.Pending;
+            email.Message = body;
+            email.Body = body;
+            email.Subject = "Student enquiry received.";
+            email.Priority = 2;
+            email.IsAttachment = false;
+            return SendEmail(email, Convert.ToInt32(model.CompanyID));
+        }
+
+
 
         public int SendEmail(EmailNotification emailmodel, int companyId)
         {
