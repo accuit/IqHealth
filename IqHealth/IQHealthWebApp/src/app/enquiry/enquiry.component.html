@@ -39,7 +39,9 @@
                                 <input type="text" placeholder="Mobile No." formControlName="phone">
                                 <div *ngIf="submitted && f.phone.errors" class="invalid">
                                     <div *ngIf="f.phone.errors.required">Mobile Number is required</div>
+                                    <div *ngIf="f.phone.errors.maxlength">Mobile must not be greater then 10 numbers</div>
                                     <div *ngIf="f.phone.errors.minlength">Mobile must be of 10 numbers</div>
+                                    
                                 </div>
                             </div>
                             <!-- /.frm-control -->

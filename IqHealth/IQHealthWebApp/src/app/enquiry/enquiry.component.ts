@@ -87,7 +87,7 @@ export class EnquiryComponent implements OnInit {
     this.enquiryForm = this.formBuilder.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required, Validators.minLength(10)]],
+      phone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
       age: [''],
       message: ['', [Validators.required]],
       subject: [this.enquiryTypeName],
