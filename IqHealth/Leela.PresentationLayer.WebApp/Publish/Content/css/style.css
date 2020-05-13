@@ -556,15 +556,15 @@ a:hover, a:focus {
   background: url(../img/banner/opd.jpg) no-repeat center bottom;
   position: relative;
   z-index: 1;
-  height: 700px;
+  height: 600px;
   /*padding-top:150px;*/
 }
 
 .about_banner_area {
-  background: url(../img/banner/about.jpg) no-repeat center bottom;
+  background: url(../img/banner/about.jpg) no-repeat center center;
   position: relative;
   z-index: 1;
-  height: 900px
+  height: 500px
 }
 
 @media(max-width:992px) {
@@ -579,7 +579,7 @@ a:hover, a:focus {
 .home_banner_area .banner_inner {
   position: relative;
   width: 100%;
-  min-height: 900px
+  min-height: 600px
 }
 
 .home_banner_area .banner_inner .banner_content {
@@ -632,7 +632,7 @@ a:hover, a:focus {
 .about_banner_area .banner_inner {
   position: relative;
   width: 100%;
-  min-height: 900px
+  min-height: 500px
 }
 
 .about_banner_area .banner_inner .banner_content {
@@ -3303,13 +3303,13 @@ h6 {
 }
 
 .single-input-primary {
-  display: block;
-  width: 100%;
-  line-height: 40px;
-  border: 1px solid transparent;
-  outline: none;
-  background: #f9f9ff;
-  padding: 0 20px
+    display: block;
+    width: 100%;
+    line-height: 40px;
+    border: 1px solid #00000014;
+    outline: none;
+    background: #f9f9ff;
+    padding: 0 20px
 }
 
 .single-input-primary:focus {
@@ -4362,9 +4362,14 @@ h6 {
 
 /* New Css Added  for custom form validation */
 
+.input-validation-error {
+    outline: none;
+    border: 1px solid #f80000;
+}
+
 .single-input-primary.is-invalid {
-  outline: none;
-  border: 2px solid #eb6b55;
+    outline: none;
+    border: 2px solid #eb6b55;
 }
 
 .single-input-primary.is-valid {
