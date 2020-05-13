@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IqHealth.Data.Persistence",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthIQ.CommonLayer.AuditLog", "HealthIQ.CommonLayer.AuditLog\HealthIQ.CommonLayer.AuditLog.csproj", "{518FD54B-A499-4650-B0D0-332F26652A78}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leela.PresentationLayer.WebApp", "Leela.PresentationLayer.WebApp\Leela.PresentationLayer.WebApp.csproj", "{4C1CCE65-B06B-404C-BB48-5660C3153183}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{518FD54B-A499-4650-B0D0-332F26652A78}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{518FD54B-A499-4650-B0D0-332F26652A78}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{518FD54B-A499-4650-B0D0-332F26652A78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C1CCE65-B06B-404C-BB48-5660C3153183}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C1CCE65-B06B-404C-BB48-5660C3153183}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C1CCE65-B06B-404C-BB48-5660C3153183}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C1CCE65-B06B-404C-BB48-5660C3153183}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

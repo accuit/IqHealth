@@ -1,0 +1,199 @@
+﻿@using IqHealth.Data.Persistence.Model;
+@model BookingMaster
+
+@{
+    ViewBag.Title = "BookATest";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="banner_area">
+    <div class="banner_inner d-flex align-items-center">
+        <div class="container">
+            <div class="banner_content text-left">
+                <h2>Book Your Medical Test Online</h2>
+                <div class="page_link">
+                    <a href="/">Home</a>
+                    <a href="#">Book Your Test</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="whole-wrap">
+    <div class="container">
+        <div class="section-top-border">
+            <div class="row">
+                <div class="col-lg-8">
+                    <h3 class="title_color">Book your Medical Test</h3>
+                    <div class="comments-area">
+                        <br />
+                        <br />
+                        @if (ViewBag.Message != string.Empty)
+                        {
+                            <div class="alert alert-warning" role="alert">
+                                @ViewBag.Message
+                            </div>
+                        }
+                        @using (Html.BeginForm("BookATest", "Enquiry", FormMethod.Post))
+                        {
+                            <form id="bookingForm">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="input-group-icon mt-10">
+                                            <div class="icon">
+                                                <i class="fa fa-user" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.TextBoxFor(m => m.FirstName, new { @class = "single-input-primary", @placeholder = "First Name", @required = "true" })
+                                            </div>
+                                        </div>
+                                        <div class="input-group-icon">
+                                            <div class="icon">
+                                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.TextBoxFor(m => m.BookingDate, new { @class = "single-input-primary", @placeholder = "Booking Date", @type = "date", @useValueAsDate = "", @required = "true" })
+                                            </div>
+                                        </div>
+                                        <div class="input-group-icon">
+                                            <div class="icon">
+                                                <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.TextBoxFor(m => m.BookingTime, new { @class = "single-input-primary", @placeholder = "Booking Time", @required = "true" })
+                                            </div>
+                                        </div>
+
+                                        <div class="input-group-icon">
+                                            <div class="icon">
+                                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.TextBoxFor(m => m.Email, new { @class = "single-input-primary", @placeholder = "Email Address", @type = "email", @required = "true" })
+                                            </div>
+                                        </div>
+                                        <div class="input-group-icon mt-10">
+                                            <div class="icon">
+                                                <i class="fa fa-plane" aria-hidden="true">
+                                                </i>
+                                            </div>
+                                            <div class="form-select" id="default-select">
+                                                @Html.DropDownListFor(m => m.City, new List<SelectListItem>
+                     { new SelectListItem{Text="Kolkata", Value="1"},
+                       new SelectListItem{Text="Delhi", Value="2"}}, "Please select City", new { @class = "form-select nice-select" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="input-group-icon mt-10">
+                                            <div class="icon">
+                                                <i class="fa fa-user" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.TextBoxFor(m => m.LastName, new { @class = "single-input-primary", @placeholder = "Last Name", @required = "true" })
+                                            </div>
+                                        </div>
+                                        <div class="input-group-icon mt-10">
+                                            <div class="icon">
+                                                <i class="fa fa-home" aria-hidden="true">
+
+                                                </i>
+                                            </div>
+                                            <div class="form-select" id="default-select">
+                                                @Html.DropDownListFor(m => m.Sex, new List<SelectListItem>
+                     { new SelectListItem{Text="Male", Value="1"},
+                       new SelectListItem{Text="Female", Value="2"}}, "Please select gender", new { @class = "form-select nice-select", @required = "true" })
+                                            </div>
+                                        </div>
+                                        <div class="input-group-icon mt-10">
+                                            <div class="icon">
+                                                <i class="fa fa-phone" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.TextBoxFor(m => m.Mobile, new { @class = "single-input-primary", @placeholder = "Mobile", @required = "true" })
+                                            </div>
+                                        </div>
+                                        <div class="input-group-icon mt-10">
+                                            <div class="icon">
+                                                <i class="fa fa-home" aria-hidden="true">
+
+                                                </i>
+                                            </div>
+                                            <div class="form-select" id="default-select">
+                                                @Html.DropDownListFor(m => m.CollectionType, new List<SelectListItem>
+                     { new SelectListItem{Text="Centre Visit", Value="1"},
+                       new SelectListItem{Text="Home", Value="2"}}, "Choose Collection Location", new { @class = "form-select nice-select", @required = "true" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="input-group-icon mt-10">
+                                            <div class="icon">
+                                                <i class="fa fa-thumb-tack" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.TextBoxFor(m => m.Address, new { @class = "single-input-primary", @placeholder = "Address", @required = "true" })
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-8">
+                                        <div class="input-group-icon mt-10">
+                                            <div class="icon">
+                                                <i class="fa fa-building" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.TextBoxFor(m => m.Landmark, new { @class = "single-input-primary", @placeholder = "Landmark", @required = "true" })
+                                            </div>
+                                        </div>
+                                        <div class="input-group-icon">
+                                            <div class="icon">
+                                                <i class="fa fa-tint" aria-hidden="true">
+                                                </i>
+                                            </div>
+                                            <div class="form-select" id="default-select">
+                                                @Html.DropDownListFor(m => m.PackageID, ViewBag.packages as List<SelectListItem>, "Please select package", new { @class = "form-select nice-select" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="input-group-icon mt-10">
+                                            <div class="icon">
+                                                <i class="fa fa-map-pin" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.TextBoxFor(m => m.PinCode, new { @class = "single-input-primary", @placeholder = "Pin Code", @required = "true", @type = "number" })
+                                            </div>
+                                        </div>
+                                        <div class="input-group-icon">
+                                            <div class="icon">
+                                                <i class="fa fa-birthday-cake" aria-hidden="true"> </i>
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.TextBoxFor(m => m.Age, new { @class = "single-input-primary", @placeholder = "Age (max 100)", @type = "number", @required = "true" })
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <button class="genric-btn success-border circle arrow">
+                                        Submit
+                                        <span class="lnr lnr-arrow-right"></span>
+                                    </button>
+                                </div>
+                                <br />
+                                <br />
+
+                            </form>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

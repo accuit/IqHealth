@@ -1,0 +1,49 @@
+﻿
+@using IqHealth.Data.Persistence.Model;
+@model IEnumerable<SpecialityMaster>
+
+@{
+    ViewBag.Title = "Leela HealthCare Doctors Specialities";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Head{
+    <title>Leela Health Care Diagnostics | Life better</title>
+    <meta name="description" content="Leela HealthCare Diagnostics is supported by Apollo diagnostics in kolkata">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Accuit Technologies">
+    <meta name="robots" content="INDEX, FOLLOW">
+    <meta name="keywords" content="Apollo diagnostics in kolkata, Best diagnostic center near bhawanipore, Best doctor clinic near bhawanipore, Physcians near bhawanipore, Best lady gynaecologist in bhawanipore">
+    <meta name="date" content="Mon Oct 14 2019 21:22:06 GMT+0530 (India Standard Time)" scheme="YYYY-MM-DD">
+    <meta httpequiv="Content-Type" content="text/html">
+    <meta property="og:title" content="Leela Health Care Diagnostics">
+    <meta property="og:description" content="Leela Healthcare aims at providing life better through quality care and services that set community standards, exceed patient’s expectations and provides in a caring, convenient, cost-effective and accessible manner. We strive to deliver healthcare compassionately and always act with integrity. Our ethics and compliance programme is an integral part of what we do. At Leela Healthcare we have OPD along with Diagnostics Centre as well as Acupuncture and Pain Clinic. We have both Morning OPD as well as Evening OPD with 8 specialities available.">
+    <meta property="og:url" content="https://www.leelahealthcare.com/#/">
+    <meta property="og:image" content="https://leelahealthcare.com/assets/img/leelahealthcare/LeelaHealthcare-logo.png">
+    <meta property="og:type" content="website">
+}
+
+<section class="blog_categorie_area  section_gap" style="padding-top:100px">
+    <div class="container">
+        <div class="row">
+            @foreach (var spec in Model)
+            {
+                <div class="col-lg-4">
+                    <div class="categories_post">
+                        <a href="@Url.Action("Doctors", new { id = spec.ID, speciality = spec.Title.Replace(" ","-").ToLower().Replace("&","").Replace("/","") })"><img src="@spec.ImageUrl" alt="@spec.Title"></a>
+                        <div class="categories_details">
+                            <div class="categories_text">
+                                <h5>@spec.Speciality</h5>
+                                <div class="border_line"></div>
+                                <p>@spec.Title</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+
+

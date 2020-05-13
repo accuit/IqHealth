@@ -1,0 +1,49 @@
+﻿@using IqHealth.Data.Persistence.Model;
+@model IEnumerable<HealthServiceMaster>
+@{
+    ViewBag.Title = "Diagnostic Services | Leela Health Care";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section class="service_area section_gap" style="padding-top: 150px;">
+    <div class="container">
+        <div class="col-lg-12 pl-0">
+            <h1 class="typo-list">Our Offered Services</h1>
+        </div>
+        <!---->
+        @foreach (var service in Model)
+        {
+    <div class="section-top-border">
+        <h3 class="mb-30 title_color"><a href="@Url.Action("Details", new { id = service.ID, name = service.Name.Replace(" ","-") })">@service.Name</a></h3>
+        
+        <div class="row">
+            <div class="col-md-3"><img class="img-fluid" src="~/Content/img/services/@(service.Name.ToLower().Replace(' ','-')+".jpg")" alt="@service.Name"></div>
+            <!---->
+            <!---->
+            <div class="col-md-6 mt-sm-20 left-align-p">
+                <p>
+                    @service.Description
+                </p>
+            </div>
+            <!---->
+            @if (service.ServicesInclList.Count() > 0)
+            {
+                <div class="col-md-3 mt-sm-20 left-align-p">
+                    <ul class="unordered-list">
+
+                        @foreach (var item in service.ServicesInclList)
+                        {
+                            <li> @item.ToString() </li>
+                        }
+
+                    </ul>
+                </div>
+            }
+        </div>
+    </div>
+        }
+
+    </div>
+</section>
+

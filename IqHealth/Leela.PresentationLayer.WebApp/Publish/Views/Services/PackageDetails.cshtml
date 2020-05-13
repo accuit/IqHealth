@@ -1,0 +1,80 @@
+﻿@using IqHealth.Data.Persistence.Model;
+@model PackageCategory
+
+@{
+    ViewBag.Title = Model.Title + " HealthCare Package";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Head{
+    <title>Leela Health Care Diagnostics | Life better</title>
+    <meta name="description" content="Leela HealthCare Diagnostics services and packages is supported by Apollo diagnostics in kolkata">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Accuit Technologies">
+    <meta name="robots" content="INDEX, FOLLOW">
+    <meta name="keywords" content="@string.Join(",",Model.PackageMasters.SelectMany(x=>x.Title))">
+    <meta name="date" content="@DateTime.Now.ToLongDateString()" scheme="YYYY-MMM-DD">
+    <meta httpequiv="Content-Type" content="text/html">
+    <meta property="og:title" content="@(Model.Title + " HealthCare Package")">
+    <meta property="og:description" content="@string.Join(",",Model.PackageMasters.SelectMany(x=>x.Title))">
+    <meta property="og:url" content="https://www.leelahealthcare.com/@(Model.Name +"-health-packages/"+ Model.ID)">
+    <meta property="og:image" content="~/Content/img/packages/@(Model.Name.ToLower().Replace(' ', '-').Replace("&","").Replace("/","") + ".jpg")">
+    <meta property="og:type" content="website">
+}
+
+<section class="blog_area single-post-area" style="padding-top:100px">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 posts-list">
+                <div *ngIf="isLoaded" class="comments-area">
+                    <h4>List of Packages included in <span style="color: darkmagenta"> @Model.Title HealthCare Package</span> </h4>
+                    <div class="comment-list">
+                        @foreach (var item in Model.PackageMasters)
+                        {
+                            <div class="single-comment justify-content-between d-flex">
+                                <div class="user justify-content-between d-flex">
+                                    <div class="thumb">
+                                        <img src="~/Content/img/packages/@(Model.Title.ToLower().Replace(' ', '-') + ".jpg")" alt="@Model.Title">
+                                    </div>
+                                    <div class="desc">
+                                        <h5>
+                                            <p>@item.Title</p>
+                                        </h5>
+                                        <p class="date">@item.SubTitle</p>
+                                        @foreach (var test in item.TestMasters)
+                                        {
+                                            <p class="comment">
+                                                @test.Name
+                                            </p>
+                                        }
+                                    </div>
+                                </div>
+                                <div class="reply-btn">
+                                    <p class="btn-reply text-uppercase">Rs. @item.Cost</p>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            @*<div class="col-lg-4">
+                    <div class="blog_right_sidebar">
+                        <aside *ngFor="let catg of categories" class="single_sidebar_widget post_category_widget">
+                            <a (click)="getPackageDetails(catg.ID, scrollView)">
+                                <h4 class="widget_title">{{catg.Name}}</h4>
+                            </a>
+                            <ul class="list cat-list">
+                                <li *ngFor="let pakg of catg.PackageMasters">
+                                    <a class="d-flex justify-content-between">
+                                        <p>{{pakg.Name}}</p>
+                                        <p>{{pakg.Cost}}</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </aside>
+                    </div>
+                </div>*@
+        </div>
+    </div>
+</section>
+

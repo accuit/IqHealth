@@ -1,0 +1,49 @@
+﻿@using IqHealth.Data.Persistence.Model;
+@model IEnumerable<PackageCategory>
+
+@{
+    ViewBag.Title = "Leela HealthCare Diagnostic Packages";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Head{
+    <title>"Leela HealthCare Diagnostic Packages | Life better</title>
+    <meta name="description" content="Leela HealthCare Diagnostics services and packages is supported by Apollo diagnostics in kolkata">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Accuit Technologies">
+    <meta name="robots" content="INDEX, FOLLOW">
+    <meta name="keywords" content="@string.Join(",", Model)">
+    <meta name="date" content="@DateTime.Now.ToLongDateString()" scheme="YYYY-MMM-DD">
+    <meta httpequiv="Content-Type" content="text/html">
+
+    <meta property="og:title" content="HealthCare Packages">
+    <meta property="og:description" content="@string.Join(",", Model)">
+    <meta property="og:url" content="https://health-iq.in/health-packages">
+    <meta property="og:image" content="https://health-iq.in/content/img/packages/@(Model.FirstOrDefault().Name.ToLower().Replace(' ', '-').Replace("&","").Replace("/","") + ".jpg")">
+    <meta property="og:image:width" content="600">
+    <meta property="og:image:height" content="300">
+    <meta property="og:type" content="article">
+}
+
+<section class="blog_categorie_area  section_gap" style="padding-top:100px">
+    <div class="container">
+        <div class="row">
+            @foreach (var package in Model)
+            {
+                <div class="col-lg-4">
+                    <div class="categories_post">
+                        <a href="@Url.Action("PackageDetails", new { id = package.ID, name = package.Name.Replace(" ","-").Replace("&","").Replace("/","").ToLower() })"><img src="~/Content/img/packages/@(package.Name.ToLower().Replace(' ', '-') + ".jpg")" alt="@package.Name"></a>
+                        <div class="categories_details">
+                            <div class="categories_text">
+                                <a href="@Url.Action("PackageDetails", new { id = package.ID, name = package.Name.Replace(" ","-") })"><h5>@package.Title</h5></a>
+                                <div class="border_line"></div>
+                                <p>@package.SubTitle</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+

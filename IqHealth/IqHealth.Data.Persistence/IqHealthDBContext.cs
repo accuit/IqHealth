@@ -16,8 +16,8 @@ namespace IqHealth.Data.Persistence
         public IqHealthDBContext()
             : base("IqHealthConnection")
         {
-            this.Configuration.LazyLoadingEnabled = false;
-            this.Configuration.ProxyCreationEnabled = false;
+            //this.Configuration.LazyLoadingEnabled = true;
+            //this.Configuration.ProxyCreationEnabled = false;
         }
 
         public virtual DbSet<BookingMaster> BookingMasters { get; set; }

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="https://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://leelahealthcare.com/</loc>
+     <xhtml:link
+        rel="alternate"
+        hreflang="en"
+        href="https://leelahealthcare.com/"
+     />
+     <lastmod>2019-10-11</lastmod>
+     <changefreq>yearly</changefreq>
+     <priority>1.0</priority>
+  </url>
+</urlset>

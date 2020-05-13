@@ -30,7 +30,7 @@ namespace IqHealth.Data.Persistence.Model
 
         public DateTime? UpdatedDate { get; set; }
 
-        public int CompanyID { get; set; }
+        public int? CompanyID { get; set; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int IsDeleted { get; set; }

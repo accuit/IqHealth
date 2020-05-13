@@ -1,0 +1,30 @@
+﻿@using IqHealth.Data.Persistence.Model;
+@model IEnumerable<PackageCategory>
+
+@{
+    ViewBag.Title = "Leela HealthCare Diagnostic Packages";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="blog_categorie_area  section_gap" style="padding-top:100px">
+    <div class="container">
+        <div class="row">
+            @foreach (var package in Model)
+            {
+                <div class="col-lg-4">
+                    <div class="categories_post">
+                        <a href="@Url.Action("PackageDetails", new { id = package.ID, name = package.Name.Replace(" ","-").Replace("&","").Replace("/","").ToLower() })"><img src="~/Content/img/packages/@(package.Name.ToLower().Replace(' ', '-') + ".jpg")" alt="@package.Name"></a>
+                        <div class="categories_details">
+                            <div class="categories_text">
+                                <a href="@Url.Action("PackageDetails", new { id = package.ID, name = package.Name.Replace(" ","-") })"><h5>@package.Title</h5></a>
+                                <div class="border_line"></div>
+                                <p>@package.SubTitle</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+

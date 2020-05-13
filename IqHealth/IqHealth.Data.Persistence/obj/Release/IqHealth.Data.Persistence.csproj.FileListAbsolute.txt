@@ -7,7 +7,6 @@ C:\PROJECTS\IqHealth\IqHealth\IqHealth.Data.Persistence\bin\Release\EntityFramew
 C:\PROJECTS\IqHealth\IqHealth\IqHealth.Data.Persistence\bin\Release\MySql.Data.xml
 C:\PROJECTS\IqHealth\IqHealth\IqHealth.Data.Persistence\bin\Release\MySql.Data.EntityFramework.xml
 C:\PROJECTS\IqHealth\IqHealth\IqHealth.Data.Persistence\obj\Release\IqHealth.Data.Persistence.csprojAssemblyReference.cache
-C:\PROJECTS\IqHealth\IqHealth\IqHealth.Data.Persistence\obj\Release\IqHealth.Data.Persistence.csproj.CoreCompileInputs.cache
 C:\PROJECTS\IqHealth\IqHealth\IqHealth.Data.Persistence\obj\Release\IqHealth.Data.Persistence.csproj.CopyComplete
 C:\PROJECTS\IqHealth\IqHealth\IqHealth.Data.Persistence\obj\Release\IqHealth.Data.Persistence.dll
 C:\PROJECTS\IqHealth\IqHealth\IqHealth.Data.Persistence\obj\Release\IqHealth.Data.Persistence.pdb

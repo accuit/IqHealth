@@ -1,0 +1,344 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    @RenderSection("Head", required: false)
+
+    <link rel="stylesheet" href="~/Content/css/bootstrap.css">
+    <!-- main css -->
+    <link rel="stylesheet" href="~/Content/css/style.css">
+    <link rel="stylesheet" href="~/Content/css/responsive.css">
+    <link rel="stylesheet" href="~/Content/linericon/style.css">
+    <link rel="stylesheet" href="~/Content/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Content/lightbox/simpleLightbox.css">
+    <link rel="stylesheet" href="~/Content/nice-select/css/nice-select.css">
+    <link rel="stylesheet" href="~/Content/animate-css/animate.css">
+
+    @*<script type="application/ld+json">
+            {
+            "@context": "https://schema.org/",
+            "@type": "Hospital",
+            "name": "Leela HealthCare Diagnostics",
+            "image": "https://leelahealthcare.com/assets/img/banner/opd.jpg",
+            "priceRange": "600-3000",
+            "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "5A, Bakul Bagan Road,",
+            "addressLocality": "landmark: Opposite Chittaranjan Sishu Sadan",
+            "addressRegion": "Bhawanipore, Kolkata",
+            "postalCode": "700025",
+            "addressCountry": "INDIA"
+            },
+            "telephone": "+918017926213"
+            }
+        </script>*@
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148764151-1"></script>
+
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-148764151-1');
+    </script>
+    <link rel="canonical" href="https://leelahealthcare.com">
+</head>
+<body>
+    <!--================Header Menu Area =================-->
+    <header class="header_area">
+        <div class="top_menu row m0">
+            <div class="container">
+                <div class="float-left">
+                    <ul class="left_side">
+                        <li>
+                            <a href="https://www.facebook.com/leelahealthcarebpr/">
+                                <i class="fa fa-facebook-f" style="color: blue"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/HealthcareLeela">
+                                <i class="fa fa-twitter" style="color: skyblue"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.instagram.com/leelahealthcare/">
+                                <i class="fa fa-instagram" style="color:tomato"></i>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="float-right">
+                    <ul class="right_side">
+                        <li>
+                            <a href="#" style="color: white">
+                                <i class="lnr lnr-phone-handset"></i> 8017926213/50
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" style="color: white">
+                                <i class="lnr lnr-envelope"></i> info@leelahealthcare.com
+                            </a>
+                        </li>
+                        <!-- <li>
+                        <a href="/doctorappointment'"class="primary-btn text-uppercase">Book Appointment</a>
+                        </li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="main_menu">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container" style="max-width: inherit;">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <a class="navbar-brand logo_h" href="/">
+                        <img src="~/Content/img/leelahealthcare/LeelaHealthcare-logo.png" alt="logo images" style="width: 90px">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                        <div class="row ml-0 w-100">
+                            <div class="pr-0">
+                                <ul class="nav navbar-nav center_nav pull-left" style="margin-right: 10px;">
+                                    <li class="nav-item" routerLinkActive="active">
+                                        <a href="/" class="nav-link">Home</a>
+                                    </li>
+                                    <li class="nav-item submenu dropdown" routerLinkActive="active">
+                                        <a href="@Url.Action("Index","Services")" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Services</a>
+                                        <ul class="dropdown-menu">
+                                            <li class="nav-item">
+                                                <a href="@Url.Action("Index", "Services")" class="nav-link">diagnostics</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="@Url.Action("Index", "Services")" class="nav-link">
+                                                    Gynae care clinic
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="@Url.Action("Index", "Services")" class="nav-link">
+                                                    Diabetes wellness clinic
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="@Url.Action("Index", "Services")" class="nav-link">
+                                                    Harmone clinic
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="@Url.Action("Index", "Services")" class="nav-link">
+                                                    Ortho clinic
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="@Url.Action("Index", "Services")" class="nav-link">Physiotherapy</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="@Url.Action("Index", "Services")" class="nav-link">Pain clinic</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="@Url.Action("Index", "Services")" class="nav-link">sports medicine</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="@Url.Action("Index", "Services")" class="nav-link">
+                                                    Nutrition /Dietician clinic
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item" routerLinkActive="active">
+                                        <a href="@Url.Action("About","Home")" class="nav-link">About</a>
+                                    </li>
+                                    <li class="nav-item" routerLinkActive="active">
+                                        <a href="@Url.Action("Speciality","Services")" class="nav-link">Doctors</a>
+                                    </li>
+                                    <li class="nav-item" routerLinkActive="active">
+                                        <a href="@Url.Action("DoctorAppointment","Enquiry")" class="nav-link">Doctor Appointment</a>
+                                    </li>
+                                    <li class="nav-item" routerLinkActive="active">
+                                        <a href="@Url.Action("BookATest","Enquiry")" class="nav-link">book a test </a>
+                                    </li>
+                                    <li class="nav-item" routerLinkActive="active">
+                                        <a href="@Url.Action("Packages","Services")" class="nav-link">Health Packages</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("Blogs","Home")" class="nav-link">Blogs</a>
+                                    </li>
+                                    <li class="nav-item" routerLinkActive="active">
+                                        <a href="@Url.Action("Contact","Home")" class="nav-link">contact us</a>
+                                    </li>
+
+                                </ul>
+                                <a class="navbar-brand logo_h" href="#">
+                                    <img alt="logo images" src="~/Content/img/Nabl.jpg" style="width: 145px;height: 70px;">
+                                </a>
+                                <a class="navbar-brand logo_h" href="#">
+                                    <img alt="logo images" src="~/Content/img/apollo-diag.jpeg" style="width: 105px;height: 70px;">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!--================Header Menu Area =================-->
+
+    @RenderBody()
+
+
+    <!--================ start footer Area =================-->
+    <footer class="footer-area section_gap" style="padding-bottom: 10px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2  col-md-6">
+                    <div class="single-footer-widget">
+                        <h6>Our Services</h6>
+                        <ul class="footer-nav">
+                            <li>
+                                <a href="@Url.Action("Index", "Services")">Ortho Clinic</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Index", "Services")">Physiotherapy</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Index", "Services")">Gynae Clinic</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Index", "Services")">Pain Clinic</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Index", "Services")">and more services...</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4  col-md-6">
+                    <div class="single-footer-widget mail-chimp">
+                        <h6 class="mb-20">Contact Us</h6>
+                        <h3>8017926213/50</h3>
+                        <a href="#">
+                            <i class="lnr lnr-envelope"></i> info@leelahealthcare.com
+                        </a>
+                        <h3>Address</h3>
+                        <p>5A, Bakul Bagan Road, Bhawanipore, Kolkata -700025. landmark: Opposite Chittaranjan Sishu Sadan</p>
+                    </div>
+                </div>
+                <div class="col-lg-3  col-md-3">
+                    <div class="single-footer-widget newsletter">
+                        <div class="single-footer-widget" *ngIf="isLoaded">
+                            <h6>Famous Doctors</h6>
+                            <ul class="footer-nav">
+                                <!---->
+                                <li><a href="@Url.Action("Speciality","Services")">Dr. Md Rahiul Islam</a></li>
+                                <li><a href="@Url.Action("Speciality","Services")">Dr. Ranajit Bari</a></li>
+                                <li><a href="@Url.Action("Speciality","Services")">Dr. Sajeev Shekhar</a></li>
+                                <li><a href="@Url.Action("Speciality","Services")">Dr. Poulomi Saha</a></li>
+                                <li><a href="@Url.Action("Speciality","Services")">Dr. Paushali Sanyal</a></li>
+                                <li><a href="@Url.Action("Speciality","Services")">and more doctors...</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <a href="@Url.Action("DoctorAppointment","Enquiry")" class="nw-btn main_btn circle">
+                                Book Appointment
+                                <span class="lnr lnr-arrow-right"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3  col-md-3">
+                    <div class="single-footer-widget newsletter">
+                        <div class="single-footer-widget" *ngIf="isLoaded">
+                            <h6>Popular Test Packages</h6>
+                            <ul class="footer-nav">
+                                <!---->
+                                <li>
+                                    <a href="@Url.Action("BookATest","Services")">
+                                        Basic
+                                        Package
+                                    </a>
+                                </li>
+                                <li><a href="@Url.Action("Packages","Services")">Diabetes Package</a></li>
+                                <li><a href="@Url.Action("Packages","Services")">Cardiac Package</a></li>
+                                <li>
+                                    <a href="@Url.Action("Packages","Services")">
+                                        Full
+                                        Body Package
+                                    </a>
+                                </li>
+                                <li><a href="@Url.Action("Packages","Services")">Wellness Package</a></li>
+                                <li>
+                                    <a href="@Url.Action("Packages","Services")">
+                                        and
+                                        more packages...
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <a href="@Url.Action("BookATest","Enquiry")" class="nw-btn main_btn circle">
+                                Book Your Test
+                                <span class="lnr lnr-arrow-right"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row footer-bottom d-flex justify-content-between">
+                <p class="col-lg-8 col-sm-12 footer-text m-0">
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    Copyright &copy;
+                    <script>
+                        document.write(new Date().getFullYear());
+                    </script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="#" target="_blank">
+                        Manrit
+                        Digital
+                    </a>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                </p>
+                <div class="col-lg-4 col-sm-12 footer-social">
+                    <a href="https://facebook.com/LeelaHealthCareBPR">
+                        <i class="fa fa-facebook-f" style="color: blue"></i>
+                    </a>
+                    <a href="https://twitter.com/HealthcareLeela">
+                        <i class="fa fa-twitter" style="color: skyblue"></i>
+                    </a>
+                    <a href="https://www.instagram.com/leelahealthcare">
+                        <i class="fa fa-instagram" style="color: tomato"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--================ End footer Area =================-->
+    <!--================ jQuery first, then Popper.js, then Bootstrap JS =================-->
+    <script src="~/Content/js/jquery-3.2.1.min.js"></script>
+    <script src="~/Content/js/popper.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- <script src="~/Content/js/bootstrap.min.js"></script> -->
+    <script src="~/Content/nice-select/js/jquery.nice-select.min.js"></script>
+    <script src="~/Content/isotope/isotope-min.js"></script>
+    <script src="~/Content/owl-carousel/owl.carousel.min.js"></script>
+    <script src="~/Content/js/jquery.ajaxchimp.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7nx22ZmINYk9TGiXDEXGVxghC43Ox6qA" type="58a48df5d8c1eb15bf56b00d-text/javascript"></script>
+    @*<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDq1dRHnjM4CT3EOz-aS1agoe7i7iqdynU" type="58a48df5d8c1eb15bf56b00d-text/javascript"></script>*@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <script src="~/Content/js/mail-script.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDq1dRHnjM4CT3EOz-aS1agoe7i7iqdynU&callback=initMap" type="text/javascript"></script>
+    <script src="~/Content/js/custom.js"></script>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,157 @@
+﻿@using Leela.PresentationLayer.WebApp.ViewModels;
+@model ServicesViewModel
+
+@{
+    ViewBag.Title = Model.service.Name + " Service";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Head{
+    <title>@(Model.service.Name + " Service | Life better")</title>
+    <meta name="description" content="@Model.service.Description.Take(200)">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Accuit Technologies">
+    <meta name="robots" content="INDEX, FOLLOW">
+    <meta name="keywords" content="@string.Join(",", Model.service.ServicesInclList)">
+    <meta name="date" content="@DateTime.Now.ToLongDateString()" scheme="YYYY-MMM-DD">
+    <meta httpequiv="Content-Type" content="text/html">
+    <link rel="canonical" href="https://health-iq.in/diagnostic-service/@(Model.service.ID +"/"+ Model.service.Name + "-diagnostic-service")" />
+
+    <meta property="og:title" content="@(Model.service.Name + " HealthCare Service")">
+    <meta property="og:description" content="@Model.service.Description">
+    <meta property="og:url" content="https://leelahealthcare.com/diagnostic-service/@(Model.service.ID +"/"+ Model.service.Name + "-diagnostic-service")">
+    <meta property="og:image" content="https://leelahealthcare.com/content/img/services/@(Model.service.Name.ToLower().Replace(' ', '-').Replace("&","").Replace("/","") + ".jpg")">
+    <meta property="og:image:width" content="600">
+    <meta property="og:image:height" content="300">
+    <meta property="og:type" content="article">
+    <meta property="og:updated_date" content="article">
+}
+
+<section class="banner_area">
+    <div class="banner_inner d-flex align-items-center">
+        <div class="container">
+            <div class="banner_content text-center">
+                <h2>@Model.service.Name Service</h2>
+                <div class="page_link">
+                    <a href="/">Home</a>
+                    <a @Url.Action("Index")>Services</a>
+                    <a href="single-blog.html">@Model.service.Name Service</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="blog_area single-post-area p_120">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 posts-list">
+                <div class="single-post row">
+                    <div class="col-lg-12">
+                        <div class="feature-img">
+                            <img class="img-fluid" width="100%" src="~/Content/img/services/@(Model.service.Name.ToLower().Replace(' ','-')+".jpg")" alt="@Model.service.Name">
+                        </div>
+                    </div>
+                    <div class="col-lg-3  col-md-3">
+                        <div class="blog_info text-right">
+                            <div class="post_tag">
+                                <a href="#">Healthcare</a>
+                                <a class="active" href="#">Diagnostic Services</a>
+                            </div>
+                            <ul class="blog_meta list">
+                                <li>
+                                    <a href="#">
+                                        Mark wiens
+                                        <i class="lnr lnr-user"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        @DateTime.Now.ToLongDateString()
+                                        <i class="lnr lnr-calendar-full"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        1.2K Views
+                                        <i class="lnr lnr-eye"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="social-links">
+                                <li>
+                                    <a href="https://www.facebook.com/leelahealthcarebpr">
+                                        <i class="fa fa-facebook"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://twitter.com/HealthcareLeela">
+                                        <i class="fa fa-twitter"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://www.linkedin.com/">
+                                        <i class="fa fa-linkedin"></i>
+                                    </a>
+                                </li>
+                                @*<li>
+                                        <a href="#">
+                                            <i class="fa fa-behance"></i>
+                                        </a>
+                                    </li>*@
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-9 col-md-9 blog_details">
+                        <h2>@Model.service.Name</h2>
+                        <p class="excert">
+                            @Html.Raw(Model.service.Description)
+                        </p>
+
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="quotes">
+                            <h3>@Model.service.Name Services Includes</h3>
+                            @if (Model.service.ServicesInclList.Count() > 0)
+                            {
+                                <ul class="unordered-list">
+
+                                    @foreach (var item in Model.service.ServicesInclList)
+                                    {
+                                        <li> @item.ToString() </li>
+                                    }
+
+                                </ul>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-4">
+                <div class="blog_right_sidebar">
+                    <aside class="single_sidebar_widget popular_post_widget">
+                        <h3 class="widget_title">Our Top 10 Services</h3>
+                        @foreach (var item in Model.services.Take(10))
+                        {
+                            <div class="media post_item">
+                                <img width="100px" height="60px" src="~/Content/img/services/@(item.Name.ToLower().Replace(' ','-')+".jpg")" alt="item.Name">
+                                <div class="media-body">
+                                    <a href="@Url.Action("Details", new { id = item.ID, name = item.Name.Replace(" ","-") })">
+                                        <h3>@item.Name</h3>
+                                    </a>
+                                </div>
+                            </div>
+                        }
+
+                        <div class="br"></div>
+
+                    </aside>
+                    <div style="text-align:center">
+                        <a href="@Url.Action("Index", "Services")" class="primary-btn submit_btn">All Services</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
