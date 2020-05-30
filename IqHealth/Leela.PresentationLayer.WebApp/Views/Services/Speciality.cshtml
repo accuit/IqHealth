@@ -1,5 +1,5 @@
 ﻿
-@using IqHealth.Data.Persistence.Model;
+@using Leela.PresentationLayer.WebApp.Models;
 @model IEnumerable<SpecialityMaster>
 
 @{
@@ -18,7 +18,7 @@
     <meta httpequiv="Content-Type" content="text/html">
     <meta property="og:title" content="Leela Health Care Diagnostics">
     <meta property="og:description" content="Leela Healthcare aims at providing life better through quality care and services that set community standards, exceed patient’s expectations and provides in a caring, convenient, cost-effective and accessible manner. We strive to deliver healthcare compassionately and always act with integrity. Our ethics and compliance programme is an integral part of what we do. At Leela Healthcare we have OPD along with Diagnostics Centre as well as Acupuncture and Pain Clinic. We have both Morning OPD as well as Evening OPD with 8 specialities available.">
-    <meta property="og:url" content="https://www.leelahealthcare.com/#/">
+    <meta property="og:url" content="https://www.leelahealthcare.com/">
     <meta property="og:image" content="https://leelahealthcare.com/assets/img/leelahealthcare/LeelaHealthcare-logo.png">
     <meta property="og:type" content="website">
 }
@@ -30,14 +30,16 @@
             {
                 <div class="col-lg-4">
                     <div class="categories_post">
-                        <a href="@Url.Action("Doctors", new { id = spec.ID, speciality = spec.Title.Replace(" ","-").ToLower().Replace("&","").Replace("/","") })"><img src="@spec.ImageUrl" alt="@spec.Title"></a>
-                        <div class="categories_details">
-                            <div class="categories_text">
-                                <h5>@spec.Speciality</h5>
-                                <div class="border_line"></div>
-                                <p>@spec.Title</p>
+                        <a href="@Url.Action("Doctors", new { id = spec.ID, speciality = spec.Title.Replace(" ","-").ToLower().Replace("&","").Replace("/","") })">
+                            <img src="~/Content/img/speciality/@(spec.Speciality.ToLower().Replace(' ', '-').Replace("&","").Replace("/","") + ".jpg")" alt="@spec.Title">
+                            <div class="categories_details">
+                                <div class="categories_text">
+                                    <h5>@spec.Speciality</h5>
+                                    <div class="border_line"></div>
+                                    <p>@spec.Title</p>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
             }

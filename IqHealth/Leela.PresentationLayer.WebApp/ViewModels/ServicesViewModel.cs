@@ -1,4 +1,4 @@
-﻿using IqHealth.Data.Persistence.Model;
+﻿using Leela.PresentationLayer.WebApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

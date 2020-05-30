@@ -1,4 +1,4 @@
-﻿@using IqHealth.Data.Persistence.Model;
+﻿@using Leela.PresentationLayer.WebApp.Models;
 @model PackageCategory
 
 @{
@@ -7,73 +7,65 @@
 }
 
 @section Head{
-    <title>Leela Health Care Diagnostics | Life better</title>
+    <title>@(Model.Title + " HealthCare Package | Life better")</title>
     <meta name="description" content="Leela HealthCare Diagnostics services and packages is supported by Apollo diagnostics in kolkata">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Accuit Technologies">
     <meta name="robots" content="INDEX, FOLLOW">
-    <meta name="keywords" content="@string.Join(",",Model.PackageMasters.SelectMany(x=>x.Title))">
+    <meta name="keywords" content="@string.Join(",", Model.PackageMasters.Select(x=>x.Title))">
     <meta name="date" content="@DateTime.Now.ToLongDateString()" scheme="YYYY-MMM-DD">
     <meta httpequiv="Content-Type" content="text/html">
+    <link rel="canonical" href="@Model.PageUrl" />
+
+
     <meta property="og:title" content="@(Model.Title + " HealthCare Package")">
-    <meta property="og:description" content="@string.Join(",",Model.PackageMasters.SelectMany(x=>x.Title))">
-    <meta property="og:url" content="https://www.leelahealthcare.com/@(Model.Name +"-health-packages/"+ Model.ID)">
-    <meta property="og:image" content="~/Content/img/packages/@(Model.Name.ToLower().Replace(' ', '-').Replace("&","").Replace("/","") + ".jpg")">
-    <meta property="og:type" content="website">
+    <meta property="og:description" content="@string.Join(",", Model.PackageMasters.Select(x=>x.Title))">
+    <meta property="og:url" content="@Model.PageUrl">
+    <meta property="og:image" content="@Model.ImageUrl">
+    <meta property="og:image:width" content="600">
+    <meta property="og:image:height" content="300">
+    <meta property="og:type" content="article">
 }
 
-<section class="blog_area single-post-area" style="padding-top:100px">
+<section class="blog_area single-post-area p_120">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 posts-list">
-                <div *ngIf="isLoaded" class="comments-area">
-                    <h4>List of Packages included in <span style="color: darkmagenta"> @Model.Title HealthCare Package</span> </h4>
-                    <div class="comment-list">
-                        @foreach (var item in Model.PackageMasters)
-                        {
-                            <div class="single-comment justify-content-between d-flex">
-                                <div class="user justify-content-between d-flex">
-                                    <div class="thumb">
-                                        <img src="~/Content/img/packages/@(Model.Title.ToLower().Replace(' ', '-') + ".jpg")" alt="@Model.Title">
+            <div class="col-lg-12 posts-list">
+                <div class="single-post row">
+                    <div class="col-lg-12">
+                        <div class="feature-img">
+                            <img style="height:500px" class="img-fluid" width="100%" src="@Model.ImageUrl" alt="@Model.Name">
+                        </div>
+                    </div>
+                    <div class="col-lg-12 blog_details">
+                        <h2>@Model.Title Package Includes</h2>
+                    </div>
+                    @foreach (var item in Model.PackageMasters)
+                    {
+                        <div class="col-lg-6">
+                            <div class="quotes">
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <h4>@item.Title</h4>
                                     </div>
-                                    <div class="desc">
-                                        <h5>
-                                            <p>@item.Title</p>
-                                        </h5>
-                                        <p class="date">@item.SubTitle</p>
-                                        @foreach (var test in item.TestMasters)
-                                        {
-                                            <p class="comment">
-                                                @test.Name
-                                            </p>
-                                        }
-                                    </div>
+                                    <div class="col-md-2"><h4> @item.Cost</h4></div>
                                 </div>
-                                <div class="reply-btn">
-                                    <p class="btn-reply text-uppercase">Rs. @item.Cost</p>
-                                </div>
+                                <ul class="unordered-list">
+
+                                    @foreach (var test in item.TestMasters)
+                                    {
+                                        <li>  @test.Name </li>
+                                    }
+
+                                </ul>
+
                             </div>
-                        }
-                    </div>
+                        </div>
+                    }
                 </div>
+
             </div>
-            @*<div class="col-lg-4">
-                    <div class="blog_right_sidebar">
-                        <aside *ngFor="let catg of categories" class="single_sidebar_widget post_category_widget">
-                            <a (click)="getPackageDetails(catg.ID, scrollView)">
-                                <h4 class="widget_title">{{catg.Name}}</h4>
-                            </a>
-                            <ul class="list cat-list">
-                                <li *ngFor="let pakg of catg.PackageMasters">
-                                    <a class="d-flex justify-content-between">
-                                        <p>{{pakg.Name}}</p>
-                                        <p>{{pakg.Cost}}</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </aside>
-                    </div>
-                </div>*@
+
         </div>
     </div>
 </section>

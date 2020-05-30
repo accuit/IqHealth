@@ -2,49 +2,84 @@
     ViewBag.Title = "Contact";
 }
 
+@section Head{
+    <title>Contact Leela Health Care Diagnostics | Life better</title>
+    <meta name="description" content="Leela HealthCare Diagnostics is supported by Apollo diagnostics in kolkata">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Accuit Technologies">
+    <meta name="robots" content="INDEX, FOLLOW">
+    <meta name="keywords" content="Apollo diagnostics in kolkata, Best diagnostic center near bhawanipore, Best doctor clinic near bhawanipore, Physcians near bhawanipore, Best lady gynaecologist in bhawanipore">
+    <meta name="date" content="Mon Oct 14 2019 21:22:06 GMT+0530 (India Standard Time)" scheme="YYYY-MM-DD">
+    <meta httpequiv="Content-Type" content="text/html">
+    <meta property="og:title" content="Leela Health Care Diagnostics">
+    <meta property="og:description" content="Leela Healthcare aims at providing life better through quality care and services that set community standards, exceed patient’s expectations and provides in a caring, convenient, cost-effective and accessible manner. We strive to deliver healthcare compassionately and always act with integrity. Our ethics and compliance programme is an integral part of what we do. At Leela Healthcare we have OPD along with Diagnostics Centre as well as Acupuncture and Pain Clinic. We have both Morning OPD as well as Evening OPD with 8 specialities available.">
+    <meta property="og:url" content="https://leelahealthcare.com/contact-leela-healthcare">
+    <meta property="og:image" content="https://leelahealthcare.com/content/img/free-home-collection-ad.jpg">
+    <meta property="og:type" content="website">
+
+}
+
 <section class="contact_area p_120">
     <div class="container">
         <div id="mapBox" class="mapBox">
         </div>
     </div>
+    <div class="row d-flex contact-info mb-5">
+        <div class="col-md-6 col-lg-3 d-flex ftco-animate fadeInUp ftco-animated">
+            <div class="align-self-stretch box p-4 text-center bg-light">
+                <div class="icon d-flex align-items-center justify-content-center">
+                    <span class="fa fa-map"></span>
+                </div>
+                <h3 class="mb-4">Address</h3>
+                <p>5A, Bakul Bagan Road, Bhawanipore, Kolkata -700025.<br> landmark: Opposite Chittaranjan Sishu Sadan</p>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3 d-flex ftco-animate fadeInUp ftco-animated">
+            <div class="align-self-stretch box p-4 text-center bg-light">
+                <div class="icon d-flex align-items-center justify-content-center">
+                    <span class="fa fa-phone"></span>
+                </div>
+                <h3 class="mb-4">Contact Number</h3>
+                <p><a href="tel://8017926213">8017926213/50</a></p>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3 d-flex ftco-animate fadeInUp ftco-animated">
+            <div class="align-self-stretch box p-4 text-center bg-light">
+                <div class="icon d-flex align-items-center justify-content-center">
+                    <span class="fa fa-envelope"></span>
+                </div>
+                <h3 class="mb-4">Email Address</h3>
+                <p><a href="leelahealthcarebpr@gmail.com">info@leelahealthcare.com</a></p>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3 d-flex ftco-animate fadeInUp ftco-animated">
+            <div class="align-self-stretch box p-4 text-center bg-light">
+                <div class="icon d-flex align-items-center justify-content-center">
+                    <span class="fa fa-globe"></span>
+                </div>
+                <h3 class="mb-4">Website</h3>
+                <p><a href="leelahealthcare.com">leelahealthcare.com</a></p>
+            </div>
+        </div>
+    </div>
+
 </section>
 
-<div class="row d-flex contact-info mb-5">
-    <div class="col-md-6 col-lg-3 d-flex ftco-animate fadeInUp ftco-animated">
-        <div class="align-self-stretch box p-4 text-center bg-light">
-            <div class="icon d-flex align-items-center justify-content-center">
-                <span class="fa fa-map"></span>
-            </div>
-            <h3 class="mb-4">Address</h3>
-            <p>5A, Bakul Bagan Road, Bhawanipore, Kolkata -700025.<br> landmark: Opposite Chittaranjan Sishu Sadan</p>
-        </div>
-    </div>
-    <div class="col-md-6 col-lg-3 d-flex ftco-animate fadeInUp ftco-animated">
-        <div class="align-self-stretch box p-4 text-center bg-light">
-            <div class="icon d-flex align-items-center justify-content-center">
-                <span class="fa fa-phone"></span>
-            </div>
-            <h3 class="mb-4">Contact Number</h3>
-            <p><a href="tel://8017926213">8017926213/50</a></p>
-        </div>
-    </div>
-    <div class="col-md-6 col-lg-3 d-flex ftco-animate fadeInUp ftco-animated">
-        <div class="align-self-stretch box p-4 text-center bg-light">
-            <div class="icon d-flex align-items-center justify-content-center">
-                <span class="fa fa-envelope"></span>
-            </div>
-            <h3 class="mb-4">Email Address</h3>
-            <p><a href="leelahealthcarebpr@gmail.com">info@leelahealthcare.com</a></p>
-        </div>
-    </div>
-    <div class="col-md-6 col-lg-3 d-flex ftco-animate fadeInUp ftco-animated">
-        <div class="align-self-stretch box p-4 text-center bg-light">
-            <div class="icon d-flex align-items-center justify-content-center">
-                <span class="fa fa-globe"></span>
-            </div>
-            <h3 class="mb-4">Website</h3>
-            <p><a href="leelahealthcare.com">leelahealthcare.com</a></p>
-        </div>
-    </div>
-</div>
+
+@section scripts {
+    <script>
+        if (document.getElementById('mapBox')) {
+            var map = new google.maps.Map(document.getElementById('mapBox'), {
+                zoom: 12,
+                center: new google.maps.LatLng(22.5267089, 88.3449872),
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
+
+            var marker;
+            marker = new google.maps.Marker({
+                map: map
+            });
+        }
+    </script>
+}
 

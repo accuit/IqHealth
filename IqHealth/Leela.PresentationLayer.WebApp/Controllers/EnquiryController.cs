@@ -1,5 +1,5 @@
-﻿using IqHealth.Data.Persistence;
-using IqHealth.Data.Persistence.Model;
+﻿using Leela.PresentationLayer.WebApp.Helpers;
+using Leela.PresentationLayer.WebApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
@@ -12,12 +12,12 @@ namespace Leela.PresentationLayer.WebApp.Controllers
 {
     public class EnquiryController : Controller
     {
-        private readonly IqHealthDBContext _context;
-        //private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private readonly LeelaDBContext _context;
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         public EnquiryController()
         {
-            _context = new IqHealthDBContext();
+            _context = new LeelaDBContext();
         }
         [Route("doctor-appointment")]
         [HttpGet]
@@ -44,6 +44,7 @@ namespace Leela.PresentationLayer.WebApp.Controllers
                 bool isSuccess = _context.SaveChanges() > 0 ? true : false;
                 if (isSuccess)
                 {
+                    EmailHelper.PrepareAndSendAppointmentEmail(appointment);
                     ViewBag.Message = "Appointment created Successfully.";
                     ViewBag.ShowMsg = true;
                 }
@@ -64,6 +65,7 @@ namespace Leela.PresentationLayer.WebApp.Controllers
             {
                 ViewBag.Message = "An error occured. Please try again later.";
                 ViewBag.ShowMsg = true;
+                log.Error(ex.Message);
                 return View(appointment);
             }
             return View();
@@ -94,6 +96,7 @@ namespace Leela.PresentationLayer.WebApp.Controllers
                 bool isSuccess = _context.SaveChanges() > 0 ? true : false;
                 if (isSuccess)
                 {
+                    EmailHelper.PrepareAndSendBookingEmail(appointment);
                     ViewBag.Message = "Appointment created Successfully.";
                     ViewBag.ShowMsg = true;
                 }
@@ -114,6 +117,7 @@ namespace Leela.PresentationLayer.WebApp.Controllers
             {
                 ViewBag.Message = "An error occured. Please try again later.";
                 ViewBag.ShowMsg = true;
+                log.Error(ex.Message);
                 return View(appointment);
             }
 

@@ -56,10 +56,15 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -137,7 +142,38 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\AppUtil.cs" />
+    <Compile Include="Helpers\AspectEnums.cs" />
+    <Compile Include="Helpers\EmailHelper.cs" />
+    <Compile Include="Models\BookingMaster.cs" />
+    <Compile Include="Models\CommonSetup.cs" />
+    <Compile Include="Models\CompanyMaster.cs" />
+    <Compile Include="Models\ContactUsEnquiry.cs" />
+    <Compile Include="Models\CorporateTieUpEnquiry.cs" />
+    <Compile Include="Models\CourseCurriculum.cs" />
+    <Compile Include="Models\CourseEligibility.cs" />
+    <Compile Include="Models\CourseMaster.cs" />
+    <Compile Include="Models\DoctorAppointment.cs" />
+    <Compile Include="Models\DoctorMaster.cs" />
+    <Compile Include="Models\DoctorSpeciality.cs" />
+    <Compile Include="Models\HealthServiceMaster.cs" />
+    <Compile Include="Models\HospitalMaster.cs" />
+    <Compile Include="Models\JobApplication.cs" />
+    <Compile Include="Models\LeelaDBContext.cs" />
+    <Compile Include="Models\Login.cs" />
+    <Compile Include="Models\OnlineEnquiry.cs" />
+    <Compile Include="Models\OrganizeCampEnquiry.cs" />
+    <Compile Include="Models\PackageCategory.cs" />
+    <Compile Include="Models\PackageMaster.cs" />
+    <Compile Include="Models\PartnerEnquiry.cs" />
+    <Compile Include="Models\ServiceQuestion.cs" />
+    <Compile Include="Models\SpecialityMaster.cs" />
+    <Compile Include="Models\SubCours.cs" />
+    <Compile Include="Models\TestMaster.cs" />
+    <Compile Include="Models\UploadedReport.cs" />
+    <Compile Include="Models\UserMaster.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\EmailNotification.cs" />
     <Compile Include="ViewModels\ServicesViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -156,6 +192,7 @@
     <Content Include="Content\counter-up\jquery.waypoints.min.js" />
     <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\breadcrumb.css" />
+    <Content Include="Content\css\flexslider.css" />
     <Content Include="Content\css\font-awesome.min.css" />
     <Content Include="Content\css\responsive.css" />
     <Content Include="Content\css\style.css" />
@@ -185,11 +222,6 @@
     <Content Include="Content\img\adult-career-clipboard-1919236.jpg" />
     <Content Include="Content\img\adult-doctors-gloves-263337.jpg" />
     <Content Include="Content\img\aerial-aerial-view-care-935869.jpg" />
-    <Content Include="Content\img\all banners\BANNER1.jpg" />
-    <Content Include="Content\img\all banners\banner2.jpg" />
-    <Content Include="Content\img\all banners\Contact-Us_Banner1.jpg" />
-    <Content Include="Content\img\all banners\health heart.jpg" />
-    <Content Include="Content\img\all banners\hospitalwide_banner1.jpg" />
     <Content Include="Content\img\antibiotic-capsules-close-up-139398.jpg" />
     <Content Include="Content\img\apollo-diag.jpeg" />
     <Content Include="Content\img\b1.jpg" />
@@ -203,7 +235,6 @@
     <Content Include="Content\img\banner\home.jpg" />
     <Content Include="Content\img\banner\opd.jpg" />
     <Content Include="Content\img\banner\services.jpg" />
-    <Content Include="Content\img\banner\slider2.jpg" />
     <Content Include="Content\img\banner\slider3.jpg" />
     <Content Include="Content\img\black-and-white-blood-pressure-blood-pressure-monitor-208556.jpg" />
     <Content Include="Content\img\blog\add.jpg" />
@@ -375,7 +406,7 @@
     <Content Include="Content\img\services\diabetes-care-clinic.jpg" />
     <Content Include="Content\img\services\endocrinology.jpg" />
     <Content Include="Content\img\services\endrocrinology.jpg" />
-    <Content Include="Content\img\services\gynae-clinic.jpg" />
+    <Content Include="Content\img\services\gynae-care.jpg" />
     <Content Include="Content\img\services\Neurology.jpg" />
     <Content Include="Content\img\services\nutrition-dietician.jpg" />
     <Content Include="Content\img\services\ortho-clinic.jpg" />
@@ -416,9 +447,11 @@
     <Content Include="Content\js\jquery-3.2.1.min.js" />
     <Content Include="Content\js\jquery.ajaxchimp.min.js" />
     <Content Include="Content\js\jquery.counterup.min.js" />
+    <Content Include="Content\js\jquery.flexslider.js" />
     <Content Include="Content\js\jquery.form.js" />
     <Content Include="Content\js\jquery.validate.min.js" />
     <Content Include="Content\js\mail-script.js" />
+    <Content Include="Content\js\map.js" />
     <Content Include="Content\js\popper.js" />
     <Content Include="Content\js\stellar.js" />
     <Content Include="Content\js\waypoints.min.js" />
@@ -435,11 +468,15 @@
     <Content Include="Content\owl-carousel\assets\owl.carousel.css" />
     <Content Include="Content\owl-carousel\owl.carousel.min.css" />
     <Content Include="Content\owl-carousel\owl.carousel.min.js" />
+    <Content Include="Content\robots.txt" />
     <Content Include="Content\sitemap.xml" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Helpers\EmailTemplates\DoctorAppointmentConfirmation.html" />
+    <Content Include="Helpers\EmailTemplates\OnlineEnquiry.html" />
+    <Content Include="Helpers\EmailTemplates\UserBookingConfirmation.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\css\breadcrumb.css.map" />
@@ -462,6 +499,8 @@
     <Content Include="Content\linericon\fonts\Linearicons-Free.ttf" />
     <Content Include="Content\linericon\fonts\Linearicons-Free.woff" />
     <Content Include="Content\linericon\fonts\Linearicons-Free.woff2" />
+    <Content Include="Content\data\fb_posts.json" />
+    <Content Include="Logs\leela.log" />
     <None Include="Properties\PublishProfiles\Leela-MVC.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

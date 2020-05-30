@@ -1,8 +1,26 @@
-﻿@using IqHealth.Data.Persistence.Model;
+﻿@using Leela.PresentationLayer.WebApp.Models;
 @model IEnumerable<HealthServiceMaster>
 @{
-    ViewBag.Title = "Diagnostic Services | Leela Health Care";
     Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Head{
+    <title>Diagnostic Services | Life better</title>
+    <meta name="description" content="Leela HealthCare Diagnostics services and packages is supported by Apollo diagnostics in kolkata">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Accuit Technologies">
+    <meta name="robots" content="INDEX, FOLLOW">
+    <meta name="keywords" content="@string.Join(", ",Model.Select(x=>x.Name))">
+    <meta name="date" content="@DateTime.Now.ToLongDateString()" scheme="YYYY-MMM-DD">
+    <meta httpequiv="Content-Type" content="text/html">
+
+    <meta property="og:title" content="HealthCare and Diagnostic Services in Kolkata">
+    <meta property="og:description" content="Leela HealthCare provides with a verity of advanced diagnostic services. The friendly staff Pathology and Radiology specialist take pride in making it easy for Patients to undergo testing in a convenient and comfortable environment.">
+    <meta property="og:url" content="https://leelahealthcare.com/diagnostic-services">
+    <meta property="og:image" content="https://leelahealthcare.com/content/img/services/@(Model.FirstOrDefault().Name.ToLower().Replace(' ', '-').Replace("&","").Replace("/","") + ".jpg")">
+    <meta property="og:image:width" content="600">
+    <meta property="og:image:height" content="300">
+    <meta property="og:type" content="article">
 }
 
 
@@ -14,34 +32,38 @@
         <!---->
         @foreach (var service in Model)
         {
-    <div class="section-top-border">
-        <h3 class="mb-30 title_color"><a href="@Url.Action("Details", new { id = service.ID, name = service.Name.Replace(" ","-") })">@service.Name</a></h3>
-        
-        <div class="row">
-            <div class="col-md-3"><img class="img-fluid" src="~/Content/img/services/@(service.Name.ToLower().Replace(' ','-')+".jpg")" alt="@service.Name"></div>
-            <!---->
-            <!---->
-            <div class="col-md-6 mt-sm-20 left-align-p">
-                <p>
-                    @service.Description
-                </p>
-            </div>
-            <!---->
-            @if (service.ServicesInclList.Count() > 0)
-            {
-                <div class="col-md-3 mt-sm-20 left-align-p">
-                    <ul class="unordered-list">
+            <div class="section-top-border">
+                <h3 class="mb-30 title_color"><a href="@Url.Action("Details", new { id = service.ID, name = service.Name.ToLower().Replace(" ","-").Replace("&","").Replace("/","").ToLower() })">@service.Name</a></h3>
 
-                        @foreach (var item in service.ServicesInclList)
-                        {
-                            <li> @item.ToString() </li>
-                        }
+                <div class="row">
+                    <div class="col-md-3">
+                        <a href="@Url.Action("Details", new { id = service.ID, name = service.Name.Replace(" ","-") })">
+                            <img class="img-fluid" src="~/Content/img/services/@(service.Name.ToLower().Replace(' ','-')+".jpg")" alt="@service.Name">
+                        </a>
+                    </div>
+                    <!---->
+                    <!---->
+                    <div class="col-md-6 mt-sm-20 left-align-p">
+                        <p>
+                            @service.Description
+                        </p>
+                    </div>
+                    <!---->
+                    @if (service.ServicesInclList.Count() > 0)
+                    {
+                        <div class="col-md-3 mt-sm-20 left-align-p">
+                            <ul class="unordered-list">
 
-                    </ul>
+                                @foreach (var item in service.ServicesInclList)
+                                {
+                                    <li> @item.ToString() </li>
+                                }
+
+                            </ul>
+                        </div>
+                    }
                 </div>
-            }
-        </div>
-    </div>
+            </div>
         }
 
     </div>

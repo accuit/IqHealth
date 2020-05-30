@@ -2,25 +2,24 @@
 @model ServicesViewModel
 
 @{
-    ViewBag.Title = Model.service.Name + " Service";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @section Head{
-    <title>@(Model.service.Name + " Service | Life better")</title>
-    <meta name="description" content="@Model.service.Description.Take(200)">
+    <title>@(Model.service.Name + " Diagnostic Service | Life better")</title>
+    <meta name="description" content="@Html.Raw(Model.service.Description)">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Accuit Technologies">
     <meta name="robots" content="INDEX, FOLLOW">
-    <meta name="keywords" content="@string.Join(",", Model.service.ServicesInclList)">
+    <meta name="keywords" content="@string.Join(", ",Model.service.ServicesInclList)">
     <meta name="date" content="@DateTime.Now.ToLongDateString()" scheme="YYYY-MMM-DD">
     <meta httpequiv="Content-Type" content="text/html">
-    <link rel="canonical" href="https://health-iq.in/diagnostic-service/@(Model.service.ID +"/"+ Model.service.Name + "-diagnostic-service")" />
+    <link rel="canonical" href="@Model.service.PageUrl" />
 
     <meta property="og:title" content="@(Model.service.Name + " HealthCare Service")">
     <meta property="og:description" content="@Model.service.Description">
-    <meta property="og:url" content="https://leelahealthcare.com/diagnostic-service/@(Model.service.ID +"/"+ Model.service.Name + "-diagnostic-service")">
-    <meta property="og:image" content="https://leelahealthcare.com/content/img/services/@(Model.service.Name.ToLower().Replace(' ', '-').Replace("&","").Replace("/","") + ".jpg")">
+    <meta property="og:url" content="@Model.service.PageUrl">
+    <meta property="og:image" content="@Model.service.ImageUrl">
     <meta property="og:image:width" content="600">
     <meta property="og:image:height" content="300">
     <meta property="og:type" content="article">
@@ -49,7 +48,7 @@
                 <div class="single-post row">
                     <div class="col-lg-12">
                         <div class="feature-img">
-                            <img class="img-fluid" width="100%" src="~/Content/img/services/@(Model.service.Name.ToLower().Replace(' ','-')+".jpg")" alt="@Model.service.Name">
+                            <img class="img-fluid" width="100%" src="@Model.service.ImageUrl" alt="@Model.service.Name">
                         </div>
                     </div>
                     <div class="col-lg-3  col-md-3">
@@ -107,13 +106,11 @@
                         <p class="excert">
                             @Html.Raw(Model.service.Description)
                         </p>
+                        <p>
 
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="quotes">
-                            <h3>@Model.service.Name Services Includes</h3>
                             @if (Model.service.ServicesInclList.Count() > 0)
                             {
+                                <h3>@Model.service.Name Services Includes</h3>
                                 <ul class="unordered-list">
 
                                     @foreach (var item in Model.service.ServicesInclList)
@@ -122,6 +119,21 @@
                                     }
 
                                 </ul>
+                            }
+                        </p>
+
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="blog_details">
+                            @if (Model.service.ServiceQuestions.Count() > 0)
+                            {
+                                foreach (var question in Model.service.ServiceQuestions)
+                                {
+                                    <h3> @question.Title</h3>
+                                    <p class="excert">
+                                        @Html.Raw(question.Answer)
+                                    </p>
+                                }
                             }
                         </div>
                     </div>
@@ -135,9 +147,9 @@
                         @foreach (var item in Model.services.Take(10))
                         {
                             <div class="media post_item">
-                                <img width="100px" height="60px" src="~/Content/img/services/@(item.Name.ToLower().Replace(' ','-')+".jpg")" alt="item.Name">
+                                <img width="100px" height="60px" src="@item.ImageUrl" alt="@item.Name">
                                 <div class="media-body">
-                                    <a href="@Url.Action("Details", new { id = item.ID, name = item.Name.Replace(" ","-") })">
+                                    <a href="@item.PageUrl">
                                         <h3>@item.Name</h3>
                                     </a>
                                 </div>
