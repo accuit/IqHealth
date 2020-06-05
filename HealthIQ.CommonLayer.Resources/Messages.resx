@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AccountReset" xml:space="preserve">
+    <value>Congratulation Your account has been reset.</value>
+    <comment>forgetPassword.</comment>
+  </data>
+  <data name="ApiAccessDenied" xml:space="preserve">
+    <value>User is not authorized to access services.</value>
+  </data>
+  <data name="CredentialsNotFound" xml:space="preserve">
+    <value>User is not authorized to access services.</value>
+  </data>
+  <data name="DaysExpire" xml:space="preserve">
+    <value>You did not use your account with in 3 days. Please reset your password.</value>
+    <comment>for Login.</comment>
+  </data>
+  <data name="EmpCodeNotValid" xml:space="preserve">
+    <value>You have entered wrong confirmation ID.</value>
+  </data>
+  <data name="ForgetPin" xml:space="preserve">
+    <value>You have entered wrong confirmation ID.</value>
+  </data>
+  <data name="ImageNotSave" xml:space="preserve">
+    <value>Image has not been uploaded successfully.</value>
+  </data>
+  <data name="ImageSave" xml:space="preserve">
+    <value>Image has uploaded successfully.</value>
+  </data>
+  <data name="ImeiNotValid" xml:space="preserve">
+    <value>Invalid or wrong credentials. Try again!</value>
+  </data>
+  <data name="Inactive" xml:space="preserve">
+    <value>User is in inactive mode, Contact to your admin .</value>
+    <comment>for Login.</comment>
+  </data>
+  <data name="Lock" xml:space="preserve">
+    <value>Your account has been locked, Please reset your password.</value>
+    <comment>for Login.</comment>
+  </data>
+  <data name="LoginSuccess" xml:space="preserve">
+    <value>Login Successfully.</value>
+    <comment>for Login.</comment>
+  </data>
+  <data name="ProfileUpdated" xml:space="preserve">
+    <value>Your profile updated successfully.</value>
+  </data>
+  <data name="Updated" xml:space="preserve">
+    <value>Updated successfully.</value>
+  </data>
+  <data name="Wrongimi" xml:space="preserve">
+    <value>Invalid or wrong credential / IMEI Number.</value>
+    <comment>for Login.</comment>
+  </data>
+  <data name="WrongPassword" xml:space="preserve">
+    <value>Invalid or wrong credential / IMEI Number.</value>
+    <comment>for Login.</comment>
+  </data>
+  <data name="DuplicateEntry" xml:space="preserve">
+    <value>There is already an entry for office training of today's date.</value>
+    <comment>Office Training</comment>
+  </data>
+  <data name="InvalidUserID" xml:space="preserve">
+    <value>Invalid User ID.</value>
+    <comment>DisplayUserProfile</comment>
+  </data>
+  <data name="NotUpdatedprofile" xml:space="preserve">
+    <value>User details couldn't be updated.</value>
+    <comment>UpdateUserProfile</comment>
+  </data>
+  <data name="UpdatedProfile" xml:space="preserve">
+    <value>User details updated successfully.</value>
+    <comment>UpdateUserProfile</comment>
+  </data>
+  <data name="VisitorInserted" xml:space="preserve">
+    <value>Inserted successfully.</value>
+    <comment>for visitors.</comment>
+  </data>
+  <data name="WrongEmployeeName" xml:space="preserve">
+    <value>You have entered wrong employee name.</value>
+    <comment>for visitors</comment>
+  </data>
+  <data name="MultipleIMEI" xml:space="preserve">
+    <value>Device is registed for multiple users.</value>
+  </data>
+  <data name="LoginInActive" xml:space="preserve">
+    <value>User acccount is inactive. Please Contact your Administrator</value>
+  </data>
+  <data name="LoginLocked" xml:space="preserve">
+    <value>User acccount is locked. Please Contact your Administrator</value>
+  </data>
+  <data name="LoginWrongPassword" xml:space="preserve">
+    <value>Invalid Credentials</value>
+  </data>
+  <data name="LoginWrongUserId" xml:space="preserve">
+    <value>Invalid Credentials</value>
+  </data>
+  <data name="MultipleSessionMessage" xml:space="preserve">
+    <value>You are already login from &lt;div class='cb'&gt;&lt;/div&gt; IP Address : {0} &lt;/br&gt; Browser : {1}</value>
+    <comment>If multiple session found</comment>
+  </data>
+  <data name="OTPWrongAttempts" xml:space="preserve">
+    <value>You have exceeded maximum attempts. Please try generating new OTP.</value>
+  </data>
+  <data name="PasswordRule" xml:space="preserve">
+    <value>Password Complexity is not followed</value>
+    <comment>for password complexity</comment>
+  </data>
+  <data name="DeleteFailed" xml:space="preserve">
+    <value>Unable to delete data. Try again later.</value>
+    <comment>Delete</comment>
+  </data>
+  <data name="Exception" xml:space="preserve">
+    <value>Message : {0} Inner Exception : {1} StackTrace: {2}</value>
+    <comment>Error</comment>
+  </data>
+  <data name="TerminateSessionConfirmation" xml:space="preserve">
+    <value>Your session will be terminated. Are you sure?</value>
+    <comment>Session</comment>
+  </data>
+  <data name="WeddingEventDeleted" xml:space="preserve">
+    <value>Wedding Event is successfully deleted.</value>
+    <comment>Wedding Event</comment>
+  </data>
+  <data name="WeddingExpired" xml:space="preserve">
+    <value>Your wedding subscription is expired on {0}. Please renew to use.</value>
+    <comment>Wedding</comment>
+  </data>
+  <data name="WeddingSubmittedFail" xml:space="preserve">
+    <value>Wedding information is failed to submit.</value>
+    <comment>Wedding</comment>
+  </data>
+  <data name="WeddingSubmittedSuccess" xml:space="preserve">
+    <value>Wedding information is successfully submitted.</value>
+    <comment>Wedding</comment>
+  </data>
+  <data name="Deleted" xml:space="preserve">
+    <value>Record has been deleted successfully.</value>
+  </data>
+</root>
