@@ -6,7 +6,7 @@ namespace HealthIQ.CommonLayer.Aspects.DTO
 {
     public partial class UserMasterDTO
     {
-        public int ID { get; set; }
+        public int UserID { get; set; }
 
         [StringLength(50)]
         public string FirstName { get; set; }
@@ -17,7 +17,7 @@ namespace HealthIQ.CommonLayer.Aspects.DTO
         public string ImageUrl { get; set; }
 
         [StringLength(50)]
-        public string UserName { get; set; }
+        public string UserCode { get; set; }
 
         [StringLength(150)]
         public string Email { get; set; }
@@ -46,6 +46,9 @@ namespace HealthIQ.CommonLayer.Aspects.DTO
 
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int IsDeleted { get; set; }
+
+        public int IsCustomer { get; set; }
+        public int IsStudent { get; set; }
 
         [StringLength(20)]
         public string Password { get; set; }

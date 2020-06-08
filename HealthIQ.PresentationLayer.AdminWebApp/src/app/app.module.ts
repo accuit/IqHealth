@@ -39,16 +39,17 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { AppComponent } from './app.component';
-
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { SidebarModule } from './sidebar/sidebar.module';
 import { FooterModule } from './shared/footer/footer.module';
 import { NavbarModule } from './shared/navbar/navbar.module';
 import { FixedpluginModule } from './shared/fixedplugin/fixedplugin.module';
 import { AdminLayoutComponent } from './layouts/admin/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
-
 import { AppRoutes } from './app.routing';
-import { AccountModule } from './account/account.module';
+import { CoreModule } from './core/core.module';
+import { SharedModule } from './shared/shared.module';
+import { UserModule } from './user/user.module';
 
 @NgModule({
   exports: [
@@ -99,7 +100,8 @@ export class MaterialModule { }
     SidebarModule,
     NavbarModule,
     FooterModule,
-    FixedpluginModule
+    FixedpluginModule,
+    CoreModule
   ],
   declarations: [
     AppComponent,
@@ -107,8 +109,14 @@ export class MaterialModule { }
     AuthLayoutComponent
   ],
   providers: [
+    { provide: 'LOCALSTORAGE', useFactory: getLocalStorage },
+    JwtHelperService,
     MatNativeDateModule
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+export function getLocalStorage() {
+  return (typeof window !== "undefined") ? window.localStorage : null;
+}

@@ -9,15 +9,14 @@
             </a>
 </div>
 
-
 <div class="sidebar-wrapper">
     <div class="user">
         <div class="photo">
-            <img src="./assets/img/faces/avatar.jpg" />
+            <img [src]="'./assets/img/faces/avatar.jpg'" />
         </div>
         <div class="user-info">
             <a data-toggle="collapse" href="#collapseExample" class="collapsed">
-                <span>Tania Andrew<b class="caret"></b></span>
+                <span>{{ name }}<b class="caret"></b></span>
             </a>
             <div class="collapse" id="collapseExample">
                 <ul class="nav">
@@ -33,12 +32,12 @@
                             <span class="sidebar-normal">Edit Profile</span>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a href="javascript:void(0)" class="nav-link">
                             <span class="sidebar-mini">S</span>
                             <span class="sidebar-normal">Settings</span>
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </div>

@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { AdminLayoutComponent } from './layouts/admin/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
+import { AuthGuardService  as AuthGuard} from './core/auth/auth-guard.service';
 
 export const AppRoutes: Routes = [
     {
@@ -9,6 +10,7 @@ export const AppRoutes: Routes = [
         pathMatch: 'full',
     }, {
         path: '',
+        canActivateChild: [AuthGuard],
         component: AdminLayoutComponent,
         children: [
             {
@@ -26,5 +28,6 @@ export const AppRoutes: Routes = [
             path: 'account',
             loadChildren: './account/account.module#AccountModule'
         }]
-    }
+    },
+    { path: '**', redirectTo: '' }
 ];

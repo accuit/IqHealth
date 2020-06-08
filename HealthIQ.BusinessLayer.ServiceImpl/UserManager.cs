@@ -23,10 +23,7 @@ namespace HealthIQ.BusinessLayer.Base
         {
             UserMasterDTO user = new UserMasterDTO();
             UserMaster result = UserRepository.UserLogin(email, password);
-            user = mapper.Map<UserMasterDTO>(result);
-            ObjectMapper.Map(UserRepository.UserLogin(email, password), user);
-
-            return mapper.Map<UserMasterDTO>(UserRepository.UserLogin(email, password));
+            return mapper.Map<UserMasterDTO>(result);
         }
 
         public UserMasterDTO GetUserByEmail(string email)
@@ -52,9 +49,17 @@ namespace HealthIQ.BusinessLayer.Base
             return mapper.Map<List<UserMasterDTO>>(result);
         }
 
-        //public int GetUserRoleID(int userID)
-        //{
-        //    return UserRepository.GetUserRoleID(userID);
-        //}
+        public UserMasterDTO GetUserByGUID(string GUID)
+        {
+            var result = UserRepository.GetUserByGUID(GUID);
+            return mapper.Map<UserMasterDTO>(result);
+        }
+
+        public UserMasterDTO GetUserByID(int id)
+        {
+            var result = UserRepository.GetUserByID(id);
+            return mapper.Map<UserMasterDTO>(result);
+        }
+        
     }
 }

@@ -9,12 +9,11 @@ namespace HealthIQ.PresentationLayer.AdminApp
     {
         public static void Register(HttpConfiguration config)
         {
-           
 
-            //bool isDebugMode = ConfigurationManager.AppSettings["IsDebugMode"] == "Y" ? true : false;
-            //string CorsUrl = isDebugMode ? ConfigurationManager.AppSettings["DBugCORSUrl"] : ConfigurationManager.AppSettings["CORSUrl"];
-            //var corsAttr = new EnableCorsAttribute(CorsUrl, "*", "*");
-            //config.EnableCors(corsAttr);
+            bool isDebugMode = ConfigurationManager.AppSettings["IsDebugMode"] == "Y" ? true : false;
+            string CorsUrl = isDebugMode ? ConfigurationManager.AppSettings["DBugCORSUrl"] : ConfigurationManager.AppSettings["CORSUrl"];
+            var corsAttr = new EnableCorsAttribute(CorsUrl, "*", "*");
+            config.EnableCors(corsAttr);
 
             config.MapHttpAttributeRoutes();
             config.Routes.MapHttpRoute(
