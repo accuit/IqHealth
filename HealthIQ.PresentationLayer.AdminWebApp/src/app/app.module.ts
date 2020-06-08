@@ -41,15 +41,14 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { AppComponent } from './app.component';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { SidebarModule } from './sidebar/sidebar.module';
-import { FooterModule } from './shared/footer/footer.module';
-import { NavbarModule } from './shared/navbar/navbar.module';
-import { FixedpluginModule } from './shared/fixedplugin/fixedplugin.module';
+import { FooterModule } from './shared/components/footer/footer.module';
+import { NavbarModule } from './shared/components/navbar/navbar.module';
+import { FixedpluginModule } from './shared/components/fixedplugin/fixedplugin.module';
 import { AdminLayoutComponent } from './layouts/admin/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
 import { AppRoutes } from './app.routing';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
-import { UserModule } from './user/user.module';
 
 @NgModule({
   exports: [

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { UserMaster } from '../user/user.model';
+import { UserMaster } from '../shared/components/user/user.model';
 
 @Injectable()
 export class AccountService {

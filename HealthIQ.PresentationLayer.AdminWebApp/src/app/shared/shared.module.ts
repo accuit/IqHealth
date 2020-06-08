@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../app.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FieldErrorDisplayComponent } from './field-error-display/field-error-display.component';
+import { FieldErrorDisplayComponent } from './components/field-error-display/field-error-display.component';
 
 @NgModule({
     imports: [

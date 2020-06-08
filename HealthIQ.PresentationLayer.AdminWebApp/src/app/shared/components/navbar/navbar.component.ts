@@ -1,9 +1,10 @@
 import { Component, OnInit, Renderer2, ViewChild, ElementRef, Directive } from '@angular/core';
-import { ROUTES } from '../.././sidebar/sidebar.component';
+import { ROUTES } from '../../../sidebar/sidebar.component';
 import { Router, ActivatedRoute, NavigationEnd, NavigationStart } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
-import { CoreService } from 'src/app/core/core.service';
+import { AlertService } from 'src/app/services/alert.service';
+
 const misc: any = {
     navbar_menu_visible: 0,
     active_collapse: true,
@@ -28,7 +29,7 @@ export class NavbarComponent implements OnInit {
     @ViewChild('app-navbar-cmp', { static: false }) button: any;
 
     constructor(location: Location,
-        private readonly core: CoreService,
+        private readonly core: AlertService,
         private renderer: Renderer2,
         private element: ElementRef,
         private router: Router, ) {
@@ -38,8 +39,6 @@ export class NavbarComponent implements OnInit {
     }
 
     logout = (): void => {
-        this.core.authorizedUser$.next(null);
-        this.core.isAuthorized$.next(false);
         localStorage.setItem('isAuthorized', 'false');
         localStorage.setItem('userProfile', null);
         this.router.navigate(['account/login']);
