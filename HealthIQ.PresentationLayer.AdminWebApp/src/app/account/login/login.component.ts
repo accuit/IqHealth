@@ -2,12 +2,12 @@ import { Component, Inject, PLATFORM_ID, ElementRef, OnDestroy, AfterViewInit } 
 import { Validators, FormBuilder, FormGroup, FormControl, FormGroupDirective, NgForm } from '@angular/forms';
 import { AccountService } from '../account.service';
 import { Router } from '@angular/router';
-import { UserMaster } from '../../../app/user/user.model';
+import { UserMaster } from '../../shared/components/user/user.model';
 import { APIResponse } from '../../../app/core/models';
-import { CoreService } from 'src/app/core/core.service';
 import { SweetAlertOptions, SweetAlertType } from 'sweetalert2';
 import { AlertTypeEnum, AlertTitleEnum } from 'src/app/core/enums';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { AlertService } from 'src/app/services/alert.service';
 declare var $: any;
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -36,7 +36,7 @@ export class LoginComponent implements AfterViewInit, OnDestroy {
         private element: ElementRef,
         private formBuilder: FormBuilder,
         private readonly router: Router,
-        private readonly core: CoreService,
+        private readonly core: AlertService,
         private readonly accountService: AccountService,
         @Inject(PLATFORM_ID) private platformId: any,
         @Inject('LOCALSTORAGE') private localStorage: any,
@@ -109,8 +109,6 @@ export class LoginComponent implements AfterViewInit, OnDestroy {
     }
 
     authorizeUser(user: UserMaster): void {
-        this.core.isAuthorized$.next(true);
-        this.core.authorizedUser$.next(user);
         this.saveInLocal('userID', user.userID);
         this.saveInLocal('userName', (user.firstName + ' ' + user.lastName));
         this.saveInLocal('isAuthorized', true);

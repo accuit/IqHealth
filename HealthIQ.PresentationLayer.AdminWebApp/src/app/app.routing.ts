@@ -16,10 +16,11 @@ export const AppRoutes: Routes = [
             {
                 path: '',
                 loadChildren: './dashboard/dashboard.module#DashboardModule'
-            }, {
-                path: '',
-                loadChildren: './user/user.module#UserModule'
             }
+            // , {
+            //     path: '',
+            //     loadChildren: './user/user.module#UserModule'
+            // }
         ]
     }, {
         path: '',

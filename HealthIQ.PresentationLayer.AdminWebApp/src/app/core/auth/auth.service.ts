@@ -3,7 +3,6 @@
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { BehaviorSubject } from 'rxjs';
-import { CoreService } from '../core.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +11,7 @@ export class AuthService {
   isAuthorized$ : BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   authorizedUser$ : BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
-  constructor( private readonly core: CoreService) {}
+  constructor( ) {}
   
   public isAuthenticated(): boolean {
     const isAuth = localStorage.getItem("isAuthorized") === 'true'? true: false;

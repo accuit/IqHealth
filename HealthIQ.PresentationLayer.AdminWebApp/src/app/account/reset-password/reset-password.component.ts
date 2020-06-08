@@ -3,12 +3,12 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AccountService } from '../account.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { APIResponse } from '../../../app/core/models';
-import { CoreService } from 'src/app/core/core.service';
 import { SweetAlertOptions, SweetAlertType } from 'sweetalert2';
 import { AlertTypeEnum, AlertTitleEnum } from 'src/app/core/enums';
-import { UserMaster } from 'src/app/user/user.model';
+import { UserMaster } from 'src/app/shared/components/user/user.model';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { AlertService } from 'src/app/services/alert.service';
 
 @Component({
   selector: 'app-reset-password',
@@ -27,12 +27,11 @@ export class ResetPasswordComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private readonly core: CoreService,
+    private readonly core: AlertService,
     private readonly accountService: AccountService,
     private readonly router: Router,
     activatedRoute: ActivatedRoute
   ) {
-
     const id: any = activatedRoute.params.pipe(map(p => p.id));
     this.GUID = id ? id.source.value['id'] : '';
   }
@@ -136,7 +135,6 @@ export class ResetPasswordComponent implements OnInit {
       this.validEmailLogin = false;
     }
   }
-
 }
 
 export function MustMatch(controlName: string, matchingControlName: string) {
