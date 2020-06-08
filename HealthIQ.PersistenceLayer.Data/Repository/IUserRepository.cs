@@ -11,5 +11,7 @@ namespace HealthIQ.PersistenceLayer.Data.Repository
         UserMaster GetUserByEmail(string email);
         List<UserMaster> GetUsersByStatus(int status);
         long RegisterUser(UserMaster user);
+        UserMaster GetUserByGUID(string GUID);
+        UserMaster GetUserByID(int id);
     }
 }

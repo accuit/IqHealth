@@ -1,8 +1,10 @@
 ﻿using HealthIQ.CommonLayer.Aspects;
 using HealthIQ.CommonLayer.Aspects.DTO;
+using HealthIQ.CommonLayer.Aspects.Utilities;
 using HealthIQ.CommonLayer.Log;
 using HealthIQ.CommonLayer.Resources;
 using HealthIQ.PresentationLayer.AdminApp.CustomFilters;
+using HealthIQ.PresentationLayer.AdminApp.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,9 +39,31 @@ namespace HealthIQ.PresentationLayer.AdminApp.Controllers
             return response;
         }
 
+        [HttpGet]
+        [Route("get-user-profile/{id}")]
+        public JsonResponse<UserMasterDTO> GetUsersByID(int id)
+        {
+            JsonResponse<UserMasterDTO> response = new JsonResponse<UserMasterDTO>();
+            var UserMasterDTO = new List<UserMasterDTO>();
+            try
+            {
+                response.SingleResult = UserBusinessInstance.GetUserByID(id);
+                response.StatusCode = "200";
+                response.IsSuccess = true;
+            }
+            catch (Exception ex)
+            {
+                response.SingleResult = null;
+                response.StatusCode = "500";
+                response.IsSuccess = false;
+                response.Message = ex.Message;
+            }
+            return response;
+        }
+
         [HttpPost]
         [Route("user-login")]
-        public JsonResponse<UserMasterDTO> UserMasterLogin(UserMasterDTOLogin u)
+        public JsonResponse<UserMasterDTO> UserMasterLogin(UserLoginDTO u)
         {
             ActivityLog.SetLog("[Started] UserMasterLogin.", LogLoc.INFO);
             JsonResponse<UserMasterDTO> response = new JsonResponse<UserMasterDTO>();
@@ -88,7 +112,7 @@ namespace HealthIQ.PresentationLayer.AdminApp.Controllers
                     response.StatusCode = "500";
                     response.Message = string.Format(Messages.Exception, ex.Message, ex.InnerException, ex.StackTrace);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     response.IsSuccess = false;
                     response.StatusCode = "500";
@@ -132,7 +156,7 @@ namespace HealthIQ.PresentationLayer.AdminApp.Controllers
                 User.Address = user.Address;
                 User.City = user.City;
                 User.State = user.State;
-                User.UserName = user.Email;
+                User.UserCode = user.Email;
                 User.IsDeleted = user.IsDeleted;
                 user.UpdatedDate = DateTime.Now;
 
@@ -176,12 +200,12 @@ namespace HealthIQ.PresentationLayer.AdminApp.Controllers
                     return response;
                 }
 
-                if (User.Password == user.ConfirmPassword)
+                if (User.Password != user.ConfirmPassword)
                 {
                     User.Password = user.Password;
                     User.UpdatedDate = DateTime.Now;
 
-                    response.IsSuccess = UserBusinessInstance.RegisterUser(user) > 0 ? true : false;
+                    response.IsSuccess = UserBusinessInstance.RegisterUser(User) > 0 ? true : false;
                     response.SingleResult = user;
                     response.StatusCode = "200";
                     response.Message = "Your password has been successfully updated.";
@@ -190,11 +214,11 @@ namespace HealthIQ.PresentationLayer.AdminApp.Controllers
                 {
                     response.SingleResult = user;
                     response.StatusCode = "200";
-                    response.Message = "User password does not match";
+                    response.Message = "You can not use same password. it must be different than previous.";
                     return response;
                 }
 
-              
+
             }
             catch (Exception ex)
             {
@@ -206,15 +230,79 @@ namespace HealthIQ.PresentationLayer.AdminApp.Controllers
             return response;
         }
 
+        [HttpPost]
+        [Route("forget-password")]
+        public JsonResponse<UserMasterDTO> ForgetPasswordNotification(UserLoginDTO email)
+        {
+            ActivityLog.SetLog("[Started] ForgetPasswordNotification.", LogLoc.INFO);
+            JsonResponse<UserMasterDTO> response = new JsonResponse<UserMasterDTO>();
+            UserMasterDTO User = new UserMasterDTO();
+            if (!String.IsNullOrEmpty(email.email))
+            {
+                User = UserBusinessInstance.GetUserByEmail(email.email);
+
+                if (User != null)
+                {
+                    string UniqueString = "";
+                    if (SaveOTP(User.UserID, out UniqueString))
+                    {
+                        response.IsSuccess = EmailHelper.ForgetPasswordEmail(email.email, User.FirstName, UniqueString) > 0 ? true : false;
+                        response.SingleResult = User;
+                        response.StatusCode = "200";
+                        response.Message = Messages.AccountReset;
+                    }
+                }
+            }
+            else
+            {
+                response.SingleResult = null;
+                response.StatusCode = "500";
+                response.IsSuccess = false;
+                response.Message = "Username or Email can not be empty.";
+            }
+            ActivityLog.SetLog("[Finished] ForgetPasswordNotification.", LogLoc.INFO);
+            return response;
+        }
+
+        [HttpGet]
+        [Route("validate-reset-url/{id}")]
+        public JsonResponse<UserMasterDTO> ValidatePasswordResetUrl(string id)
+        {
+            JsonResponse<UserMasterDTO> response = new JsonResponse<UserMasterDTO>();
+            var UserMasterDTO = new UserMasterDTO();
+            try
+            {
+                response.SingleResult = UserBusinessInstance.GetUserByGUID(id);
+                response.StatusCode = "200";
+                response.IsSuccess = true;
+            }
+            catch (Exception ex)
+            {
+                response.SingleResult = null;
+                response.StatusCode = "500";
+                response.IsSuccess = false;
+                response.Message = ex.Message;
+            }
+            return response;
+        }
+
+        private bool SaveOTP(int UserID, out string UniqueString)
+        {
+            #region Prepare OTP Data
+
+            UniqueString = AppUtil.GetUniqueGuidString();
+            string OTPString = AppUtil.GetUniqueRandomNumber(100000, 999999); // Generate a Six Digit OTP
+            OTPDTO objOTP = new OTPDTO() { GUID = UniqueString, OTP = OTPString, CreatedDate = DateTime.Now, UserID = UserID, Attempts = 0 };
+
+            return SecurityBusinessInstance.SaveOTP(objOTP);
+            #endregion
+        }
     }
 
-    public class UserMasterDTOLogin
+    public class UserLoginDTO
     {
-        public string username { get; set; }
         public string email { get; set; }
         public string password { get; set; }
-        public int companyId { get; set; }
-
     }
 }
 

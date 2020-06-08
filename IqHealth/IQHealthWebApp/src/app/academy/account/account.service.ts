@@ -19,7 +19,7 @@ export class AccountService {
 
 
   loginUser(user: UserMaster): any {
-    return this.httpClient.post(this.baseUrl + 'api/users/login', user, { headers: this.headers });
+    return this.httpClient.post(this.baseUrl + 'account/user-login', user, { headers: this.headers });
   }
 
   registerUser(user: UserMaster): any {

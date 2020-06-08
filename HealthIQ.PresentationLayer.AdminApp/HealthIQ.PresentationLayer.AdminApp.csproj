@@ -272,6 +272,7 @@
     <None Include="Properties\PublishProfiles\HealthIQNew.pubxml" />
     <None Include="Properties\PublishProfiles\IQHealthApi.pubxml" />
     <Content Include="Helpers\EmailTemplates\DoctorAppointmentConfirmation.html" />
+    <Content Include="Helpers\EmailTemplates\ResetPassword.html" />
     <Content Include="Helpers\EmailTemplates\OnlineEnquiry.html" />
     <Content Include="Helpers\EmailTemplates\OnlineEnquiryResponse.html" />
     <Content Include="Helpers\EmailTemplates\Student_Enquiry.html" />

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import PerfectScrollbar from 'perfect-scrollbar';
 import { RouteInfo } from '../core/routes';
 
@@ -6,20 +6,24 @@ declare const $: any;
 
 //Menu Items
 export const ROUTES: RouteInfo[] = [{
-        path: '/dashboard',
-        title: 'Dashboard',
-        type: 'link',
-        icontype: 'dashboard'
-    }
+    path: '/dashboard',
+    title: 'Dashboard',
+    type: 'link',
+    icontype: 'dashboard'
+}
 ];
 @Component({
     selector: 'app-sidebar-cmp',
     templateUrl: 'sidebar.component.html',
 })
 
-export class SidebarComponent implements OnInit {
+export class SidebarComponent implements OnInit, AfterViewInit {
     public menuItems: any[];
     ps: any;
+    name: string;
+
+    constructor() { };
+
     isMobileMenu() {
         if ($(window).width() > 991) {
             return false;
@@ -28,13 +32,19 @@ export class SidebarComponent implements OnInit {
     };
 
     ngOnInit() {
+        this.name = localStorage.getItem('userName');
         this.menuItems = ROUTES.filter(menuItem => menuItem);
         if (window.matchMedia(`(min-width: 960px)`).matches && !this.isMac()) {
             const elemSidebar = <HTMLElement>document.querySelector('.sidebar .sidebar-wrapper');
             this.ps = new PerfectScrollbar(elemSidebar);
         }
     }
-    updatePS(): void  {
+
+    ngAfterViewInit() {
+       
+    }
+
+    updatePS(): void {
         if (window.matchMedia(`(min-width: 960px)`).matches && !this.isMac()) {
             this.ps.update();
         }

@@ -10,5 +10,7 @@ namespace HealthIQ.BusinessLayer.Services
         List<UserMasterDTO> GetUsersByStatus(int status);
         long RegisterUser(UserMasterDTO user);
         bool LogoutWebUser(int loggenInUserID, string sessionID);
+        UserMasterDTO GetUserByGUID(string GUID);
+        UserMasterDTO GetUserByID(int id);
     }
 }
