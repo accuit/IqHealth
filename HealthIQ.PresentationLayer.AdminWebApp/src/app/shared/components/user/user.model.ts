@@ -14,4 +14,6 @@ export class UserMaster {
     city: string;
     state: number;
     userStatus: number;
+    role: number;
+    token?: string;
 }

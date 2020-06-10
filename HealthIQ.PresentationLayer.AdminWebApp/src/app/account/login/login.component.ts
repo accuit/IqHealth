@@ -1,24 +1,26 @@
 import { Component, Inject, PLATFORM_ID, ElementRef, OnDestroy, AfterViewInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, FormControl, FormGroupDirective, NgForm } from '@angular/forms';
 import { AccountService } from '../account.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { UserMaster } from '../../shared/components/user/user.model';
 import { APIResponse } from '../../../app/core/models';
 import { SweetAlertOptions, SweetAlertType } from 'sweetalert2';
 import { AlertTypeEnum, AlertTitleEnum } from 'src/app/core/enums';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { AlertService } from 'src/app/services/alert.service';
+import { AuthService } from 'src/app/core/auth/auth.service';
+import { error } from '@angular/compiler/src/util';
 declare var $: any;
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
     isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-      const isSubmitted = form && form.submitted;
-      return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+        const isSubmitted = form && form.submitted;
+        return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
     }
-  }
+}
 
 @Component({
-    selector: 'app-login-cmp',
+    selector: 'app-login',
     templateUrl: './login.component.html'
 })
 
@@ -31,21 +33,29 @@ export class LoginComponent implements AfterViewInit, OnDestroy {
     data: any = [];
     isSubmitted = false;
     matcher = new MyErrorStateMatcher();
+    returnUrl: string;
 
     constructor(
         private element: ElementRef,
         private formBuilder: FormBuilder,
         private readonly router: Router,
+        private route: ActivatedRoute,
         private readonly core: AlertService,
         private readonly accountService: AccountService,
+        private readonly authService: AuthService,
         @Inject(PLATFORM_ID) private platformId: any,
         @Inject('LOCALSTORAGE') private localStorage: any,
     ) {
+        if (this.authService.currentUser) {
+            this.router.navigate(['/']);
+        }
+
         this.nativeElement = element.nativeElement;
         this.sidebarVisible = false;
     }
 
     ngOnInit() {
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
         this.loginForm = this.formBuilder.group({
             email: ['', [Validators.required, Validators.email]],
             password: ['', [Validators.required]]
@@ -93,26 +103,20 @@ export class LoginComponent implements AfterViewInit, OnDestroy {
             this.validateAllFormFields(this.loginForm);
             return;
         }
-        this.accountService.loginUser(this.loginForm.value)
-            .subscribe((res: APIResponse) => {
-                if (res.isSuccess) {
-                    this.authorizeUser(res.singleResult)
-                } else {
-                    const alert: SweetAlertOptions = {
-                        type: AlertTypeEnum.error as SweetAlertType,
-                        title: AlertTitleEnum.Fail,
-                        text: res.message
-                      }
-                    this.core.showAlert(alert);
+        this.authService.login(this.loginForm.value.email, this.loginForm.value.password)
+            .subscribe(res => {
+                if(res){
+                this.router.navigate([this.returnUrl]);
                 }
+            }, () => {
+                const alert: SweetAlertOptions = {
+                    type: AlertTypeEnum.error as SweetAlertType,
+                    title: AlertTitleEnum.Fail,
+                    text: 'Something went wrong!'
+                }
+                this.core.showAlert(alert);
             });
-    }
-
-    authorizeUser(user: UserMaster): void {
-        this.saveInLocal('userID', user.userID);
-        this.saveInLocal('userName', (user.firstName + ' ' + user.lastName));
-        this.saveInLocal('isAuthorized', true);
-        this.router.navigate(['dashboard']);
+            
     }
 
     validateAllFormFields(formGroup: FormGroup) {
