@@ -56,8 +56,12 @@
                                 </span>
                             </div>
 
-                            <div class="card-footer justify-content-center">
-                                <button mat-raised-button type="submit" class="btn btn-rose btn-fill btn-wd" (click)="onSubmit()">Login</button>
+                            <div class="card-footer justify-content-center">                          
+                                <button *ngIf="!inProgress" mat-raised-button (click)="onSubmit()" class="btn btn-rose btn-round"> Login </button>
+                                <a *ngIf="inProgress" href="#paper-kit" class="btn btn-round btn-rose">
+                                    <div class="uil-reload-css reload-small">
+                                      <div></div>
+                                    </div> Login</a>
                             </div>
                         </div>
                     </form>

@@ -34,7 +34,7 @@ export class LoginComponent implements AfterViewInit, OnDestroy {
     isSubmitted = false;
     matcher = new MyErrorStateMatcher();
     returnUrl: string;
-
+    inProgress = false;
     constructor(
         private element: ElementRef,
         private formBuilder: FormBuilder,
@@ -98,15 +98,18 @@ export class LoginComponent implements AfterViewInit, OnDestroy {
     }
 
     onSubmit(): any {
+
         this.isSubmitted = true;
         if (this.loginForm.invalid) {
             this.validateAllFormFields(this.loginForm);
             return;
         }
+        this.inProgress = true;
         this.authService.login(this.loginForm.value.email, this.loginForm.value.password)
             .subscribe(res => {
-                if(res){
-                this.router.navigate([this.returnUrl]);
+                if (res) {
+                    this.router.navigate([this.returnUrl]);
+                    this.inProgress = false;
                 }
             }, () => {
                 const alert: SweetAlertOptions = {
@@ -114,9 +117,10 @@ export class LoginComponent implements AfterViewInit, OnDestroy {
                     title: AlertTitleEnum.Fail,
                     text: 'Something went wrong!'
                 }
+                this.inProgress = false;
                 this.core.showAlert(alert);
             });
-            
+
     }
 
     validateAllFormFields(formGroup: FormGroup) {
