@@ -4,19 +4,19 @@
             <img src="/assets/img/angular2-logo-white.png" />
         </div>
     </a>
-    <a href="https://www.creative-tim.com" class="simple-text logo-normal">
-              Creative Tim
+    <a href="https://health-iq.in" class="simple-text logo-normal">
+              Health IQ
             </a>
 </div>
 
 <div class="sidebar-wrapper">
     <div class="user">
         <div class="photo">
-            <img [src]="'./assets/img/faces/avatar.jpg'" />
+            <img [src]="user.imageUrl? user.imageUrl : './assets/img/faces/avatar.jpg'" />
         </div>
         <div class="user-info">
             <a data-toggle="collapse" href="#collapseExample" class="collapsed">
-                <span>{{ name }}<b class="caret"></b></span>
+                <span>{{ user.firstName }} {{ user.lastName }}<b class="caret"></b></span>
             </a>
             <div class="collapse" id="collapseExample">
                 <ul class="nav">

@@ -1,7 +1,8 @@
 import { Routes } from '@angular/router';
 import { AdminLayoutComponent } from './layouts/admin/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
-import { AuthGuardService  as AuthGuard} from './core/auth/auth-guard.service';
+import { Role } from './core/models/role';
+import { AuthGuard } from './core/auth/auth-guard';
 
 export const AppRoutes: Routes = [
     {
@@ -10,7 +11,8 @@ export const AppRoutes: Routes = [
         pathMatch: 'full',
     }, {
         path: '',
-        canActivateChild: [AuthGuard],
+        canActivate: [AuthGuard],
+        data: { roles: [Role.Admin] },
         component: AdminLayoutComponent,
         children: [
             {

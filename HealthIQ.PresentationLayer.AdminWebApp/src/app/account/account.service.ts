@@ -16,9 +16,9 @@ export class AccountService {
     });
   }
 
-  loginUser(user: UserMaster): any {
-    return this.httpClient.post(this.baseUrl + 'account/user-login', user, { headers: this.headers });
-  }
+  // loginUser(user: UserMaster): any {
+  //   return this.httpClient.post(this.baseUrl + 'account/user-login', user, { headers: this.headers });
+  // }
 
   registerUser(user: UserMaster): any {
     return this.httpClient.post(this.baseUrl + 'account/register', user, { headers: this.headers });
