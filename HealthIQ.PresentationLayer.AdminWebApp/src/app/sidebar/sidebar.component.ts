@@ -11,6 +11,17 @@ export const ROUTES: RouteInfo[] = [{
     title: 'Dashboard',
     type: 'link',
     icontype: 'dashboard'
+},
+{
+    path: '/user',
+    title: 'Maintain Student',
+    type: 'sub',
+    icontype: 'image',
+    collapse: 'pages',
+    children: [
+        {path: 'users-list', title: 'Students List', ab:'S'},
+        {path: 'create-user', title: 'Create Student', ab:'TP'}
+    ]
 }
 ];
 @Component({

@@ -1,1 +1,30 @@
-<p>users-list works!</p>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-text card-header-warning">
+            <div class="card-text">
+              <h4 class="card-title">Students List</h4>
+              <p class="card-category">Recent students registration.</p>
+            </div>
+          </div>
+            <div class="card-body table-responsive">
+                <table class="table table-hover">
+                        <thead class="text-warning">
+                            <tr>
+                              <th *ngFor="let col of columns">{{ col }}</th>
+                            </tr>
+                        </thead>
+                      <tbody>
+                          <tr *ngFor="let row of students">
+                              <td>{{ row.userID}}</td>
+                              <td>{{ row.firstName}}</td>
+                              <td>{{ row.lastName}}</td>
+                              <td>{{ row.email}}</td>
+                              <td>{{ row.mobile}}</td>
+                          </tr>
+                      </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

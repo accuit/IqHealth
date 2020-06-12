@@ -13,6 +13,7 @@ using HealthIQ.BusinessLayer.ServiceImpl;
 using HealthIQ.BusinessLayer.Base.Manager;
 using HealthIQ.BusinessLayer.Services.Contracts;
 using HealthIQ.CommonLayer.AopContainer;
+using LaymanWoods.BusinessLayer.ServiceImpl;
 
 namespace HealthIQ.CommonLayer.AOPRegistrations
 {
@@ -22,7 +23,6 @@ namespace HealthIQ.CommonLayer.AOPRegistrations
         {
             AopEngine.Initialize();
             InitializeLibrary();
-
             MapEntities();
         }
 
@@ -36,7 +36,7 @@ namespace HealthIQ.CommonLayer.AOPRegistrations
         {
             AopEngine.Container.RegisterType<IUserRepository, UserDataImpl>(GetPersistenceRegisterInstanceName(AspectEnums.PeristenceInstanceNames.UserDataImpl, AspectEnums.ApplicationName.HealthIQ));
             AopEngine.Container.RegisterType<ISecurityRepository, SecurityDataImpl>(GetPersistenceRegisterInstanceName(AspectEnums.PeristenceInstanceNames.SecurityDataImpl, AspectEnums.ApplicationName.HealthIQ));
-            //AopEngine.Container.RegisterType<IProductRepository, ProductDataImpl>(GetPersistenceRegisterInstanceName(AspectEnums.PeristenceInstanceNames.ProductDataImpl, AspectEnums.ApplicationName.HealthIQ));
+            AopEngine.Container.RegisterType<IStudentRepository, StudentDataImpl>(GetPersistenceRegisterInstanceName(AspectEnums.PeristenceInstanceNames.StudentDataImpl, AspectEnums.ApplicationName.HealthIQ));
             AopEngine.Container.RegisterType<INotificationRepository, NotificationDataImpl>(GetPersistenceRegisterInstanceName(AspectEnums.PeristenceInstanceNames.NotificationDataImpl, AspectEnums.ApplicationName.HealthIQ));
         }
 
@@ -54,7 +54,7 @@ namespace HealthIQ.CommonLayer.AOPRegistrations
         {
             AopEngine.Container.RegisterType<IUserService, UserManager>(GetBusinessRegisterInstanceName(AspectEnums.AspectInstanceNames.UserManager, AspectEnums.ApplicationName.HealthIQ));
             AopEngine.Container.RegisterType<ISecurityService, SecurityManager>(GetBusinessRegisterInstanceName(AspectEnums.AspectInstanceNames.SecurityManager, AspectEnums.ApplicationName.HealthIQ));
-            //AopEngine.Container.RegisterType<IProductService, ProductManager>(GetBusinessRegisterInstanceName(AspectEnums.AspectInstanceNames.ProductManager, AspectEnums.ApplicationName.HealthIQ));
+            AopEngine.Container.RegisterType<IStudentService, StudentManager>(GetBusinessRegisterInstanceName(AspectEnums.AspectInstanceNames.StudentManager, AspectEnums.ApplicationName.HealthIQ));
             AopEngine.Container.RegisterType<INotificationService, NotificationManager>(GetBusinessRegisterInstanceName(AspectEnums.AspectInstanceNames.NotificationManager, AspectEnums.ApplicationName.HealthIQ));
         }
 
@@ -86,8 +86,6 @@ namespace HealthIQ.CommonLayer.AOPRegistrations
             });
 
             return config;
-
-
         }
     }
 }

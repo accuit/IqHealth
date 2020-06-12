@@ -142,10 +142,12 @@
     <Compile Include="Impl\BaseDataImpl.cs" />
     <Compile Include="Impl\NotificationDataImpl.cs" />
     <Compile Include="Impl\SecurityDataImpl.cs" />
+    <Compile Include="Impl\StudentDataImpl.cs" />
     <Compile Include="Impl\UserDataImpl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\INotificationRepository.cs" />
     <Compile Include="Repository\ISecurityRepository.cs" />
+    <Compile Include="Repository\IStudentRepository.cs" />
     <Compile Include="Repository\IUserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
