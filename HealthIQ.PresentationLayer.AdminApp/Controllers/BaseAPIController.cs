@@ -10,7 +10,7 @@ namespace HealthIQ.PresentationLayer.AdminApp.Controllers
     {
         private IUserService userBusinessInstance;
         private ISecurityService securityBusinessInstance;
-        //private IProductService productBusinessInstance;
+        private IStudentService studentBusinessInstance;
         private INotificationService notificationBusinessInstance;
         public IUserService UserBusinessInstance
         {
@@ -36,17 +36,17 @@ namespace HealthIQ.PresentationLayer.AdminApp.Controllers
             }
         }
 
-        //public IProductService ProductBusinessInstance
-        //{
-        //    get
-        //    {
-        //        if (productBusinessInstance == null)
-        //        {
-        //            productBusinessInstance = AopEngine.Resolve<IProductService>(AspectEnums.AspectInstanceNames.ProductManager, AspectEnums.ApplicationName.LaymanWoods);
-        //        }
-        //        return productBusinessInstance;
-        //    }
-        //}
+        public IStudentService StudentBusinessInstance
+        {
+            get
+            {
+                if (studentBusinessInstance == null)
+                {
+                    studentBusinessInstance = AopEngine.Resolve<IStudentService>(AspectEnums.AspectInstanceNames.StudentManager, AspectEnums.ApplicationName.HealthIQ);
+                }
+                return studentBusinessInstance;
+            }
+        }
 
         public INotificationService NotificationBusinessInstance
         {

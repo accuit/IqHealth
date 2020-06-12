@@ -12,16 +12,19 @@ namespace HealthIQ.CommonLayer.Aspects
         {
             UserManager,
             SecurityManager,
-            ProductManager,
-            NotificationManager
+            StudentManager,
+            NotificationManager,
+            AdminManager
         }
 
         public enum PeristenceInstanceNames
         {
             UserDataImpl,
             SecurityDataImpl,
-            ProductDataImpl,
-            NotificationDataImpl
+            StudentDataImpl,
+            NotificationDataImpl,
+            CustomerDataImpl,
+            AdminDataImpl
         }
 
         public enum FileType
@@ -94,7 +97,9 @@ namespace HealthIQ.CommonLayer.Aspects
 
         public enum EmailTemplateType
         {
-            ForgotPassword = 1
+            ResetPassword = 1,
+            ContactUs = 2,
+            Welcom = 3
         }
 
         /// <summary>
@@ -121,7 +126,6 @@ namespace HealthIQ.CommonLayer.Aspects
             Pending = 0,
             Active = 1,
             InActive = 2
-
         }
 
     }

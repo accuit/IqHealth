@@ -12,17 +12,16 @@ export const AppRoutes: Routes = [
     }, {
         path: '',
         canActivate: [AuthGuard],
-        data: { roles: [Role.Admin] },
         component: AdminLayoutComponent,
         children: [
             {
                 path: '',
                 loadChildren: './dashboard/dashboard.module#DashboardModule'
             }
-            // , {
-            //     path: '',
-            //     loadChildren: './user/user.module#UserModule'
-            // }
+            , {
+                path: '',
+                loadChildren: './admin/admin.module#AdminModule'
+            }
         ]
     }, {
         path: '',
@@ -31,6 +30,5 @@ export const AppRoutes: Routes = [
             path: 'account',
             loadChildren: './account/account.module#AccountModule'
         }]
-    },
-    { path: '**', redirectTo: '' }
+    }
 ];

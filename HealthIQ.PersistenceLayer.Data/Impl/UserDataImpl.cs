@@ -9,7 +9,6 @@ namespace HealthIQ.PersistenceLayer.Data.Impl
 {
     public class UserDataImpl : BaseDataImpl, IUserRepository
     {
-
         public UserMaster UserLogin(string email, string password)
         {
             return HIQAdminContext.UserMasters.Where(x => x.Email == email && x.Password == password).FirstOrDefault();
@@ -35,19 +34,15 @@ namespace HealthIQ.PersistenceLayer.Data.Impl
         {
             OTPMaster objOTP = HIQAdminContext.OTPMasters.FirstOrDefault(x => x.GUID == GUID);
             if (objOTP != null)
-            {
                 return HIQAdminContext.UserMasters.FirstOrDefault(k => k.UserID == objOTP.UserID);
-            }
             else
-            {
                 return null;
-            }
+
         }
 
         public UserMaster GetUserByID(int id)
         {
             return HIQAdminContext.UserMasters.FirstOrDefault(k => k.UserID == id);
-
         }
     }
 }
