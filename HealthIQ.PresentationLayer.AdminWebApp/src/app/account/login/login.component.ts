@@ -10,6 +10,7 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { AlertService } from 'src/app/services/alert.service';
 import { AuthService } from 'src/app/core/auth/auth.service';
 import { error } from '@angular/compiler/src/util';
+import { BaseFormValidationComponent } from 'src/app/shared/components/base-form-validation/base-form-validation.component';
 declare var $: any;
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -24,7 +25,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
     templateUrl: './login.component.html'
 })
 
-export class LoginComponent implements AfterViewInit, OnDestroy {
+export class LoginComponent extends BaseFormValidationComponent implements AfterViewInit, OnDestroy {
     test: Date = new Date();
     private toggleButton: any;
     private sidebarVisible: boolean;
@@ -32,20 +33,20 @@ export class LoginComponent implements AfterViewInit, OnDestroy {
     loginForm: FormGroup;
     data: any = [];
     isSubmitted = false;
-    matcher = new MyErrorStateMatcher();
     returnUrl: string;
     inProgress = false;
+    pattern = "https?://.+";
     constructor(
         private element: ElementRef,
         private formBuilder: FormBuilder,
         private readonly router: Router,
         private route: ActivatedRoute,
         private readonly core: AlertService,
-        private readonly accountService: AccountService,
         private readonly authService: AuthService,
         @Inject(PLATFORM_ID) private platformId: any,
         @Inject('LOCALSTORAGE') private localStorage: any,
     ) {
+        super();
         if (this.authService.currentUser) {
             this.router.navigate(['/']);
         }
@@ -57,8 +58,8 @@ export class LoginComponent implements AfterViewInit, OnDestroy {
     ngOnInit() {
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
         this.loginForm = this.formBuilder.group({
-            email: ['', [Validators.required, Validators.email]],
-            password: ['', [Validators.required]]
+            email: ['', [Validators.required, Validators.email, this.EmailValidation]],
+            password: ['', [Validators.required, this.PasswordValidation]]
         });
     }
 
@@ -66,39 +67,7 @@ export class LoginComponent implements AfterViewInit, OnDestroy {
         return this.loginForm.controls;
     }
 
-    emailFormControl = new FormControl('', [
-        Validators.required,
-        Validators.email,
-    ]);
-
-    validEmailRegister: boolean = false;
-    validConfirmPasswordRegister: boolean = false;
-    validPasswordRegister: boolean = false;
-
-    validEmailLogin: boolean = false;
-    validPasswordLogin: boolean = false;
-
-    validTextType: boolean = false;
-    validEmailType: boolean = false;
-    validNumberType: boolean = false;
-    validUrlType: boolean = false;
-    pattern = "https?://.+";
-    validSourceType: boolean = false;
-    validDestinationType: boolean = false;
-
-    isFieldValid(form: FormGroup, field: string) {
-        return !form.get(field).valid && form.get(field).touched;
-    }
-
-    displayFieldCss(form: FormGroup, field: string) {
-        return {
-            'has-error': this.isFieldValid(form, field),
-            'has-feedback': this.isFieldValid(form, field)
-        };
-    }
-
     onSubmit(): any {
-
         this.isSubmitted = true;
         if (this.loginForm.invalid) {
             this.validateAllFormFields(this.loginForm);
@@ -120,35 +89,6 @@ export class LoginComponent implements AfterViewInit, OnDestroy {
                 this.inProgress = false;
                 this.core.showAlert(alert);
             });
-
-    }
-
-    validateAllFormFields(formGroup: FormGroup) {
-        Object.keys(formGroup.controls).forEach(field => {
-            const control = formGroup.get(field);
-            if (control instanceof FormControl) {
-                control.markAsTouched({ onlySelf: true });
-            } else if (control instanceof FormGroup) {
-                this.validateAllFormFields(control);
-            }
-        });
-    }
-
-    passwordValidationLogin(e) {
-        if (e.length > 5) {
-            this.validPasswordLogin = true;
-        } else {
-            this.validPasswordLogin = false;
-        }
-    }
-
-    emailValidationLogin(e) {
-        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        if (re.test(String(e).toLowerCase())) {
-            this.validEmailLogin = true;
-        } else {
-            this.validEmailLogin = false;
-        }
     }
 
     saveInLocal(key, val): void {

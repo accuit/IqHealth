@@ -20,13 +20,13 @@
                                                     <i class="material-icons">email</i>
                                                 </span>
                                                 <input type="email" matInput placeholder="Email Address *" [errorStateMatcher]="matcher"
-                                                    (ngModelChange)="emailValidationLogin($event)" formControlName="email">
+                                                     formControlName="email">
                                             </div>
                                             <mat-error
-                                                *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                                                *ngIf="f.email.errors && !f.email.errors.required">
                                                 Please enter a valid email address
                                             </mat-error>
-                                            <mat-error *ngIf="emailFormControl.hasError('required')">
+                                            <mat-error *ngIf="f.email.errors && f.email.errors.required">
                                                 Email is <strong>required</strong>
                                             </mat-error>
                                         </mat-form-field>                                   
@@ -42,15 +42,15 @@
                                                 <i class="material-icons">lock_outline</i>
                                             </span>
                                             <input type="password" matInput placeholder="Password *"
-                                            (ngModelChange)="passwordValidationLogin($event)"
                                             formControlName="password">
                                         </div>                                     
-                                        <app-field-error-display [displayError]="isFieldValid(loginForm, 'password')"
-                                            errorMsg="Enter a valid password.">
-                                        </app-field-error-display>
                                         <mat-error *ngIf="isFieldValid(loginForm, 'password')">
                                             Password is <strong>required</strong>
                                         </mat-error>
+                                        <mat-error
+                                        *ngIf="f.password.errors && f.password.errors.notValid">
+                                            Password must be at least 6 digits.
+                                    </mat-error>
                                     </mat-form-field>
                                     </div>
                                 </span>

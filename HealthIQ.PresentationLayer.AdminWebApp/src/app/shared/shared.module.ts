@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../app.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FieldErrorDisplayComponent } from './components/field-error-display/field-error-display.component';
+import { BaseFormValidationComponent } from './components/base-form-validation/base-form-validation.component';
 
 @NgModule({
     imports: [
@@ -13,7 +14,8 @@ import { FieldErrorDisplayComponent } from './components/field-error-display/fie
         ReactiveFormsModule
     ],
     declarations: [
-        FieldErrorDisplayComponent
+        FieldErrorDisplayComponent,
+        BaseFormValidationComponent
     ],
     exports: [FieldErrorDisplayComponent]
 })
