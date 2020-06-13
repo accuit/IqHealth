@@ -1,23 +1,7 @@
-/*!
-
- =========================================================
- * Material Dashboard PRO Angular - v2.4.1
- =========================================================
-
- * Product Page: https://www.creative-tim.com/product/material-dashboard-pro-angular2
- * Copyright 2018 Creative Tim (https://www.creative-tim.com)
-
- * Designed by www.invisionapp.com Coded by www.creative-tim.com
-
- =========================================================
-
- * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
- */
- @import "~@angular/material/prebuilt-themes/indigo-pink.css";
-
  @import "core/variables";
  @import "core/mixins";
+ @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
  @import "~bootstrap/scss/bootstrap";
  @import "core/reboot";
 
