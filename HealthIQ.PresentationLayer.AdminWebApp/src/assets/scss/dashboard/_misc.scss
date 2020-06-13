@@ -105,6 +105,6 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
 }
 
 .disabled,[disabled] {
-  pointer-events: none;
+  // pointer-events: none;
   cursor: not-allowed;
 }

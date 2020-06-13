@@ -1,22 +1,23 @@
-
+<div class="main-content">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="card card-stats">
                     <a routerLink="/user">
-                    <div class="card-header card-header-warning card-header-icon">
-                        <div class="card-icon">
-                            <i class="material-icons">weekend</i>
+                        <div class="card-header card-header-warning card-header-icon">
+                            <div class="card-icon">
+                                <i class="material-icons">weekend</i>
+                            </div>
+                            <p class="card-category">Students</p>
+                            <h3 class="card-title">184</h3>
                         </div>
-                        <p class="card-category">Students</p>
-                        <h3 class="card-title">184</h3>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <i class="material-icons text-danger">warning</i>
-                            <a routerLink="/user">Maintain Students</a>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons text-danger">warning</i>
+                                <a routerLink="/user">Maintain Students</a>
+                            </div>
                         </div>
-                    </div>
-                </a>
+                    </a>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6">
@@ -68,5 +69,253 @@
                 </div>
             </div>
         </div>
-     
-  
+    </div>
+</div>
+
+<div class="tim-title">
+    <h2>Basic Components</h2>
+</div>
+
+<br />
+<div id="inputs">
+    <div class="title">
+        <h3>Inputs</h3>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="form-group">
+                <input type="text" value="" placeholder="Simple" class="form-control" />
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <input type="text" value="" placeholder="No Border" class="form-control no-border" />
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <input type="text" value="" placeholder="Disabled" class="form-control" disabled />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="input-group">
+                <!-- 	   Since the css properties cannot check the previous sibling of an element and for the design consistency we recommend to use the "input-group-addon" after the "form-control" like in this example -->
+                <input type="text" placeholder="Group Addon" class="form-control">
+                <div class="input-group-append">
+                    <span class="input-group-text"><i class="fa fa-group"></i></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="input-group no-border">
+                <input type="text" placeholder="No Border" class="form-control no-border">
+                <div class="input-group-append">
+                    <span class="input-group-text">%</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="input-group" disabled>
+                <input type="text" placeholder="Group Disabled" class="form-control" disabled>
+                <div class="input-group-append">
+                    <span class="input-group-text"><i class="fa fa-group"></i></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="form-group has-success">
+                <input type="text" value="Success" id="inputSuccess" class="form-control form-control-success" />
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group has-success">
+                <input type="text" value="Success" id="inputSuccess1"
+                    class="form-control form-control-success no-border" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="form-group has-danger">
+                <input type="text" class="form-control form-control-danger" id="inputDanger" value="Error">
+                <div class="form-control-feedback">Sorry, that username's taken. Try another?</div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group has-danger">
+                <input type="text" class="form-control form-control-danger no-border" id="inputDanger1" value="Error">
+                <div class="form-control-feedback">Sorry, that username's taken. Try another?</div>
+            </div>
+        </div>
+    </div>
+    <!-- end row -->
+</div>
+<br />
+<div class="row">
+    <div class="col-sm-6 col-lg-3">
+        <div class="title">
+            <h3>Checkboxes</h3>
+        </div>
+        <div class="form-check">
+            <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" value="">
+                Unchecked
+                <span class="form-check-sign"></span>
+            </label>
+        </div>
+        <div class="form-check">
+            <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" value="" checked>
+                Checked
+                <span class="form-check-sign"></span>
+            </label>
+        </div>
+        <div class="form-check disabled">
+            <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" value="" disabled>
+                Disabled unchecked
+                <span class="form-check-sign"></span>
+            </label>
+        </div>
+        <div class="form-check disabled">
+            <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" value="" disabled checked>
+                Disabled checked
+                <span class="form-check-sign"></span>
+            </label>
+        </div>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+        <div class="title">
+            <h3>Radio Buttons</h3>
+        </div>
+
+        <div class="form-check-radio">
+            <label class="form-check-label">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
+                Radio is off
+                <span class="form-check-sign"></span>
+            </label>
+        </div>
+        <div class="form-check-radio">
+            <label class="form-check-label">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"
+                    checked>
+                Radio is on
+                <span class="form-check-sign"></span>
+            </label>
+        </div>
+
+        <div class="form-check-radio disabled">
+            <label class="form-check-label">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3"
+                    disabled>
+                Disabled radio is off
+                <span class="form-check-sign"></span>
+            </label>
+        </div>
+
+        <div class="form-check-radio disabled">
+            <label class="form-check-label">
+                <input class="form-check-input" type="radio" name="exampleRadioz" id="exampleRadios4" value="option4"
+                    checked disabled>
+                Disabled radio is on
+                <span class="form-check-sign"></span>
+            </label>
+        </div>
+    </div>
+</div>
+<div id="textarea">
+    <div class="title">
+        <h3>Textarea</h3>
+    </div>
+    <div class="row">
+        <div class="col-md-5 col-sm-6">
+            <textarea class="form-control border-input"
+                placeholder="This is a textarea with border. Here can be your nice text" rows="3"></textarea>
+        </div>
+        <div class="col-md-5 col-sm-6">
+            <textarea class="form-control textarea-limited" placeholder="This is a textarea limited to 150 characters."
+                rows="3" maxlength="150"></textarea>
+            <h5><small><span id="textarea-limited-message" class="pull-right">150 characters left</span></small></h5>
+        </div>
+    </div>
+</div>
+<div id="switches">
+    <div class="title">
+        <h3>Switches</h3>
+    </div>
+    <bSwitch [switch-on-color]="'primary'" [switch-off-color]="'primary'" [(ngModel)]="state_primary">
+    </bSwitch>
+    <bSwitch class="mr-1" [switch-on-color]="'primary'" [switch-off-color]="'primary'"> Toggle is off
+    </bSwitch>
+    <bSwitch [switch-on-color]="'success'" [switch-off-color]="'success'" [(ngModel)]="state_succes">
+    </bSwitch>
+    <bSwitch class="mr-1" [switch-on-color]="'success'" [switch-off-color]="'success'"> Toggle is off
+    </bSwitch>
+    <bSwitch [switch-on-color]="'warning'" [switch-off-color]="'warning'" [(ngModel)]="state_warning">
+    </bSwitch>
+    <bSwitch [switch-on-color]="'warning'" [switch-off-color]="'warning'"> Toggle is off
+    </bSwitch>
+    <div class="title">
+        <h3>Switches with icons</h3>
+    </div>
+    <bSwitch [switch-on-color]="'primary'" [switch-off-color]="'primary'" [(ngModel)]="state_icon_primary"
+        switch-on-text="<i class='nc-icon nc-check-2'></i>" switch-off-text="<i class='nc-icon nc-simple-remove'></i>">
+    </bSwitch>
+    <bSwitch class="mr-1" [switch-on-color]="'primary'" [switch-off-color]="'primary'"
+        switch-on-text="<i class='nc-icon nc-check-2'></i>" switch-off-text="<i class='nc-icon nc-simple-remove'></i>">
+        Toggle is off
+    </bSwitch>
+    <bSwitch [switch-on-color]="'success'" [switch-off-color]="'success'" [(ngModel)]="state_icon_succes"
+        switch-on-text="<i class='nc-icon nc-check-2'></i>" switch-off-text="<i class='nc-icon nc-simple-remove'></i>">
+    </bSwitch>
+    <bSwitch class="mr-1" [switch-on-color]="'success'" [switch-off-color]="'success'"
+        switch-on-text="<i class='nc-icon nc-check-2'></i>" switch-off-text="<i class='nc-icon nc-simple-remove'></i>">
+        Toggle is off
+    </bSwitch>
+    <bSwitch [switch-on-color]="'danger'" [switch-off-color]="'danger'" [(ngModel)]="state_icon_danger"
+        switch-on-text="<i class='nc-icon nc-check-2'></i>" switch-off-text="<i class='nc-icon nc-simple-remove'></i>">
+    </bSwitch>
+    <bSwitch [switch-on-color]="'danger'" [switch-off-color]="'danger'"
+        switch-on-text="<i class='nc-icon nc-check-2'></i>" switch-off-text="<i class='nc-icon nc-simple-remove'></i>">
+        Toggle is off
+    </bSwitch>
+</div>
+
+<div id="labels">
+    <div class="title">
+        <h3>Badges</h3>
+        <h3>
+            <small>Simple</small>
+        </h3>
+    </div>
+    <span class="badge badge-pill badge-default mr-1">Default</span>
+    <span class="badge badge-pill badge-primary mr-1">Primary</span>
+    <span class="badge badge-pill badge-info mr-1">Info</span>
+    <span class="badge badge-pill badge-success mr-1">Success</span>
+    <span class="badge badge-pill badge-warning mr-1">Warning</span>
+    <span class="badge badge-pill badge-danger">Danger</span>
+    <br />
+    <div class="title">
+        <h3>
+            <small>Icons</small>
+        </h3>
+    </div>
+    <span class="badge badge-pill badge-default mr-1"><i class="fa fa-unlock-alt" aria-hidden="true"></i></span>
+    <span class="badge badge-pill badge-primary mr-1"><i class="fa fa-id-card-o" aria-hidden="true"></i></span>
+    <span class="badge badge-pill badge-info mr-1"><i class="fa fa-info" aria-hidden="true"></i></span>
+    <span class="badge badge-pill badge-success mr-1"><i class="fa fa-comments" aria-hidden="true"></i></span>
+    <span class="badge badge-pill badge-warning mr-1"><i class="fa fa-cog" aria-hidden="true"></i></span>
+    <span class="badge badge-pill badge-danger"><i class="fa fa-battery-half" aria-hidden="true"></i></span>
+</div>
+<div id="tags">
+    <div class="title">
+        <h3>Tags</h3>
+    </div>
+    <tag-input [(ngModel)]='tagItems' theme='regular-theme'></tag-input>
+</div>
