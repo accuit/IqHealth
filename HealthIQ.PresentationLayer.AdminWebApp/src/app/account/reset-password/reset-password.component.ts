@@ -9,13 +9,14 @@ import { UserMaster } from 'src/app/shared/components/user/user.model';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AlertService } from 'src/app/services/alert.service';
+import { BaseFormValidationComponent } from 'src/app/shared/components/base-form-validation/base-form-validation.component';
 
 @Component({
   selector: 'app-reset-password',
   templateUrl: './reset-password.component.html',
   styleUrls: ['./reset-password.component.scss']
 })
-export class ResetPasswordComponent implements OnInit {
+export class ResetPasswordComponent extends BaseFormValidationComponent implements OnInit {
 
   loginForm: FormGroup;
   forgetForm: FormGroup;
@@ -32,6 +33,7 @@ export class ResetPasswordComponent implements OnInit {
     private readonly router: Router,
     activatedRoute: ActivatedRoute
   ) {
+    super();
     const id: any = activatedRoute.params.pipe(map(p => p.id));
     this.GUID = id ? id.source.value['id'] : '';
   }
