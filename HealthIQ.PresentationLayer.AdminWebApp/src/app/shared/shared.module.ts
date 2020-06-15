@@ -5,13 +5,17 @@ import { MaterialModule } from '../app.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FieldErrorDisplayComponent } from './components/field-error-display/field-error-display.component';
 import { BaseFormValidationComponent } from './components/base-form-validation/base-form-validation.component';
+import { NouisliderModule } from 'ng2-nouislider';
+import { TagInputModule } from 'ngx-chips';
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
-        MaterialModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        NouisliderModule,
+        TagInputModule,
+        MaterialModule
     ],
     declarations: [
         FieldErrorDisplayComponent,

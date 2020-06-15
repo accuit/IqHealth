@@ -16,6 +16,7 @@ namespace HealthIQ.PersistenceLayer.Data.AdminEntity
             UserRoles = new HashSet<UserRole>();
             UserServiceAccesses = new HashSet<UserServiceAccess>();
             UserSystemSettings = new HashSet<UserSystemSetting>();
+            
         }
 
         [Key]
@@ -85,5 +86,6 @@ namespace HealthIQ.PersistenceLayer.Data.AdminEntity
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserSystemSetting> UserSystemSettings { get; set; }
+
     }
 }

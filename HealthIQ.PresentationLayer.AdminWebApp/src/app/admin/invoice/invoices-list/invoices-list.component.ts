@@ -1,23 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../user.service';
 import { UserMaster } from 'src/app/shared/components/user/user.model';
+import { UserService } from '../../user/user.service';
 
 @Component({
-  selector: 'app-users-list',
-  templateUrl: './users-list.component.html',
-  styleUrls: ['./users-list.component.css']
+  selector: 'app-invoices-list',
+  templateUrl: './invoices-list.component.html',
+  styleUrls: ['./invoices-list.component.css']
 })
-export class UsersListComponent implements OnInit {
+export class InvoicesListComponent implements OnInit {
 
   constructor(private readonly service: UserService) { }
 
   columns: Array<string>;
-  students: Array<UserMaster>;
+  invoices: Array<UserMaster>;
   ngOnInit(): void {
     this.service.getStudents().subscribe(res => {
-      this.students = res;
+      this.invoices = res;
       this.columns = ['ID', 'First Name', 'Last Name', 'Email Address', 'Mobile No.'];
     })
   }
-
 }

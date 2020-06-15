@@ -7,12 +7,12 @@ using HealthIQ.PersistenceLayer.Data.Repository;
 using System;
 using System.Collections.Generic;
 
-namespace LaymanWoods.BusinessLayer.ServiceImpl
+namespace HealthIQ.BusinessLayer.ServiceImpl
 {
     public class StudentManager : ServiceBase, IStudentService
     {
         [Unity.Dependency(ContainerDataLayerInstanceNames.STUDENT_REPOSITORY)]
-        public IStudentRepository UserRepository { get; set; }
+        public IStudentRepository StudentRepository { get; set; }
         private readonly IMapper mapper;
         public StudentManager(IMapper mapper)
         {
@@ -21,24 +21,35 @@ namespace LaymanWoods.BusinessLayer.ServiceImpl
 
         public bool DeleteStudentInfo(int Id)
         {
-            return UserRepository.DeleteStudentInfo(Id);
+            return StudentRepository.DeleteStudentInfo(Id);
         }
 
         public List<UserMasterDTO> GetAllStudents()
         {
-            var result = UserRepository.GetAllStudents();
+            var result = StudentRepository.GetAllStudents();
             return mapper.Map<List<UserMasterDTO>>(result);
         }
 
         public int SubmitNewStudent(UserMasterDTO student)
         {
             UserMaster U = mapper.Map<UserMaster>(student);
-            return UserRepository.SubmitNewStudent(U);
+            return StudentRepository.SubmitNewStudent(U);
         }
 
         public bool UpdateStudentInfo(UserMasterDTO student)
         {
             throw new NotImplementedException();
+        }
+
+        public StudentInvoiceDTO GetInvoiceDetails(int ID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int AddUpdateStudentInvoice(StudentInvoiceDTO student)
+        {
+            StudentInvoice S = mapper.Map<StudentInvoice>(student);
+            return StudentRepository.AddUpdateStudentInvoice(S);
         }
     }
 }

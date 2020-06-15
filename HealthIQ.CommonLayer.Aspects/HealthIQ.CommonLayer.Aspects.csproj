@@ -74,11 +74,13 @@
     <Compile Include="DTO\EmailTemplateDTO.cs" />
     <Compile Include="DTO\InteriorCategoryDTO.cs" />
     <Compile Include="DTO\InteriorProductsDTO.cs" />
+    <Compile Include="DTO\InvoiceItemsDTO.cs" />
     <Compile Include="DTO\OTPDTO.cs" />
     <Compile Include="DTO\ProductHelpDTO.cs" />
     <Compile Include="DTO\CompleteInteriorListingDTO.cs" />
     <Compile Include="DTO\ProductMasterDTO.cs" />
     <Compile Include="DTO\Response.cs" />
+    <Compile Include="DTO\StudentInvoiceDTO.cs" />
     <Compile Include="DTO\UserMasterDTO.cs" />
     <Compile Include="IMapper.cs" />
     <Compile Include="Mapper.cs" />

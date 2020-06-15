@@ -13,5 +13,7 @@ namespace HealthIQ.PersistenceLayer.Data.Repository
         int SubmitNewStudent(UserMaster student);
         bool UpdateStudentInfo(UserMaster student);
         bool DeleteStudentInfo(int Id);
+        StudentInvoice GetInvoiceDetails(int ID);
+        int AddUpdateStudentInvoice(StudentInvoice student);
     }
 }

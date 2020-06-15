@@ -114,6 +114,7 @@
     <Compile Include="AdminEntity\HealthServiceMaster.cs" />
     <Compile Include="AdminEntity\HIQAdminEntities.cs" />
     <Compile Include="AdminEntity\HospitalMaster.cs" />
+    <Compile Include="AdminEntity\InvoiceItems.cs" />
     <Compile Include="AdminEntity\JobApplication.cs" />
     <Compile Include="AdminEntity\LoginAttemptHistory.cs" />
     <Compile Include="AdminEntity\ModuleMaster.cs" />
@@ -127,6 +128,7 @@
     <Compile Include="AdminEntity\RoleMaster.cs" />
     <Compile Include="AdminEntity\RoleModule.cs" />
     <Compile Include="AdminEntity\SpecialityMaster.cs" />
+    <Compile Include="AdminEntity\StudentInvoice.cs" />
     <Compile Include="AdminEntity\StudentMaster.cs" />
     <Compile Include="AdminEntity\SubCours.cs" />
     <Compile Include="AdminEntity\SystemSetting.cs" />

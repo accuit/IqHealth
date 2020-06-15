@@ -1,0 +1,135 @@
+<form [formGroup]="formGroup">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card ">
+                <div class="card-header card-header-rose card-header-icon">
+                    <div class="card-icon">
+                        <i class="material-icons">contacts</i>
+                    </div>
+                    <h4 class="card-title">Invoice Details</h4>
+                </div>
+                <div class="card-body ">
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Billing Name *" formControlName="name">
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <input matInput [matDatepicker]="picker" formControlName="invoiceDate" placeholder="Invoice Date *" (click)="picker.open()">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-select placeholder="Select Student *" formControlName="userID" name="student">
+                            <mat-option *ngFor="let student of students" [value]="student.userID">
+                                {{ student.firstName }} {{ student.lastName }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card ">
+                <div class="card-header card-header-rose card-header-icon">
+                    <div class="card-icon">
+                        <i class="material-icons">mail_outline</i>
+                    </div>
+                    <h4 class="card-title">Invoice Address Details</h4>
+                </div>
+                <div class="card-body ">
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Billing Address *" formControlName="address">
+                    </mat-form-field>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-8 col-sm-4">
+                            <mat-form-field>
+                                <mat-select placeholder="Select City" formControlName="city" name="city">
+                                    <mat-option *ngFor="let c of cities" [value]="c.id">
+                                        {{ c.name }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-6 col-md-8 col-sm-4">
+                            <mat-form-field>
+                                <mat-select placeholder="Select State" formControlName="state" name="state">
+                                    <mat-option *ngFor="let state of states" [value]="state.id">
+                                        {{ state.name }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-8 col-sm-4">
+                            <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Zip Code" formControlName="pin">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-6 col-md-8 col-sm-4">
+                            <mat-form-field>
+                                <mat-select placeholder="Select Country" formControlName="country" name="c">
+                                    <mat-option *ngFor="let c of countries" [value]="c.id">
+                                        {{ c.name }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card ">
+                <div class="card-header card-header-rose card-header-icon">
+                    <div class="card-text">
+                        <h4 class="card-title">Payment Details</h4>
+                    </div>
+                </div>
+                <div class="card-body ">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-8 col-sm-4">
+                            <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Sub Total *" formControlName="subTotal">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-3 col-md-8 col-sm-4">
+                            <mat-form-field class="example-full-width">
+                                <input matInput placeholder="GST *" formControlName="tax">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-3 col-md-8 col-sm-4">
+                            <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Total Amount">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-3 col-md-8 col-sm-4">
+                            <mat-form-field>
+                                <mat-select placeholder="Payment Mode" formControlName="paymentMode" name="payment">
+                                    <mat-option *ngFor="let p of paymentModes" [value]="p.id">
+                                        {{ p.name }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="category form-category">* Required fields</div>
+                </div>
+                <div class="card-footer text-right">
+                    <mat-checkbox class="example-margin mb-0" (click)="checkVerified()">I have verified all the mentioned details.</mat-checkbox>
+                    <br>
+                    <button *ngIf="!inProgress" disabled="false" mat-raised-button type="submit" class="btn btn-rose" (click)="onSubmit()">Generate
+                        invoice</button>
+                    <a *ngIf="inProgress" href="#paper-kit" class="btn btn-round btn-rose">
+                        <div class="uil-reload-css reload-small">
+                            <div></div>
+                        </div> Generating Invoice
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -7,8 +7,8 @@
     <ProjectGuid>{C7699E0F-9757-4BDE-BA3A-848DFBDF7CC2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LaymanWoods.BusinessLayer.ServiceImpl</RootNamespace>
-    <AssemblyName>LaymanWoods.BusinessLayer.ServiceImpl</AssemblyName>
+    <RootNamespace>HealthIQ.BusinessLayer.ServiceImpl</RootNamespace>
+    <AssemblyName>HealthIQ.BusinessLayer.ServiceImpl</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

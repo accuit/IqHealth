@@ -75,5 +75,34 @@ namespace HealthIQ.PresentationLayer.AdminApp.Controllers
             }
             return response;
         }
+
+        [HttpPost]
+        [Route("create-invoice")]
+        public JsonResponse<long> CreateORUpdateStudentinvoice(StudentInvoiceDTO invoice)
+        {
+            JsonResponse<long> response = new JsonResponse<long>();
+
+            try
+            {
+                response.SingleResult = StudentBusinessInstance.AddUpdateStudentInvoice(invoice);
+                response.StatusCode = response.SingleResult > 0 ? "200" : "500";
+                response.IsSuccess = response.SingleResult > 0 ? true : false;
+                response.Message = "User successfully submitted.";
+            }
+            catch (FormattedDbEntityValidationException ex)
+            {
+                response.IsSuccess = false;
+                response.StatusCode = "500";
+                response.Message = string.Format(Messages.Exception, ex.Message, ex.InnerException, ex.StackTrace);
+            }
+            catch (Exception ex)
+            {
+                response.IsSuccess = false;
+                response.StatusCode = "500";
+                response.Message = string.Format(Messages.Exception, ex.Message, ex.InnerException, ex.StackTrace);
+            }
+
+            return response;
+        }
     }
 }

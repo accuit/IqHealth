@@ -12,6 +12,8 @@ namespace HealthIQ.PersistenceLayer.Data.AdminEntity
         {
         }
 
+        public virtual DbSet<InvoiceItems> InvoiceItems { get; set; }
+        public virtual DbSet<StudentInvoice> StudentInvoices { get; set; }
         public virtual DbSet<AddressMaster> AddressMasters { get; set; }
         public virtual DbSet<BookingMaster> BookingMasters { get; set; }
         public virtual DbSet<CommonSetup> CommonSetups { get; set; }

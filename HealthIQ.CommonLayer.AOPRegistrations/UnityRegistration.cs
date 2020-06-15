@@ -13,7 +13,7 @@ using HealthIQ.BusinessLayer.ServiceImpl;
 using HealthIQ.BusinessLayer.Base.Manager;
 using HealthIQ.BusinessLayer.Services.Contracts;
 using HealthIQ.CommonLayer.AopContainer;
-using LaymanWoods.BusinessLayer.ServiceImpl;
+using HealthIQ.BusinessLayer.ServiceImpl;
 
 namespace HealthIQ.CommonLayer.AOPRegistrations
 {
@@ -82,6 +82,12 @@ namespace HealthIQ.CommonLayer.AOPRegistrations
                 
                 map.CreateMap<UserMasterDTO, UserMaster>();
                 map.CreateMap<UserMaster, UserMasterDTO>();
+
+                map.CreateMap<StudentInvoice, StudentInvoiceDTO>();
+                map.CreateMap<StudentInvoiceDTO, StudentInvoice>();
+
+                map.CreateMap<InvoiceItems, InvoiceItemsDTO>();
+                map.CreateMap<InvoiceItemsDTO, InvoiceItems>();
 
             });
 

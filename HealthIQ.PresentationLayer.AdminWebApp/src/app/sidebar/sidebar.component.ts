@@ -17,10 +17,21 @@ export const ROUTES: RouteInfo[] = [{
     title: 'Maintain Student',
     type: 'sub',
     icontype: 'image',
-    collapse: 'pages',
+    collapse: 'user',
     children: [
         {path: 'users-list', title: 'Students List', ab:'S'},
         {path: 'create-user', title: 'Create Student', ab:'TP'}
+    ]
+},
+{
+    path: '/invoice',
+    title: 'Invoice Manager',
+    type: 'sub',
+    icontype: 'image',
+    collapse: 'invoice',
+    children: [
+        {path: 'invoices-list', title: 'All invoices', ab:'AI'},
+        {path: 'create-invoice', title: 'Generate Invoice', ab:'GI'}
     ]
 }
 ];
