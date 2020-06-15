@@ -30,10 +30,23 @@ namespace HealthIQ.BusinessLayer.ServiceImpl
             return mapper.Map<List<UserMasterDTO>>(result);
         }
 
+        public UserMasterDTO GetStudentProfile(int id)
+        {
+            var result = StudentRepository.GetStudentProfile(id);
+            return mapper.Map<UserMasterDTO>(result);
+        }
+
         public int SubmitNewStudent(UserMasterDTO student)
         {
             UserMaster U = mapper.Map<UserMaster>(student);
             return StudentRepository.SubmitNewStudent(U);
+        }
+
+
+        public IList<StudentInvoiceDTO> GetStudentInvoices(int userId)
+        {
+            var result = StudentRepository.GetStudentInvoices(userId);
+            return mapper.Map<List<StudentInvoiceDTO>>(result);
         }
 
         public bool UpdateStudentInfo(UserMasterDTO student)
@@ -41,9 +54,10 @@ namespace HealthIQ.BusinessLayer.ServiceImpl
             throw new NotImplementedException();
         }
 
-        public StudentInvoiceDTO GetInvoiceDetails(int ID)
+        public StudentInvoiceDTO GetInvoiceDetails(int id)
         {
-            throw new NotImplementedException();
+            var result = StudentRepository.GetInvoiceDetails(id);
+            return mapper.Map<StudentInvoiceDTO>(result);
         }
 
         public int AddUpdateStudentInvoice(StudentInvoiceDTO student)
@@ -51,5 +65,6 @@ namespace HealthIQ.BusinessLayer.ServiceImpl
             StudentInvoice S = mapper.Map<StudentInvoice>(student);
             return StudentRepository.AddUpdateStudentInvoice(S);
         }
+
     }
 }

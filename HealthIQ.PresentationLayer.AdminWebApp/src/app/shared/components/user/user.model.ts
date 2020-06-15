@@ -13,7 +13,9 @@ export class UserMaster {
     address: string;
     city: string;
     state: number;
+    pinCode: string;
     userStatus: number;
     role: number;
     token?: string;
+    createdDate: Date;
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserMaster } from 'src/app/shared/components/user/user.model';
 import { UserService } from '../../user/user.service';
+import { InvoiceService } from '../invoice.service';
+import { StudentInvoice } from '../invoice.model';
 
 @Component({
   selector: 'app-invoices-list',
@@ -9,14 +11,14 @@ import { UserService } from '../../user/user.service';
 })
 export class InvoicesListComponent implements OnInit {
 
-  constructor(private readonly service: UserService) { }
+  constructor(private readonly service: InvoiceService) { }
 
   columns: Array<string>;
-  invoices: Array<UserMaster>;
+  invoices: Array<StudentInvoice>;
   ngOnInit(): void {
-    this.service.getStudents().subscribe(res => {
-      this.invoices = res;
-      this.columns = ['ID', 'First Name', 'Last Name', 'Email Address', 'Mobile No.'];
+    this.service.getUserInvoices(5).subscribe(res => {
+      this.invoices = res.singleResult;
+      this.columns = ['ID', 'Billing Name', 'Invoice Date', 'Billing Address', 'Tax', 'SubTotal'];
     })
   }
 }

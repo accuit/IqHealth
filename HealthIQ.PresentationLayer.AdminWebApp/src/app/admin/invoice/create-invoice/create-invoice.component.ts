@@ -16,12 +16,8 @@ import { UserService } from '../../user/user.service';
 export class CreateInvoiceComponent extends BaseFormValidationComponent implements OnInit {
   students: Array<UserMaster>;
   formGroup: FormGroup;
-  isSubmitted = false;
-  inProgress = false;
   isVerified = false;
-  cities = [{ id: 1, name: 'Kolkata' }, { id: 2, name: 'Sydney' }, { id: 3, name: 'Dhaka' }];
-  states = [{ id: 1, name: 'West Bengal' }, { id: 2, name: 'Sydney' }, { id: 3, name: 'Dhaka' }];
-  countries = [{ id: 1, name: 'India' }, { id: 2, name: 'Bangladesh' }, { id: 3, name: 'Australia' }];
+
   paymentModes = [{ id: 1, name: 'Cash' }, { id: 2, name: 'Card' }, { id: 3, name: 'UPI' }];
   constructor(
     private readonly service: InvoiceService,

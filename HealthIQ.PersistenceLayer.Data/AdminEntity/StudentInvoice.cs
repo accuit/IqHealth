@@ -40,7 +40,7 @@
         [ForeignKey("UserID")]
         public virtual UserMaster User { get; set; }
         public virtual IEnumerable<InvoiceItems> InvoiceItems { get; set; }
-        public int IsDeleted { get; set; }
+        public bool IsDeleted { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? ModifiedDate { get; set; }
         public int CreatedBy { get; set; }

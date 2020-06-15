@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, NgForm, FormGroupDirective, AbstractControl } from '@angular/forms';
+import { FormGroup, FormControl, NgForm, FormGroupDirective, AbstractControl, FormBuilder } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 
 @Component({
@@ -9,6 +9,12 @@ import { ErrorStateMatcher } from '@angular/material/core';
 })
 export class BaseFormValidationComponent {
 
+  isSubmitted = false;
+  inProgress = false;
+  cities = [{ id: 1, name: 'Kolkata' }, { id: 2, name: 'Sydney' }, { id: 3, name: 'Dhaka' }];
+  states = [{ id: 1, name: 'West Bengal' }, { id: 2, name: 'Sydney' }, { id: 3, name: 'Dhaka' }];
+  countries = [{ id: 1, name: 'India' }, { id: 2, name: 'Bangladesh' }, { id: 3, name: 'Australia' }];
+  
   validEmailRegister: boolean = false;
   validConfirmPasswordRegister: boolean = false;
   validPasswordRegister: boolean = false;

@@ -7,6 +7,7 @@ import { FieldErrorDisplayComponent } from './components/field-error-display/fie
 import { BaseFormValidationComponent } from './components/base-form-validation/base-form-validation.component';
 import { NouisliderModule } from 'ng2-nouislider';
 import { TagInputModule } from 'ngx-chips';
+import { InvoiceTemplateComponent } from './components/invoice/invoice-template.component';
 
 @NgModule({
     imports: [
@@ -19,9 +20,10 @@ import { TagInputModule } from 'ngx-chips';
     ],
     declarations: [
         FieldErrorDisplayComponent,
-        BaseFormValidationComponent
+        BaseFormValidationComponent,
+        InvoiceTemplateComponent
     ],
-    exports: [FieldErrorDisplayComponent]
+    exports: [FieldErrorDisplayComponent, InvoiceTemplateComponent]
 })
 
 export class SharedModule { }

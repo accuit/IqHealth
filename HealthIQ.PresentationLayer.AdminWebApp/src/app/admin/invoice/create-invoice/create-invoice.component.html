@@ -12,13 +12,11 @@
                     <mat-form-field class="example-full-width">
                         <input matInput placeholder="Billing Name *" formControlName="name">
                     </mat-form-field>
-
                     <mat-form-field>
                         <input matInput [matDatepicker]="picker" formControlName="invoiceDate" placeholder="Invoice Date *" (click)="picker.open()">
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
                     </mat-form-field>
-
                     <mat-form-field>
                         <mat-select placeholder="Select Student *" formControlName="userID" name="student">
                             <mat-option *ngFor="let student of students" [value]="student.userID">
