@@ -22,10 +22,9 @@ namespace HealthIQ.PresentationLayer.AdminApp
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
-
+            // Web API configuration and services    
             config.SuppressDefaultHostAuthentication();
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
-            config.Filters.Add(new AuthorizeApiAttribute());
 
             // WebAPI when dealing with JSON & JavaScript!
             // Setup json serialization to serialize classes to camel (std. Json format)

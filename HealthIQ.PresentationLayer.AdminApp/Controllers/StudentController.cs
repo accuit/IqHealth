@@ -10,6 +10,7 @@ using System.Web.Http;
 
 namespace HealthIQ.PresentationLayer.AdminApp.Controllers
 {
+    [Authorize]
     [RoutePrefix("api/student")]
     public class StudentController : BaseAPIController
     {
