@@ -1,10 +1,15 @@
 ﻿using HealthIQ.CommonLayer.Aspects;
 using HealthIQ.PersistenceLayer.Data.AdminEntity;
+using System.Collections.Generic;
 
 namespace HealthIQ.PersistenceLayer.Data.Repository
 {
     public interface ISecurityRepository
     {
+        List<RoleMaster> GetRoles();
+
+        List<UserRole> GetUserRoles(int userId);
+
         /// <summary>
         /// Get Email Template based on ID
         /// </summary>

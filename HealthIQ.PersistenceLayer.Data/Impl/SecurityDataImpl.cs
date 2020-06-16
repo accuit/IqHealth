@@ -3,6 +3,7 @@ using HealthIQ.CommonLayer.Aspects.Utilities;
 using HealthIQ.PersistenceLayer.Data.AdminEntity;
 using HealthIQ.PersistenceLayer.Data.Repository;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace HealthIQ.PersistenceLayer.Data.Impl
@@ -12,6 +13,14 @@ namespace HealthIQ.PersistenceLayer.Data.Impl
     /// </summary>
     public class SecurityDataImpl : BaseDataImpl, ISecurityRepository
     {
+        public List<RoleMaster> GetRoles()
+        {
+            return HIQAdminContext.RoleMasters.Where(x => !x.IsDeleted).ToList();
+        }
+            public List<UserRole> GetUserRoles(int userId)
+        {
+            return HIQAdminContext.UserRoles.Where(x => x.UserID == userId).ToList();
+        }
         /// <summary>
         /// Method to fetch user authorization parameters for various modules in application
         /// </summary>

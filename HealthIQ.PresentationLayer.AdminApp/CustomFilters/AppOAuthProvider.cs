@@ -1,6 +1,8 @@
 ﻿using HealthIQ.BusinessLayer.Services;
+using HealthIQ.BusinessLayer.Services.Contracts;
 using HealthIQ.CommonLayer.AopContainer;
 using HealthIQ.CommonLayer.Aspects;
+using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
@@ -19,15 +21,7 @@ namespace HealthIQ.PresentationLayer.AdminApp.CustomFilters
     public class AppOAuthProvider : OAuthAuthorizationServerProvider
     {
         #region Private Properties
-
-        /// <summary>
-        /// Public client ID property.
-        /// </summary>
-        private readonly string _publicClientId;
-
-        
         private IUserService userBusinessInstance;
-
         public IUserService UserBusinessInstance
         {
             get
@@ -40,82 +34,79 @@ namespace HealthIQ.PresentationLayer.AdminApp.CustomFilters
             }
         }
 
-        #endregion
-
-        #region Default Constructor method.
-
-        /// <summary>
-        /// Default Constructor method.
-        /// </summary>
-        /// <param name="publicClientId">Public client ID parameter</param>
-        public AppOAuthProvider(string publicClientId)
+        private ISecurityService securityBusinessInstance;
+        public ISecurityService SecurityBusinessInstance
         {
-            //TODO: Pull from configuration
-            if (publicClientId == null)
+            get
             {
-                throw new ArgumentNullException(nameof(publicClientId));
+                if (securityBusinessInstance == null)
+                {
+                    securityBusinessInstance = AopEngine.Resolve<ISecurityService>(AspectEnums.AspectInstanceNames.SecurityManager, AspectEnums.ApplicationName.HealthIQ);
+                }
+                return securityBusinessInstance;
             }
-
-            // Settings.
-            _publicClientId = publicClientId;
         }
 
         #endregion
 
-        #region Grant resource owner credentials override method.
+        public override async Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
+        {
+            context.Validated();
+        }
 
-        /// <summary>
-        /// Grant resource owner credentials overload method.
-        /// </summary>
-        /// <param name="context">Context parameter</param>
-        /// <returns>Returns when task is completed</returns>
+        #region Grant resource owner credentials override method.
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
-            // Initialization.
-            string usernameVal = context.UserName;
-            string passwordVal = context.Password;
-            var user = new Object(); // UserBusinessInstance.UserLogin(usernameVal, passwordVal);
 
-            // Verification.
-            if (user == null )
+            string username = context.UserName;
+            string password = context.Password;
+            var user = UserBusinessInstance.UserLogin(username, password);
+
+            if (user != null)
             {
-                // Settings.
-                context.SetError("invalid_grant", "The user name or password is incorrect.");
-
-                // Retuen info.
-                return;
+                var identity = new ClaimsIdentity(context.Options.AuthenticationType);
+                identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.UserID.ToString()));
+                identity.AddClaim(new Claim(ClaimTypes.Email, user.Email));
+                identity.AddClaim(new Claim(ClaimTypes.Name, user.FirstName + " " + user.LastName));
+                identity.AddClaim(new Claim("LoggedOn", DateTime.Now.ToString()));
+                var userRoles = SecurityBusinessInstance.GetUserRoles(user.UserID);
+                foreach (var role in userRoles)
+                {
+                    identity.AddClaim(new Claim(ClaimTypes.Role, role.RoleName));
+                }
+                var additionalData = new AuthenticationProperties(new Dictionary<string, string>{
+                    {
+                        "role", Newtonsoft.Json.JsonConvert.SerializeObject(userRoles)
+                    }
+                });
+                var token = new AuthenticationTicket(identity, additionalData);
+                context.Validated(token);
             }
+            else
+                return;
 
-            // Initialization.
-            var claims = new List<Claim>();
-            var userInfo = user;
+            //// Initialization.
+            //var claims = new List<Claim>();
+            //claims.Add(new Claim(ClaimTypes.Name, user.FirstName + " " + user.LastName));
+            //claims.Add(new Claim(ClaimTypes.Email, user.Email));
+            //claims.Add(new Claim(ClaimTypes.MobilePhone, user.Mobile));
+            //claims.Add(new Claim(ClaimTypes.Role, user.Email));
+            //// Setting Claim Identities for OAUTH 2 protocol.
+            //ClaimsIdentity oAuthClaimIdentity = new ClaimsIdentity(claims, OAuthDefaults.AuthenticationType);
+            //ClaimsIdentity cookiesClaimIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationType);
 
-
-
-            //claims.Add(new Claim(ClaimTypes.Name, userInfo.cemailaddress));
-
-            // Setting Claim Identities for OAUTH 2 protocol.
-            ClaimsIdentity oAuthClaimIdentity = new ClaimsIdentity(claims, OAuthDefaults.AuthenticationType);
-            ClaimsIdentity cookiesClaimIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationType);
-
-            // Setting user authentication.
-            //AuthenticationProperties properties = CreateProperties(userInfo.cemailaddress);
+            //// Setting user authentication.
+            //AuthenticationProperties properties = CreateProperties(user.Email);
             //AuthenticationTicket ticket = new AuthenticationTicket(oAuthClaimIdentity, properties);
 
-            // Grant access to authorize user.
+            //// Grant access to authorize user.
             //context.Validated(ticket);
-            context.Request.Context.Authentication.SignIn(cookiesClaimIdentity);
+            //context.Request.Context.Authentication.SignIn(cookiesClaimIdentity);
         }
 
         #endregion
 
         #region Token endpoint override method.
-
-        /// <summary>
-        /// Token endpoint override method
-        /// </summary>
-        /// <param name="context">Context parameter</param>
-        /// <returns>Returns when task is completed</returns>
         public override Task TokenEndpoint(OAuthTokenEndpointContext context)
         {
             foreach (KeyValuePair<string, string> property in context.Properties.Dictionary)
@@ -126,78 +117,6 @@ namespace HealthIQ.PresentationLayer.AdminApp.CustomFilters
 
             // Return info.
             return Task.FromResult<object>(null);
-        }
-
-        #endregion
-
-        #region Validate Client authntication override method
-
-        /// <summary>
-        /// Validate Client authntication override method
-        /// </summary>
-        /// <param name="context">Contect parameter</param>
-        /// <returns>Returns validation of client authentication</returns>
-        public override Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
-        {
-            // Resource owner password credentials does not provide a client ID.
-            if (context.ClientId == null)
-            {
-                // Validate Authoorization.
-                context.Validated();
-            }
-
-            // Return info.
-            return Task.FromResult<object>(null);
-        }
-
-        #endregion
-
-        #region Validate client redirect URI override method
-
-        /// <summary>
-        /// Validate client redirect URI override method
-        /// </summary>
-        /// <param name="context">Context parmeter</param>
-        /// <returns>Returns validation of client redirect URI</returns>
-        public override Task ValidateClientRedirectUri(OAuthValidateClientRedirectUriContext context)
-        {
-            // Verification.
-            if (context.ClientId == _publicClientId)
-            {
-                // Initialization.
-                Uri expectedRootUri = new Uri(context.Request.Uri, "/");
-
-                // Verification.
-                if (expectedRootUri.AbsoluteUri == context.RedirectUri)
-                {
-                    // Validating.
-                    context.Validated();
-                }
-            }
-
-            // Return info.
-            return Task.FromResult<object>(null);
-        }
-
-        #endregion
-
-        #region Create Authentication properties method.
-
-        /// <summary>
-        /// Create Authentication properties method.
-        /// </summary>
-        /// <param name="userName">User name parameter</param>
-        /// <returns>Returns authenticated properties.</returns>
-        public static AuthenticationProperties CreateProperties(string userName)
-        {
-            // Settings.
-            IDictionary<string, string> data = new Dictionary<string, string>
-                                               {
-                                                   { "userName", userName }
-                                               };
-
-            // Return info.
-            return new AuthenticationProperties(data);
         }
 
         #endregion

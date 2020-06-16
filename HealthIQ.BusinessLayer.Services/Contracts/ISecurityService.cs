@@ -1,10 +1,13 @@
 ﻿using HealthIQ.CommonLayer.Aspects;
 using HealthIQ.CommonLayer.Aspects.DTO;
+using System.Collections.Generic;
 
 namespace HealthIQ.BusinessLayer.Services.Contracts
 {
     public interface ISecurityService
     {
+        List<RoleMasterDTO> GetRoles();
+        List<UserRoleDTO> GetUserRoles(int userId);
         /// <summary>
         /// save OTP (One Time Password) to database
         /// </summary>
@@ -13,5 +16,6 @@ namespace HealthIQ.BusinessLayer.Services.Contracts
         bool SaveOTP(OTPDTO otp);
 
         EmailTemplateDTO GetEmailTemplate(AspectEnums.EmailTemplateType TemplateTypeID);
+
     }
 }

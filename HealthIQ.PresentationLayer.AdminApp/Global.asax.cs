@@ -34,7 +34,6 @@ namespace HealthIQ.PresentationLayer.AdminApp
             XmlConfigurator.Configure();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             UnityRegistration.InitializeAopContainer();
-            string configFile = AppUtil.GetAppSettings(AspectEnums.ConfigKeys.SchedulerConfigFile);
             _ = log4net.Config.XmlConfigurator.Configure();
         }
 
@@ -45,23 +44,6 @@ namespace HealthIQ.PresentationLayer.AdminApp
             Response.Headers.Remove("X-AspNet-Version"); //alternative to above solution
             Response.Headers.Remove("X-AspNetMvc-Version"); //alternative to above solution
             Response.Headers.Remove("X-Powered-By"); //alternative to above solution
-        }
-
-        protected void Session_Start(Object sender, EventArgs e)
-        {
-            Request.Cookies.Clear();
-            SessionStateSection sessionState =
-     (SessionStateSection)ConfigurationManager.GetSection("system.web/sessionState");
-            string sidCookieName = sessionState.CookieName;
-
-            if (Request.Cookies[sidCookieName] != null)
-            {
-                System.Web.HttpCookie sidCookie = Response.Cookies[sidCookieName];
-                sidCookie.Value = Session.SessionID;
-                sidCookie.HttpOnly = true;
-                sidCookie.Secure = true;
-                sidCookie.Path = "/";
-            }
         }
 
         protected void Session_End(Object sender, EventArgs e)

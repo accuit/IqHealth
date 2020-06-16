@@ -4,12 +4,13 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
+using Microsoft.Owin.Cors;
 using Microsoft.Owin.Security.OAuth;
 using HealthIQ.PresentationLayer.AdminApp.CustomFilters;
 
 namespace HealthIQ.PresentationLayer.AdminApp
 {
-    public partial class Startup
+    public partial class Startup1
     {
         #region Public and Protected Properties.
 
@@ -31,37 +32,40 @@ namespace HealthIQ.PresentationLayer.AdminApp
             // Enable the application to use a cookie to store information for the signed in user
             // and to use a cookie to temporarily store information about a user logging in with a third party login provider
             // Configure the sign in cookie
-            app.UseCookieAuthentication(new CookieAuthenticationOptions
-            {
-                AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
-                LoginPath = new PathString("/Account/Login"),
-                LogoutPath = new PathString("/Account/LogOff"),
-                ExpireTimeSpan = TimeSpan.FromMinutes(20.0),
-            });
+            //app.UseCookieAuthentication(new CookieAuthenticationOptions
+            //{
+            //    AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
+            //    LoginPath = new PathString("/api/account/user-login"),
+            //    LogoutPath = new PathString("/api/account/logoff"),
+            //    ExpireTimeSpan = TimeSpan.FromMinutes(20.0),
+            //});
 
-            app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
+            //app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
+
+            app.UseCors(CorsOptions.AllowAll);
 
             // Configure the application for OAuth based flow
-            PublicClientId = "self";
+            //PublicClientId = "self";
             OAuthOptions = new OAuthAuthorizationServerOptions
             {
-                TokenEndpointPath = new PathString("/Token"),
-                Provider = new AppOAuthProvider(PublicClientId),
+                TokenEndpointPath = new PathString("/token"),
+                Provider = new AppOAuthProvider(),
                 AuthorizeEndpointPath = new PathString("/Account/ExternalLogin"),
-                AccessTokenExpireTimeSpan = TimeSpan.FromHours(4),
+                AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(20),
                 AllowInsecureHttp = true //Don't do this in production ONLY FOR DEVELOPING: ALLOW INSECURE HTTP!
             };
 
             // Enable the application to use bearer tokens to authenticate users
             app.UseOAuthBearerTokens(OAuthOptions);
+            app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
 
             // Enables the application to temporarily store user information when they are verifying the second factor in the two-factor authentication process.
-            app.UseTwoFactorSignInCookie(DefaultAuthenticationTypes.TwoFactorCookie, TimeSpan.FromMinutes(5));
+            //app.UseTwoFactorSignInCookie(DefaultAuthenticationTypes.TwoFactorCookie, TimeSpan.FromMinutes(5));
 
             // Enables the application to remember the second login verification factor such as phone or email.
             // Once you check this option, your second step of verification during the login process will be remembered on the device where you logged in from.
             // This is similar to the RememberMe option when you log in.
-            app.UseTwoFactorRememberBrowserCookie(DefaultAuthenticationTypes.TwoFactorRememberBrowserCookie);
+           // app.UseTwoFactorRememberBrowserCookie(DefaultAuthenticationTypes.TwoFactorRememberBrowserCookie);
 
         }
     }

@@ -1,4 +1,5 @@
-﻿using Microsoft.Owin.Security.OAuth;
+﻿using HealthIQ.PresentationLayer.AdminApp.CustomFilters;
+using Microsoft.Owin.Security.OAuth;
 using System.Configuration;
 using System.Web.Http;
 using System.Web.Http.Cors;
@@ -24,6 +25,7 @@ namespace HealthIQ.PresentationLayer.AdminApp
 
             config.SuppressDefaultHostAuthentication();
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
+            config.Filters.Add(new AuthorizeApiAttribute());
 
             // WebAPI when dealing with JSON & JavaScript!
             // Setup json serialization to serialize classes to camel (std. Json format)
