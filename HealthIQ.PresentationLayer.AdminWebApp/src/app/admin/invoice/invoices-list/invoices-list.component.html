@@ -16,11 +16,12 @@
                         </thead>
                       <tbody>
                           <tr *ngFor="let row of invoices">
-                              <td>{{ row.userID}}</td>
-                              <td>{{ row.firstName}}</td>
-                              <td>{{ row.lastName}}</td>
-                              <td>{{ row.email}}</td>
-                              <td>{{ row.mobile}}</td>
+                              <td>{{ row.id}}</td>
+                              <td>{{ row.name}}</td>
+                              <td>{{ row.invoiceDate | date}}</td>
+                              <td>{{ row.address}}</td>
+                              <td>{{ row.tax}}</td>
+                              <td>{{ row.subTotal}}</td>
                           </tr>
                       </tbody>
                 </table>

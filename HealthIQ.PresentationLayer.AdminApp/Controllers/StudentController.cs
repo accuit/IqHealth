@@ -35,6 +35,28 @@ namespace HealthIQ.PresentationLayer.AdminApp.Controllers
             return response;
         }
 
+        [HttpGet]
+        [Route("get-profile/{id}")]
+        public JsonResponse<UserMasterDTO> GetStudentProfile(int id)
+        {
+            JsonResponse<UserMasterDTO> response = new JsonResponse<UserMasterDTO>();
+            var UserMasterDTO = new UserMasterDTO();
+            try
+            {
+                response.SingleResult = StudentBusinessInstance.GetStudentProfile(id);
+                response.StatusCode = "200";
+                response.IsSuccess = true;
+            }
+            catch (Exception ex)
+            {
+                response.SingleResult = null;
+                response.StatusCode = "500";
+                response.IsSuccess = false;
+                response.Message = ex.Message;
+            }
+            return response;
+        }
+
         [HttpPost]
         [Route("add-student")]
         public JsonResponse<long> AddNewStudent(UserMasterDTO user)
@@ -72,6 +94,50 @@ namespace HealthIQ.PresentationLayer.AdminApp.Controllers
                 response.IsSuccess = false;
                 response.StatusCode = "200";
                 response.Message = string.Format("User with email address {0} already exists. Try again.", user.Email);
+            }
+            return response;
+        }
+
+        [HttpGet]
+        [Route("get-invoices/{userId}")]
+        public JsonResponse<IList<StudentInvoiceDTO>> GetStudentInvoices(int userId)
+        {
+            JsonResponse<IList<StudentInvoiceDTO>> response = new JsonResponse<IList<StudentInvoiceDTO>>();
+            var StudentInvoiceDTO = new List<StudentInvoiceDTO>();
+            try
+            {
+                response.SingleResult = StudentBusinessInstance.GetStudentInvoices(userId);
+                response.StatusCode = "200";
+                response.IsSuccess = true;
+            }
+            catch (Exception ex)
+            {
+                response.SingleResult = null;
+                response.StatusCode = "500";
+                response.IsSuccess = false;
+                response.Message = ex.Message;
+            }
+            return response;
+        }
+
+        [HttpGet]
+        [Route("get-invoice-details/{Id}")]
+        public JsonResponse<StudentInvoiceDTO> GetInvoiceDetails(int Id)
+        {
+            JsonResponse<StudentInvoiceDTO> response = new JsonResponse<StudentInvoiceDTO>();
+            var StudentInvoiceDTO = new List<StudentInvoiceDTO>();
+            try
+            {
+                response.SingleResult = StudentBusinessInstance.GetInvoiceDetails(Id);
+                response.StatusCode = "200";
+                response.IsSuccess = true;
+            }
+            catch (Exception ex)
+            {
+                response.SingleResult = null;
+                response.StatusCode = "500";
+                response.IsSuccess = false;
+                response.Message = ex.Message;
             }
             return response;
         }

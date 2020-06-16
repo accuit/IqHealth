@@ -15,8 +15,12 @@ export class InvoiceService {
     });
   }
 
-  getAllInvoices(): any {
-    return this.httpClient.get(this.baseUrl + 'student/get-invoice', { headers: this.headers });
+  getUserInvoices(userId: number): any {
+    return this.httpClient.get(this.baseUrl + 'student/get-invoices/' + userId, { headers: this.headers });
+  }
+
+  getInvoiceDetails(id: number): any {
+    return this.httpClient.get(this.baseUrl + 'student/get-invoice-details/' + id, { headers: this.headers });
   }
 
   createInvoice(invoice: any) {
