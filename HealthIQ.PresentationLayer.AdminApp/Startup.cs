@@ -10,6 +10,9 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.Owin.Security.Jwt;
 using Microsoft.Owin.Security;
+using HealthIQ.CommonLayer.Aspects.Utilities;
+using HealthIQ.CommonLayer.Aspects;
+using System.Configuration;
 
 [assembly: OwinStartup(typeof(HealthIQ.PresentationLayer.AdminApp.Startup))]
 namespace HealthIQ.PresentationLayer.AdminApp
@@ -27,9 +30,9 @@ namespace HealthIQ.PresentationLayer.AdminApp
                         ValidateIssuer = true,
                         ValidateAudience = true,
                         ValidateIssuerSigningKey = true,
-                        ValidIssuer = "http://mysite.com", //some string, normally web url,  
-                        ValidAudience = "http://mysite.com",
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("my_secret_key_12345"))
+                        ValidIssuer = "https://health-iq.in", //some string, normally web url,  
+                        ValidAudience = "https://health-iq.in",
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(AppUtil.GetAppSettings(AspectEnums.ConfigKeys.JWTSecretKey)))
                     }
                 });
         }

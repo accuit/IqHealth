@@ -21,10 +21,10 @@ namespace HealthIQ.PresentationLayer.AdminApp.Controllers
     {
         [Route("get-token")]
         [HttpGet]
-        public Object GetToken()
+        public string GetToken()
         {
-            string key = "my_secret_key_12345"; //Secret key which will be used later during validation    
-            var issuer = "http://mysite.com";  //normally this will be your site URL    
+            string key = AppUtil.GetAppSettings(AspectEnums.ConfigKeys.JWTSecretKey); //Secret key which will be used later during validation    
+            var issuer = AppUtil.GetAppSettings(AspectEnums.ConfigKeys.TokenIssuer);  //normally this will be your site URL    
 
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
@@ -33,17 +33,46 @@ namespace HealthIQ.PresentationLayer.AdminApp.Controllers
             var permClaims = new List<Claim>();
             permClaims.Add(new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()));
             permClaims.Add(new Claim("valid", "1"));
-            permClaims.Add(new Claim("userid", "1"));
-            permClaims.Add(new Claim("name", "bilal"));
+            permClaims.Add(new Claim("userId", User.UserID.ToString()));
+            permClaims.Add(new Claim(ClaimTypes.Name, User.FirstName + " " + User.LastName));
 
             //Create Security Token object by giving required parameters    
             var token = new JwtSecurityToken(issuer, //Issure    
                             issuer,  //Audience    
                             permClaims,
-                            expires: DateTime.Now.AddDays(1),
+                            expires: DateTime.Now.AddMinutes(20),
                             signingCredentials: credentials);
             var jwt_token = new JwtSecurityTokenHandler().WriteToken(token);
-            return new { data = jwt_token };
+            return jwt_token;
+        }
+
+        [HttpPost]
+        [Route("user-login")]
+        public JsonResponse<UserMasterDTO> UserMasterLogin(UserLoginDTO u)
+        {
+            ActivityLog.SetLog("[Started] UserMasterLogin.", LogLoc.INFO);
+            JsonResponse<UserMasterDTO> response = new JsonResponse<UserMasterDTO>();
+            UserMasterDTO User = new UserMasterDTO();
+            if (!String.IsNullOrEmpty(u.email))
+            {
+                User = UserBusinessInstance.UserLogin(u.email, u.password);
+                if (User != null)
+                {
+                    response.SingleResult = User != null ? User : null;
+                    response.StatusCode = User != null ? "200" : "500";
+                    response.IsSuccess = User != null ? true : false;
+                    response.Message = User != null ? "Successfully loggedin" : Messages.LoginWrongPassword + " : Incorrect Password!"; ; ;
+                }
+            }
+            else
+            {
+                response.SingleResult = null;
+                response.StatusCode = "500";
+                response.IsSuccess = false;
+                response.Message = "Username or Email can not be empty.";
+            }
+            ActivityLog.SetLog("[Finished] UserMasterLogin.", LogLoc.INFO);
+            return response;
         }
 
         [HttpGet]
@@ -88,33 +117,6 @@ namespace HealthIQ.PresentationLayer.AdminApp.Controllers
                 response.IsSuccess = false;
                 response.Message = ex.Message;
             }
-            return response;
-        }
-
-        [HttpPost]
-        [Route("user-login")]
-        public JsonResponse<UserMasterDTO> UserMasterLogin(UserLoginDTO u)
-        {
-            ActivityLog.SetLog("[Started] UserMasterLogin.", LogLoc.INFO);
-            JsonResponse<UserMasterDTO> response = new JsonResponse<UserMasterDTO>();
-            UserMasterDTO UserMasterDTO = new UserMasterDTO();
-            if (!String.IsNullOrEmpty(u.email))
-            {
-                UserMasterDTO = UserBusinessInstance.UserLogin(u.email, u.password);
-
-                response.SingleResult = UserMasterDTO != null ? UserMasterDTO : null;
-                response.StatusCode = UserMasterDTO != null ? "200" : "500";
-                response.IsSuccess = UserMasterDTO != null ? true : false;
-                response.Message = UserMasterDTO != null ? "Successfully loggedin" : Messages.LoginWrongPassword + " : Incorrect Password!"; ; ;
-            }
-            else
-            {
-                response.SingleResult = null;
-                response.StatusCode = "500";
-                response.IsSuccess = false;
-                response.Message = "Username or Email can not be empty.";
-            }
-            ActivityLog.SetLog("[Finished] UserMasterLogin.", LogLoc.INFO);
             return response;
         }
 

@@ -63,5 +63,7 @@ namespace HealthIQ.CommonLayer.Aspects.DTO
 
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int CompanyID { get; set; }
+
+        public string UserToken { get; set; }
     }
 }

@@ -74,7 +74,10 @@ namespace HealthIQ.CommonLayer.Aspects
             CCAddress,
             LogoUrl,
             Phone,
-            SchedulerConfigFile
+            SchedulerConfigFile,
+            JWTSecretKey,
+            JWTClientKey,
+            TokenIssuer
         }
 
         public enum EnquiryStatus
