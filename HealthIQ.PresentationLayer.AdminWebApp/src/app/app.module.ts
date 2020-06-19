@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { APP_BASE_HREF } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -49,6 +49,9 @@ import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
 import { AppRoutes } from './app.routing';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
+import { ErrorInterceptor } from './core/interceptor/error.interceptor';
+import { AuthInterceptor } from './core/interceptor/auth.interceptor';
+import { EncodeDecodeService } from './core/encode-decode.service';
 
 @NgModule({
   exports: [
@@ -109,8 +112,19 @@ export class MaterialModule { }
   ],
   providers: [
     { provide: 'LOCALSTORAGE', useFactory: getLocalStorage },
+      {
+        provide: HTTP_INTERCEPTORS,
+        useClass: ErrorInterceptor,
+        multi: true
+      },
+      {
+        provide: HTTP_INTERCEPTORS,
+        useClass: AuthInterceptor,
+        multi: true
+      },
     JwtHelperService,
-    MatNativeDateModule
+    MatNativeDateModule,
+    EncodeDecodeService
   ],
   bootstrap: [AppComponent]
 })

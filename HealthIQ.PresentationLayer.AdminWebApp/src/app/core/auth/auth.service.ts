@@ -11,59 +11,77 @@ import { UserMaster } from 'src/app/shared/components/user/user.model';
 import { AlertService } from 'src/app/services/alert.service';
 import { SweetAlertOptions, SweetAlertType } from 'sweetalert2';
 import { AlertTypeEnum, AlertTitleEnum } from '../enums';
+import { EncodeDecodeService } from '../encode-decode.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private userSubject: BehaviorSubject<UserMaster>;
-  user: Observable<UserMaster>;
+  private user: BehaviorSubject<UserMaster>;
+  user$: Observable<UserMaster>;
   private isLogged: BehaviorSubject<boolean>;
   isLoggedIn$: Observable<boolean>;
 
+  private token: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  token$: Observable<string>;
+
   constructor(
-      private router: Router,
-      private http: HttpClient,
-      private readonly alert: AlertService
+    private router: Router,
+    private http: HttpClient,
+    private readonly alert: AlertService,
+    private readonly encode: EncodeDecodeService
   ) {
-      this.userSubject = new BehaviorSubject<UserMaster>(JSON.parse(localStorage.getItem('currentUser')));
-      this.user = this.userSubject.asObservable();
-      this.isLogged = this.userSubject ? new BehaviorSubject<boolean>(true): new BehaviorSubject<boolean>(false);
+    this.user = new BehaviorSubject<UserMaster>(JSON.parse(localStorage.getItem('currentUser')));
+    this.user$ = this.user.asObservable();
+    this.isLogged = this.user ? new BehaviorSubject<boolean>(true) : new BehaviorSubject<boolean>(false);
+    this.token = new BehaviorSubject<string>(localStorage.getItem('token'));
+    this.token$ = this.token.asObservable();
   }
 
-  public get currentUser(): UserMaster {
-      return this.userSubject.value;
+  get currentUser(): UserMaster {
+    return this.user.value;
   }
 
-  public get isLoggedIn(): boolean {
+  get isLoggedIn(): boolean {
     return this.isLogged.value;
-}
+  }
+
+  get getToken(): string {
+    if (!this.token.value) {
+      return localStorage.getItem('token');
+    } else {
+      return this.token.value;
+    }
+  }
 
   login(email: string, password: string) {
-      return this.http.post<any>(`${environment.apiUrl}/account/user-login`, { email, password })
-          .pipe(map(res => {
-            let user = null;
-              if (res.isSuccess) {
-                user = res.singleResult;
-                localStorage.setItem('currentUser', JSON.stringify(user));
-                this.userSubject.next(user);
-                this.isLogged.next(res.isSuccess);
-              } else {
-                const alert: SweetAlertOptions = {
-                  type: AlertTypeEnum.error as SweetAlertType,
-                  title: AlertTitleEnum.Fail,
-                  text: res.message
-              }
-              this.alert.showAlert(alert);
-              }
-              return user;
-          }));
+    return this.http.post<any>(`${environment.apiUrl}/account/user-login`, { email, password })
+      .pipe(map(res => {
+        let user = null;
+        if (res.isSuccess) {
+          user = res.singleResult;
+          localStorage.setItem('currentUser', JSON.stringify(user));
+          localStorage.setItem('token', this.encode.b64EncodeUnicode(email + ':' + password));
+          this.user.next(user);
+          this.isLogged.next(res.isSuccess);
+        } else {
+          const alert: SweetAlertOptions = {
+            type: AlertTypeEnum.error as SweetAlertType,
+            title: AlertTitleEnum.Fail,
+            text: res.message
+          }
+          this.alert.showAlert(alert);
+        }
+        return user;
+      }));
   }
 
   logout() {
-      localStorage.removeItem('currentUser');
-      this.userSubject.next(null);
-      this.isLogged.next(false);
-      this.router.navigate(['/account/login']);
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('token');
+    this.user.next(null);
+    this.isLogged.next(false);
+    this.token.next(null);
+    this.router.navigate(['/account/login']);
   }
 }

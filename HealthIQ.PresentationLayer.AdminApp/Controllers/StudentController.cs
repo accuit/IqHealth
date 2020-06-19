@@ -11,10 +11,12 @@ using System.Web.Http;
 namespace HealthIQ.PresentationLayer.AdminApp.Controllers
 {
     [RoutePrefix("api/student")]
+    [BaseAuthentication]
     public class StudentController : BaseAPIController
     {
         [HttpGet]
         [Route("get")]
+        [AuthorizePage(Roles = "Admin")]
         public JsonResponse<IList<UserMasterDTO>> GetStudents()
         {
             JsonResponse<IList<UserMasterDTO>> response = new JsonResponse<IList<UserMasterDTO>>();
@@ -37,6 +39,7 @@ namespace HealthIQ.PresentationLayer.AdminApp.Controllers
 
         [HttpGet]
         [Route("get-profile/{id}")]
+        [AuthorizePage(Roles = "Student")]
         public JsonResponse<UserMasterDTO> GetStudentProfile(int id)
         {
             JsonResponse<UserMasterDTO> response = new JsonResponse<UserMasterDTO>();
@@ -59,6 +62,7 @@ namespace HealthIQ.PresentationLayer.AdminApp.Controllers
 
         [HttpPost]
         [Route("add-student")]
+        [AuthorizePage(Roles = "Admin")]
         public JsonResponse<long> AddNewStudent(UserMasterDTO user)
         {
             JsonResponse<long> response = new JsonResponse<long>();
@@ -100,6 +104,7 @@ namespace HealthIQ.PresentationLayer.AdminApp.Controllers
 
         [HttpGet]
         [Route("get-invoices/{userId}")]
+        [AuthorizePage(Roles = "Admin")]
         public JsonResponse<IList<StudentInvoiceDTO>> GetStudentInvoices(int userId)
         {
             JsonResponse<IList<StudentInvoiceDTO>> response = new JsonResponse<IList<StudentInvoiceDTO>>();
@@ -122,6 +127,7 @@ namespace HealthIQ.PresentationLayer.AdminApp.Controllers
 
         [HttpGet]
         [Route("get-invoice-details/{Id}")]
+        [AuthorizePage(Roles = "Student")]
         public JsonResponse<StudentInvoiceDTO> GetInvoiceDetails(int Id)
         {
             JsonResponse<StudentInvoiceDTO> response = new JsonResponse<StudentInvoiceDTO>();
@@ -144,6 +150,7 @@ namespace HealthIQ.PresentationLayer.AdminApp.Controllers
 
         [HttpPost]
         [Route("create-invoice")]
+        [AuthorizePage(Roles = "Admin")]
         public JsonResponse<long> CreateORUpdateStudentinvoice(StudentInvoiceDTO invoice)
         {
             JsonResponse<long> response = new JsonResponse<long>();

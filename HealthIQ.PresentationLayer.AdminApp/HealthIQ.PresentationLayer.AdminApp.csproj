@@ -255,6 +255,7 @@
     <Compile Include="CustomFilters\AppOAuthProvider.cs" />
     <Compile Include="CustomFilters\AuthorizePageAttribute.cs" />
     <Compile Include="CustomFilters\FormattedDbEntityValidationException.cs" />
+    <Compile Include="CustomFilters\BaseAuthenticationAttribute.cs" />
     <Compile Include="CustomFilter\UserAccessRules.cs" />
     <Compile Include="CustomFilter\UserAccessRules_Extended.cs" />
     <Compile Include="Global.asax.cs">

@@ -17,7 +17,7 @@ export class StudentService {
     this.headers = new HttpHeaders({
       'Content-Type': 'application/json; charset=utf-8',
       'Access-Control-Allow-Origin': '*',
-      'No-Auth': 'True'
+      'Authorization': 'Basic bmVlci5zQG91dGxvb2suY29tOjEyMzQ1Ng=='
     });
   }
 

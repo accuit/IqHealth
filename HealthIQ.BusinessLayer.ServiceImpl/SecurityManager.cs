@@ -4,6 +4,8 @@ using HealthIQ.CommonLayer.Aspects.DTO;
 using HealthIQ.PersistenceLayer.Data.Repository;
 using HealthIQ.PersistenceLayer.Data.AdminEntity;
 using HealthIQ.BusinessLayer.Services.Contracts;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace HealthIQ.BusinessLayer.ServiceImpl
 {
@@ -12,7 +14,18 @@ namespace HealthIQ.BusinessLayer.ServiceImpl
         [Unity.Dependency(ContainerDataLayerInstanceNames.SECURITY_REPOSITORY)]
         public ISecurityRepository SecurityRepository { get; set; }
 
-
+        public List<RoleMasterDTO> GetRoles()
+        {
+            List<RoleMasterDTO> roles = new List<RoleMasterDTO>();
+            ObjectMapper.Map(SecurityRepository.GetRoles(), roles);
+            return roles;
+        }
+        public List<UserRoleDTO> GetUserRoles(int userId)
+        {
+            List<UserRoleDTO> roles = new List<UserRoleDTO>();
+            ObjectMapper.Map(SecurityRepository.GetUserRoles(userId), roles);
+            return roles;
+        }
         public bool SaveOTP(OTPDTO otp)
         {
             OTPMaster otpmaster = new OTPMaster();

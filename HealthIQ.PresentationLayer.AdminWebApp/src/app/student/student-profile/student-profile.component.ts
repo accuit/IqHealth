@@ -22,7 +22,7 @@ export class StudentProfileComponent extends BaseFormValidationComponent impleme
 
   ngOnInit(): void {
     this.createForm();
-    this.service.getStudentData(1).subscribe(user => {
+    this.service.getStudentData(1).subscribe((user: APIResponse) => {
       this.student = user.singleResult;
       this.formGroup.patchValue(user.singleResult)
     });

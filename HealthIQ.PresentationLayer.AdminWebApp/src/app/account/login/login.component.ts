@@ -75,7 +75,7 @@ export class LoginComponent extends BaseFormValidationComponent implements After
         }
         this.inProgress = true;
         this.authService.login(this.loginForm.value.email, this.loginForm.value.password)
-            .subscribe(res => {
+            .toPromise().then(res => {
                 if (res) {
                     this.router.navigate([this.returnUrl]);
                     this.inProgress = false;

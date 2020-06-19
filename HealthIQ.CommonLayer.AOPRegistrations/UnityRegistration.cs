@@ -79,9 +79,25 @@ namespace HealthIQ.CommonLayer.AOPRegistrations
 
                 map.CreateMap<OTPMaster, OTPDTO>();
                 map.CreateMap<OTPDTO, OTPMaster>();
-                
+
                 map.CreateMap<UserMasterDTO, UserMaster>();
                 map.CreateMap<UserMaster, UserMasterDTO>();
+
+                map.CreateMap<RoleMaster, RoleMasterDTO>();
+                map.CreateMap<RoleMasterDTO, RoleMaster>();
+
+                map.CreateMap<UserRole, UserRoleDTO>();
+                map.CreateMap<UserRoleDTO, UserRole>();
+                map.CreateMap<RoleModule, RoleModuleDTO>();
+                map.CreateMap<RoleModuleDTO, RoleModule>();
+
+                map.CreateMap<ModuleMaster, ModuleMasterDTO>();
+                map.CreateMap<ModuleMasterDTO, ModuleMaster>();
+
+                map.CreateMap<PermissionsDTO, Permission>();
+                map.CreateMap<Permission, PermissionsDTO>();
+                map.CreateMap<UserRoleModulePermission, UserRoleModulePermissionDTO>();
+                map.CreateMap<UserRoleModulePermission, UserRoleModulePermissionDTO>();
 
                 map.CreateMap<StudentInvoice, StudentInvoiceDTO>();
                 map.CreateMap<StudentInvoiceDTO, StudentInvoice>();

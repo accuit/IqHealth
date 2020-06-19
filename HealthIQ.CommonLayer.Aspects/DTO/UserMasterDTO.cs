@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -63,5 +64,8 @@ namespace HealthIQ.CommonLayer.Aspects.DTO
 
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int CompanyID { get; set; }
+        public ICollection<UserRoleDTO> UserRoles { get; set; }
+        //public ICollection<UserServiceAccessDTO> UserServiceAccesses { get; set; }
+        //public ICollection<UserSystemSettingDTO> UserSystemSettings { get; set; }
     }
 }

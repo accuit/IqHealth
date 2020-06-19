@@ -6,6 +6,7 @@ using HealthIQ.CommonLayer.Aspects.Utilities;
 using HealthIQ.PresentationLayer.AdminApp.App_Start;
 using HealthIQ.PresentationLayer.AdminApp.Core;
 using log4net.Config;
+using Newtonsoft.Json;
 using System;
 using System.Configuration;
 using System.Web.Configuration;
@@ -36,6 +37,7 @@ namespace HealthIQ.PresentationLayer.AdminApp
             UnityRegistration.InitializeAopContainer();
             string configFile = AppUtil.GetAppSettings(AspectEnums.ConfigKeys.SchedulerConfigFile);
             _ = log4net.Config.XmlConfigurator.Configure();
+            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
         }
 
         protected void Application_PreSendRequestHeaders()
