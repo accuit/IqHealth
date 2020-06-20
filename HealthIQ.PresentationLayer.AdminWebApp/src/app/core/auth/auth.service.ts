@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
 import { UserMaster } from 'src/app/shared/components/user/user.model';
-import { AlertService } from 'src/app/services/alert.service';
+import { AlertService, AlertOptions } from 'src/app/services/alert.service';
 import { SweetAlertOptions, SweetAlertType } from 'sweetalert2';
 import { AlertTypeEnum, AlertTitleEnum } from '../enums';
 import { EncodeDecodeService } from '../encode-decode.service';
@@ -65,12 +65,7 @@ export class AuthService {
           this.user.next(user);
           this.isLogged.next(res.isSuccess);
         } else {
-          const alert: SweetAlertOptions = {
-            type: AlertTypeEnum.error as SweetAlertType,
-            title: AlertTitleEnum.Fail,
-            text: res.message
-          }
-          this.alert.showAlert(alert);
+          this.alert.showAlert({ alertType: AlertTypeEnum.error, text: res.message });
         }
         return user;
       }));

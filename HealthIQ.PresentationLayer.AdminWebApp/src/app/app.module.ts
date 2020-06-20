@@ -52,6 +52,7 @@ import { SharedModule } from './shared/shared.module';
 import { ErrorInterceptor } from './core/interceptor/error.interceptor';
 import { AuthInterceptor } from './core/interceptor/auth.interceptor';
 import { EncodeDecodeService } from './core/encode-decode.service';
+import { HandleRespnseInterceptor } from './core/interceptor/handle-response.interceptor';
 
 @NgModule({
   exports: [
@@ -122,6 +123,11 @@ export class MaterialModule { }
         useClass: AuthInterceptor,
         multi: true
       },
+      // {
+      //   provide: HTTP_INTERCEPTORS,
+      //   useClass: HandleRespnseInterceptor,
+      //   multi: true
+      // },
     JwtHelperService,
     MatNativeDateModule,
     EncodeDecodeService

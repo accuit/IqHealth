@@ -7,11 +7,11 @@ export enum AlertTitleEnum {
 
 export enum AlertTypeEnum {
     basic = 'basic',
-    titleText = 'title-and-text',
     success = 'success',
     fail = 'fail',
     error = 'error',
     warning = 'warning',
     info = 'info',
-    question = 'question'
+    confirm = 'confirm',
+    cancelled = 'cancelled'
 }

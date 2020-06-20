@@ -30,12 +30,7 @@ export class UserService {
         if (res.isSuccess) {
           list = res.singleResult;
         } else {
-          const alert: SweetAlertOptions = {
-            type: AlertTypeEnum.error as SweetAlertType,
-            title: AlertTitleEnum.Fail,
-            text: res.message
-          }
-          this.alert.showAlert(alert);
+          this.alert.showAlert({ alertType: AlertTypeEnum.error, title: "Failure!", text: res.message });
         }
         return list;
       }));

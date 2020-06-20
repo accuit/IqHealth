@@ -7,6 +7,7 @@ import { AlertTypeEnum, AlertTitleEnum } from 'src/app/core/enums';
 import { AlertService } from 'src/app/services/alert.service';
 import { UserMaster } from 'src/app/shared/components/user/user.model';
 import { UserService } from '../../user/user.service';
+import { APIResponse } from 'src/app/core/models';
 
 @Component({
   selector: 'app-create-invoice',
@@ -52,18 +53,12 @@ export class CreateInvoiceComponent extends BaseFormValidationComponent implemen
     }
     this.inProgress = true;
     this.service.createInvoice(this.formGroup.value)
-      .subscribe(res => {
+      .subscribe((res: APIResponse) => {
         if (res) {
           this.inProgress = false;
-        }
-      }, () => {
-        const alert: SweetAlertOptions = {
-          type: AlertTypeEnum.error as SweetAlertType,
-          title: AlertTitleEnum.Fail,
-          text: 'Something went wrong!'
+          this.alert.showAlert({ alertType: AlertTypeEnum.success, text: res.message });
         }
         this.inProgress = false;
-        this.alert.showAlert(alert);
       });
   }
 

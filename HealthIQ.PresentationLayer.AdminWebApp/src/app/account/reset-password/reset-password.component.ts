@@ -28,7 +28,7 @@ export class ResetPasswordComponent extends BaseFormValidationComponent implemen
 
   constructor(
     private formBuilder: FormBuilder,
-    private readonly core: AlertService,
+    private readonly alert: AlertService,
     private readonly accountService: AccountService,
     private readonly router: Router,
     activatedRoute: ActivatedRoute
@@ -83,12 +83,7 @@ export class ResetPasswordComponent extends BaseFormValidationComponent implemen
         if (res.isSuccess) {
           this.submitSuccessful(res);
         } else {
-          const alert: SweetAlertOptions = {
-            type: AlertTypeEnum.error as SweetAlertType,
-            title: AlertTitleEnum.Fail,
-            text: res.message
-          }
-          this.core.showAlert(alert);
+          this.alert.showAlert({ alertType: AlertTypeEnum.error, title: "Error!", text: res.message});
         }
       });
   }
@@ -101,30 +96,15 @@ export class ResetPasswordComponent extends BaseFormValidationComponent implemen
     this.accountService.forgetPassword(this.forgetForm.value)
     .subscribe((res: APIResponse) => {
       if (res.isSuccess) {
-        const alert: SweetAlertOptions = {
-          type: AlertTypeEnum.success as SweetAlertType,
-          title: AlertTitleEnum.Success,
-          text: 'Password reset email has been sent to you.'
-        }
-        this.core.showAlert(alert);
+        this.alert.showAlert({ alertType: AlertTypeEnum.success, title: "Success Reset!", text: 'Password reset email has been sent to you.'});
       } else {
-        const alert: SweetAlertOptions = {
-          type: AlertTypeEnum.error as SweetAlertType,
-          title: AlertTitleEnum.Fail,
-          text: res.message
-        }
-        this.core.showAlert(alert);
+        this.alert.showAlert({ alertType: AlertTypeEnum.error, title: "Error!", text: res.message});
       }
     });
   }
 
   submitSuccessful(res): void {
-    const alert: SweetAlertOptions = {
-      type: AlertTypeEnum.success as SweetAlertType,
-      title: AlertTitleEnum.Success,
-      text: 'Password successfully changed. Click ok to go back to login.'
-    }
-    this.core.showAlert(alert);
+    this.alert.showAlert({ alertType: AlertTypeEnum.success, title: "Success!", text: 'Password successfully changed. Click ok to go back to login.'});
     this.loginForm.reset();
     this.router.navigate(['account/login']);
   }

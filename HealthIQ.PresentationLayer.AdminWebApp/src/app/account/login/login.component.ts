@@ -41,7 +41,7 @@ export class LoginComponent extends BaseFormValidationComponent implements After
         private formBuilder: FormBuilder,
         private readonly router: Router,
         private route: ActivatedRoute,
-        private readonly core: AlertService,
+        private readonly alert: AlertService,
         private readonly authService: AuthService,
         @Inject(PLATFORM_ID) private platformId: any,
         @Inject('LOCALSTORAGE') private localStorage: any,
@@ -50,7 +50,6 @@ export class LoginComponent extends BaseFormValidationComponent implements After
         if (this.authService.currentUser) {
             this.router.navigate(['/']);
         }
-
         this.nativeElement = element.nativeElement;
         this.sidebarVisible = false;
     }
@@ -87,7 +86,7 @@ export class LoginComponent extends BaseFormValidationComponent implements After
                     text: 'Something went wrong!'
                 }
                 this.inProgress = false;
-                this.core.showAlert(alert);
+                this.alert.showAlert({ alertType: AlertTypeEnum.error, text: 'Something went wrong!' });
             });
     }
 
