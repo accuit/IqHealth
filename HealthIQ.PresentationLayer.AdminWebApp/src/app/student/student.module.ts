@@ -18,7 +18,7 @@ export const StudentRoutes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {
-        path: '',
+        path: 'profile',
         component: StudentProfileComponent
       },
       {

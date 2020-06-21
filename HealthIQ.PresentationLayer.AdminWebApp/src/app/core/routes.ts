@@ -6,6 +6,7 @@ export interface RouteInfo {
     icontype: string;
     collapse?: string;
     children?: ChildrenItems[];
+    roles? : Array<string>;
 }
 
 export interface ChildrenItems {

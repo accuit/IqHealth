@@ -15,7 +15,20 @@ export class UserMaster {
     state: number;
     pinCode: string;
     userStatus: number;
-    role: number;
+    roles: Array<string>;
     token?: string;
     createdDate: Date;
+    userRoles: Array<UserRole>
+}
+
+export class UserRole {
+    userId: number;
+    roleId: number;
+    roleMaster: RoleMaster;
+}
+
+export class RoleMaster {
+    id: number;
+    name: string;
+    code: string;
 }

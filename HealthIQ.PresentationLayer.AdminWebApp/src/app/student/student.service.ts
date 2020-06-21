@@ -16,8 +16,7 @@ export class StudentService {
   constructor(private readonly httpClient: HttpClient, private readonly alert: AlertService) {
     this.headers = new HttpHeaders({
       'Content-Type': 'application/json; charset=utf-8',
-      'Access-Control-Allow-Origin': '*',
-      'Authorization': 'Basic bmVlci5zQG91dGxvb2suY29tOjEyMzQ1Ng=='
+      'Access-Control-Allow-Origin': '*'
     });
   }
 

@@ -271,6 +271,7 @@
     <Content Include="Config\App.config" />
     <Content Include="Config\Connection.config" />
     <Content Include="Config\Logging.config" />
+    <None Include="Properties\PublishProfiles\AdminHIQ.pubxml" />
     <None Include="Properties\PublishProfiles\HealthIQNew.pubxml" />
     <None Include="Properties\PublishProfiles\IQHealthApi.pubxml" />
     <Content Include="Helpers\EmailTemplates\DoctorAppointmentConfirmation.html" />

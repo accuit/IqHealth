@@ -118,3 +118,4 @@ testem.log
 .DS_Store
 Thumbs.db
 
+/HealthIQ.PresentationLayer.AdminApp/Publish

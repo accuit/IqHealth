@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
   environmentName: 'PROD',
-  apiUrl: 'http://localhost:65114/'
+  apiUrl: 'http://admin.health-iq.in/api/'
 };

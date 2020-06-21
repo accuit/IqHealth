@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import PerfectScrollbar from 'perfect-scrollbar';
 import { RouteInfo } from '../core/routes';
 import { AuthService } from '../core/auth/auth.service';
+import { UserMaster } from '../shared/components/user/user.model';
 
 declare const $: any;
 
@@ -10,7 +11,8 @@ export const ROUTES: RouteInfo[] = [{
     path: '/dashboard',
     title: 'Dashboard',
     type: 'link',
-    icontype: 'dashboard'
+    icontype: 'dashboard',
+    roles: ['Admin', 'Employee', 'Student']
 },
 {
     path: '/user',
@@ -21,7 +23,8 @@ export const ROUTES: RouteInfo[] = [{
     children: [
         {path: 'users-list', title: 'Students List', ab:'S'},
         {path: 'create-user', title: 'Create Student', ab:'TP'}
-    ]
+    ],
+    roles: ['Admin', 'Employee']
 },
 {
     path: '/invoice',
@@ -32,8 +35,23 @@ export const ROUTES: RouteInfo[] = [{
     children: [
         {path: 'invoices-list', title: 'All invoices', ab:'AI'},
         {path: 'create-invoice', title: 'Generate Invoice', ab:'GI'}
-    ]
-}
+    ],
+    roles: ['Admin', 'Employee']
+},
+{
+    path: '/student/courses',
+    title: 'Student Courses',
+    type: 'link',
+    icontype: 'image',
+    roles: ['Student']
+},
+{
+    path: '/student/books',
+    title: 'Books',
+    type: 'link',
+    icontype: 'image',
+    roles: ['Student']
+},
 ];
 @Component({
     selector: 'app-sidebar-cmp',
@@ -43,7 +61,7 @@ export const ROUTES: RouteInfo[] = [{
 export class SidebarComponent implements OnInit {
     public menuItems: any[];
     ps: any;
-    user: any;
+    user: UserMaster;
 
     constructor(public authService: AuthService) { };
 
@@ -56,7 +74,7 @@ export class SidebarComponent implements OnInit {
 
     ngOnInit() {
         this.user = this.authService.currentUser;
-        this.menuItems = ROUTES.filter(menuItem => menuItem);
+        this.menuItems = ROUTES.filter(x=>x.roles.some(r => r === this.user.roles[0]));
         if (window.matchMedia(`(min-width: 960px)`).matches && !this.isMac()) {
             const elemSidebar = <HTMLElement>document.querySelector('.sidebar .sidebar-wrapper');
             this.ps = new PerfectScrollbar(elemSidebar);
