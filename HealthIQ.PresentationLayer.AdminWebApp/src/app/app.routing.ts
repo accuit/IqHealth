@@ -3,6 +3,7 @@ import { AdminLayoutComponent } from './layouts/admin/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
 import { Role } from './core/models/role';
 import { AuthGuard } from './core/auth/auth-guard';
+import { PrintLayoutComponent } from './print/print-layout/print-layout.component';
 
 export const AppRoutes: Routes = [
     {
@@ -32,6 +33,14 @@ export const AppRoutes: Routes = [
         children: [{
             path: 'account',
             loadChildren: './account/account.module#AccountModule'
+        }]
+    },
+    {
+        path: '',        
+        component: PrintLayoutComponent,
+        children: [{
+            path: 'print',
+            loadChildren: './print/print.module#PrintModule'
         }]
     }
 ];

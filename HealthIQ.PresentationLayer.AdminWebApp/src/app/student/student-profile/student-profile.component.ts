@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BaseFormValidationComponent } from 'src/app/shared/components/base-form-validation/base-form-validation.component';
 import { tap } from 'rxjs/operators';
 import { APIResponse } from 'src/app/core/models';
+import { PrintService } from 'src/app/print/print.service';
 
 @Component({
   selector: 'app-student-profile',
@@ -15,8 +16,10 @@ export class StudentProfileComponent extends BaseFormValidationComponent impleme
 
   student: UserMaster;
   formGroup: FormGroup;
+  showInvoice = false;
   constructor(private readonly service: StudentService,
-    private readonly formBuilder: FormBuilder) {
+    private readonly formBuilder: FormBuilder,
+    private readonly print: PrintService) {
     super()
   }
 
@@ -47,6 +50,12 @@ export class StudentProfileComponent extends BaseFormValidationComponent impleme
       userID: [''],
       createdDate: ['']
     });
+  }
+
+  onPrintInvoice() {
+    // const ids = ['101', '102'];
+    // this.print.printDocument('invoice', ids);
+    this.showInvoice = true;
   }
 
 }

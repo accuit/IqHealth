@@ -53,6 +53,9 @@ import { ErrorInterceptor } from './core/interceptor/error.interceptor';
 import { AuthInterceptor } from './core/interceptor/auth.interceptor';
 import { EncodeDecodeService } from './core/encode-decode.service';
 import { HandleRespnseInterceptor } from './core/interceptor/handle-response.interceptor';
+import { PrintService } from './print/print.service';
+import { PDFExportModule } from '@progress/kendo-angular-pdf-export';
+
 
 @NgModule({
   exports: [
@@ -93,6 +96,7 @@ export class MaterialModule { }
 @NgModule({
   imports: [
     CommonModule,
+    PDFExportModule,
     BrowserAnimationsModule,
     FormsModule,
     RouterModule.forRoot(AppRoutes, {
@@ -113,21 +117,16 @@ export class MaterialModule { }
   ],
   providers: [
     { provide: 'LOCALSTORAGE', useFactory: getLocalStorage },
-      {
-        provide: HTTP_INTERCEPTORS,
-        useClass: ErrorInterceptor,
-        multi: true
-      },
-      {
-        provide: HTTP_INTERCEPTORS,
-        useClass: AuthInterceptor,
-        multi: true
-      },
-      // {
-      //   provide: HTTP_INTERCEPTORS,
-      //   useClass: HandleRespnseInterceptor,
-      //   multi: true
-      // },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
     JwtHelperService,
     MatNativeDateModule,
     EncodeDecodeService

@@ -31,6 +31,7 @@
     "@angular/platform-server": "9.0.1",
     "@angular/router": "9.0.1",
     "@auth0/angular-jwt": "^4.1.2",
+    "@progress/kendo-angular-pdf-export": "^2.0.3",
     "ajv": "6.11.0",
     "angular-calendar": "0.28.2",
     "animate.css": "3.7.2",
@@ -71,7 +72,11 @@
     "uglify-js": "3.7.7",
     "validate": "5.1.0",
     "web-animations-js": "2.3.2",
-    "zone.js": "0.10.2"
+    "zone.js": "0.10.2",
+    "@progress/kendo-angular-common": "^1.2.2",
+    "@progress/kendo-drawing": "^1.2.0",
+    "@angular/localize": "9.0.1",
+    "@progress/kendo-theme-default": "latest"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "0.900.2",
