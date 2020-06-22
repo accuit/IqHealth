@@ -116,9 +116,7 @@
                     </div>
                     <div class="category form-category">* Required fields</div>
                 </div>
-                <div class="card-footer text-right">
-                    <mat-checkbox class="example-margin mb-0" (click)="checkVerified()">I have verified all the mentioned details.</mat-checkbox>
-                    <br>
+                <div class="card-footer text-right">                   
                     <button *ngIf="!inProgress" disabled="false" mat-raised-button type="submit" class="btn btn-rose" (click)="onSubmit()">Generate
                         invoice</button>
                     <a *ngIf="inProgress" href="#paper-kit" class="btn btn-round btn-rose">
