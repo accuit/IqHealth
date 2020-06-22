@@ -81,6 +81,10 @@ export class SidebarComponent implements OnInit {
         }
     }
 
+    logout = (): void => {
+        this.authService.logout();
+    }
+
     updatePS(): void {
         if (window.matchMedia(`(min-width: 960px)`).matches && !this.isMac()) {
             this.ps.update();
