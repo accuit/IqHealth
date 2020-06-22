@@ -1,72 +1,119 @@
-
-        <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="card card-stats">
-                    <a routerLink="/user">
-                    <div class="card-header card-header-warning card-header-icon">
-                        <div class="card-icon">
-                            <i class="material-icons">weekend</i>
-                        </div>
-                        <p class="card-category">Students</p>
-                        <h3 class="card-title">184</h3>
+<div *ngIf="isAdmin" class="row">
+    <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+            <a routerLink="/user/users-list">
+                <div class="card-header card-header-warning card-header-icon">
+                    <div class="card-icon">
+                        <i class="material-icons">supervisor_account</i>
                     </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <i class="material-icons text-danger">warning</i>
-                            <a routerLink="/user">Maintain Students</a>
-                        </div>
-                    </div>
-                </a>
+                    <p class="card-category">View</p>
+                    <h3 class="card-title">All Users</h3>
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="card card-stats">
-                    <div class="card-header card-header-rose card-header-icon">
-                        <div class="card-icon">
-                            <i class="material-icons">equalizer</i>
-                        </div>
-                        <p class="card-category">Website Visits</p>
-                        <h3 class="card-title">75.521</h3>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <i class="material-icons">local_offer</i> Tracked from Google Analytics
-                        </div>
+                <div class="card-footer">
+                    <div class="stats">
+                        <i class="material-icons text-danger">warning</i>
+                        View All Registered Students
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="card card-stats">
-                    <div class="card-header card-header-success card-header-icon">
-                        <div class="card-icon">
-                            <i class="material-icons">store</i>
-                        </div>
-                        <p class="card-category">Revenue</p>
-                        <h3 class="card-title">$34,245</h3>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <i class="material-icons">date_range</i> Last 24 Hours
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="card card-stats">
-                    <div class="card-header card-header-info card-header-icon">
-                        <div class="card-icon">
-                            <i class="fa fa-twitter"></i>
-                        </div>
-                        <p class="card-category">Followers</p>
-                        <h3 class="card-title">+245</h3>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <i class="material-icons">update</i> Just Updated
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </a>
         </div>
-     
-  
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+            <a routerLink="/user/create-user">
+                <div class="card-header card-header-info card-header-icon">
+                    <div class="card-icon">
+                        <i class="material-icons">perm_identity</i>
+                    </div>
+                    <p class="card-category">Register</p>
+                    <h3 class="card-title">New User</h3>
+                </div>
+                <div class="card-footer">
+                    <div class="stats">
+                        <i class="material-icons">face</i>
+                        Register New Student in our Records
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+            <a routerLink="/invoice/invoices-list">
+                <div class="card-header card-header-success card-header-icon">
+                    <div class="card-icon">
+                        <i class="material-icons">library_books</i>
+                    </div>
+                    <p class="card-category">View</p>
+                    <h3 class="card-title">All Invoices</h3>
+                </div>
+                <div class="card-footer">
+                    <div class="stats">
+                        <i class="material-icons">view_list</i>
+                        View All Users Invoices with Date
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+            <a routerLink="/invoice/create-invoice">
+                <div class="card-header card-header-rose card-header-icon">
+                    <div class="card-icon">
+                        <i class="material-icons">print</i>
+                    </div>
+                    <p class="card-category">Create</p>
+                    <h3 class="card-title">New Bill</h3>
+                </div>
+                <div class="card-footer">
+                    <div class="stats">
+                        <i class="material-icons">receipt</i>
+                        Create New Student Invoice
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="isStudent" class="row">
+    <div class="col-lg-6 col-md-6 col-sm-6">
+        <div class="card card-stats">
+            <a routerLink="/student/courses">
+                <div class="card-header card-header-warning card-header-icon">
+                    <div class="card-icon">
+                        <i class="material-icons">collections_bookmark</i>
+                    </div>
+                    <p class="card-category">Student</p>
+                    <h3 class="card-title">Registered Courses</h3>
+                </div>
+                <div class="card-footer">
+                    <div class="stats">
+                        <i class="material-icons text-danger">school</i>
+                        View your subscribed courses in your program
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6">
+        <div class="card card-stats">
+            <a routerLink="/student/books">
+                <div class="card-header card-header-success card-header-icon">
+                    <div class="card-icon">
+                        <i class="material-icons">menu_books</i>
+                    </div>
+                    <p class="card-category">Student</p>
+                    <h3 class="card-title">Course Books</h3>
+                </div>
+                <div class="card-footer">
+                    <div class="stats">
+                        <i class="material-icons text-danger">school</i>
+                        View your subscribed books
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>

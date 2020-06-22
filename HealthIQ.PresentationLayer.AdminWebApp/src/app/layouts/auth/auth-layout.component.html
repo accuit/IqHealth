@@ -4,11 +4,11 @@
             <a class="navbar-brand d-none d-sm-none d-md-block" [routerLink]="['/dashboard']">Health IQ Dashboard</a>
         </div>
         <button mat-button class="navbar-toggler" type="button" (click)="sidebarToggle()">
-      <span class="sr-only">Toggle navigation</span>
-      <span class="navbar-toggler-icon icon-bar"></span>
-      <span class="navbar-toggler-icon icon-bar"></span>
-      <span class="navbar-toggler-icon icon-bar"></span>
-    </button>
+            <span class="sr-only">Toggle navigation</span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+        </button>
         <div class="collapse navbar-collapse justify-content-end">
             <ul class="navbar-nav">
                 <li class="nav-item" routerLinkActive="active">
@@ -31,3 +31,37 @@
     </div>
 </nav>
 <router-outlet></router-outlet>
+
+<footer class="footer ">
+    <div class="container">
+        <nav class="pull-left">
+            <ul>
+                <li>
+                    <a href="https://www.health-iq.in">
+                        Health IQ
+                    </a>
+                </li>
+                <li>
+                    <a href="https://health-iq.in/about-us">
+                        About Us
+                    </a>
+                </li>
+                <li>
+                    <a href="http://health-iq.in">
+                        Blog
+                    </a>
+                </li>
+                <li>
+                    <a href="https://health-iq.in/services">
+                        Services
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="copyright pull-right">
+            &copy;
+            2020, made with <i class="material-icons">favorite</i> by
+            <a href="#" target="_blank">NeerS</a> for a better web.
+        </div>
+    </div>
+</footer>
