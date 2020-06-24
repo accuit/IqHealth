@@ -2,29 +2,30 @@ export class UserMaster {
     userID: number;
     firstName: string;
     lastName: string;
-    age: number;
     mobile: string;
     email: string;
-    imageUrl: string;
+    imageUrl?: string;
+    image?: string;
     password: string;
-    oldPassword: string;
-    confirmPassword: string;
-    sex: number;
-    address: string;
-    city: string;
-    state: number;
-    pinCode: string;
+    oldPassword?: string;
+    confirmPassword?: string;
+    address?: string;
+    city?: string;
+    state?: number;
+    pin?: string;
     userStatus: number;
-    roles: Array<string>;
+    roles?: Array<string>;
     token?: string;
-    createdDate: Date;
-    userRoles: Array<UserRole>
+    createdDate?: Date;
+    createdBy: number;
+    isStudent: boolean;
+    userRoles?: Array<UserRole>;
 }
 
 export class UserRole {
     userId: number;
     roleId: number;
-    roleMaster: RoleMaster;
+    roleMaster?: RoleMaster;
 }
 
 export class RoleMaster {

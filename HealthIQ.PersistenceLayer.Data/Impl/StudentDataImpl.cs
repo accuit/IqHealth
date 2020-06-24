@@ -64,6 +64,8 @@ namespace HealthIQ.PersistenceLayer.Data.Impl
         public int SubmitNewStudent(UserMaster student)
         {
             student.IsStudent = true;
+            student.IsActive = true;
+            student.CreatedDate = DateTime.Now;
             HIQAdminContext.UserMasters.Add(student);
             return HIQAdminContext.SaveChanges() > 0 ? student.UserID : 0;
         }

@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { SweetAlertOptions, SweetAlertType } from 'sweetalert2';
 import { AlertTypeEnum, AlertTitleEnum } from 'src/app/core/enums';
 import { AlertService } from 'src/app/services/alert.service';
+import { AuthService } from 'src/app/core/auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,12 +16,16 @@ import { AlertService } from 'src/app/services/alert.service';
 export class UserService {
   baseUrl = environment.apiUrl;
   headers: HttpHeaders;
-  constructor(private readonly httpClient: HttpClient, private readonly alert: AlertService) {
+  userId: number;
+  constructor(private readonly httpClient: HttpClient,
+    private readonly alert: AlertService,
+    private readonly auth: AuthService) {
     this.headers = new HttpHeaders({
       'Content-Type': 'application/json; charset=utf-8',
-      'Access-Control-Allow-Origin': '*',
-      'No-Auth': 'True'
+      'Access-Control-Allow-Origin': '*'
     });
+
+    this.userId = this.auth.currentUser.userID;
   }
 
   getStudents(): Observable<any> {
@@ -34,5 +39,10 @@ export class UserService {
         }
         return list;
       }));
+  }
+
+  addUpdateUser(user: UserMaster): Observable<any> {
+    user.createdBy = this.userId;
+    return this.httpClient.post(this.baseUrl + 'student/add-student/', user, { headers: this.headers });
   }
 }

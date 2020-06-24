@@ -11,7 +11,7 @@ using System.Web.Http;
 namespace HealthIQ.PresentationLayer.AdminApp.Controllers
 {
     [RoutePrefix("api/student")]
-    [BaseAuthentication]
+    //[BaseAuthentication]
     public class StudentController : BaseAPIController
     {
         [HttpGet]
@@ -62,12 +62,13 @@ namespace HealthIQ.PresentationLayer.AdminApp.Controllers
 
         [HttpPost]
         [Route("add-student")]
-        [AuthorizePage(Roles = "Admin")]
-        public JsonResponse<long> AddNewStudent(UserMasterDTO user)
+        //[AuthorizePage(Roles = "Admin")]
+        public JsonResponse<int> AddNewStudent(UserMasterDTO user)
         {
-            JsonResponse<long> response = new JsonResponse<long>();
-
-            var User = UserBusinessInstance.GetUserByEmail(user.Email);
+            JsonResponse<int> response = new JsonResponse<int>();
+            UserMasterDTO User = new UserMasterDTO();
+            if (!string.IsNullOrEmpty(user.Email))
+                 User = UserBusinessInstance.GetUserByEmail(user.Email);
             if (User == null)
             {
                 try

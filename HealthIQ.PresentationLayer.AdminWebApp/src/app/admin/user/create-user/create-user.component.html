@@ -1,1 +1,123 @@
-<p>create-user works!</p>
+<form [formGroup]="formGroup">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header card-header-icon card-header-rose">
+                    <div class="card-icon">
+                        <i class="material-icons">perm_identity</i>
+                    </div>
+                    <h4 class="card-title">Student Profile
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="First Name *" formControlName="firstName">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Last Name *" formControlName="lastName">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Email Address *" formControlName="email">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="10 Digit mobile No. *" formControlName="mobile">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Full Address *" formControlName="address">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-8 col-sm-4">
+                            <mat-form-field>
+                                <mat-select placeholder="Select City" formControlName="city" name="city">
+                                    <mat-option *ngFor="let c of cities" [value]="c.id">
+                                        {{ c.name }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-6 col-md-8 col-sm-4">
+                            <mat-form-field>
+                                <mat-select placeholder="Select State" formControlName="state" name="state">
+                                    <mat-option *ngFor="let state of states" [value]="state.id">
+                                        {{ state.name }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-8 col-sm-4">
+                            <mat-form-field>
+                                <mat-select placeholder="Select Country" formControlName="country" name="c">
+                                    <mat-option *ngFor="let c of countries" [value]="c.id">
+                                        {{ c.name }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-6 col-md-8 col-sm-4">
+                            <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Pin Code" formControlName="pin">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="clearfix"></div>
+                    <button *ngIf="!inProgress" disabled="false" mat-raised-button type="submit" class="btn btn-rose"
+                        (click)="onSubmit()">Submit
+                        User</button>
+                    <a *ngIf="inProgress" href="#paper-kit" class="btn btn-round btn-rose">
+                        <div class="uil-reload-css reload-small">
+                            <div></div>
+                        </div> Processing User
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card card-profile">
+                <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                    <div class="fileinput-new thumbnail">
+                        <img src="./assets/img/image_placeholder.jpg" alt="...">
+                    </div>
+                    <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                    <div>
+                        <span class="btn btn-rose btn-round btn-file">
+                            <span class="fileinput-new">Upload Image</span>
+                            <span class="fileinput-exists">Change</span>
+                            <input type="file" name="..." (change)="onFileChange($event)" />
+                        </span>
+                        <a href="#" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i
+                                class="fa fa-times"></i> Remove</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

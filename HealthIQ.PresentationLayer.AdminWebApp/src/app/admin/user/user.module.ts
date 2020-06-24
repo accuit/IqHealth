@@ -6,14 +6,17 @@ import { UserFormComponent } from './shared/user-form/user-form.component';
 import { UserComponent } from './user.component';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from 'src/app/core/auth/auth-guard';
-import { Role } from 'src/app/core/models/role';
 import { UserService } from './user.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NouisliderModule } from 'ng2-nouislider';
+import { TagInputModule } from 'ngx-chips';
+import { MaterialModule } from 'src/app/app.module';
+import { SharedModule } from '../../../app/shared/shared.module';
 
 export const UserRoutes: Routes = [
   {
     path: '',
     canActivate: [AuthGuard],
-    data: { roles: [Role.Admin] },
     children: [
       {
         path: '',
@@ -36,6 +39,12 @@ export const UserRoutes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(UserRoutes),
+    FormsModule,
+    ReactiveFormsModule,
+    NouisliderModule,
+    TagInputModule,
+    MaterialModule,
+    SharedModule
   ],
   providers: [UserService]
 })

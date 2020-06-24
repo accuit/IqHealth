@@ -38,6 +38,8 @@ namespace HealthIQ.PersistenceLayer.Data.AdminEntity
         [StringLength(30)]
         public string Password { get; set; }
 
+        public string Image { get; set; }
+
         [StringLength(1500)]
         public string ImagePath { get; set; }
 
@@ -46,6 +48,13 @@ namespace HealthIQ.PersistenceLayer.Data.AdminEntity
 
         [StringLength(250)]
         public string Email { get; set; }
+
+        [StringLength(500)]
+        public string Address { get; set; }
+        public int? City { get; set; }
+        public int? State { get; set; }
+        public int? Country { get; set; }
+        public string Pin { get; set; }
 
         public int? AccountStatus { get; set; }
 

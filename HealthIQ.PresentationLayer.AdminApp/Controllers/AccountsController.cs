@@ -149,7 +149,7 @@ namespace HealthIQ.PresentationLayer.AdminApp.Controllers
                 }
                 User.FirstName = user.FirstName;
                 User.LastName = user.LastName;
-                User.ImageUrl = user.ImageUrl;
+                User.ImagePath = user.ImagePath;
                 User.Email = user.Email;
                 User.Mobile = user.Mobile;
                 User.Password = user.Password;
