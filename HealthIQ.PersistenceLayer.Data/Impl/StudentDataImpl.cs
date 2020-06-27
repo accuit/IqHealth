@@ -65,6 +65,8 @@ namespace HealthIQ.PersistenceLayer.Data.Impl
         {
             student.IsStudent = true;
             student.IsActive = true;
+            student.AccountStatus = 1;
+            student.Password = "123456";
             student.CreatedDate = DateTime.Now;
             HIQAdminContext.UserMasters.Add(student);
             return HIQAdminContext.SaveChanges() > 0 ? student.UserID : 0;

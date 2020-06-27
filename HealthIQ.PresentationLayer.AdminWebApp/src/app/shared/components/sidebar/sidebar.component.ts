@@ -1,8 +1,8 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import PerfectScrollbar from 'perfect-scrollbar';
-import { RouteInfo } from '../core/routes';
-import { AuthService } from '../core/auth/auth.service';
-import { UserMaster } from '../shared/components/user/user.model';
+import { RouteInfo } from '../../../core/routes';
+import { AuthService } from '../../../core/auth/auth.service';
+import { UserMaster } from '../user/user.model';
 
 declare const $: any;
 

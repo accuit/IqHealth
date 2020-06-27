@@ -10,7 +10,7 @@ import { NavItemType, NavItem } from '../../../app/core/nav-items';
 declare const $: any;
 
 @Component({
-  selector: 'app-layout',
+  selector: 'ipx-admin-layout',
   templateUrl: './admin-layout.component.html'
 })
 

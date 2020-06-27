@@ -1,17 +1,13 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { CreateInvoiceComponent } from './create-invoice/create-invoice.component';
 import { InvoicesListComponent } from './invoices-list/invoices-list.component';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from 'src/app/core/auth/auth-guard';
 import { Role } from 'src/app/core/models/role';
 import { InvoiceComponent } from './invoice.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MaterialModule } from '../../../app/app.module';
-import { NouisliderModule } from 'ng2-nouislider';
-import { TagInputModule } from 'ngx-chips';
 import { InvoiceService } from './invoice.service';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { BaseCommonModule } from 'src/app/shared/base.common.module';
 
 export const InvoiceRoutes: Routes = [
   {
@@ -38,14 +34,8 @@ export const InvoiceRoutes: Routes = [
 @NgModule({
   declarations: [CreateInvoiceComponent, InvoicesListComponent, InvoiceComponent],
   imports: [
-    CommonModule,
-    RouterModule.forChild(InvoiceRoutes),
-    FormsModule,
-    ReactiveFormsModule,
-    NouisliderModule,
-    TagInputModule,
-    MaterialModule,
-    SharedModule
+    BaseCommonModule,
+    RouterModule.forChild(InvoiceRoutes)
   ],
   providers: [InvoiceService]
 })

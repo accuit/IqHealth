@@ -1,11 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { StudentService } from '../student.service';
 import { UserMaster } from 'src/app/shared/components/user/user.model';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BaseFormValidationComponent } from 'src/app/shared/components/base-form-validation/base-form-validation.component';
-import { tap } from 'rxjs/operators';
-import { APIResponse } from 'src/app/core/models';
-import { PrintService } from 'src/app/print/print.service';
 
 @Component({
   selector: 'app-student-profile',
@@ -14,21 +11,18 @@ import { PrintService } from 'src/app/print/print.service';
 })
 export class StudentProfileComponent extends BaseFormValidationComponent implements OnInit {
 
-  student: UserMaster;
+  @Input() type: string = 'info';
+  user: UserMaster;
   formGroup: FormGroup;
   showInvoice = false;
   constructor(private readonly service: StudentService,
-    private readonly formBuilder: FormBuilder,
-    private readonly print: PrintService) {
+    private readonly formBuilder: FormBuilder) {
     super()
   }
 
   ngOnInit(): void {
+    this.type = 'info';
     this.createForm();
-    this.service.getStudentData(1).subscribe((user: APIResponse) => {
-      this.student = user.singleResult;
-      this.formGroup.patchValue(user.singleResult)
-    });
   }
 
   createForm() {

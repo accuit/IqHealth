@@ -1,10 +1,10 @@
 import { Component, OnInit, Renderer2, ViewChild, ElementRef, Directive } from '@angular/core';
-import { ROUTES } from '../../../sidebar/sidebar.component';
 import { Router, ActivatedRoute, NavigationEnd, NavigationStart } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { AlertService } from 'src/app/services/alert.service';
 import { AuthService } from 'src/app/core/auth/auth.service';
+import { ROUTES } from '../sidebar/sidebar.component';
 
 const misc: any = {
     navbar_menu_visible: 0,

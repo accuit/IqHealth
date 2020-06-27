@@ -9,17 +9,16 @@ export const AppRoutes: Routes = [
     {
         path: '',
         redirectTo: 'dashboard',
-        pathMatch: 'full',
-    }, {
+        pathMatch: 'full'
+    },
+    {
         path: '',
-        canActivate: [AuthGuard],
         component: AdminLayoutComponent,
         children: [
             {
                 path: '',
                 loadChildren: './dashboard/dashboard.module#DashboardModule'
-            }
-            , {
+            }, {
                 path: '',
                 loadChildren: './admin/admin.module#AdminModule'
             }, {
@@ -36,11 +35,14 @@ export const AppRoutes: Routes = [
         }]
     },
     {
-        path: '',        
+        path: '',
         component: PrintLayoutComponent,
         children: [{
             path: 'print',
             loadChildren: './print/print.module#PrintModule'
         }]
+    }, {
+        path: "**",
+        redirectTo: "dashboard"
     }
 ];

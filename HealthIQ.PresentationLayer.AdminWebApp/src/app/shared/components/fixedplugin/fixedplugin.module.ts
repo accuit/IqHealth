@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { FixedpluginComponent } from './fixedplugin.component';
+import { BaseCommonModule } from '../../base.common.module';
 
 @NgModule({
   imports: [
-    CommonModule
+    BaseCommonModule
   ],
   declarations: [FixedpluginComponent],
   exports: [FixedpluginComponent]
