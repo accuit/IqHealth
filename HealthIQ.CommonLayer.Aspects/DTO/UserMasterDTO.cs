@@ -47,9 +47,10 @@ namespace HealthIQ.CommonLayer.Aspects.DTO
 
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int IsDeleted { get; set; }
-
+        public bool IsEmployee { get; set; }
         public bool IsCustomer { get; set; }
         public bool IsStudent { get; set; }
+        public bool IsAdmin { get; set; }
 
         [StringLength(20)]
         public string Password { get; set; }

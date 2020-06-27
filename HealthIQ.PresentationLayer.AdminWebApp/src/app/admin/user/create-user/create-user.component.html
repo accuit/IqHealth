@@ -6,7 +6,7 @@
                     <div class="card-icon">
                         <i class="material-icons">perm_identity</i>
                     </div>
-                    <h4 class="card-title">Student Profile
+                    <h4 class="card-title">User Information
                     </h4>
                 </div>
                 <div class="card-body">
@@ -27,7 +27,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-8">
                             <div class="form-group">
                                 <mat-form-field class="example-full-width">
                                     <input matInput placeholder="Email Address *" formControlName="email">
@@ -39,6 +39,20 @@
                                 <mat-form-field class="example-full-width">
                                     <input matInput placeholder="10 Digit mobile No. *" formControlName="mobile">
                                 </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <mat-radio-group formControlName="userType" aria-label="Select User Type" (change)="onChangeUserType($event)">
+                                <mat-radio-button value="1"> Student </mat-radio-button>
+                                <mat-radio-button value="2"> Employee </mat-radio-button>
+                                <mat-radio-button value="3"> Customer </mat-radio-button>
+                              </mat-radio-group>
+                            </div>
+                        <div *ngIf="isEmployee" class="col-md-4">
+                            <div class="form-group">
+                                <mat-checkbox class="example-margin mb-0" checked="false" formControlName="isAdmin"> Admin</mat-checkbox>
                             </div>
                         </div>
                     </div>

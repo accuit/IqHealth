@@ -1,4 +1,5 @@
-﻿using HealthIQ.PersistenceLayer.Data.AdminEntity;
+﻿using HealthIQ.CommonLayer.Aspects;
+using HealthIQ.PersistenceLayer.Data.AdminEntity;
 using HealthIQ.PersistenceLayer.Data.Repository;
 using System;
 using System.Collections.Generic;
@@ -65,9 +66,18 @@ namespace HealthIQ.PersistenceLayer.Data.Impl
         {
             student.IsStudent = true;
             student.IsActive = true;
+            student.AccountStatus = 1;
+            student.Password = "123456";
             student.CreatedDate = DateTime.Now;
             HIQAdminContext.UserMasters.Add(student);
-            return HIQAdminContext.SaveChanges() > 0 ? student.UserID : 0;
+            var result = HIQAdminContext.SaveChanges() > 0 ? student.UserID : 0;
+
+            if (result > 0 && student.IsEmployee == true)
+            {
+                HIQAdminContext.UserRoles.Add(new UserRole { UserID = student.UserID, RoleID = (int)AspectEnums.RoleType.Admin, CreatedBy = student.CreatedBy, CreatedDate = DateTime.Now, IsActive = true });
+                HIQAdminContext.SaveChanges();
+            }
+            return result;
         }
 
         public bool UpdateStudentInfo(UserMaster student)

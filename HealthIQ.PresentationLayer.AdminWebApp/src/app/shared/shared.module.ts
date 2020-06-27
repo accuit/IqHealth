@@ -8,6 +8,8 @@ import { BaseFormValidationComponent } from './components/base-form-validation/b
 import { NouisliderModule } from 'ng2-nouislider';
 import { TagInputModule } from 'ngx-chips';
 import { InvoiceTemplateComponent } from '../print/invoice/invoice-template.component';
+import { UserSharedService } from './components/user/user-shared.service';
+import { UserProfileComponent } from './components/user/user-profile.component';
 
 @NgModule({
     imports: [
@@ -20,9 +22,11 @@ import { InvoiceTemplateComponent } from '../print/invoice/invoice-template.comp
     ],
     declarations: [
         FieldErrorDisplayComponent,
-        BaseFormValidationComponent
+        BaseFormValidationComponent,
+        UserProfileComponent
     ],
-    exports: [FieldErrorDisplayComponent]
+    exports: [FieldErrorDisplayComponent, UserProfileComponent],
+    providers: [UserSharedService]
 })
 
 export class SharedModule { }

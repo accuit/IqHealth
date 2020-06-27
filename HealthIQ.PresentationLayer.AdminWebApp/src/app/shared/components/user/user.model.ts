@@ -4,7 +4,7 @@ export class UserMaster {
     lastName: string;
     mobile: string;
     email: string;
-    imageUrl?: string;
+    imagePath?: string;
     image?: string;
     password: string;
     oldPassword?: string;
@@ -19,6 +19,9 @@ export class UserMaster {
     createdDate?: Date;
     createdBy: number;
     isStudent: boolean;
+    isCustomer: boolean;
+    isEmployee: boolean;
+    isAdmin: boolean;
     userRoles?: Array<UserRole>;
 }
 

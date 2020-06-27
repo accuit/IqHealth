@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BaseFormValidationComponent } from 'src/app/shared/components/base-form-validation/base-form-validation.component';
-import { AlertTypeEnum } from 'src/app/core/enums';
+import { AlertTypeEnum, UserTypeEnum } from 'src/app/core/enums';
 import { AlertService } from 'src/app/services/alert.service';
 import { UserMaster } from 'src/app/shared/components/user/user.model';
 import { UserService } from '../../user/user.service';
@@ -21,6 +21,7 @@ export class CreateUserComponent extends BaseFormValidationComponent implements 
   file: any;
   errMessage: any;
   image: string;
+  isEmployee = false;
 
   paymentModes = [{ id: 1, name: 'Cash' }, { id: 2, name: 'Card' }, { id: 3, name: 'UPI' }];
   constructor(
@@ -62,6 +63,27 @@ export class CreateUserComponent extends BaseFormValidationComponent implements 
       });
   }
 
+  onChangeUserType(type): void {
+    if (type.value === UserTypeEnum.Student) {
+      this.formGroup.patchValue({ isStudent: true });
+      this.formGroup.patchValue({ isCustomer: false });
+      this.formGroup.patchValue({ isEmployee: false });
+      this.isEmployee = false;
+    }
+    else if (type.value === UserTypeEnum.Customer) {
+      this.formGroup.patchValue({ isCustomer: true });
+      this.formGroup.patchValue({ isStudent: false });
+      this.formGroup.patchValue({ isEmployee: false });
+      this.isEmployee = false;
+    }
+    else {
+      this.formGroup.patchValue({ isEmployee: true });
+      this.formGroup.patchValue({ isCustomer: false });
+      this.formGroup.patchValue({ isStudent: false });
+      this.isEmployee = true;
+    }
+  }
+
   getimageBase64String(theFile: any): void {
     let file = new FileToUpload();
     let reader = new FileReader();
@@ -69,7 +91,7 @@ export class CreateUserComponent extends BaseFormValidationComponent implements 
     reader.onload = () => {
       file.fileAsBase64 = reader.result.toString();
       this.image = reader.result.toString();
-      this.formGroup.patchValue({image: this.image});
+      this.formGroup.patchValue({ image: this.image });
     }
     reader.readAsDataURL(theFile);
   }
@@ -98,8 +120,8 @@ export class CreateUserComponent extends BaseFormValidationComponent implements 
       email: ['', [Validators.required]],
       mobile: ['', [Validators.required]],
       userCode: [''],
-      imageUrl: [''],
-      image: [''],
+      imagePath: [''],
+      image:[''],
       status: [1],
       pin: [''],
       address: [''],
@@ -107,7 +129,11 @@ export class CreateUserComponent extends BaseFormValidationComponent implements 
       state: [''],
       country: [1],
       userID: [''],
-      isStudent: [true],
+      userType: ['', Validators.required],
+      isStudent: [],
+      isCustomer: [],
+      isEmployee: [],
+      isAdmin: [],
       createdDate: ['']
     });
   }

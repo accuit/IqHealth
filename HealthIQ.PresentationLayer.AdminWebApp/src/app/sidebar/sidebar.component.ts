@@ -16,13 +16,13 @@ export const ROUTES: RouteInfo[] = [{
 },
 {
     path: '/user',
-    title: 'Maintain Student',
+    title: 'Maintain User',
     type: 'sub',
     icontype: 'image',
     collapse: 'user',
     children: [
-        {path: 'users-list', title: 'Students List', ab:'S'},
-        {path: 'create-user', title: 'Create Student', ab:'TP'}
+        {path: 'users-list', title: 'Users List', ab:'UL'},
+        {path: 'create-user', title: 'Create User', ab:'NU'}
     ],
     roles: ['Admin', 'Employee']
 },

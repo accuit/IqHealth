@@ -40,6 +40,7 @@ namespace HealthIQ.PresentationLayer.AdminApp.Controllers
         }
 
         [HttpGet]
+        [BaseAuthentication]
         [Route("get-user-profile/{id}")]
         public JsonResponse<UserMasterDTO> GetUsersByID(int id)
         {
@@ -305,5 +306,3 @@ namespace HealthIQ.PresentationLayer.AdminApp.Controllers
         public string password { get; set; }
     }
 }
-
-

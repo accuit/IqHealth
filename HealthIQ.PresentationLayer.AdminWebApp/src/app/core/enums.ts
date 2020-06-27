@@ -15,3 +15,9 @@ export enum AlertTypeEnum {
     confirm = 'confirm',
     cancelled = 'cancelled'
 }
+
+export enum UserTypeEnum {
+    Student = '1',
+    Employee = '2',
+    Customer = '3'
+}
