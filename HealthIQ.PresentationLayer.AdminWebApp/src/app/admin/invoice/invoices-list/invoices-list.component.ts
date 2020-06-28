@@ -18,7 +18,7 @@ export class InvoicesListComponent implements OnInit {
   ngOnInit(): void {
     this.service.getUserInvoices(5).subscribe(res => {
       this.invoices = res.singleResult;
-      this.columns = ['ID', 'Billing Name', 'Invoice Date', 'Billing Address', 'Tax', 'SubTotal'];
+      this.columns = ['ID', 'Billing Name', 'Invoice Date', 'Tax', 'SubTotal', 'Action'];
     })
   }
 }

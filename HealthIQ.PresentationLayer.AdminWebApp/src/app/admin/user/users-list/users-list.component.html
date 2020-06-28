@@ -8,7 +8,7 @@
             </div>
           </div>
             <div class="card-body table-responsive">
-                <table class="table table-hover">
+                <table class="table table-hover table-shopping">
                         <thead class="text-warning">
                             <tr>
                               <th *ngFor="let col of columns">{{ col }}</th>
@@ -16,7 +16,7 @@
                         </thead>
                       <tbody>
                           <tr *ngFor="let row of students">
-                              <td>{{ row.userID}}</td>
+                              <td><div class="img-container"><img width="20px" [alt]="row.firstName" [src]="!row.image? './assets/img/faces/man.jpg' : row.image"></div></td>
                               <td>{{ row.firstName}}</td>
                               <td>{{ row.lastName}}</td>
                               <td>{{ row.email}}</td>
