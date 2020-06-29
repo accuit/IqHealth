@@ -21,9 +21,9 @@
               <td>{{ row.invoiceDate | date}}</td>
               <td>{{ row.tax}}</td>
               <td>{{ row.subTotal}}</td>
-              <td> <button mat-raised-button="" type="button"
+              <td> <button mat-raised-button="" type="button" (click)="viewInvoice(row.id)"
                   class="mat-raised-button mat-button-base btn btn-success"><span class="mat-button-wrapper">
-                    <i class="material-icons">preview</i></span>
+                    <i class="material-icons">visibility</i></span>
                   <div matripple="" class="mat-ripple mat-button-ripple"></div>
                   <div class="mat-button-focus-overlay">
                   </div>

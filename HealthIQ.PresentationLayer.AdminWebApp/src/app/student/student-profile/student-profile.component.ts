@@ -3,9 +3,8 @@ import { StudentService } from '../student.service';
 import { UserMaster } from 'src/app/shared/components/user/user.model';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BaseFormValidationComponent } from 'src/app/shared/components/base-form-validation/base-form-validation.component';
-import { tap } from 'rxjs/operators';
-import { APIResponse } from 'src/app/core/models';
-import { PrintService } from 'src/app/print/print.service';
+import { PrintService } from '../../../app/shared/print/print.service';
+import { APIResponse } from '../../../app/core/models';
 
 @Component({
   selector: 'app-student-profile',
@@ -38,7 +37,7 @@ export class StudentProfileComponent extends BaseFormValidationComponent impleme
       email: ['', [Validators.required]],
       mobile: ['', [Validators.required]],
       userCode: [''],
-      imageUrl: [''],
+      image: [''],
       status: [1],
       pinCode: [''],
       copyemail: [''],

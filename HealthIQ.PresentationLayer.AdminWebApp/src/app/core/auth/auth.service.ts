@@ -55,13 +55,12 @@ export class AuthService {
   }
 
   login(email: string, password: string) {
-    return this.http.post<any>(`${environment.apiUrl}/account/user-login`, { email, password })
+    return this.http.post<any>(`${environment.apiUrl}account/user-login`, { email, password })
       .pipe(map(res => {
         let user : UserMaster = null;
         if (res.isSuccess) {
           user = res.singleResult;
           user.roles = user.userRoles.map(x=> x.roleMaster.name);
-          console.log(user);
           localStorage.setItem('currentUser', JSON.stringify(user));
           localStorage.setItem('token', this.encode.b64EncodeUnicode(email + ':' + password));
           this.user.next(user);

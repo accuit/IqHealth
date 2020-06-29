@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class InvoiceService {
@@ -13,6 +13,10 @@ export class InvoiceService {
       'Access-Control-Allow-Origin': '*',
       'No-Auth': 'True'
     });
+  }
+
+  getAllInvoices(): any {
+    return this.httpClient.get(this.baseUrl + 'student/get-all-invoices/', { headers: this.headers });
   }
 
   getUserInvoices(userId: number): any {

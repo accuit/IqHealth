@@ -27,10 +27,9 @@ export class UserSharedService {
   }
 
   getUserProfile(): Observable<any> {
-    const isAuth = localStorage.getItem("isAuthorized") === 'true' ? true : false;
+    const isAuth = this.auth.isLoggedIn;
     if (isAuth) {
-      const id = localStorage.getItem("userID");
-      return this.httpClient.get(this.baseUrl + 'account/get-user-profile/' + +id, { headers: this.headers });
+      return this.httpClient.get(this.baseUrl + 'account/get-user-profile/' + this.userId, { headers: this.headers });
     }
     return null;
   }

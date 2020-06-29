@@ -17,5 +17,6 @@ namespace HealthIQ.PersistenceLayer.Data.Repository
         StudentInvoice GetInvoiceDetails(int ID);
         int AddUpdateStudentInvoice(StudentInvoice student);
         IList<StudentInvoice> GetStudentInvoices(int userId);
+        IList<StudentInvoice> GetAllInvoices();
     }
 }

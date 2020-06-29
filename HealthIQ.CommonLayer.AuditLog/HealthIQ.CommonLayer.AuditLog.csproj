@@ -7,8 +7,8 @@
     <ProjectGuid>{518FD54B-A499-4650-B0D0-332F26652A78}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LaymanWoods.CommonLayer.AuditLog</RootNamespace>
-    <AssemblyName>LaymanWoods.CommonLayer.AuditLog</AssemblyName>
+    <RootNamespace>HealthIQ.CommonLayer.AuditLog</RootNamespace>
+    <AssemblyName>HealthIQ.CommonLayer.AuditLog</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

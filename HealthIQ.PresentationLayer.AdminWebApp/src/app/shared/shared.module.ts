@@ -7,9 +7,12 @@ import { FieldErrorDisplayComponent } from './components/field-error-display/fie
 import { BaseFormValidationComponent } from './components/base-form-validation/base-form-validation.component';
 import { NouisliderModule } from 'ng2-nouislider';
 import { TagInputModule } from 'ngx-chips';
-import { InvoiceTemplateComponent } from '../print/invoice/invoice-template.component';
 import { UserSharedService } from './components/user/user-shared.service';
 import { UserProfileComponent } from './components/user/user-profile.component';
+import { PDFExportModule } from '@progress/kendo-angular-pdf-export';
+import { IpxModalService } from './components/modal/modal.service';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { PrintModule } from './print/print.module';
 
 @NgModule({
     imports: [
@@ -18,7 +21,10 @@ import { UserProfileComponent } from './components/user/user-profile.component';
         ReactiveFormsModule,
         NouisliderModule,
         TagInputModule,
-        MaterialModule
+        MaterialModule,
+        PDFExportModule,
+        PrintModule,
+        ModalModule.forRoot()
     ],
     declarations: [
         FieldErrorDisplayComponent,
@@ -26,7 +32,7 @@ import { UserProfileComponent } from './components/user/user-profile.component';
         UserProfileComponent
     ],
     exports: [FieldErrorDisplayComponent, UserProfileComponent],
-    providers: [UserSharedService]
+    providers: [UserSharedService, IpxModalService]
 })
 
 export class SharedModule { }

@@ -11,7 +11,6 @@ import { NouisliderModule } from 'ng2-nouislider';
 import { TagInputModule } from 'ngx-chips';
 import { MaterialModule } from '../app.module';
 import { SharedModule } from '../shared/shared.module';
-import { PrintModule } from '../print/print.module';
 
 export const StudentRoutes: Routes = [
   {
@@ -44,8 +43,7 @@ export const StudentRoutes: Routes = [
     NouisliderModule,
     TagInputModule,
     MaterialModule,
-    SharedModule,
-    PrintModule
+    SharedModule
   ],
   providers: [StudentService]
 })

@@ -8,12 +8,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../app.module';
 import { NouisliderModule } from 'ng2-nouislider';
 import { TagInputModule } from 'ngx-chips';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [AdminComponent],
   imports: [
     CommonModule,
-    RouterModule.forChild(AdminRoutes)
+    RouterModule.forChild(AdminRoutes),
+    SharedModule
   ]
 })
 export class AdminModule { }

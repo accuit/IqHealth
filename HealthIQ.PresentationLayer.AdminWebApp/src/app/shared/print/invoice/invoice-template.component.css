@@ -90,4 +90,24 @@
     .rtl table tr td:nth-child(2) {
         text-align: left;
     }
-    
+    .modal-dialog .modal-header .modal-title {
+        text-align: left !important;
+        width: 100%;
+    }
+
+    .modal-dialog .modal-header {
+        border-bottom: solid 1px #dcd8d8 !important;
+        padding-top: 24px;
+        padding-right: 24px;
+        padding-bottom: 0;
+        padding-left: 24px;
+        /* background-color: #fbfbfb; */
+    }
+    .modal-dialog .modal-header .modal-title {
+        text-align: left;
+        width: 100%;
+        padding: 2px 0 10px 0;
+        font-style: normal;
+        font-weight: 600;
+        font-size: larger;
+    }

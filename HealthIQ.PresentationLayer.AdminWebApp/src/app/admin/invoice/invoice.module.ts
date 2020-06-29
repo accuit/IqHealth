@@ -10,7 +10,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../../../app/app.module';
 import { NouisliderModule } from 'ng2-nouislider';
 import { TagInputModule } from 'ngx-chips';
-import { InvoiceService } from './invoice.service';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 export const InvoiceRoutes: Routes = [
@@ -47,6 +46,6 @@ export const InvoiceRoutes: Routes = [
     MaterialModule,
     SharedModule
   ],
-  providers: [InvoiceService]
+  providers: []
 })
 export class InvoiceModule { }

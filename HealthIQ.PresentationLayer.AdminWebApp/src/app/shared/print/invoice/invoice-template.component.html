@@ -1,9 +1,12 @@
 <div class="row">
     <div class="col-md-12">
-        <div class="card">
-            <div class="card-header card-header-icon card-header-warning">
-                <div class="card-icon">
-                    <i class="material-icons">receipt_long</i>
+        <div>
+            <div>
+                <div class="modal-header" style="border-bottom: solid 1px #dcd8d8;padding:0 24px 10px 24px">
+                    <h3 class="modal-title" style="text-align: left; font-weight: 500;"> {{invoice? invoice.name: 'Invoice#'}}</h3>
+                    <button style=" margin-top: 1%;" type="button" class="close"  aria-label="Close" (click)="onClose()">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
                 </div>
             </div>
             <div class="card-body table-responsive">
@@ -120,9 +123,8 @@
                 </kendo-pdf-export>
             </div>
             <div class="card-footer text-right">
-                <button mat-raised-button type="submit" class="btn btn-rose"
-                    (click)="pdf.saveAs('invoice.pdf')">Download
-                    PDF</button>
+                <button mat-raised-button type="submit" class="btn btn-rose" (click)="pdf.saveAs('invoice.pdf')">Download PDF</button>
+                <button mat-raised-button  type="button" class="btn btn-rose" (click)="onClose()" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
