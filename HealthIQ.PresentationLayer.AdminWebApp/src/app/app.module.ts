@@ -52,9 +52,8 @@ import { SharedModule } from './shared/shared.module';
 import { ErrorInterceptor } from './core/interceptor/error.interceptor';
 import { AuthInterceptor } from './core/interceptor/auth.interceptor';
 import { EncodeDecodeService } from './core/encode-decode.service';
-import { HandleRespnseInterceptor } from './core/interceptor/handle-response.interceptor';
-import { PrintService } from './print/print.service';
 import { PDFExportModule } from '@progress/kendo-angular-pdf-export';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 
 @NgModule({
@@ -104,6 +103,7 @@ export class MaterialModule { }
     }),
     HttpClientModule,
     MaterialModule,
+    ModalModule.forRoot(),
     SidebarModule,
     NavbarModule,
     FooterModule,

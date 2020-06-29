@@ -14,5 +14,6 @@ namespace HealthIQ.BusinessLayer.Services.Contracts
         StudentInvoiceDTO GetInvoiceDetails(int ID);
         int AddUpdateStudentInvoice(StudentInvoiceDTO student);
         IList<StudentInvoiceDTO> GetStudentInvoices(int userId);
+        IList<StudentInvoiceDTO> GetAllInvoices();
     }
 }

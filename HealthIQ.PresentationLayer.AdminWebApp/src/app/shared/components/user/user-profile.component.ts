@@ -4,8 +4,11 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BaseFormValidationComponent } from 'src/app/shared/components/base-form-validation/base-form-validation.component';
 import { tap } from 'rxjs/operators';
 import { APIResponse } from 'src/app/core/models';
-import { PrintService } from 'src/app/print/print.service';
 import { UserSharedService } from './user-shared.service';
+import { PrintService } from '../../print/print.service';
+import { InvoiceService } from 'src/app/services/invoice.service';
+import { IpxModalService } from '../modal/modal.service';
+import { InvoiceTemplateComponent } from '../../print/invoice/invoice-template.component';
 
 @Component({
     selector: 'ipx-user-profile',
@@ -17,10 +20,14 @@ export class UserProfileComponent extends BaseFormValidationComponent implements
     user: UserMaster;
     formGroup: FormGroup;
     showInvoice = false;
+    invoices: any;
+    columns: any;
+
     constructor(
         private readonly userService: UserSharedService,
         private readonly formBuilder: FormBuilder,
-        private readonly print: PrintService) {
+        private readonly modalService: IpxModalService,
+        private readonly service: InvoiceService) {
         super()
     }
 
@@ -29,10 +36,34 @@ export class UserProfileComponent extends BaseFormValidationComponent implements
         this.createForm();
         this.userService.getLoggedInUserData().subscribe((user: APIResponse) => {
             this.user = user.singleResult;
-            this.formGroup.patchValue(user.singleResult)
+            this.formGroup.patchValue(user.singleResult);
+            this.getInvoices(this.user.userID);
         });
+
     }
 
+    getInvoices(id) {
+        this.service.getUserInvoices(this.user.userID).subscribe(res => {
+            this.invoices = res.singleResult;
+            this.columns = ['ID', 'Billing Name', 'Invoice Date', 'Tax', 'SubTotal', 'Preview'];
+        })
+    }
+
+    onClose(): void {
+        this.showInvoice = false;
+    }
+
+    viewInvoice(id): any {
+        this.modalService.openModal(InvoiceTemplateComponent, {
+            animated: false,
+            ignoreBackdropClick: true,
+            backdrop: 'static',
+            class: 'modal-lg',
+            initialState: {
+                invoiceID: id
+            }
+        });
+    }
     createForm() {
         this.formGroup = this.formBuilder.group({
             firstName: ['', [Validators.required]],
@@ -40,7 +71,7 @@ export class UserProfileComponent extends BaseFormValidationComponent implements
             email: ['', [Validators.required]],
             mobile: ['', [Validators.required]],
             userCode: [''],
-            imageUrl: [''],
+            image: [''],
             status: [1],
             pinCode: [''],
             copyemail: [''],
@@ -52,10 +83,6 @@ export class UserProfileComponent extends BaseFormValidationComponent implements
             userID: [''],
             createdDate: ['']
         });
-    }
-
-    onPrintInvoice() {
-        this.showInvoice = true;
     }
 
 }

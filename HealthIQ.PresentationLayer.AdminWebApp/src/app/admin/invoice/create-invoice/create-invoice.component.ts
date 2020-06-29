@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { InvoiceService } from '../invoice.service';
+import { InvoiceService } from '../../../services/invoice.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BaseFormValidationComponent } from 'src/app/shared/components/base-form-validation/base-form-validation.component';
 import { AlertTypeEnum } from 'src/app/core/enums';

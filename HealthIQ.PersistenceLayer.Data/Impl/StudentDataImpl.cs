@@ -52,6 +52,11 @@ namespace HealthIQ.PersistenceLayer.Data.Impl
         {
             return HIQAdminContext.StudentInvoices.First(x => x.ID == ID);
         }
+
+        public IList<StudentInvoice> GetAllInvoices()
+        {
+            return HIQAdminContext.StudentInvoices.Where(x => !x.IsDeleted).ToList();
+        }
         public IList<StudentInvoice> GetStudentInvoices(int userId)
         {
             return HIQAdminContext.StudentInvoices.Where(x => x.UserID == userId).ToList();

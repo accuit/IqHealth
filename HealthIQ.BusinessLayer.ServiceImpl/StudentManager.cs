@@ -49,6 +49,12 @@ namespace HealthIQ.BusinessLayer.ServiceImpl
             return mapper.Map<List<StudentInvoiceDTO>>(result);
         }
 
+        public IList<StudentInvoiceDTO> GetAllInvoices()
+        {
+            var result = StudentRepository.GetAllInvoices();
+            return mapper.Map<List<StudentInvoiceDTO>>(result);
+        }
+
         public bool UpdateStudentInfo(UserMasterDTO student)
         {
             throw new NotImplementedException();

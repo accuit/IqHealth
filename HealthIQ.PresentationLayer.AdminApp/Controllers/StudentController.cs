@@ -127,6 +127,29 @@ namespace HealthIQ.PresentationLayer.AdminApp.Controllers
         }
 
         [HttpGet]
+        [Route("get-all-invoices")]
+        [AuthorizePage(Roles = "Admin")]
+        public JsonResponse<IList<StudentInvoiceDTO>> GetAllInvoices()
+        {
+            JsonResponse<IList<StudentInvoiceDTO>> response = new JsonResponse<IList<StudentInvoiceDTO>>();
+            var StudentInvoiceDTO = new List<StudentInvoiceDTO>();
+            try
+            {
+                response.SingleResult = StudentBusinessInstance.GetAllInvoices();
+                response.StatusCode = "200";
+                response.IsSuccess = true;
+            }
+            catch (Exception ex)
+            {
+                response.SingleResult = null;
+                response.StatusCode = "500";
+                response.IsSuccess = false;
+                response.Message = ex.Message;
+            }
+            return response;
+        }
+
+        [HttpGet]
         [Route("get-invoice-details/{Id}")]
         [AuthorizePage(Roles = "Student")]
         public JsonResponse<StudentInvoiceDTO> GetInvoiceDetails(int Id)
