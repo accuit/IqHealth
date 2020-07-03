@@ -3,7 +3,7 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router, CanAc
 
 @Injectable()
 export class AuthGuard implements CanActivate, CanActivateChild {
-  constructor( private router: Router) { }
+  constructor(private router: Router) { }
 
   canActivate(
     next: ActivatedRouteSnapshot,
@@ -15,12 +15,12 @@ export class AuthGuard implements CanActivate, CanActivateChild {
   }
 
   canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-	
+
     if (localStorage.getItem('userID') != null) {
-            return true;		
+      return true;
     } else {
-      console.log('Unauthorized to open link: '+ state.url);
+      console.log('Unauthorized to open link: ' + state.url);
       return false;
     }
-    }
+  }
 }

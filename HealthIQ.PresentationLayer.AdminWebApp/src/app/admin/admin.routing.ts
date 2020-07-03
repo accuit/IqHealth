@@ -4,6 +4,7 @@ import { Role } from '../core/models/role';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { RoleGuard } from '../core/auth/role-guard';
 import { AdminComponent } from './admin.component';
+import { CreateBlogComponent } from './blog/create-blog/create-blog.component';
 
 export const AdminRoutes: Routes = [
     {
@@ -17,6 +18,10 @@ export const AdminRoutes: Routes = [
             {
                 path: 'invoice',
                 loadChildren: './invoice/invoice.module#InvoiceModule'
+            },
+            {
+                path: 'create-blog',
+                component: CreateBlogComponent
             }
         ]
     }

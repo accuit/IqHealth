@@ -12,6 +12,7 @@ namespace HealthIQ.PresentationLayer.AdminApp.Controllers
         private ISecurityService securityBusinessInstance;
         private IStudentService studentBusinessInstance;
         private INotificationService notificationBusinessInstance;
+        private IAdminService adminBusinessInstance;
         public IUserService UserBusinessInstance
         {
             get
@@ -57,6 +58,18 @@ namespace HealthIQ.PresentationLayer.AdminApp.Controllers
                     notificationBusinessInstance = AopEngine.Resolve<INotificationService>(AspectEnums.AspectInstanceNames.NotificationManager, AspectEnums.ApplicationName.HealthIQ);
                 }
                 return notificationBusinessInstance;
+            }
+        }
+
+        public IAdminService AdminBusinessInstance
+        {
+            get
+            {
+                if (adminBusinessInstance == null)
+                {
+                    adminBusinessInstance = AopEngine.Resolve<IAdminService>(AspectEnums.AspectInstanceNames.AdminManager, AspectEnums.ApplicationName.HealthIQ);
+                }
+                return adminBusinessInstance;
             }
         }
 

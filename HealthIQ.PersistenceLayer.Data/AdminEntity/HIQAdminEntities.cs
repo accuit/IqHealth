@@ -12,9 +12,10 @@ namespace HealthIQ.PersistenceLayer.Data.AdminEntity
         {
         }
 
-        public virtual DbSet<InvoiceItems> InvoiceItems { get; set; }
-        public virtual DbSet<StudentInvoice> StudentInvoices { get; set; }
         public virtual DbSet<AddressMaster> AddressMasters { get; set; }
+        public virtual DbSet<BlogCategoryMapping> BlogCategoryMappings { get; set; }
+        public virtual DbSet<BlogCategoryMaster> BlogCategoryMasters { get; set; }
+        public virtual DbSet<BlogMaster> BlogMasters { get; set; }
         public virtual DbSet<BookingMaster> BookingMasters { get; set; }
         public virtual DbSet<CommonSetup> CommonSetups { get; set; }
         public virtual DbSet<CompanyMaster> CompanyMasters { get; set; }
@@ -32,6 +33,7 @@ namespace HealthIQ.PersistenceLayer.Data.AdminEntity
         public virtual DbSet<EmailTemplate> EmailTemplates { get; set; }
         public virtual DbSet<HealthServiceMaster> HealthServiceMasters { get; set; }
         public virtual DbSet<HospitalMaster> HospitalMasters { get; set; }
+        public virtual DbSet<InvoiceItem> InvoiceItems { get; set; }
         public virtual DbSet<JobApplication> JobApplications { get; set; }
         public virtual DbSet<LoginAttemptHistory> LoginAttemptHistories { get; set; }
         public virtual DbSet<ModuleMaster> ModuleMasters { get; set; }
@@ -45,6 +47,7 @@ namespace HealthIQ.PersistenceLayer.Data.AdminEntity
         public virtual DbSet<RoleMaster> RoleMasters { get; set; }
         public virtual DbSet<RoleModule> RoleModules { get; set; }
         public virtual DbSet<SpecialityMaster> SpecialityMasters { get; set; }
+        public virtual DbSet<StudentInvoice> StudentInvoices { get; set; }
         public virtual DbSet<StudentMaster> StudentMasters { get; set; }
         public virtual DbSet<SubCours> SubCourses { get; set; }
         public virtual DbSet<SystemSetting> SystemSettings { get; set; }
@@ -75,6 +78,23 @@ namespace HealthIQ.PersistenceLayer.Data.AdminEntity
             modelBuilder.Entity<AddressMaster>()
                 .Property(e => e.Longitude)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<BlogCategoryMaster>()
+                .HasMany(e => e.BlogCategoryMappings)
+                .WithRequired(e => e.BlogCategoryMaster)
+                .HasForeignKey(e => e.CategoryID)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<BlogMaster>()
+                .HasMany(e => e.BlogCategoryMappings)
+                .WithRequired(e => e.BlogMaster)
+                .HasForeignKey(e => e.BlogID)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<CourseMaster>()
+                .HasMany(e => e.StudentInvoices)
+                .WithOptional(e => e.CourseMaster)
+                .HasForeignKey(e => e.CourseID);
 
             modelBuilder.Entity<CustomerMaster>()
                 .Property(e => e.FirstName)
@@ -168,6 +188,38 @@ namespace HealthIQ.PersistenceLayer.Data.AdminEntity
                 .Property(e => e.Remarks)
                 .IsUnicode(false);
 
+            modelBuilder.Entity<EmailTemplate>()
+                .Property(e => e.Name)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<EmailTemplate>()
+                .Property(e => e.Body)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<EmailTemplate>()
+                .Property(e => e.Subject)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<InvoiceItem>()
+                .Property(e => e.Name)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<InvoiceItem>()
+                .Property(e => e.Cost)
+                .HasPrecision(9, 2);
+
+            modelBuilder.Entity<InvoiceItem>()
+                .Property(e => e.Tax)
+                .HasPrecision(9, 2);
+
+            modelBuilder.Entity<InvoiceItem>()
+                .Property(e => e.TypeText)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<InvoiceItem>()
+                .Property(e => e.Description)
+                .IsUnicode(false);
+
             modelBuilder.Entity<LoginAttemptHistory>()
                 .Property(e => e.Lattitude)
                 .IsUnicode(false);
@@ -247,6 +299,39 @@ namespace HealthIQ.PersistenceLayer.Data.AdminEntity
                 .HasMany(e => e.UserRoleModulePermissions)
                 .WithOptional(e => e.RoleModule)
                 .WillCascadeOnDelete();
+
+            modelBuilder.Entity<StudentInvoice>()
+                .Property(e => e.Name)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<StudentInvoice>()
+                .Property(e => e.SubTotal)
+                .HasPrecision(9, 2);
+
+            modelBuilder.Entity<StudentInvoice>()
+                .Property(e => e.Tax)
+                .HasPrecision(9, 2);
+
+            modelBuilder.Entity<StudentInvoice>()
+                .Property(e => e.CopyEmail)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<StudentInvoice>()
+                .Property(e => e.Address)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<StudentInvoice>()
+                .Property(e => e.Pin)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<StudentInvoice>()
+                .Property(e => e.Mobile)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<StudentInvoice>()
+                .HasMany(e => e.InvoiceItems)
+                .WithOptional(e => e.StudentInvoice)
+                .HasForeignKey(e => e.InvoiceID);
 
             modelBuilder.Entity<StudentMaster>()
                 .Property(e => e.FirstName)
@@ -349,7 +434,24 @@ namespace HealthIQ.PersistenceLayer.Data.AdminEntity
                 .IsUnicode(false);
 
             modelBuilder.Entity<UserMaster>()
+                .Property(e => e.Image)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<UserMaster>()
+                .Property(e => e.Address)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<UserMaster>()
+                .Property(e => e.Pin)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<UserMaster>()
                 .HasMany(e => e.LoginAttemptHistories)
+                .WithRequired(e => e.UserMaster)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<UserMaster>()
+                .HasMany(e => e.StudentInvoices)
                 .WithRequired(e => e.UserMaster)
                 .WillCascadeOnDelete(false);
 

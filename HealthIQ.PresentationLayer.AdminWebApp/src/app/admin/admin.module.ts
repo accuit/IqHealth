@@ -9,13 +9,20 @@ import { MaterialModule } from '../app.module';
 import { NouisliderModule } from 'ng2-nouislider';
 import { TagInputModule } from 'ngx-chips';
 import { SharedModule } from '../shared/shared.module';
+import { CreateBlogComponent } from './blog/create-blog/create-blog.component';
+import { BlogService } from './blog/blog.service';
 
 @NgModule({
-  declarations: [AdminComponent],
+  declarations: [AdminComponent, CreateBlogComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(AdminRoutes),
-    SharedModule
-  ]
+    FormsModule,
+    ReactiveFormsModule,
+    SharedModule,
+    MaterialModule,
+    TagInputModule
+  ],
+  providers: [BlogService]
 })
 export class AdminModule { }

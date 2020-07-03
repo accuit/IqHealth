@@ -1,7 +1,7 @@
 ﻿using HealthIQ.CommonLayer.Aspects.DTO;
 using System.Collections.Generic;
 
-namespace HealthIQ.BusinessLayer.Services
+namespace HealthIQ.BusinessLayer.Services.Contracts
 {
     public interface IUserService
     {

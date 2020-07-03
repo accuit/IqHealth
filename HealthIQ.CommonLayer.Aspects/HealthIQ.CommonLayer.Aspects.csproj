@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AspectEnums.cs" />
+    <Compile Include="DTO\BlogDTO.cs" />
     <Compile Include="DTO\ContactEnquiryDTO.cs" />
     <Compile Include="DTO\EntrepreneurEnquiryDTO.cs" />
     <Compile Include="DTO\InteriorAndCategoryMappingDTO.cs" />

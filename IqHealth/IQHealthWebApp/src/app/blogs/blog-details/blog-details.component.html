@@ -1,0 +1,70 @@
+<app-top-header></app-top-header>
+<app-default-header></app-default-header>
+
+<app-inner-banner [title]="title" url="/" parent="Home" [subtitle]="subtitle">
+</app-inner-banner>
+
+<section class="blog-style-two sec-pad blog-details-page">
+    <div class="thm-container">
+        <div *ngIf="blog" class="row">
+            <div class="col-md-8 col-sm-12 col-xs-12">
+                <div class="single-post-content">
+                    <h3 class="post-title">{{blog.title}}</h3>
+                    <div class="top-box clearfix">
+                        <div class="meta-info pull-left">
+                            <!-- <a href="#"><img src="images/team-1-2.jpg" alt=""> By <span>Alise Gersten</span></a> -->
+                            <a href="#"><i class="fa fa-calendar-alt"></i> {{blog.postDate | date: 'mediumDate'}}</a>
+                            <a href="#"><i class="fa fa-heart"></i> 742</a>
+                        </div><!-- /.meta-info -->
+                        <div *ngIf="blog.tags" class="cat-info pull-right">
+                            <a *ngFor="let t of blog.tags.split(',')" href="#">{{t}}</a>
+                        </div><!-- /.cat-info -->
+                    </div><!-- /.top-box -->
+                    <div class="img-box">
+                        <img [src]="blog.bannerImage" alt="Awesome Image">
+                    </div><!-- /.img-box -->
+                    <div class="text-box">
+                        <br>
+                        <br>
+                        <p [innerHtml]="blog.content"></p>
+                        <br>
+                        <br>
+                    </div><!-- /.post-content -->
+                </div><!-- /.single-post-content -->
+            </div><!-- /.col-md-8 col-sm-12 col-xs-12 -->
+            <div class="col-md-4 col-sm-12 col-xs-12">
+                <div class="sidebar sidebar-right">
+                    <div class="single-sidebar recent-post-sidebar">
+                        <div class="title">
+                            <h3>recent posts</h3>
+                        </div><!-- /.title -->
+                        <div *ngFor="let blog of blogs" class="recent-post-wrapper">
+                            <div class="single-recent-post">
+                                <div class="img-box">
+                                    <img [src]="blog.thumbImage? blog.thumbImage : blog.bannerImage"
+                                        alt="{{blog.title}}">
+                                </div><!-- /.img-box -->
+                                <div class="text-box">
+                                    <a [routerLink]="'/blog-details/'+ blog.id">
+                                        <h3>{{ blog.title}}</h3>
+                                    </a>
+                                    <span class="date">{{blog.postDate}}</span>
+                                </div><!-- /.text-box -->
+                            </div><!-- /.single-recent-post -->
+                        </div><!-- /.recent-post-wrapper -->
+                    </div><!-- /.single-sidebar -->
+                    <div class="single-sidebar tags-sidebar">
+                        <div class="title">
+                            <h3>Tags</h3>
+                        </div><!-- /.title -->
+                        <div class="tags-wrapper">
+                            <ul class="tags-list">
+                                <li *ngFor="let tag of tags"><a href="#">{{tag}}</a></li>
+                            </ul>
+                        </div><!-- /.tags-wrapper -->
+                    </div><!-- /.single-sidebar -->
+                </div><!-- /.sidebar -->
+            </div><!-- /.col-md-4 -->
+        </div><!-- /.row -->
+    </div><!-- /.thm-container -->
+</section>

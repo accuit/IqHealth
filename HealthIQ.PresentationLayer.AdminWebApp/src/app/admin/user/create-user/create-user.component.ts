@@ -8,8 +8,6 @@ import { UserService } from '../../user/user.service';
 import { APIResponse, FileToUpload } from 'src/app/core/models';
 import { AuthService } from 'src/app/core/auth/auth.service';
 
-const MAX_SIZE: number = 1048576;
-
 @Component({
   selector: 'app-create-user',
   templateUrl: './create-user.component.html',
@@ -84,57 +82,48 @@ export class CreateUserComponent extends BaseFormValidationComponent implements 
     }
   }
 
-  getimageBase64String(theFile: any): void {
-    let file = new FileToUpload();
-    let reader = new FileReader();
-
-    reader.onload = () => {
-      file.fileAsBase64 = reader.result.toString();
-      this.image = reader.result.toString();
-      this.formGroup.patchValue({ image: this.image });
-    }
-    reader.readAsDataURL(theFile);
-  }
-
   onFileChange(event) {
     this.file = null;
     if (event.target.files &&
       event.target.files.length > 0) {
       // Don't allow file sizes over 1MB
-      if (event.target.files[0].size < MAX_SIZE) {
+      if (event.target.files[0].size < this.MAX_FILE_SIZE) {
         this.file = event.target.files[0];
-        this.getimageBase64String(this.file);
-      }
-      else {  // Display error message
-        this.errMessage.push("File: " +
-          event.target.files[0].name
-          + " is too large to upload.");
+        this.image = this.getimageBase64String(this.file, 'image');
+        if (this.image) {
+          this.formGroup.patchValue({ image: this.image });
+        }
+        else {  // Display error message
+          this.errMessage.push("File: " +
+            event.target.files[0].name
+            + " is too large to upload.");
+        }
       }
     }
   }
 
-  createForm() {
-    this.formGroup = this.formBuilder.group({
-      firstName: ['', [Validators.required]],
-      lastName: ['', [Validators.required]],
-      email: ['', [Validators.required]],
-      mobile: ['', [Validators.required]],
-      userCode: [''],
-      imagePath: [''],
-      image:[''],
-      status: [1],
-      pin: [''],
-      address: [''],
-      city: [''],
-      state: [''],
-      country: [1],
-      userID: [''],
-      userType: ['', Validators.required],
-      isStudent: [],
-      isCustomer: [],
-      isEmployee: [],
-      isAdmin: [],
-      createdDate: ['']
-    });
+    createForm() {
+      this.formGroup = this.formBuilder.group({
+        firstName: ['', [Validators.required]],
+        lastName: ['', [Validators.required]],
+        email: ['', [Validators.required]],
+        mobile: ['', [Validators.required]],
+        userCode: [''],
+        imagePath: [''],
+        image: [''],
+        status: [1],
+        pin: [''],
+        address: [''],
+        city: [''],
+        state: [''],
+        country: [1],
+        userID: [''],
+        userType: ['', Validators.required],
+        isStudent: [],
+        isCustomer: [],
+        isEmployee: [],
+        isAdmin: [],
+        createdDate: ['']
+      });
+    }
   }
-}

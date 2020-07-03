@@ -24,7 +24,7 @@ namespace HealthIQ.PersistenceLayer.Data.Impl
                 if (invoice != null)
                 {
                     invoice.Name = student.Name;
-                    invoice.Paymentmode = student.Paymentmode;
+                    invoice.PaymentMode = student.PaymentMode;
                     invoice.PaymentStatus = student.PaymentStatus;
                     invoice.Mobile = student.Mobile;
                     invoice.Status = student.Status;

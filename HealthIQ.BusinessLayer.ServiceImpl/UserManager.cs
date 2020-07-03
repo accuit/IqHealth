@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
-using HealthIQ.BusinessLayer.Services;
-using HealthIQ.BusinessLayer.Services.BO;
+using HealthIQ.BusinessLayer.Services.Contracts;
 using HealthIQ.CommonLayer.Aspects.DTO;
 using HealthIQ.PersistenceLayer.Data.AdminEntity;
 using HealthIQ.PersistenceLayer.Data.Repository;

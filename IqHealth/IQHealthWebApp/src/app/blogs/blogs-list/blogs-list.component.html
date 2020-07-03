@@ -1,0 +1,67 @@
+<app-top-header></app-top-header>
+<app-default-header></app-default-header>
+
+<app-inner-banner title="List of Our Blogs" url="/" parent="Home" subtitle="Read our famous blog posts."></app-inner-banner>
+
+<section class="blog-style-two sec-pad blog-page">
+    <div class="thm-container">
+        <div *ngIf="blogs" class="row">
+            <div class="col-md-8 col-sm-12 col-xs-12">
+                <div *ngFor="let blog of blogs" class="single-blog-style-two">
+                    <div class="img-box">
+                        <img [src]="blog.bannerImage" alt="{{blog.title}}">
+                    </div><!-- /.img-box -->
+                    <div class="text-box">
+                        <div class="cat-info">
+                            <a *ngFor="let t of blog.tags.split(',')" href="#">{{t}}</a>
+                        </div><!-- /.cat-info -->
+                        <a [routerLink]="'/blog-details/'+ blog.id"><h3>{{blog.title}}</h3></a>
+                        <p [innerHtml]="blog.content| slice:0:200"> </p>
+                        <p><a [routerLink]="'/blog-details/'+ blog.id" class="more-btn">Read More <i class="fa fa-angle-double-right"></i></a></p>
+                        <div class="meta-info">
+                            <a href="blog-details.html"><i class="fa fa-calendar-alt"></i> {{ blog.postDate | date}}</a>
+                            <a href="blog-details.html"><i class="fa fa-heart"></i> 742</a>
+                        </div><!-- /.meta-info -->
+                    </div><!-- /.text-box -->
+                </div><!-- /.single-blog-style-two -->
+                <ul class="post-pagination">
+                    <li class="prev-page"><a href="#"><i class="fa fa-angle-double-left"></i></a></li>
+                    <li class="active"><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li class="next-page"><a href="#"><i class="fa fa-angle-double-right"></i></a></li>
+                </ul>
+            </div>
+            <div class="col-md-4 col-sm-12 col-xs-12">
+                <div class="sidebar sidebar-right">
+                    <div class="single-sidebar recent-post-sidebar">
+                        <div class="title">
+                            <h3>recent posts</h3>
+                        </div><!-- /.title -->
+                        <div  *ngFor="let blog of blogs" class="recent-post-wrapper">
+                            <div class="single-recent-post">
+                                <div class="img-box">
+                                    <img [src]="blog.thumbImage? blog.thumbImage : blog.bannerImage" alt="{{blog.title}}">
+                                </div><!-- /.img-box -->
+                                <div class="text-box">
+                                    <a [routerLink]="'/blog-details/'+ blog.id"><h3>{{ blog.title}}</h3></a>
+                                    <span class="date">{{blog.postDate}}</span>
+                                </div><!-- /.text-box -->
+                            </div><!-- /.single-recent-post -->
+                        </div><!-- /.recent-post-wrapper -->
+                    </div><!-- /.single-sidebar -->
+                    <div class="single-sidebar tags-sidebar">
+                        <div class="title">
+                            <h3>Tags</h3>
+                        </div><!-- /.title -->
+                        <div class="tags-wrapper">
+                            <ul class="tags-list">
+                                <li *ngFor="let tag of tags"><a href="#">{{tag}}</a></li>
+                            </ul>
+                        </div><!-- /.tags-wrapper -->
+                    </div><!-- /.single-sidebar -->
+                </div><!-- /.sidebar -->
+            </div><!-- /.col-md-4 -->
+        </div><!-- /.row -->
+    </div><!-- /.thm-container -->
+</section>

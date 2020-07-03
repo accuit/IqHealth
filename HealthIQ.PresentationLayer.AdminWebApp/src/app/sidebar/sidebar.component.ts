@@ -51,7 +51,13 @@ export const ROUTES: RouteInfo[] = [{
     type: 'link',
     icontype: 'image',
     roles: ['Student']
-},
+},{
+    path: '/create-blog',
+    title: 'Create New Blog',
+    type: 'link',
+    icontype: 'post_add',
+    roles: ['Admin']
+}
 ];
 @Component({
     selector: 'app-sidebar-cmp',

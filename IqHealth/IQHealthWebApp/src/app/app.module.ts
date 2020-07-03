@@ -36,6 +36,10 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { CareerComponent } from './career/career.component';
 import { PartnerWithUsModule } from './partner-with-us/partner-with-us.module';
 import { SeoModule } from './seo/seo.module';
+import { BlogsListComponent } from './blogs/blogs-list/blogs-list.component';
+import { BlogDetailsComponent } from './blogs/blog-details/blog-details.component';
+import { BlogService } from './blogs/blog.service';
+import { SanitizePipe } from './core/sanitize.pipe';
 
 @NgModule({
   declarations: [
@@ -58,7 +62,10 @@ import { SeoModule } from './seo/seo.module';
     EnquiryComponent,
     BookATestComponent,
     PagenotfoundComponent,
-    CareerComponent
+    CareerComponent,
+    BlogsListComponent,
+    BlogDetailsComponent,
+    SanitizePipe
   ],
   imports: [
     ReactiveFormsModule,
@@ -78,10 +85,11 @@ import { SeoModule } from './seo/seo.module';
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     AuthGuard,
     AppService,
-    AppJsonService
+    AppJsonService,
+    BlogService
   ],
   exports:[
-
+SanitizePipe
   ],
   entryComponents: [HomeComponent],
   bootstrap: [AppComponent]

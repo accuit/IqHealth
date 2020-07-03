@@ -26,6 +26,8 @@ import { PartnerWithUsComponent } from './partner-with-us/partner-with-us.compon
 import { HealthcareUnitComponent } from './partner-with-us/healthcare-unit/healthcare-unit.component';
 import { CorporateTieUpComponent } from './partner-with-us/corporate-tie-up/corporate-tie-up.component';
 import { OrganizeCampComponent } from './partner-with-us/organize-camp/organize-camp.component';
+import { BlogsListComponent } from './blogs/blogs-list/blogs-list.component';
+import { BlogDetailsComponent } from './blogs/blog-details/blog-details.component';
 
 const routes: Route[] = [
   {
@@ -110,6 +112,14 @@ const routes: Route[] = [
     component: EnquiryComponent
   },
   {
+    path: 'blogs-list',
+    component: BlogsListComponent
+  },
+  {
+    path: 'blog-details/:id',
+    component: BlogDetailsComponent
+  },
+  {
     path: 'user-login',
     component: LoginComponent
   },
@@ -128,7 +138,7 @@ const routes: Route[] = [
   {
     path: 'dashboard',
     component: DashboardComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard]
   },
   {
     path: '**',

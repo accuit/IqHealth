@@ -9,6 +9,12 @@ namespace HealthIQ.PersistenceLayer.Data.AdminEntity
     [Table("CourseMaster")]
     public partial class CourseMaster
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public CourseMaster()
+        {
+            StudentInvoices = new HashSet<StudentInvoice>();
+        }
+
         public int ID { get; set; }
 
         [Required]
@@ -41,5 +47,8 @@ namespace HealthIQ.PersistenceLayer.Data.AdminEntity
         [Required]
         [StringLength(1000)]
         public string ImageUrl { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<StudentInvoice> StudentInvoices { get; set; }
     }
 }

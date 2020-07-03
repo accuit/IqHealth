@@ -30,6 +30,7 @@ namespace HealthIQ.BusinessLayer.Base
             public const string PRODUCT_REPOSITORY = "HealthIQ_ProductDataImpl";
             public const string NOTIFICATION_REPOSITORY = "HealthIQ_NotificationDataImpl";
             public const string STUDENT_REPOSITORY = "HealthIQ_StudentDataImpl";
+            public const string ADMIN_REPOSITORY = "HealthIQ_AdminDataImpl";
         }
 
         /// <summary>
@@ -42,6 +43,7 @@ namespace HealthIQ.BusinessLayer.Base
             public const string PRODUCT_MANAGER = "HealthIQ_ProductManager";
             public const string NOTIFICATION_MANAGER = "HealthIQ_NotificationManager";
             public const string STUDENT_MANAGER = "HealthIQ_StudentManager";
+            public const string ADMIN_MANAGER = "HealthIQ_AdminManager";
         }
 
     }
