@@ -1,4 +1,5 @@
 ﻿using HealthIQ.BusinessLayer.Services;
+using HealthIQ.BusinessLayer.Services.Contracts;
 using HealthIQ.CommonLayer.AopContainer;
 using HealthIQ.CommonLayer.Aspects;
 using Microsoft.Owin.Security;

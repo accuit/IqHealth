@@ -13,10 +13,10 @@ namespace HealthIQ.PersistenceLayer.Data.AdminEntity
         public UserMaster()
         {
             LoginAttemptHistories = new HashSet<LoginAttemptHistory>();
+            StudentInvoices = new HashSet<StudentInvoice>();
             UserRoles = new HashSet<UserRole>();
             UserServiceAccesses = new HashSet<UserServiceAccess>();
             UserSystemSettings = new HashSet<UserSystemSetting>();
-            
         }
 
         [Key]
@@ -38,8 +38,6 @@ namespace HealthIQ.PersistenceLayer.Data.AdminEntity
         [StringLength(30)]
         public string Password { get; set; }
 
-        public string Image { get; set; }
-
         [StringLength(1500)]
         public string ImagePath { get; set; }
 
@@ -48,13 +46,6 @@ namespace HealthIQ.PersistenceLayer.Data.AdminEntity
 
         [StringLength(250)]
         public string Email { get; set; }
-
-        [StringLength(500)]
-        public string Address { get; set; }
-        public int? City { get; set; }
-        public int? State { get; set; }
-        public int? Country { get; set; }
-        public string Pin { get; set; }
 
         public int? AccountStatus { get; set; }
 
@@ -84,8 +75,25 @@ namespace HealthIQ.PersistenceLayer.Data.AdminEntity
 
         public bool IsStudent { get; set; }
 
+        public string Image { get; set; }
+
+        [StringLength(500)]
+        public string Address { get; set; }
+
+        public int? City { get; set; }
+
+        public int? State { get; set; }
+
+        public int? Country { get; set; }
+
+        [StringLength(10)]
+        public string Pin { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LoginAttemptHistory> LoginAttemptHistories { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<StudentInvoice> StudentInvoices { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserRole> UserRoles { get; set; }
@@ -95,6 +103,5 @@ namespace HealthIQ.PersistenceLayer.Data.AdminEntity
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserSystemSetting> UserSystemSettings { get; set; }
-
     }
 }

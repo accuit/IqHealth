@@ -1,4 +1,4 @@
-﻿namespace HealthIQ.PersistenceLayer.Data.AdminEntity
+namespace HealthIQ.PersistenceLayer.Data.AdminEntity
 {
     using System;
     using System.Collections.Generic;
@@ -9,42 +9,71 @@
     [Table("StudentInvoice")]
     public partial class StudentInvoice
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public StudentInvoice()
         {
-            InvoiceItems = new HashSet<InvoiceItems>();
-
+            InvoiceItems = new HashSet<InvoiceItem>();
         }
-        [Key]
+
         public int ID { get; set; }
 
         [Required]
-        [StringLength(150)]
+        [StringLength(50)]
         public string Name { get; set; }
-        public decimal SubTotal { get; set; }
-        public decimal? Tax { get; set; }
-        public int Status { get; set; }
+
         public DateTime InvoiceDate { get; set; }
+
+        public decimal SubTotal { get; set; }
+
+        public decimal Tax { get; set; }
+
+        public int Status { get; set; }
+
         public int PaymentStatus { get; set; }
-        public int Paymentmode { get; set; }
+
+        public int PaymentMode { get; set; }
+
+        [StringLength(250)]
         public string CopyEmail { get; set; }
-        public string Mobile { get; set; }
+
+        [Required]
         [StringLength(500)]
         public string Address { get; set; }
-        public int City { get; set; }
-        public int State { get; set; }
-        public int Country { get; set; }
+
+        public int? City { get; set; }
+
+        public int? State { get; set; }
+
+        [StringLength(10)]
         public string Pin { get; set; }
+
+        public int? Country { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string Mobile { get; set; }
+
         public int UserID { get; set; }
+
         public int? CourseID { get; set; }
 
-        [ForeignKey("UserID")]
-        public virtual UserMaster User { get; set; }
-        public virtual IEnumerable<InvoiceItems> InvoiceItems { get; set; }
         public bool IsDeleted { get; set; }
+
         public DateTime CreatedDate { get; set; }
-        public DateTime? ModifiedDate { get; set; }
+
         public int CreatedBy { get; set; }
+
+        public DateTime? ModifiedDate { get; set; }
+
         public int? ModifiedBy { get; set; }
-        public int CompanyID { get; set; }
+
+        public int CompanyId { get; set; }
+
+        public virtual CourseMaster CourseMaster { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<InvoiceItem> InvoiceItems { get; set; }
+
+        public virtual UserMaster UserMaster { get; set; }
     }
 }

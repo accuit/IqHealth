@@ -62,10 +62,11 @@
     <Compile Include="BO\UserMasterBO.cs" />
     <Compile Include="BO\UserProfileBO.cs" />
     <Compile Include="BO\UserRoleBO.cs" />
+    <Compile Include="Contracts\IAdminService.cs" />
     <Compile Include="Contracts\INotificationService.cs" />
     <Compile Include="Contracts\ISecurityService.cs" />
     <Compile Include="Contracts\IStudentService.cs" />
-    <Compile Include="IUserService.cs" />
+    <Compile Include="Contracts\IUserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

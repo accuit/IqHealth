@@ -12,30 +12,11 @@ export class AuthInterceptor implements HttpInterceptor {
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-        if (req.headers.get('No-Auth') == "True") {
-            req.clone({
-                headers: req.headers.set("Company", '2')
-            });
-            return next.handle(req.clone());
-        }
+        req.clone({
+            headers: req.headers.set("Company", '2')
+        });
+        return next.handle(req.clone());
 
-        if (localStorage.getItem('userID') != null) {
-            const clonedreq = req.clone({
-                headers: req.headers
-                    .set("UserID", this.getFromLocal('userID'))
-                    .set("UserType", this.getFromLocal('userType'))
-                    .set("Company", '2')
-            });
-            return next.handle(clonedreq)
-        }
-        else
-            this.router.navigate(['/user-login']);
-
-    }
-
-    getFromLocal(key): any {
-        this.data[key] = localStorage.getItem(key);
-        return this.data[key];
     }
 }
 

@@ -35,10 +35,6 @@ export class CreateInvoiceComponent extends BaseFormValidationComponent implemen
       })
   }
 
-  get f() {
-    return this.formGroup.controls;
-  }
-
   checkVerified = () => {
     this.isVerified = !this.isVerified;
     return this.isVerified;

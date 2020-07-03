@@ -96,6 +96,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminEntity\AddressMaster.cs" />
+    <Compile Include="AdminEntity\BlogCategoryMapping.cs" />
+    <Compile Include="AdminEntity\BlogCategoryMaster.cs" />
+    <Compile Include="AdminEntity\BlogMaster.cs" />
     <Compile Include="AdminEntity\BookingMaster.cs" />
     <Compile Include="AdminEntity\CommonSetup.cs" />
     <Compile Include="AdminEntity\CompanyMaster.cs" />
@@ -114,7 +117,7 @@
     <Compile Include="AdminEntity\HealthServiceMaster.cs" />
     <Compile Include="AdminEntity\HIQAdminEntities.cs" />
     <Compile Include="AdminEntity\HospitalMaster.cs" />
-    <Compile Include="AdminEntity\InvoiceItems.cs" />
+    <Compile Include="AdminEntity\InvoiceItem.cs" />
     <Compile Include="AdminEntity\JobApplication.cs" />
     <Compile Include="AdminEntity\LoginAttemptHistory.cs" />
     <Compile Include="AdminEntity\ModuleMaster.cs" />
@@ -141,12 +144,15 @@
     <Compile Include="AdminEntity\UserServiceAccess.cs" />
     <Compile Include="AdminEntity\UserSystemSetting.cs" />
     <Compile Include="AdminEntity\vwGetUserRoleModule.cs" />
+    <Compile Include="Impl\AdminDataImpl.cs" />
     <Compile Include="Impl\BaseDataImpl.cs" />
     <Compile Include="Impl\NotificationDataImpl.cs" />
     <Compile Include="Impl\SecurityDataImpl.cs" />
     <Compile Include="Impl\StudentDataImpl.cs" />
     <Compile Include="Impl\UserDataImpl.cs" />
+    <Compile Include="LocalEntity\Blog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\IAdminRepository.cs" />
     <Compile Include="Repository\INotificationRepository.cs" />
     <Compile Include="Repository\ISecurityRepository.cs" />
     <Compile Include="Repository\IStudentRepository.cs" />

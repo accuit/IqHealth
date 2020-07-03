@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, NgForm, FormGroupDirective, AbstractControl, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, NgForm, FormGroupDirective, AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { FileToUpload } from 'src/app/core/models';
 
 @Component({
   selector: 'app-base-form-validation',
@@ -8,13 +9,16 @@ import { ErrorStateMatcher } from '@angular/material/core';
   styleUrls: ['./base-form-validation.component.css']
 })
 export class BaseFormValidationComponent {
-
+  MAX_FILE_SIZE: number = 1048576;
   isSubmitted = false;
   inProgress = false;
+  file: any;
+  errMessage: any;
+  image: string;
   cities = [{ id: 1, name: 'Kolkata' }, { id: 2, name: 'Sydney' }, { id: 3, name: 'Dhaka' }];
   states = [{ id: 1, name: 'West Bengal' }, { id: 2, name: 'Sydney' }, { id: 3, name: 'Dhaka' }];
   countries = [{ id: 1, name: 'India' }, { id: 2, name: 'Bangladesh' }, { id: 3, name: 'Australia' }];
-  
+
   validEmailRegister: boolean = false;
   validConfirmPasswordRegister: boolean = false;
   validPasswordRegister: boolean = false;
@@ -30,8 +34,13 @@ export class BaseFormValidationComponent {
   validSourceType: boolean = false;
   validDestinationType: boolean = false;
   matcher = new MyErrorStateMatcher();
+  formGroup: FormGroup;
+
   constructor() { }
 
+  get f() {
+    return this.formGroup.controls;
+  }
 
   isFieldValid(form: FormGroup, field: string) {
     return !form.get(field).valid && form.get(field).touched;
@@ -61,6 +70,30 @@ export class BaseFormValidationComponent {
       return false;
     }
   }
+
+  getimageBase64String(theFile: any, control: any): any {
+    let file = new FileToUpload();
+    let reader = new FileReader();
+    reader.onload = () => {
+      file.fileAsBase64 = reader.result.toString();
+      const img = reader.result.toString();
+      let obj = {};
+      if (control === 'thumbImage') {
+        obj = { thumbImage: img };
+      } else if (control === 'bannerImage') {
+        obj = { bannerImage: img };
+      } else {
+        obj = { image: img };
+      }
+      this.formGroup.patchValue(obj);
+    }
+    reader.readAsDataURL(theFile);
+  }
+
+  getPatchValue(){
+
+  }
+
 
   MatchStringValidator(control: AbstractControl) {
     const password = control.get('password').value; // to get value in input tag

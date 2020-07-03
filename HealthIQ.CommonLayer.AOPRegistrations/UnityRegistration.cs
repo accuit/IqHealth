@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
 using HealthIQ.BusinessLayer.Base;
-using HealthIQ.BusinessLayer.Services;
-using HealthIQ.BusinessLayer.Services.BO;
 using HealthIQ.CommonLayer.Aspects;
 using System;
 using Unity;
@@ -13,7 +11,7 @@ using HealthIQ.BusinessLayer.ServiceImpl;
 using HealthIQ.BusinessLayer.Base.Manager;
 using HealthIQ.BusinessLayer.Services.Contracts;
 using HealthIQ.CommonLayer.AopContainer;
-using HealthIQ.BusinessLayer.ServiceImpl;
+using HealthIQ.PersistenceLayer.Data.LocalEntity;
 
 namespace HealthIQ.CommonLayer.AOPRegistrations
 {
@@ -38,6 +36,7 @@ namespace HealthIQ.CommonLayer.AOPRegistrations
             AopEngine.Container.RegisterType<ISecurityRepository, SecurityDataImpl>(GetPersistenceRegisterInstanceName(AspectEnums.PeristenceInstanceNames.SecurityDataImpl, AspectEnums.ApplicationName.HealthIQ));
             AopEngine.Container.RegisterType<IStudentRepository, StudentDataImpl>(GetPersistenceRegisterInstanceName(AspectEnums.PeristenceInstanceNames.StudentDataImpl, AspectEnums.ApplicationName.HealthIQ));
             AopEngine.Container.RegisterType<INotificationRepository, NotificationDataImpl>(GetPersistenceRegisterInstanceName(AspectEnums.PeristenceInstanceNames.NotificationDataImpl, AspectEnums.ApplicationName.HealthIQ));
+            AopEngine.Container.RegisterType<IAdminRepository, AdminDataImpl>(GetPersistenceRegisterInstanceName(AspectEnums.PeristenceInstanceNames.AdminDataImpl, AspectEnums.ApplicationName.HealthIQ));
         }
 
         private static string GetPersistenceRegisterInstanceName(AspectEnums.PeristenceInstanceNames aspectName, AspectEnums.ApplicationName application)
@@ -56,6 +55,7 @@ namespace HealthIQ.CommonLayer.AOPRegistrations
             AopEngine.Container.RegisterType<ISecurityService, SecurityManager>(GetBusinessRegisterInstanceName(AspectEnums.AspectInstanceNames.SecurityManager, AspectEnums.ApplicationName.HealthIQ));
             AopEngine.Container.RegisterType<IStudentService, StudentManager>(GetBusinessRegisterInstanceName(AspectEnums.AspectInstanceNames.StudentManager, AspectEnums.ApplicationName.HealthIQ));
             AopEngine.Container.RegisterType<INotificationService, NotificationManager>(GetBusinessRegisterInstanceName(AspectEnums.AspectInstanceNames.NotificationManager, AspectEnums.ApplicationName.HealthIQ));
+            AopEngine.Container.RegisterType<IAdminService, AdminManager>(GetBusinessRegisterInstanceName(AspectEnums.AspectInstanceNames.AdminManager, AspectEnums.ApplicationName.HealthIQ));
         }
 
         private static void MapEntities()
@@ -85,12 +85,10 @@ namespace HealthIQ.CommonLayer.AOPRegistrations
 
                 map.CreateMap<RoleMaster, RoleMasterDTO>();
                 map.CreateMap<RoleMasterDTO, RoleMaster>();
-
                 map.CreateMap<UserRole, UserRoleDTO>();
                 map.CreateMap<UserRoleDTO, UserRole>();
                 map.CreateMap<RoleModule, RoleModuleDTO>();
                 map.CreateMap<RoleModuleDTO, RoleModule>();
-
                 map.CreateMap<ModuleMaster, ModuleMasterDTO>();
                 map.CreateMap<ModuleMasterDTO, ModuleMaster>();
 
@@ -101,9 +99,19 @@ namespace HealthIQ.CommonLayer.AOPRegistrations
 
                 map.CreateMap<StudentInvoice, StudentInvoiceDTO>();
                 map.CreateMap<StudentInvoiceDTO, StudentInvoice>();
+                map.CreateMap<InvoiceItem, InvoiceItemsDTO>();
+                map.CreateMap<InvoiceItemsDTO, InvoiceItem>();
 
-                map.CreateMap<InvoiceItems, InvoiceItemsDTO>();
-                map.CreateMap<InvoiceItemsDTO, InvoiceItems>();
+                map.CreateMap<Blog, BlogMasterDTO>();
+                map.CreateMap<BlogMasterDTO, Blog>();
+                map.CreateMap<Blog, BlogCategoryMasterDTO>();
+                map.CreateMap<BlogCategoryMasterDTO, BlogMasterDTO>();
+                map.CreateMap<BlogMaster, BlogMasterDTO>();
+                map.CreateMap<BlogMasterDTO, BlogMaster>();
+                map.CreateMap<BlogCategoryMaster, BlogCategoryMasterDTO>();
+                map.CreateMap<BlogCategoryMasterDTO, BlogCategoryMaster>();
+                map.CreateMap<BlogCategoryMappingDTO, BlogCategoryMapping>();
+                map.CreateMap<BlogCategoryMapping, BlogCategoryMappingDTO>();
 
             });
 
