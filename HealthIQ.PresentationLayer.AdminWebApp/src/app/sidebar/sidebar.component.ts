@@ -56,7 +56,7 @@ export const ROUTES: RouteInfo[] = [{
     title: 'Create New Blog',
     type: 'link',
     icontype: 'post_add',
-    roles: ['Admin']
+    roles: ['Admin', 'Employee']
 }
 ];
 @Component({
