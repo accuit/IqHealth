@@ -28,6 +28,10 @@ export class UserService {
     this.userId = this.auth.currentUser.userID;
   }
 
+  getUserData(): any {
+    return this.httpClient.get(this.baseUrl + 'account/get-user-profile/'+ this.userId , { headers: this.headers });
+  }
+
   getStudents(): Observable<any> {
     return this.httpClient.get(this.baseUrl + 'student/get/', { headers: this.headers })
       .pipe(map((res: APIResponse) => {

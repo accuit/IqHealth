@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StudentProfileComponent } from './student-profile/student-profile.component';
 import { CourseListComponent } from './course-list/course-list.component';
 import { BooksListComponent } from './books-list/books-list.component';
 import { RouterModule, Routes } from '@angular/router';
@@ -18,10 +17,6 @@ export const StudentRoutes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {
-        path: 'profile',
-        component: StudentProfileComponent
-      },
-      {
         path: 'courses',
         component: CourseListComponent
       },
@@ -34,7 +29,7 @@ export const StudentRoutes: Routes = [
 ];
 
 @NgModule({
-  declarations: [StudentProfileComponent, CourseListComponent, BooksListComponent],
+  declarations: [CourseListComponent, BooksListComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(StudentRoutes),
