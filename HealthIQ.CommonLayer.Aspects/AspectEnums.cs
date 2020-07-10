@@ -19,7 +19,12 @@ namespace HealthIQ.CommonLayer.Aspects
 
         public enum EnquiryType
         {
-            Student
+            ContactUs = 1,
+            Student = 2,
+            CustomerReport = 2,
+            PartnerWithUs = 3,
+            DoctorAppointment = 4,
+            BookAtest = 5
         }
 
         public enum AccountStatus
