@@ -113,6 +113,13 @@ namespace HealthIQ.CommonLayer.AOPRegistrations
                 map.CreateMap<BlogCategoryMappingDTO, BlogCategoryMapping>();
                 map.CreateMap<BlogCategoryMapping, BlogCategoryMappingDTO>();
 
+                map.CreateMap<CourseMaster, CourseMasterDTO>();
+                map.CreateMap<CourseMasterDTO, CourseMaster>();
+                map.CreateMap<SubCourse, SubCourseDTO>();
+                map.CreateMap<SubCourseDTO, SubCourse>();
+                map.CreateMap<CourseCurriculum, CourseMasterDTO>();
+                map.CreateMap<CourseMasterDTO, CourseCurriculum>();
+
             });
 
             return config;

@@ -43,7 +43,7 @@
                             <!-- /.icon-box -->
                             <h3 data-animation="animated fadeInUp">Revolutionized Packages </h3>
                             <p data-animation="animated fadeInDown">Our Health packages are <br> specially curated for you. </p>
-                            <a [routerLink]="'/package-category-list'" class="banner-btn" data-animation="animated fadeInDown">Our Packages</a>
+                            <a [routerLink]="'/book-a-test'" class="banner-btn" data-animation="animated fadeInDown">Our Packages</a>
                         </div>
                     </div>
                 </div>
@@ -84,7 +84,7 @@
             <!-- <span class="tag-line">LEADER IN THE FIELD OF MEDICAL INDUSTRY</span> -->
             <div class="line"></div>
             <!-- /.line -->
-            <h3>With Years <span class="color-5"> Of Experience</span>, HEALTH IQ <br> Offers 100% Quality Service With <span class="color-6">Best Staff</span></h3>
+            <h3>With Years <span class="color-5"> Of experience</span>, HEALTH IQ <br> Offers 100% Quality Service With <span class="color-6">Best Staff</span></h3>
             <p>WE AT HEALTH IQ aim at providing life better through quality care and services that set community standards, exceed patient’s expectations and provides in a caring, convenient, cost-effective and accessible manner. We strive to deliver healthcare
                 compassionately and always act with integrity. Our ethics and compliance programme is an integral part of what we do.</p>
         </div>
@@ -169,17 +169,17 @@
             <div *ngFor="let S of services" class="item">
                 <div class="single-service-style-six">
                     <div class="img-box">
-                        <img height="250px" [src]="'assets/images/services/'+ S.ID + '.jpg'" alt="S.Name" />
+                        <img height="250px" [src]="'assets/images/services/'+ S.id + '.jpg'" alt="S.name" />
                     </div>
                     <!-- /.img-box -->
                     <div class="text-box">
                         <div class="inner-box hvr-bounce-to-bottom">
                             <div class="content">
                                 <a href="#">
-                                    <h3>{{S.Name}}</h3>
+                                    <h3>{{S.name}}</h3>
                                 </a>
                                 <p>{{ S.Description | slice:0:100 }}</p>
-                                <a [routerLink]="'/service-details/'+ S.ID" class="more"><i class="fa fa-angle-double-right"></i></a>
+                                <a [routerLink]="'/service-details/'+ S.id" class="more"><i class="fa fa-angle-double-right"></i></a>
                             </div>
                             <!-- /.content -->
                         </div>

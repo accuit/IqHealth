@@ -53,7 +53,7 @@ namespace HealthIQ.PersistenceLayer.Data.AdminEntity
 
         public int? SeniorEmpID { get; set; }
 
-        public bool? IsEmployee { get; set; }
+        public bool IsEmployee { get; set; }
 
         public DateTime? CreatedDate { get; set; }
 

@@ -1,33 +1,33 @@
 
 export class CourseMaster {
-    ID: number;
-    Name: string;
-    About: string;
-    ImageUrl: string;
-    SubCourses: SubCourses[];
-    CourseCurriculums: CourseCurriculum[];
-    CompanyID: number;
+    id: number;
+    name: string;
+    about: string;
+    imageUrl: string;
+    subCourses: SubCourses[];
+    courseCurriculums: CourseCurriculum[];
+    companyID: number;
 }
 
 export class SubCourses {
-    ID: number;
-    Name: string;
-    Duration: number;
-    MinQualification: string;
-    MinAge: number;
-    MaxAge: Number;
-    IndianAdmissionFee: string;
-    ForeignAdmissionFee: string;
-    IndianOtherFee: string;
-    ForeignOtherFee: string;
-    CourseMasterID: number;
-    CompanyID: number;
+    id: number;
+    name: string;
+    duration: number;
+    minQualification: string;
+    minAge: number;
+    maxAge: Number;
+    indianAdmissionFee: string;
+    foreignAdmissionFee: string;
+    indianOtherFee: string;
+    foreignOtherFee: string;
+    courseMasterID: number;
+    companyID: number;
 
 }
 
 export class CourseCurriculum {
-    ID: number;
-    Name: string;
-    CourseMasterID: number;
+    id: number;
+    name: string;
+    courseMasterID: number;
 
 }

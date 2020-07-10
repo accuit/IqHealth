@@ -1,11 +1,11 @@
 import { EnquiryTypeEnum } from '../pages/shared/model/enums';
 
 export class OnlineEnquiry {
-    ID: number;
+    id: number;
     Type: number;
     TypeValue: number;
-    Name: string;
-    Email: string;
+    name: string;
+    email: string;
     Phone: string;
     AltPhone: string;
     Subject: string;

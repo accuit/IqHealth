@@ -26,7 +26,7 @@ export class FeeStructureComponent implements OnInit {
 
     this.service.getSubCourses()
       .subscribe((data: APIResponse) => {
-        this.subCourses = data.SingleResult;
+        this.subCourses = data.singleResult;
         this.isLoaded = true;
       })
 

@@ -8,7 +8,8 @@ namespace HealthIQ.BusinessLayer.Services.Contracts
         UserMasterDTO UserLogin(string email, string password);
         UserMasterDTO GetUserByEmail(string email);
         List<UserMasterDTO> GetUsersByStatus(int status);
-        long RegisterUser(UserMasterDTO user);
+        int RegisterUser(UserMasterDTO user);
+        int UpdateUser(UserMasterDTO user);
         bool LogoutWebUser(int loggenInUserID, string sessionID);
         UserMasterDTO GetUserByGUID(string GUID);
         UserMasterDTO GetUserByID(int id);

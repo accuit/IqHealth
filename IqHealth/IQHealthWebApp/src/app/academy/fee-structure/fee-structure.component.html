@@ -14,18 +14,18 @@
                     <div *ngFor="let item of subCourses" class="col-md-4 col-sm-6 news-block-one">
                         <div class="inner-box hvr-float-shadow">
                             <div class="image">
-                                <img height="150px" [src]="'assets/images/academy/courses/'+ item.CourseMasterID + '.jpg'" alt="">
+                                <img height="150px" [src]="'assets/images/academy/courses/'+ item.courseMasterID + '.jpg'" alt="">
                                 <div class="overlay">
-                                    <a class="link-btn" [routerLink]="'/online-enquiry/2'">
+                                    <a class="link-btn" [routerLink]="'/online-enquiry'">
                                         <i class="fa">Enquiry</i>
                                     </a>                                
                                 </div>
                             </div>
                             <div class="lower-content">
-                                <h4><a [routerLink]="'/course-details/' + item.CourseMasterID">{{item.Name}}</a></h4>
+                                <h4><a [routerLink]="'/course-details/' + item.courseMasterID">{{item.name}}</a></h4>
                                 <ul class="post-meta">
-                                    <li>Course Duration: <strong>{{item.Duration}} Months</strong></li>
-                                    <li>Minimum Age: <strong>{{item.MinAge}} Years</strong></li>
+                                    <li>Course duration: <strong>{{item.duration}} Months</strong></li>
+                                    <li>Minimum Age: <strong>{{item.minAge}} Years</strong></li>
                                 </ul>
                                 <!-- <div class="text"><h4><span>Indian Student</span> </h4>
                                     <ul class="post-meta">

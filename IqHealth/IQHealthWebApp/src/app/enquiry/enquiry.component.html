@@ -25,10 +25,10 @@
                         <!-- /.col-md-6 -->
                         <div class="col-md-6">
                             <div class="frm-control">
-                                <input type="text" placeholder="Email Address" formControlName="email">
+                                <input type="text" placeholder="email Address" formControlName="email">
                                 <div *ngIf="submitted && f.email.errors" class="invalid">
-                                    <div *ngIf="f.email.errors.required">Email is required</div>
-                                    <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                                    <div *ngIf="f.email.errors.required">email is required</div>
+                                    <div *ngIf="f.email.errors.email">email must be a valid email address</div>
                                 </div>
                             </div>
                             <!-- /.frm-control -->
@@ -36,10 +36,10 @@
                         <!-- /.col-md-6 -->
                         <div class="col-md-6">
                             <div class="frm-control">
-                                <input type="text" placeholder="Mobile No." formControlName="phone">
+                                <input type="text" placeholder="mobile No." formControlName="phone">
                                 <div *ngIf="submitted && f.phone.errors" class="invalid">
-                                    <div *ngIf="f.phone.errors.required">Mobile Number is required</div>
-                                    <div *ngIf="f.phone.errors.minlength">Mobile must be of 10 numbers</div>
+                                    <div *ngIf="f.phone.errors.required">mobile Number is required</div>
+                                    <div *ngIf="f.phone.errors.minlength">mobile must be of 10 numbers</div>
                                 </div>
                             </div>
                             <!-- /.frm-control -->
@@ -64,7 +64,7 @@
                                             <ul class="dropdown-menu inner" role="menu">
                                                 <li *ngFor="let c of subCourses">
                                                     <a (click)="selectCourse(c)">
-                                                        <span class="text">{{c.Name}}</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+                                                        <span class="text">{{c.name}}</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -72,8 +72,8 @@
                                             <div *ngIf="f.typeValue.errors.required">Please select Course</div>
                                         </div>
                                         <select formControlName="typeValue">
-                                                <option *ngFor="let c of subCourses" [class.selected]="{'selected':selectedID == c.ID.toString() }" [ngValue]="c.ID">
-                                                    {{c.Name}}</option>
+                                                <option *ngFor="let c of subCourses" [class.selected]="{'selected':selectedID == c.id.toString() }" [ngValue]="c.id">
+                                                    {{c.name}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -113,15 +113,10 @@
                         <p>Below is the list of available course you can enquiry for.</p>
                         <div class="time-box">
                             <div *ngFor="let c of subCourses" class="signle-time-box">
-                                <div class="day-name">{{c.Name}}</div>
-                                <!-- /.day-name -->
-                                <!-- <div class="time-line">09:00 am - 19:00 pm</div> -->
+                                <div class="day-name">{{c.name}}</div>
                             </div>
-                            <!-- /.signle-time-box -->
-
+                        
                         </div>
-                        <!-- /.time-box -->
-                        <!-- <p class="notice">Treatment for Emergency Cases Only *</p> -->
                     </div>
                     <!-- /.inner-box -->
                 </div>

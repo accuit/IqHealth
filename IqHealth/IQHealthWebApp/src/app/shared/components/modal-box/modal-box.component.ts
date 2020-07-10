@@ -87,18 +87,18 @@ export class ModalBoxComponent implements OnInit, AfterViewInit {
     this.appService.submitJobApplication(this.applicationForm.value)
       .subscribe((res: APIResponse) => {
         this.showSpinner = false;
-        if (res.IsSuccess && res.SingleResult > 0) {
+        if (res.isSuccess && res.singleResult > 0) {
           if (this.files)
-            this.appService.uploadResume(this.files, '2', res.SingleResult);
+            this.appService.uploadResume(this.files, '2', res.singleResult);
           this.status = "Success";
-          this.message = res.Message;
+          this.message = res.message;
           this.appService.sendEmailNotification('', this.applicationForm.value);
           setTimeout(() => {
             this.uploadSuccess = true;
           }, 5000);
 
         } else {
-          this.message = res.Message;
+          this.message = res.message;
           this.isError = true;
           return;
         }

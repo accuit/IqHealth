@@ -1,9 +1,9 @@
 export class PartnerRequest {
-    ID: number;
-    Name: string;
+    id: number;
+    name: string;
     Sex: string;
-    Email: string;
-    Mobile: string;
+    email: string;
+    mobile: string;
     Address: string;
     City: string;
     State: string;
@@ -11,11 +11,11 @@ export class PartnerRequest {
 }
 
 export class OrganizeCamp {
-    ID: number;
-    Name: string;
+    id: number;
+    name: string;
     Sex: string;
-    Email: string;
-    Mobile: string;
+    email: string;
+    mobile: string;
     ExpectedCount: number;
     Address: string;
     City: string;
@@ -25,13 +25,13 @@ export class OrganizeCamp {
 }
 
 export class CorporateTieUp {
-    ID: number;
-    Name: string;
+    id: number;
+    name: string;
     Sex: string;
-    Email: string;
-    Mobile: string;
+    email: string;
+    mobile: string;
     CompanyName: string;
-    Designation: number;
+    designation: number;
     Address: string;
     City: string;
     State: string;

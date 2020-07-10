@@ -61,11 +61,11 @@
                                 </div>
                             </div>
                             <div class="frm-control">
-                                <input type="text" formControlName="email" placeholder="Email Address"
+                                <input type="text" formControlName="email" placeholder="email Address"
                                     class="single-input-primary">
                                 <div *ngIf="submitted && f.email.errors" class="invalid">
-                                    <div *ngIf="f.email.errors.required">Email is required</div>
-                                    <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                                    <div *ngIf="f.email.errors.required">email is required</div>
+                                    <div *ngIf="f.email.errors.email">email must be a valid email address</div>
                                 </div>
                             </div>
 
@@ -103,11 +103,11 @@
                                 </div>
                             </div>
                             <div class="frm-control">
-                                <input type="text" formControlName="mobile" placeholder="Mobile Number (min 10 digits)"
+                                <input type="text" formControlName="mobile" placeholder="mobile Number (min 10 digits)"
                                     class="single-input-primary">
                                 <div *ngIf="submitted && f.mobile.errors" class="invalid">
-                                    <div *ngIf="f.mobile.errors.required">Mobile Number is required</div>
-                                    <div *ngIf="f.mobile.errors.minlength">Mobile must be at least 10 characters
+                                    <div *ngIf="f.mobile.errors.required">mobile Number is required</div>
+                                    <div *ngIf="f.mobile.errors.minlength">mobile must be at least 10 characters
                                     </div>
                                 </div>
                             </div>
@@ -167,16 +167,16 @@
                                     <div class="dropdown-menu open">
                                         <ul class="dropdown-menu inner" role="menu">
                                             <li *ngFor="let p of allPackages"><a (click)="selectPackage(p)">
-                                                    <span class="text">{{p.Name}}</span><span
+                                                    <span class="text">{{p.name}}</span><span
                                                         class="glyphicon glyphicon-ok check-mark"></span></a>
                                             </li>
                                         </ul>
                                     </div>
                                     <select formControlName="packageID">
                                         <option *ngFor="let p of allPackages"
-                                            [class.selected]="{'selected':selectedPID == p.ID.toString() }"
-                                            [ngValue]="p.ID">
-                                            {{p.Name}}</option>
+                                            [class.selected]="{'selected':selectedPID == p.id.toString() }"
+                                            [ngValue]="p.id">
+                                            {{p.name}}</option>
                                     </select>
                                 </div>
                             </div>

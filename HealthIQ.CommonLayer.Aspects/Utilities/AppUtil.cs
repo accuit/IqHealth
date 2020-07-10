@@ -445,36 +445,23 @@ namespace HealthIQ.CommonLayer.Aspects.Utilities
         /// </summary>
         /// <param name="fileType">file type</param>
         /// <returns>returns file directory</returns>
-        public static string GetUploadDirectory(AspectEnums.ImageFileTypes fileType)
+        public static string GetUploadDirectory(AspectEnums.FileType fileType)
         {
-            string fileDirectory = HttpContext.Current.Server.MapPath("Contents");
+            string fileDirectory = HttpContext.Current.Server.MapPath("~/Content");
             switch (fileType)
             {
-                case AspectEnums.ImageFileTypes.Survey:
-                    fileDirectory = fileDirectory + @"\SDImages";
+                case AspectEnums.FileType.DiagnosticReport:
+                    fileDirectory = fileDirectory + @"\DiagnosticReports";
                     break;
-                case AspectEnums.ImageFileTypes.User:
-                    fileDirectory = fileDirectory + @"\UserFiles";
-                    break;
-                case AspectEnums.ImageFileTypes.Store:
-                    fileDirectory = fileDirectory + @"\StoreFiles";
-                    break;
-                case AspectEnums.ImageFileTypes.General:
-                    fileDirectory = fileDirectory + @"\GeneralFiles";
-                    break;
-                case AspectEnums.ImageFileTypes.DealerCreation:
-                    fileDirectory = fileDirectory + @"\DealerCreation";
-                    break;
-
-                case AspectEnums.ImageFileTypes.Expense:
-                    fileDirectory = fileDirectory + @"\ExpenseFiles";
+                case AspectEnums.FileType.Resume:
+                    fileDirectory = fileDirectory + @"\Resumes\";
                     break;
             }
             return fileDirectory;
         }
 
 
-        #region Vinay Kanojia
+        #region Neeraj Singh
 
         public static string GetEnumDescription(Enum value)
         {

@@ -37,7 +37,7 @@ export class ServicesListComponent implements OnInit {
     this.service.getAllServices()
       .subscribe((data: APIResponse) => {
         this.isloaded = true;
-        this.services = data.SingleResult;
+        this.services = data.singleResult;
       })
   }
 

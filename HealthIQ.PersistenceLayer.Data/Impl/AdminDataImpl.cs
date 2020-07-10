@@ -32,7 +32,6 @@ namespace HealthIQ.PersistenceLayer.Data.Impl
 
         public IList<BlogMaster> GetBlogsByCategory(int id)
         {
-            var blogs = HIQAdminContext.BlogCategoryMappings.Where(x => x.CategoryID == id);
             var data = HIQAdminContext.BlogMasters.SelectMany(x => x.BlogCategoryMappings, (blog, categ) => new { blog, categ })
                 .Where(r => r.categ.CategoryID == id)
                 .Select(r => new

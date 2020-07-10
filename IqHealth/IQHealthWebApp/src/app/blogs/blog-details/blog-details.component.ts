@@ -13,8 +13,8 @@ export class BlogDetailsComponent {
   blog: BlogMaster;
   tags: any;
   id: string;
-  title: string = 'Blog Title';
-  subtitle: string = 'Blog SubTitle';
+  title: string = 'Blog title';
+  subtitle: string = 'Blog subTitle';
   constructor(private readonly service: BlogService,
     private readonly route: ActivatedRoute) {
     this.route.paramMap.subscribe(params => {

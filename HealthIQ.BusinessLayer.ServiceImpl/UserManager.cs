@@ -30,11 +30,22 @@ namespace HealthIQ.BusinessLayer.Base
             return mapper.Map<UserMasterDTO>(UserRepository.GetUserByEmail(email));
         }
 
-        public long RegisterUser(UserMasterDTO user)
+        public int RegisterUser(UserMasterDTO user)
         {
             UserMaster U = mapper.Map<UserMaster>(user);
 
-            return UserRepository.RegisterUser(U);
+            U.UserID = UserRepository.RegisterUser(U);
+            if (U.UserID > 0)
+            {
+                UserRepository.AddUserRole(U, user.IsAdmin);
+            }
+            return U.UserID;
+        }
+
+        public int UpdateUser(UserMasterDTO user)
+        {
+            UserMaster U = mapper.Map<UserMaster>(user);
+            return UserRepository.UpdateUser(U);
         }
 
         public bool LogoutWebUser(int loggenInUserID, string sessionID)
@@ -59,6 +70,6 @@ namespace HealthIQ.BusinessLayer.Base
             var result = UserRepository.GetUserByID(id);
             return mapper.Map<UserMasterDTO>(result);
         }
-        
+
     }
 }

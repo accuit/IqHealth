@@ -35,8 +35,8 @@ export class CustomerReportsComponent implements OnInit {
   getUserReports(userID) {
     this.service.getCustomerReports(userID)
       .subscribe((res: APIResponse) => {
-        if (res.IsSuccess) {
-          this.reports = res.SingleResult;
+        if (res.isSuccess) {
+          this.reports = res.singleResult;
           this.isLoaded = true;
         }
       })

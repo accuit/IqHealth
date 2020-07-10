@@ -49,7 +49,7 @@ namespace HealthIQ.PersistenceLayer.Data.AdminEntity
         public virtual DbSet<SpecialityMaster> SpecialityMasters { get; set; }
         public virtual DbSet<StudentInvoice> StudentInvoices { get; set; }
         public virtual DbSet<StudentMaster> StudentMasters { get; set; }
-        public virtual DbSet<SubCours> SubCourses { get; set; }
+        public virtual DbSet<SubCourse> SubCourses { get; set; }
         public virtual DbSet<SystemSetting> SystemSettings { get; set; }
         public virtual DbSet<TestMaster> TestMasters { get; set; }
         public virtual DbSet<UserDevice> UserDevices { get; set; }
@@ -361,19 +361,19 @@ namespace HealthIQ.PersistenceLayer.Data.AdminEntity
                 .Property(e => e.ImagePath)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<SubCours>()
+            modelBuilder.Entity<SubCourse>()
                 .Property(e => e.IndianAdmissionFee)
                 .HasPrecision(9, 2);
 
-            modelBuilder.Entity<SubCours>()
+            modelBuilder.Entity<SubCourse>()
                 .Property(e => e.ForeignAdmissionFee)
                 .HasPrecision(9, 2);
 
-            modelBuilder.Entity<SubCours>()
+            modelBuilder.Entity<SubCourse>()
                 .Property(e => e.IndianOtherFee)
                 .HasPrecision(9, 2);
 
-            modelBuilder.Entity<SubCours>()
+            modelBuilder.Entity<SubCourse>()
                 .Property(e => e.ForeignOtherFee)
                 .HasPrecision(9, 2);
 

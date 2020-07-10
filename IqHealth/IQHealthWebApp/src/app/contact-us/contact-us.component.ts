@@ -55,15 +55,15 @@ constructor(private readonly formBuilder: FormBuilder, private readonly appServi
     this.appService.submitContactUsForm(this.enquiryForm.value)
       .subscribe((res: APIResponse) => {
         this.showSpinner = false;
-        if (res.IsSuccess) {
+        if (res.isSuccess) {
           this.status = "Success";
-          this.message = res.Message;
+          this.message = res.message;
           this.appService.sendEmailNotification('email-appointment', this.enquiryForm.value);
           this.reset();
           
         } else {
           this.status = "Fail";
-          this.message = res.Message;
+          this.message = res.message;
           return;
         }
       })

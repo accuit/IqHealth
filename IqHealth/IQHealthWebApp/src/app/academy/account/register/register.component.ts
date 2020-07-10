@@ -7,7 +7,7 @@ import { APIResponse } from 'src/app/core/app.models';
 import { AccountService } from '../account.service';
 
 export class UserType {
-  ID: number;
+  id: number;
   Text: string;
 }
 
@@ -25,9 +25,9 @@ export class RegisterComponent implements OnInit {
   inProcess: any;
   userType: any;
   users: UserType[] = [
-    { ID: 1, Text: 'Customer' },
-    { ID: 2, Text: 'Student' },
-    { ID: 3, Text: 'Employee' }
+    { id: 1, Text: 'Customer' },
+    { id: 2, Text: 'Student' },
+    { id: 3, Text: 'Employee' }
   ];
   states: any;
   selectedID: any;
@@ -81,21 +81,21 @@ export class RegisterComponent implements OnInit {
     this.inProcess = true;
     this.accountService.registerUser(this.registerForm.value)
       .subscribe((res: APIResponse) => {
-        if (res.IsSuccess) {
-          alert(res.Message);
+        if (res.isSuccess) {
+          alert(res.message);
           this.router.navigate(['user-login']);
          // this.appService.sendEmailNotification('api/notification/email-appointment', this.registerForm.value);
         } else {
-          alert(res.Message);
+          alert(res.message);
         }
 
       });
   }
 
   selectUserType(user: UserType) {
-    this.selectedID = user.ID;
+    this.selectedID = user.id;
     this.selectedText = user.Text;
-    this.registerForm.controls['userType'].setValue(user.ID);
+    this.registerForm.controls['userType'].setValue(user.id);
   }
 
   selectState(state: IndianState) {

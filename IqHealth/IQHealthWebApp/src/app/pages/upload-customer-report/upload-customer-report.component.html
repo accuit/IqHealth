@@ -20,16 +20,16 @@
                                         <div class="dropdown-menu open">
                                             <ul class="dropdown-menu inner" role="menu">
                                                 <li *ngFor="let c of customers"><a (click)="selectCustomer(c)">
-                                                        <span class="text">{{ c.FirstName }} {{ c.LastName }} ({{ c.Mobile }})</span>
+                                                        <span class="text">{{ c.firstName }} {{ c.lastName }} ({{ c.mobile }})</span>
                                                         <span class="glyphicon glyphicon-ok check-mark"></span></a>
                                                 </li>
                                             </ul>
                                         </div>
                                         <select formControlName="customerID">
                                             <option *ngFor="let c of customers"
-                                                [class.selected]="{'selected':selectedCustomerID == c.ID.toString() }"
-                                                [ngValue]="c.ID">
-                                                {{ c.FirstName }} {{ c.LastName }} ({{ c.Mobile }})</option>
+                                                [class.selected]="{'selected':selectedCustomerID == c.id.toString() }"
+                                                [ngValue]="c.id">
+                                                {{ c.firstName }} {{ c.lastName }} ({{ c.mobile }})</option>
                                         </select>
                                     </div>
                                 </div>

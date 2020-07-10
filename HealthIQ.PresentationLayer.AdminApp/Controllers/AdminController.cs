@@ -9,7 +9,6 @@ using System.Web.Http;
 namespace HealthIQ.PresentationLayer.AdminApp.Controllers
 {
     [RoutePrefix("api")]
-    //[BaseAuthentication]
     public class AdminController : BaseAPIController
     {
         [HttpGet]
@@ -57,6 +56,7 @@ namespace HealthIQ.PresentationLayer.AdminApp.Controllers
 
         [HttpPost]
         [Route("submit-blog")]
+        [BaseAuthentication]
         public JsonResponse<int> AddUpdateBlog(BlogMasterDTO blog)
         {
             JsonResponse<int> response = new JsonResponse<int>();

@@ -1,21 +1,21 @@
 
 export class APIResponse {
     FailedValidations: string
-    IsSuccess: boolean;
-    Message: string;
+    isSuccess: boolean;
+    message: string;
     Result: any[];
-    SingleResult: any;
-    StatusCode: string;
+    singleResult: any;
+    statusCode: string;
 }
 
 
 export class CityModel {
     id: number;
-    Name: string;
+    name: string;
 }
 
 export class UserMaster {
-    ID: number;
+    id: number;
     firstname: string;
     lastname: string;
     age: number;
@@ -53,12 +53,12 @@ export class BookingMaster {
 }
 
 export class DoctorAppointment {
-    ID: number;
-    Name: string;
+    id: number;
+    name: string;
     Sex: string;
     Age: number;
-    Email: string;
-    Mobile: string;
+    email: string;
+    mobile: string;
     BookingDate: Date;
     BookingTime: string;
     DoctorID: number;
@@ -66,7 +66,7 @@ export class DoctorAppointment {
 }
 
 export class JobApplication {
-    ID: number;
+    id: number;
     firstName: string;
     lastName: string;
     email: string;
@@ -80,63 +80,63 @@ export class JobApplication {
 }
 
 export class Doctor {
-    ID: number;
-    FirstName: string;
-    LastName: string;
-    Email: string;
-    Mobile: string;
-    Designation: string;
-    DateOfBirth: string;
-    Experience: number;
-    Specialist: number;
-    ImageUrl: string;
-    Hospital: string;
-    About: string;
-    LogoUrl: string;
-    SpecialityID: number
+    id: number;
+    firstName: string;
+    lastName: string;
+    email: string;
+    mobile: string;
+    designation: string;
+    dateOfBirth: string;
+    experience: number;
+    specialist: number;
+    imageUrl: string;
+    hospital: string;
+    about: string;
+    logoUrl: string;
+    specialityID: number
 }
 
 export class Speciality {
-    ID: number;
-    Speciality: string;
-    Title: string;
-    LogoUrl?: string;
-    CompanyID: number;
+    id: number;
+    speciality: string;
+    title: string;
+    logoUrl?: string;
+    companyID: number;
 }
 
 
 export class ServicesModel {
-    ID: number;
-    Name: string;
-    Description: string;
-    ImageUrl: string;
-    PageUrl: string;
-    Type: string;
-    ServicesIncluded: string;
-    CreatedDate: string;
-    UpdatedDate: string;
-    IsDeleted: number;
+    id: number;
+    name: string;
+    description: string;
+    imageUrl: string;
+    pageUrl: string;
+    type: string;
+    servicesIncluded: string;
+    createdDate: string;
+    updatedDate: string;
+    isDeleted: number;
 }
 
 
 export class PackageCategory {
-    ID: number;
-    Name: string;
-    Title: string;
-    SubTitle?: string;
-    ImageUrl: string;
-    PackageMasters: PackageMaster[]
+    id: number;
+    name: string;
+    title: string;
+    subTitle?: string;
+    imageUrl: string;
+    packageMasters: PackageMaster[]
 }
 
 export class PackageMaster {
-    ID: number;
-    Name: string;
-    Title: string;
-    SubTitle?: string;
-    About: string;
-    CatgID: number;
-    Cost: number;
-    ImageUrl: string;
+    id: number;
+    name: string;
+    title: string;
+    subTitle?: string;
+    about: string;
+    catgID: number;
+    cost: number;
+    imageUrl: string;
     Status: number;
     CreatedDate: string;
     IsDeleted: number;
@@ -144,16 +144,16 @@ export class PackageMaster {
 }
 
 export class TestMaster {
-    ID: number;
-    Name: string;
+    id: number;
+    name: string;
     Type: number;
-    PreTestInfo: string;
-    Cost: number;
-    ResultInHours: number;
-    Components: string;
-    CreatedDate: string;
-    UpdatedDate: string;
-    IsDeleted: number
+    preTestInfo: string;
+    cost: number;
+    resultInHours: number;
+    components: string;
+    createdDate: string;
+    updatedDate: string;
+    isDeleted: number
 }
 
 

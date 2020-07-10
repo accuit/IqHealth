@@ -44,7 +44,7 @@ export class ResetPasswordComponent implements OnInit {
     }
     this.accountService.resetPassword(this.loginForm.value)
       .subscribe((res: APIResponse) => {
-        alert(res.Message);
+        alert(res.message);
         this.loginForm.reset();
         this.router.navigate(['home']);
       });

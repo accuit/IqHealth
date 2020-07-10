@@ -49,7 +49,7 @@ export class HomeComponent implements OnInit {
       .subscribe((data: APIResponse) => {
         this.isLoaded = true;
         
-        this.specialities = data.SingleResult;
+        this.specialities = data.singleResult;
       })
   }
 
@@ -57,7 +57,7 @@ export class HomeComponent implements OnInit {
     this.service.getAllDoctors()
       .subscribe((data: APIResponse) => {
         this.isLoaded = true;
-        this.doctors = data.SingleResult;
+        this.doctors = data.singleResult;
       })
   }
 
@@ -66,8 +66,8 @@ export class HomeComponent implements OnInit {
     // this.service.getAllServices()
     // .subscribe((data: APIResponse) => {
     //   this.isLoaded = true;
-    //   this.services = data.SingleResult;
-    //   console.log(JSON.stringify(data.SingleResult));
+    //   this.services = data.singleResult;
+    //   console.log(JSON.stringify(data.singleResult));
     // })
   }
 

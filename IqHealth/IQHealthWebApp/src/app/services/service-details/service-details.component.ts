@@ -11,7 +11,7 @@ import { AppService } from 'src/app/core/app.service';
   styleUrls: ['./service-details.component.scss']
 })
 export class ServiceDetailsComponent implements OnInit {
-  title: string = 'Title';
+  title: string = 'title';
   url: string = '#';
   subtitle: string = 'Subtitle';
   parent: string = 'Parent';
@@ -32,7 +32,7 @@ export class ServiceDetailsComponent implements OnInit {
 
     this.service.getAllServices()
       .subscribe((data: APIResponse) => {
-        this.services = data.SingleResult;
+        this.services = data.singleResult;
         this.isLoaded = true;
         this.loadServicePage();
       })
@@ -48,8 +48,8 @@ export class ServiceDetailsComponent implements OnInit {
     }
 
     if (this.isLoaded) {
-      this.servicedetails = this.services.filter(x=>x.ID == Number(this.activeID))[0];
-      this.title = this.servicedetails.Name;
+      this.servicedetails = this.services.filter(x=>x.id == Number(this.activeID))[0];
+      this.title = this.servicedetails.name;
       this.subtitle = this.title;
     }
 
@@ -57,8 +57,8 @@ export class ServiceDetailsComponent implements OnInit {
 
   displayService(event) {
     if (this.isLoaded){
-      this.servicedetails = this.services.filter(x=>x.ID == Number(event))[0];
-      this.title = this.servicedetails.Name;
+      this.servicedetails = this.services.filter(x=>x.id == Number(event))[0];
+      this.title = this.servicedetails.name;
       this.subtitle = this.title;
     }
   }

@@ -50,14 +50,14 @@ export class LoginComponent implements OnInit {
     }
     this.accountService.loginUser(this.loginForm.value)
       .subscribe((res: APIResponse) => {
-        if (res.IsSuccess) {
-          const user: UserMaster = res.SingleResult;
-          this.saveInLocal('userID', user.ID);
+        if (res.isSuccess) {
+          const user: UserMaster = res.singleResult;
+          this.saveInLocal('userID', user.id);
           this.saveInLocal('userType', user.UserType);
           this.saveInLocal('companyID', 2);
           this.router.navigate(['dashboard']);
         } else {
-          alert(res.Message);
+          alert(res.message);
         }
 
       });

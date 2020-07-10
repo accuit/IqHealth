@@ -42,14 +42,14 @@
             <div *ngFor="let doctor of doctors" class="col-md-3 col-sm-6 col-xs-12">
                 <div class="single-team-style-one">
                     <div class="img-box">
-                        <img [src]="'assets/images/doctors/'+ doctor.FirstName.trim() + '-' + doctor.LastName + '.jpg'" height="210px" alt="{{doctor.FirstName}}" />
+                        <img [src]="'assets/images/doctors/'+ doctor.firstName.trim() + '-' + doctor.lastName + '.jpg'" height="210px" alt="{{doctor.firstName}}" />
                     </div>
                     <!-- /.img-box -->
                     <div class="text-box" style="height: 110px;">
                         <a href="#">
-                            <h3>{{doctor.FirstName}} {{doctor.LastName}}</h3>
+                            <h3>{{doctor.firstName}} {{doctor.lastName}}</h3>
                         </a>
-                        <p style="color: #02a69b;">{{ doctor.Designation }}</p>
+                        <p style="color: #02a69b;">{{ doctor.designation }}</p>
                         <p>{{doctor.Specialist}}</p>
                     </div>
                     <!-- /.text-box -->

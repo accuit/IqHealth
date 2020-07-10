@@ -48,9 +48,9 @@ export class BookAppointmentComponent implements OnInit {
   }
 
   selectDoctor(doctor) {
-    this.selectedID = doctor.ID;
-    this.selectedText = doctor.FirstName;
-    this.appointmentForm.controls['doctorID'].setValue(doctor.ID);
+    this.selectedID = doctor.id;
+    this.selectedText = doctor.firstName;
+    this.appointmentForm.controls['doctorID'].setValue(doctor.id);
   }
 
   selectTiming(time) {
@@ -61,8 +61,8 @@ export class BookAppointmentComponent implements OnInit {
   getDoctors() {
     this.appService.getAllDoctors()
       .subscribe((res: APIResponse) => {
-        if (res.IsSuccess) {
-          this.doctorsList = res.SingleResult
+        if (res.isSuccess) {
+          this.doctorsList = res.singleResult
           this.isLoaded = true;
         }
       });
@@ -106,15 +106,15 @@ export class BookAppointmentComponent implements OnInit {
     this.appService.submitDoctorAppointment(this.appointmentForm.value)
       .subscribe((res: APIResponse) => {
         this.showSpinner = false;
-        if (res.IsSuccess) {
+        if (res.isSuccess) {
           this.status = "Success";
-          this.message = res.Message;
+          this.message = res.message;
           this.appService.sendEmailNotification('email-appointment', this.appointmentForm.value);
           this.reset();
           
         } else {
           this.status = "Fail";
-          this.message = res.Message;
+          this.message = res.message;
           return;
         }
       },

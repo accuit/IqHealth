@@ -49,7 +49,7 @@ export class EnquiryComponent implements OnInit {
   loadSubCourses() {
     this.service.getSubCourses()
       .subscribe((data: APIResponse) => {
-        this.subCourses = data.SingleResult;
+        this.subCourses = data.singleResult;
         this.isLoaded = true;
       })
   }
@@ -57,7 +57,7 @@ export class EnquiryComponent implements OnInit {
   loadDoctors() {
     this.appService.getAllDoctors()
       .subscribe((data: APIResponse) => {
-        this.subCourses = data.SingleResult;
+        this.doctors = data.singleResult;
         this.isLoaded = true;
       })
   }
@@ -116,15 +116,15 @@ export class EnquiryComponent implements OnInit {
     this.service.submitOnlineEnquiry(this.enquiryForm.value)
       .subscribe((res: APIResponse) => {
         this.showSpinner = false;
-        if (res.IsSuccess) {
+        if (res.isSuccess) {
           this.status = "Success";
-          this.message = res.Message;
+          this.message = res.message;
           this.appService.sendEmailNotification('email-enquiry', this.enquiryForm.value);
           this.reset();
 
         } else {
           this.status = "Fail";
-          this.message = res.Message;
+          this.message = res.message;
           return;
         }
 
@@ -137,8 +137,8 @@ export class EnquiryComponent implements OnInit {
   }
 
   selectCourse(course: SubCourses) {
-    this.selectedID = course.ID;
-    this.selectedText = course.Name;
+    this.selectedID = course.id;
+    this.selectedText = course.name;
     this.enquiryForm.controls['typeValue'].setValue(this.selectedID)
   }
 

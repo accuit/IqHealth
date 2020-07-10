@@ -4,13 +4,13 @@
             <div class="title">
                 <h3>{{data.page}}</h3>
             </div>
-            <div class="recent-post-wrapper">
-                <div *ngFor="let item of data.list" (click)="change(item.ID)" style=" background: #cec7c7;" class="single-recent-post">
+            <div *ngIf="data && data.list" class="recent-post-wrapper">
+                <div *ngFor="let item of data.list" (click)="change(item.id)" style=" background: #cec7c7;" class="single-recent-post">
                     <div class="img-box">
-                        <img [src]="item.ImageUrl" alt="{{item.Name}}" height="83px" width="80px">
+                        <img [src]="item.imageUrl" alt="{{item.name}}" height="83px" width="80px">
                     </div>
                     <div class="text-box">
-                        <a><h3>{{item.Name}}</h3></a>
+                        <a><h3>{{item.name}}</h3></a>
                         <span *ngIf="item.postDate" class="date">{{item.postDate}}</span>
                     </div>
                 </div>

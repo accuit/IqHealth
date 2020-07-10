@@ -8,7 +8,9 @@ namespace HealthIQ.PersistenceLayer.Data.Repository
         UserMaster UserLogin(string email, string password);
         UserMaster GetUserByEmail(string email);
         List<UserMaster> GetUsersByStatus(int status);
-        long RegisterUser(UserMaster user);
+        int RegisterUser(UserMaster user);
+        int UpdateUser(UserMaster user);
+        int AddUserRole(UserMaster user, bool isAdmin);
         UserMaster GetUserByGUID(string GUID);
         UserMaster GetUserByID(int id);
     }

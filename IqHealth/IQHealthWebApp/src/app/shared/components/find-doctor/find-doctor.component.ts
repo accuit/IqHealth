@@ -35,28 +35,28 @@ export class FindDoctorComponent implements OnInit {
     this.service.getSpecialities()
       .subscribe((data: APIResponse) => {
         this.isLoaded = true;
-        this.specialities = data.SingleResult;
+        this.specialities = data.singleResult;
       })
   }
 
 
   selectDoctor(doctor) {
-    this.selectedDocID = doctor.ID;
-    this.selectedDoctor = doctor.FirstName + ' ' + doctor.LastName;
-    this.findDocForm.controls['doctorID'].setValue( doctor.ID); 
+    this.selectedDocID = doctor.id;
+    this.selectedDoctor = doctor.firstName + ' ' + doctor.lastName;
+    this.findDocForm.controls['doctorID'].setValue( doctor.id); 
   }
 
   selectSpeciality(speciality: Speciality) {
-    this.selectedSpecID = speciality.ID;
-    this.selectedSpeciality = speciality.Speciality;
-    this.findDocForm.controls['specialityID'].setValue( speciality.ID); 
+    this.selectedSpecID = speciality.id;
+    this.selectedSpeciality = speciality.speciality;
+    this.findDocForm.controls['specialityID'].setValue( speciality.id); 
   }
 
   loadDoctorsList(): any {
     this.service.getAllDoctors()
       .subscribe((data: APIResponse) => {
         this.isLoaded = true;
-        this.doctors = data.SingleResult;
+        this.doctors = data.singleResult;
       })
   }
 
