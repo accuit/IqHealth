@@ -30,7 +30,7 @@ export class BookATestComponent implements OnInit {
 
   ngOnInit() {
     this.appService.getPackages().subscribe((res: APIResponse) => {
-      this.allPackages = res.SingleResult;
+      this.allPackages = res.singleResult;
     });
 
     this.allTimings = this.jsonService.getTimings();
@@ -70,14 +70,14 @@ export class BookATestComponent implements OnInit {
     this.appService.submitBooking(this.bookingForm.value)
       .subscribe((res: APIResponse) => {
         this.showSpinner = false;
-        if (res.IsSuccess) {
+        if (res.isSuccess) {
           this.status = "Success";
-          this.message = res.Message;
+          this.message = res.message;
           this.appService.sendEmailNotification('email-booking', this.bookingForm.value);
           this.reset();
         } else {
           this.status = "Fail";
-          this.message = res.Message;
+          this.message = res.message;
           return;
         }
       },
@@ -100,9 +100,9 @@ export class BookATestComponent implements OnInit {
   }
 
   selectPackage(packag) {
-    this.selectedPID = packag.ID;
-    this.selectedPText = packag.Name;
-    this.bookingForm.controls['packageID'].setValue(packag.ID);
+    this.selectedPID = packag.id;
+    this.selectedPText = packag.name;
+    this.bookingForm.controls['packageID'].setValue(packag.id);
   }
 
 }

@@ -15,29 +15,29 @@
             <div class="col-md-8 col-sm-12 col-xs-12">
                 <div class="service-details-content ">
                     <div class="img-box">
-                        <img [src]="'assets/images/package-categories/'+ category.ID + '.jpg'" style="max-height: 400px" alt="{{ category.Name }}" />
+                        <img [src]="'assets/images/package-categories/'+ category.id + '.jpg'" style="max-height: 400px" alt="{{ category.name }}" />
                     </div>
                     <!-- /.img-box -->
                     <br>
                     <div *ngIf="isloaded" class="text-box">
                         <br>
-                        <h3 class="post-title">{{ category.Name }} Package Bundle</h3>
+                        <h3 class="post-title">{{ category.name }} Package Bundle</h3>
                         <br>
-                        <p>{{ category.Name }} package category contains following Test Packages.</p>
+                        <p>{{ category.name }} package category contains following Test Packages.</p>
                         <br>
                         <br>
                         <div *ngIf="packages && packages.length > 0" class="row">
                             <div *ngFor="let p of packages" class="col-md-6">
                                 <div class="single-price-box">
                                     <div class="sub-title">
-                                        <h4>{{p.Name}}
+                                        <h4>{{p.name}}
                                             <span class="price" style="float: right;">{{p.Cost}}</span>
                                         </h4>
                                     </div>
                                     <!-- /.sub-title -->
                                     <div class="price-box">
                                         <div *ngFor="let t of p.TestMasters" class="single-price clearfix">
-                                            <span class="name">{{t.Name}}</span>
+                                            <span class="name">{{t.name}}</span>
                                             <!-- <span class="price">t.Type</span> -->
                                         </div>
                                         <!-- /.single-price -->

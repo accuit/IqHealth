@@ -30,7 +30,7 @@
                                         </div>
 
                                         <div class="form-group" [ngClass]="{'has-error': submitted && f.email.errors}">
-                                            <label id="resumator-email-label" for="resumator-email-value" class="control-label">Email Address<i class="asterisk">*</i></label>
+                                            <label id="resumator-email-label" for="resumator-email-value" class="control-label">email Address<i class="asterisk">*</i></label>
                                             <input type="email" formControlName="email" class="form-control">
                                             <div *ngIf="submitted && f.email.errors && f.email.errors.email" class="control-label" style="text-align: right;">Invalid email address entered.</div>
                                         </div>

@@ -35,7 +35,7 @@ export class AccountService {
   forgetPassword(email: any) {
     const data = {
       email: email.userEmail,
-      password: '123456'
+      password: ''
     }
     return this.httpClient.post(this.baseUrl + 'account/forget-password/', data, { headers: this.headers });
   }

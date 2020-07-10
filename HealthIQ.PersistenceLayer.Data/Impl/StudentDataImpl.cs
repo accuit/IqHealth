@@ -69,7 +69,6 @@ namespace HealthIQ.PersistenceLayer.Data.Impl
 
         public int SubmitNewStudent(UserMaster student)
         {
-            student.IsStudent = true;
             student.IsActive = true;
             student.AccountStatus = 1;
             student.Password = "123456";

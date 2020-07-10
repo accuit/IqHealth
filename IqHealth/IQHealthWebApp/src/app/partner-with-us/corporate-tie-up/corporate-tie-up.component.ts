@@ -17,7 +17,7 @@ export class CorporateTieUpComponent implements OnInit {
   status: string;
   message: any;
   allDesignations: any;
-  selectedDesignationText = 'Select Designation';
+  selectedDesignationText = 'Select designation';
 
   constructor(private formBuilder: FormBuilder, private readonly service: PartnerService,
     private readonly notificationService: AppService) { }
@@ -51,7 +51,7 @@ export class CorporateTieUpComponent implements OnInit {
   }
 
   selectDesignation(des) {
-    this.selectedDesignationText = des.Name;
+    this.selectedDesignationText = des.name;
     this.corporateForm.controls['designation'].setValue(des.id);
   }
 
@@ -65,15 +65,15 @@ export class CorporateTieUpComponent implements OnInit {
     this.service.submitCorporateEnquiry(this.corporateForm.value)
       .subscribe((res: APIResponse) => {
         this.showSpinner = false;
-        if (res.IsSuccess) {
+        if (res.isSuccess) {
           this.status = "Success";
-          this.message = res.Message;
+          this.message = res.message;
           this.notificationService.sendEmailNotification('send-corporate-email', this.corporateForm.value);
           this.reset();
           
         } else {
           this.status = "Fail";
-          this.message = res.Message;
+          this.message = res.message;
           return;
         }
       });

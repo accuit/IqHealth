@@ -50,7 +50,7 @@ export class HealthcareUnitComponent implements OnInit {
   }
 
   selectCity(city) {
-    this.selectedCityText = city.Name;
+    this.selectedCityText = city.name;
     this.partnerForm.controls['city'].setValue(city.id);
   }
 
@@ -63,15 +63,15 @@ export class HealthcareUnitComponent implements OnInit {
     this.service.submitPartnerEnquiry(this.partnerForm.value)
       .subscribe((res: APIResponse) => {
         this.showSpinner = false;
-        if (res.IsSuccess) {
+        if (res.isSuccess) {
           this.status = "Success";
-          this.message = res.Message;
+          this.message = res.message;
           this.notificationService.sendEmailNotification('email-appointment', this.partnerForm.value);
           this.reset();
           
         } else {
           this.status = "Fail";
-          this.message = res.Message;
+          this.message = res.message;
           return;
         }
       },

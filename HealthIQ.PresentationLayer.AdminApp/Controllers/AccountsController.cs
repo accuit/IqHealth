@@ -90,18 +90,19 @@ namespace HealthIQ.PresentationLayer.AdminApp.Controllers
         }
 
         [HttpPost]
-        [Route("user-register")]
-        public JsonResponse<long> RegisterUserMasterDTO(UserMasterDTO user)
+        [Route("register-user")]
+        [BaseAuthentication]
+        [AuthorizePage(Roles = "Admin")]
+        public JsonResponse<int> RegisterUserMasterDTO(UserMasterDTO user)
         {
-            JsonResponse<long> response = new JsonResponse<long>();
+            JsonResponse<int> response = new JsonResponse<int>();
 
             var User = UserBusinessInstance.GetUserByEmail(user.Email);
             if (User == null)
             {
                 try
                 {
-                    user.UserStatus = 1; // (int)AspectEnums.AccountStatus.Pending;
-                    user.CreatedDate = DateTime.Now;
+                    user.UserStatus = (int)AspectEnums.AccountStatus.Pending;
                     response.SingleResult = UserBusinessInstance.RegisterUser(user);
                     response.StatusCode = response.SingleResult > 0 ? "200" : "500";
                     response.IsSuccess = response.SingleResult > 0 ? true : false;
@@ -206,7 +207,7 @@ namespace HealthIQ.PresentationLayer.AdminApp.Controllers
                     User.Password = user.Password;
                     User.UpdatedDate = DateTime.Now;
 
-                    response.IsSuccess = UserBusinessInstance.RegisterUser(User) > 0 ? true : false;
+                    response.IsSuccess = UserBusinessInstance.UpdateUser(User) > 0 ? true : false;
                     response.SingleResult = user;
                     response.StatusCode = "200";
                     response.Message = "Your password has been successfully updated.";

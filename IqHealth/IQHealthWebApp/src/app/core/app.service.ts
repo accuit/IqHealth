@@ -21,13 +21,13 @@ export class AppService {
   getAllCities(): CityModel[] {
 
     const cities: CityModel[] = [
-      { id: 1, Name: 'Asansol' },
-      { id: 2, Name: 'Durgapur' },
-      { id: 3, Name: 'Howrah' },
-      { id: 4, Name: 'Darjeeling' },
-      { id: 5, Name: 'Haldia' },
-      { id: 6, Name: 'Kalimpong' },
-      { id: 7, Name: 'Kolkata' }
+      { id: 1, name: 'Asansol' },
+      { id: 2, name: 'Durgapur' },
+      { id: 3, name: 'Howrah' },
+      { id: 4, name: 'Darjeeling' },
+      { id: 5, name: 'Haldia' },
+      { id: 6, name: 'Kalimpong' },
+      { id: 7, name: 'Kolkata' }
     ]
 
     return cities;
@@ -36,14 +36,14 @@ export class AppService {
   getAllDesignation(): any {
 
     const designations = [
-      { id: 1, Name: 'Manager' },
-      { id: 2, Name: 'HR' },
-      { id: 3, Name: 'Associate' },
-      { id: 4, Name: 'CEO' },
-      { id: 5, Name: 'CTO' },
-      { id: 6, Name: 'Facility Manager' },
-      { id: 7, Name: 'Assitant Vice President (AVP)' },
-      { id: 8, Name: 'Vice President (VP)' }
+      { id: 1, name: 'Manager' },
+      { id: 2, name: 'HR' },
+      { id: 3, name: 'Associate' },
+      { id: 4, name: 'CEO' },
+      { id: 5, name: 'CTO' },
+      { id: 6, name: 'Facility Manager' },
+      { id: 7, name: 'Assitant Vice President (AVP)' },
+      { id: 8, name: 'Vice President (VP)' }
     ]
 
     return designations;
@@ -121,10 +121,10 @@ export class AppService {
     url = '' ? 'send-email' : url;
     this.httpClient.post(this.baseUrl + 'api/notification/' + url, params, { headers: this.headers })
       .subscribe((res: APIResponse) => {
-        if (res.IsSuccess)
-          console.log('Email successfully sent.');
+        if (res.isSuccess)
+          console.log('email successfully sent.');
         else
-          console.log(res.Message);
+          console.log(res.message);
       })
   }
 

@@ -14,10 +14,43 @@ namespace HealthIQ.PersistenceLayer.Data.Impl
             return HIQAdminContext.UserMasters.Where(x => x.Email == email && x.Password == password).FirstOrDefault();
         }
 
-        public long RegisterUser(UserMaster user)
+        public int RegisterUser(UserMaster user)
         {
+            user.IsActive = true;
+            user.AccountStatus = 1;
+            user.Password = "123456";
+            user.CreatedDate = DateTime.Now;
             HIQAdminContext.UserMasters.Add(user);
             return HIQAdminContext.SaveChanges() > 0 ? user.UserID : 0;
+        }
+
+        public int AddUserRole(UserMaster user, bool isAdmin)
+        {
+            int roleId = user.IsEmployee ? (int)AspectEnums.RoleType.Employee : user.IsCustomer ? (int)AspectEnums.RoleType.Customer : (int)AspectEnums.RoleType.Student;
+
+            HIQAdminContext.UserRoles.Add(new UserRole { UserID = user.UserID, RoleID = roleId, CreatedBy = user.CreatedBy, CreatedDate = DateTime.Now, IsActive = true });
+            if (isAdmin)
+            {
+                HIQAdminContext.UserRoles.Add(new UserRole { UserID = user.UserID, RoleID = (int)AspectEnums.RoleType.Admin, CreatedBy = user.CreatedBy, CreatedDate = DateTime.Now, IsActive = true });
+            }
+            return HIQAdminContext.SaveChanges();
+        }
+
+        public int UpdateUser(UserMaster user)
+        {
+            UserMaster User = HIQAdminContext.UserMasters.FirstOrDefault(x => x.UserID == user.UserID);
+            User.ModifiedBy = 1;
+            User.ModifiedDate = DateTime.Now;
+            User.Password = user.Password;
+            User.Address = user.Address;
+            User.City = user.City;
+            User.Mobile = user.Mobile;
+            User.Phone = user.Phone;
+            User.Pin = user.Pin;
+            User.Image = user.Image;
+
+            HIQAdminContext.Entry<UserMaster>(User).State = System.Data.Entity.EntityState.Modified;
+            return HIQAdminContext.SaveChanges();
         }
 
         public UserMaster GetUserByEmail(string email)

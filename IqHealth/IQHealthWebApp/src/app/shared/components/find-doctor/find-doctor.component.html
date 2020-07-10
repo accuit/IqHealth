@@ -12,12 +12,12 @@
                         <div class="dropdown-menu open">
                             <ul class="dropdown-menu inner" role="menu">
                                 <li *ngFor="let doctor of doctors" ><a (click)="selectDoctor(doctor)"> 
-                                     <span  class="text">{{doctor.FirstName}} {{doctor.LastName}}</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+                                     <span  class="text">{{doctor.firstName}} {{doctor.lastName}}</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
                                 </li>
                             </ul>
                         </div>
                         <select formControlName="doctorID">
-                                <option *ngFor="let doctor of doctors"  [value]="doctor.ID">  {{doctor.FirstName}} {{doctor.LastName}}</option>
+                                <option *ngFor="let doctor of doctors"  [value]="doctor.id">  {{doctor.firstName}} {{doctor.lastName}}</option>
                             </select>
                     </div>
                 </div><!-- /.frm-control -->
@@ -33,12 +33,12 @@
                                 <div class="dropdown-menu open">
                                     <ul class="dropdown-menu inner" role="menu">
                                         <li *ngFor="let S of specialities" ><a (click)="selectSpeciality(S)"> 
-                                             <span  class="text">{{S.Speciality}}</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+                                             <span  class="text">{{S.speciality}}</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
                                         </li>
                                     </ul>
                                 </div>
                                 <select formControlName="specialityID">
-                                        <option *ngFor="let S of specialities"  [value]="S.ID">  {{S.Speciality}}</option>
+                                        <option *ngFor="let S of specialities"  [value]="S.id">  {{S.speciality}}</option>
                                     </select>
                             </div>
                 </div>

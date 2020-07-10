@@ -55,7 +55,7 @@ export class OrganizeCampComponent implements OnInit {
   }
 
   selectCity(city) {
-    this.selectedCityText = city.Name;
+    this.selectedCityText = city.name;
     this.organizeCampForm.controls['city'].setValue(city.id);
   }
 
@@ -68,15 +68,15 @@ export class OrganizeCampComponent implements OnInit {
     this.service.submitOrganizeCampEnquiry(this.organizeCampForm.value)
       .subscribe((res: APIResponse) => {
         this.showSpinner = false;
-        if (res.IsSuccess) {
+        if (res.isSuccess) {
           this.status = "Success";
-          this.message = res.Message;
+          this.message = res.message;
           this.notificationService.sendEmailNotification('email-appointment', this.organizeCampForm.value);
           this.reset();
           
         } else {
           this.status = "Fail";
-          this.message = res.Message;
+          this.message = res.message;
           return;
         }
       },

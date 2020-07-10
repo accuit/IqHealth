@@ -7,7 +7,7 @@ namespace HealthIQ.PersistenceLayer.Data.AdminEntity
     using System.Data.Entity.Spatial;
 
     [Table("SubCourses")]
-    public partial class SubCours
+    public partial class SubCourse
     {
         public int ID { get; set; }
 

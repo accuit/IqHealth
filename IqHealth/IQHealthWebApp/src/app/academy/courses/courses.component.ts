@@ -33,7 +33,7 @@ export class CoursesComponent implements OnInit {
 
     this.service.getMasterCourses()
       .subscribe((data: APIResponse) => {
-        this.courses = data.SingleResult;
+        this.courses = data.singleResult;
         this.loadCoursesPage();
       })
 
@@ -48,26 +48,25 @@ export class CoursesComponent implements OnInit {
     }
 
       this.courseDetails = this.getCourseDetails();
-      this.title = this.courseDetails.Name;
+      this.title = this.courseDetails.name;
       this.subtitle = this.title;
     
   }
 
   displayCourse(event) {
     if (this.isLoaded) {
-      this.courseDetails = this.getCourseDetails(event);
-      this.title = this.courseDetails.Name;
+      this.getCourseDetails(event);
+      this.title = this.courseDetails.name;
       this.subtitle = this.title;
     }
   }
 
-  getCourseDetails(id?): CourseMaster {
+  getCourseDetails(id?): any {
     id = !id ? 1 : id;
     return this.service.getCourseDetails(id)
       .subscribe((data: APIResponse) => {
-        this.courseDetails = data.SingleResult;
+        this.courseDetails = data.singleResult;
         this.isLoaded = true;
-        console.log(this.courseDetails);
       });
   }
 

@@ -36,7 +36,7 @@ export class PackageCategoryDetailsComponent implements OnInit {
     this.service.getAllPackageCategories()
       .subscribe((data: APIResponse) => {
         this.isloaded = true;
-        this.categories = data.SingleResult;
+        this.categories = data.singleResult;
         this.loadCategoryPage();
       })
 
@@ -50,23 +50,23 @@ export class PackageCategoryDetailsComponent implements OnInit {
       activeID: this.activeID
     }
 
-    this.category = this.categories.filter(x => x.ID == Number(this.activeID))[0];
-    this.packages = this.service.getPackagesByCategory(this.category.ID)
+    this.category = this.categories.filter(x => x.id == Number(this.activeID))[0];
+    this.packages = this.service.getPackagesByCategory(this.category.id)
       .subscribe((data: APIResponse) => {
         this.isloading = false;
         this.isloaded = true;
-        this.packages = data.SingleResult;
+        this.packages = data.singleResult;
       })
 
-    this.title = this.category.Name;
+    this.title = this.category.name;
     this.subtitle = this.title;
 
   }
 
   displayPackages(event) {
 
-    this.category = this.categories.filter(x => x.ID == Number(event))[0];
-    this.title = this.category.Name;
+    this.category = this.categories.filter(x => x.id == Number(event))[0];
+    this.title = this.category.name;
     this.subtitle = this.title;
 
     if (this.isloaded)
@@ -76,7 +76,7 @@ export class PackageCategoryDetailsComponent implements OnInit {
         this.isloading = false;
         console.log(this.packages);
         this.isloaded = true;
-        this.packages = data.SingleResult;
+        this.packages = data.singleResult;
       })
 
   }

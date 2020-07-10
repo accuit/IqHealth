@@ -25,10 +25,10 @@
                         </div><!-- /.col-md-6 -->
                         <div class="col-md-6">
                             <div class="frm-control">
-                                <input type="text" placeholder="Email Address" formControlName="email">
+                                <input type="text" placeholder="email Address" formControlName="email">
                                 <div *ngIf="isSubmitted && f.email.errors" class="invalid">
-                                    <div *ngIf="f.email.errors.required">Email is required</div>
-                                    <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                                    <div *ngIf="f.email.errors.required">email is required</div>
+                                    <div *ngIf="f.email.errors.email">email must be a valid email address</div>
                                 </div>
                             </div><!-- /.frm-control -->
                         </div><!-- /.col-md-6 -->
@@ -36,8 +36,8 @@
                             <div class="frm-control">
                                 <input type="text" placeholder="Phone No. (10-15 digits)" formControlName="mobile">
                                 <div *ngIf="isSubmitted && f.mobile.errors" class="invalid">
-                                    <div *ngIf="f.mobile.errors.required">Mobile Number is required</div>
-                                    <div *ngIf="f.mobile.errors.minlength">Mobile must be at least 10 characters</div>
+                                    <div *ngIf="f.mobile.errors.required">mobile Number is required</div>
+                                    <div *ngIf="f.mobile.errors.minlength">mobile must be at least 10 characters</div>
                                 </div>
                             </div><!-- /.frm-control -->
                         </div><!-- /.col-md-6 -->
@@ -59,8 +59,8 @@
                                     </div>
                                     <select formControlName="userType">
                                         <option *ngFor="let u of users"
-                                            [class.selected]="{'selected':selectedID == u.ID.toString() }"
-                                            [ngValue]="u.ID">
+                                            [class.selected]="{'selected':selectedID == u.id.toString() }"
+                                            [ngValue]="u.id">
                                             {{u.Text}}</option>
                                     </select>
                                 </div>

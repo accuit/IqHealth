@@ -21,9 +21,9 @@ export class DashboardComponent implements OnInit {
   userType: any;
   userID: any;
   users: UserType[] = [
-    { ID: 1, Text: "Customer" },
-    { ID: 2, Text: "Student" },
-    { ID: 3, Text: "Employee" }
+    { id: 1, Text: "Customer" },
+    { id: 2, Text: "Student" },
+    { id: 3, Text: "Employee" }
   ];
   states: any;
   selectedID: any;
@@ -68,14 +68,14 @@ export class DashboardComponent implements OnInit {
     this.accountService
       .registerUser(this.uploadForm.value)
       .subscribe((res: APIResponse) => {
-        alert(res.Message);
+        alert(res.message);
       });
   }
 
   selectUserType(user: UserType) {
-    this.selectedID = user.ID;
+    this.selectedID = user.id;
     this.selectedText = user.Text;
-    this.uploadForm.controls["userType"].setValue(user.ID);
+    this.uploadForm.controls["userType"].setValue(user.id);
   }
 
   loadUserDashboard(usertype: UserTypeEnum) {

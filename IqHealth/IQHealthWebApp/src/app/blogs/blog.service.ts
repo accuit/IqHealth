@@ -17,7 +17,7 @@ export class BlogService {
   }
 
   getBlogs() {
-    return this.httpClient.get('http://localhost:65114/api/get-blogs', { headers: this.headers });
+    return this.httpClient.get(this.baseUrl + 'api/get-blogs', { headers: this.headers });
   }
 
 }

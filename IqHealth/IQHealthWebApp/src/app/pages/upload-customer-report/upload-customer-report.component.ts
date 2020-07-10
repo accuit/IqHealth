@@ -71,7 +71,7 @@ export class UploadCustomerReportComponent implements OnInit {
         if (event.type === HttpEventType.UploadProgress) {
           this.percentDone = Math.round((100 * event.loaded) / event.total);
         } else if (event instanceof HttpResponse) {
-          if (event.body.IsSuccess) {
+          if (event.body.isSuccess) {
             this.uploadSuccess = true;
             this.uploadForm.reset();
             this.message = 'Report successfully uploaded.';
@@ -87,15 +87,15 @@ export class UploadCustomerReportComponent implements OnInit {
   }
 
   selectCustomer(c) {
-    this.selectedCustomerID = c.ID;
-    this.selectedCustomerText = c.FirstName;
-    this.uploadForm.controls["customerID"].setValue(c.ID);
+    this.selectedCustomerID = c.id;
+    this.selectedCustomerText = c.firstName;
+    this.uploadForm.controls["customerID"].setValue(c.id);
   }
 
   getCustomers() {
     this.accountService.getUsersByType(UserTypeEnum.Customer).subscribe((res: APIResponse) => {
-      if (res.IsSuccess) {
-        this.customers = res.SingleResult;
+      if (res.isSuccess) {
+        this.customers = res.singleResult;
         this.isLoaded = true;
       }
     });
@@ -110,7 +110,7 @@ export class UploadCustomerReportComponent implements OnInit {
     this.accountService
       .registerUser(this.uploadForm.value)
       .subscribe((res: APIResponse) => {
-        alert(res.Message);
+        alert(res.message);
       });
   }
 }

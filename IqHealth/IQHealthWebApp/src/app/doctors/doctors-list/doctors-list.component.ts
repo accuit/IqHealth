@@ -41,9 +41,9 @@ export class DoctorsListComponent implements OnInit {
         if (params.doctor || params.speciality) {
           this.showSlider = false;
           if (params.doctor)
-            this.doctors = this.doctors.filter(x => x.ID === Number(params.doctor));
+            this.doctors = this.doctors.filter(x => x.id === Number(params.doctor));
           if (params.speciality)
-            this.doctors = this.doctors.filter(x => x.SpecialityID === Number(params.speciality));
+            this.doctors = this.doctors.filter(x => x.specialityID === Number(params.speciality));
         }
         else{
           this.showSlider = true;
@@ -56,20 +56,20 @@ export class DoctorsListComponent implements OnInit {
     this.service.getSpecialities()
       .subscribe((data: APIResponse) => {
         this.isLoaded = true;
-        this.specialities = data.SingleResult;
+        this.specialities = data.singleResult;
       })
   }
 
   loadDoctorsListBySpeciality(id: number, el: HTMLDivElement): any {
     this.service.getDoctorsBySpeciality(id)
       .subscribe((data: APIResponse) => {
-        this.doctors = data.SingleResult;
+        this.doctors = data.singleResult;
       })
     el.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
   }
 
   getDoctors(id) {
-    this.doctors = this.doctors.filter(x => x.SpecialityID === Number(id));
+    this.doctors = this.doctors.filter(x => x.specialityID === Number(id));
   }
 
   resetDoctorsList(){
@@ -81,7 +81,7 @@ export class DoctorsListComponent implements OnInit {
     this.service.getAllDoctors()
       .subscribe((data: APIResponse) => {
         this.isLoaded = true;
-        this.doctors = data.SingleResult;
+        this.doctors = data.singleResult;
         console.log(this.doctors);
         this.executeParams();
       })

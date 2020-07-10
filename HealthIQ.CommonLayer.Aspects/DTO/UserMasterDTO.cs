@@ -33,16 +33,9 @@ namespace HealthIQ.CommonLayer.Aspects.DTO
         public int? State { get; set; }
         public int? Country { get; set; }
         public string Pin { get; set; }
-
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int? UserStatus { get; set; }
-
-        [Column(TypeName = "datetime2")]
         public DateTime CreatedDate { get; set; }
-
         public int CreatedBy { get; set; }
-
-        [Column(TypeName = "datetime2")]
         public DateTime? UpdatedDate { get; set; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
@@ -59,9 +52,6 @@ namespace HealthIQ.CommonLayer.Aspects.DTO
 
         [StringLength(15)]
         public string Mobile { get; set; }
-
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int? UserType { get; set; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int CompanyID { get; set; }

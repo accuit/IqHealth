@@ -11,21 +11,21 @@
             <div class="col-md-8 col-sm-12 col-xs-12">
                 <div class="service-details-content">
                     <div class="img-box">
-                        <img [src]="'assets/images/services/'+ servicedetails.ID + '.jpg'" style="max-height: 400px" alt="Awesome Image" />
+                        <img [src]="'assets/images/services/'+ servicedetails.id + '.jpg'" style="max-height: 400px" alt="Awesome Image" />
                     </div>
                     <!-- /.img-box -->
                     <div class="text-box">
                         <br>
                         <br>
-                        <h3 class="post-title">{{ servicedetails.Name }}</h3>
+                        <h3 class="post-title">{{ servicedetails.name }}</h3>
                         <br>
-                        <p [innerHtml]="servicedetails.Description"></p>
+                        <p [innerHtml]="servicedetails.description"></p>
                         <br>
-                        <div *ngIf="servicedetails.ServicesInclList && servicedetails.ServicesInclList.length > 0" class="service-approach">
+                        <div *ngIf="servicedetails.servicesInclList && servicedetails.servicesInclList.length > 0" class="service-approach">
                             <div class="title-box">
                                 <h3>Service Includes</h3>
                                 <br>
-                                <p class="highlight" *ngFor="let item of servicedetails.ServicesInclList">{{item}}</p>
+                                <p class="highlight" *ngFor="let item of servicedetails.servicesInclList">{{item}}</p>
                             </div>
                             <!-- /.title-box -->
                             <br>

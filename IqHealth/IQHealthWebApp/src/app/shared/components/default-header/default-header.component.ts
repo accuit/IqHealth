@@ -23,7 +23,7 @@ export class DefaultHeaderComponent implements OnInit {
     this.service.getAllServices()
       .subscribe((data: APIResponse) => {
         this.isloaded = true;
-        this.services = data.SingleResult;
+        this.services = data.singleResult;
       })
   }
 
@@ -31,7 +31,7 @@ export class DefaultHeaderComponent implements OnInit {
     this.service.getAllPackageCategories()
       .subscribe((data: APIResponse) => {
         this.isloaded = true;
-        this.packages = data.SingleResult;
+        this.packages = data.singleResult;
       })
   }
 

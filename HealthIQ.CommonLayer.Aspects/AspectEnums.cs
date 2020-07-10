@@ -17,6 +17,18 @@ namespace HealthIQ.CommonLayer.Aspects
             AdminManager
         }
 
+        public enum EnquiryType
+        {
+            Student
+        }
+
+        public enum AccountStatus
+        {
+            Pending = 1,
+            Active = 2,
+            Blocked = 3
+        }
+
         public enum PeristenceInstanceNames
         {
             UserDataImpl,
@@ -40,6 +52,7 @@ namespace HealthIQ.CommonLayer.Aspects
             Admin = 1,
             Employee = 2,
             Customer = 3,
+            Student = 4,
             Default = 99
         }
 
@@ -51,7 +64,8 @@ namespace HealthIQ.CommonLayer.Aspects
             Product,
             Store,
             Expense,
-            DealerCreation
+            DealerCreation,
+            Resume
         }
 
         public enum ConfigKeys

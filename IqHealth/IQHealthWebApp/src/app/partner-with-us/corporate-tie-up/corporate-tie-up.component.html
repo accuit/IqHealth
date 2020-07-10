@@ -190,10 +190,10 @@
                         <!-- /.col-md-6 -->
                         <div class="col-md-6">
                             <div class="frm-control">
-                                <input type="text" placeholder="Email*" formControlName="email">
+                                <input type="text" placeholder="email*" formControlName="email">
                                 <div *ngIf="submitted && f.email.errors" class="invalid">
-                                    <div *ngIf="f.email.errors.required">Email is required</div>
-                                    <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                                    <div *ngIf="f.email.errors.required">email is required</div>
+                                    <div *ngIf="f.email.errors.email">email must be a valid email address</div>
                                 </div>
                             </div>
                             <!-- /.frm-control -->
@@ -201,10 +201,10 @@
                         <!-- /.col-md-6 -->
                         <div class="col-md-2">
                             <div class="frm-control">
-                                <input type="text" placeholder="Mobile*" formControlName="mobile">
+                                <input type="text" placeholder="mobile*" formControlName="mobile">
                                 <div *ngIf="submitted && f.mobile.errors" class="invalid">
-                                    <div *ngIf="f.mobile.errors.required">Mobile Number is required</div>
-                                    <div *ngIf="f.mobile.errors.minlength">Mobile must be at least 10 characters</div>
+                                    <div *ngIf="f.mobile.errors.required">mobile Number is required</div>
+                                    <div *ngIf="f.mobile.errors.minlength">mobile must be at least 10 characters</div>
                                 </div>
                             </div>
                             <!-- /.frm-control -->
@@ -234,13 +234,13 @@
                                         <ul class="dropdown-menu inner" role="menu">
                                             <li *ngFor="let u of allDesignations">
                                                 <a (click)="selectDesignation(u)">
-                                                    <span class="text">{{u.Name}}</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
+                                                    <span class="text">{{u.name}}</span><span class="glyphicon glyphicon-ok check-mark"></span></a>
                                             </li>
                                         </ul>
                                     </div>
                                     <select formControlName="designation">
-                                        <option *ngFor="let u of allDesignations" [ngValue]="u.Name">
-                                            {{u.Name}}
+                                        <option *ngFor="let u of allDesignations" [ngValue]="u.name">
+                                            {{u.name}}
                                         </option>
                                     </select>
                                 </div>

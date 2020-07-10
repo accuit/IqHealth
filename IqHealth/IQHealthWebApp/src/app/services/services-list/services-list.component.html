@@ -15,16 +15,16 @@
             <div *ngFor="let s of services" class="col-md-4 col-sm-12 col-xs-12">
                 <div class="single-service-style-two clearfix">
                     <div class="img-box ">
-                        <img [src]="'assets/images/services/'+ s.ID + '.jpg' " alt="{{s.Name}}" />
+                        <img [src]="'assets/images/services/'+ s.name.toLowerCase().replace(' ', '-') + '.jpg' " alt="{{s.name}}" />
                     </div>
                     <!-- /.img-box -->
                     <div class="text-box">
                         <div class="inner-box">
-                            <a [routerLink]="'/service-details/'+ s.ID">
-                                <h3>{{s.Name}}</h3>
+                            <a [routerLink]="'/service-details/'+ s.id">
+                                <h3>{{s.name}}</h3>
                             </a>
-                            <p>{{ s.Description | slice:0:200 }}</p>
-                            <a [routerLink]="'/service-details/'+ s.ID" class="more-btn">Read More <i class="fa fa-angle-double-right"></i></a>
+                            <p>{{ s.description | slice:0:200 }}</p>
+                            <a [routerLink]="'/service-details/'+ s.id" class="more-btn">Read More <i class="fa fa-angle-double-right"></i></a>
                             <!-- /.more-btn -->
                         </div>
                         <!-- /.inner-box -->

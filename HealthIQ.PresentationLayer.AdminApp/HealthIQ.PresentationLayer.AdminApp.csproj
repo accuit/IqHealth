@@ -65,6 +65,9 @@
     <Reference Include="Google.Protobuf, Version=3.6.1.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
       <HintPath>..\packages\Google.Protobuf.3.6.1\lib\net45\Google.Protobuf.dll</HintPath>
     </Reference>
+    <Reference Include="IqHealth.Data.Persistence">
+      <HintPath>..\HealthIQ.PersistenceLayer.Data\bin\Debug\IqHealth.Data.Persistence.dll</HintPath>
+    </Reference>
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
@@ -262,6 +265,12 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\EmailHelper.cs" />
+    <Compile Include="HIQControllers\BookingController.cs" />
+    <Compile Include="HIQControllers\CourseController.cs" />
+    <Compile Include="HIQControllers\DoctorsController.cs" />
+    <Compile Include="HIQControllers\EnquiryController.cs" />
+    <Compile Include="HIQControllers\NotificationController.cs" />
+    <Compile Include="HIQControllers\ServicesController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

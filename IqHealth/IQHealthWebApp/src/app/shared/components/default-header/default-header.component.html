@@ -15,7 +15,7 @@
                     <li>
                         <a href="/services-list">Services</a>
                         <ul class="sub-menu">
-                            <li *ngFor="let s of services"><a [routerLink]="'/service-details/' + s.ID">{{s.Name}}</a>
+                            <li *ngFor="let s of services"><a [routerLink]="'/service-details/' + s.id">{{s.name}}</a>
                             </li>
                         </ul>
                     </li>
@@ -25,7 +25,7 @@
                     <li>
                         <a href="package-category-details/1">Packages</a>
                         <ul class="sub-menu">
-                            <li *ngFor="let p of packages"><a [routerLink]="'/package-category-details/' + p.ID">{{p.Name}}</a></li>
+                            <li *ngFor="let p of packages"><a [routerLink]="'/package-category-details/' + p.id">{{p.name}}</a></li>
                         </ul>
                         <!-- /.sub-menu -->
                         <!-- /.sub-menu -->

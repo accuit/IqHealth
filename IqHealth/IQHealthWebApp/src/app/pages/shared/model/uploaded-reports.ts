@@ -1,5 +1,5 @@
 export class UploadedReports {
-    ID: number;
+    id: number;
     UserID: number;
     FileName: string;
     FilePath: string;
