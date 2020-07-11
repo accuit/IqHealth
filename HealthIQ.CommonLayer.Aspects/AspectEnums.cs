@@ -1,4 +1,6 @@
 ﻿
+using System.ComponentModel;
+
 namespace HealthIQ.CommonLayer.Aspects
 {
     public static class AspectEnums
@@ -73,6 +75,16 @@ namespace HealthIQ.CommonLayer.Aspects
             Resume
         }
 
+        public enum UserValidationType
+        {
+            [Description("Validate only Employee Code")]
+            EmplCode = 1,
+            [Description("Validate Employee  Email ID")]
+            EmplEmail = 2,
+            ForgotPasswordAttempts = 3,
+            LastAttemptDuration = 4
+        }
+
         public enum ConfigKeys
         {
             APKDownloadURL,
@@ -93,7 +105,11 @@ namespace HealthIQ.CommonLayer.Aspects
             CCAddress,
             LogoUrl,
             Phone,
-            SchedulerConfigFile
+            SchedulerConfigFile,
+            FotgotPasswordAttempts,
+            EncryptionInitVector,
+            EncryptionSaltKey,
+            EncryptionDictionary
         }
 
         public enum EnquiryStatus

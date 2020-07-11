@@ -15,8 +15,6 @@ import { InvoiceTemplateComponent } from '../../print/invoice/invoice-template.c
     templateUrl: 'user-profile.component.html'
 })
 export class UserProfileComponent extends BaseFormValidationComponent implements OnInit {
-
-    @Input() type: string = 'info';
     user: UserMaster;
     formGroup: FormGroup;
     showInvoice = false;
@@ -32,14 +30,10 @@ export class UserProfileComponent extends BaseFormValidationComponent implements
     }
 
     ngOnInit(): void {
-        this.type = 'info';
-        this.createForm();
         this.userService.getLoggedInUserData().subscribe((user: APIResponse) => {
             this.user = user.singleResult;
-            this.formGroup.patchValue(user.singleResult);
             this.getInvoices(this.user.userID);
         });
-
     }
 
     getInvoices(id) {
@@ -62,26 +56,6 @@ export class UserProfileComponent extends BaseFormValidationComponent implements
             initialState: {
                 invoiceID: id
             }
-        });
-    }
-    createForm() {
-        this.formGroup = this.formBuilder.group({
-            firstName: ['', [Validators.required]],
-            lastName: ['', [Validators.required]],
-            email: ['', [Validators.required]],
-            mobile: ['', [Validators.required]],
-            userCode: [''],
-            image: [''],
-            status: [1],
-            pinCode: [''],
-            copyemail: [''],
-            address: [''],
-            city: [''],
-            state: [''],
-            pin: [''],
-            country: [1],
-            userID: [''],
-            createdDate: ['']
         });
     }
 

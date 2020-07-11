@@ -33,6 +33,16 @@ namespace HealthIQ.BusinessLayer.ServiceImpl
             return SecurityRepository.SaveOTP(otpmaster);
         }
 
+        public bool ChangePassword(string GUID, string Password)
+        {
+            return SecurityRepository.ChangePassword(GUID, Password);
+        }
+
+        public bool ValidateGUID(string GUID)
+        {
+            return SecurityRepository.ValidateGUID(GUID);
+        }
+
         /// <summary>
         /// Get Email Template based on ID
         /// </summary>

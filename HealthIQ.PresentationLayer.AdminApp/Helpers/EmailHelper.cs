@@ -35,6 +35,7 @@ namespace HealthIQ.PresentationLayer.AdminApp.Helpers
             emailService.ToEmail = email;
             emailService.Status = (int)AspectEnums.EmailStatus.Pending;
             emailService.Body = body;
+            emailService.Subject = "Reset your account password.";
             emailService.Priority = 2;
             emailService.IsAttachment = false;
             return SendEmail(emailService);

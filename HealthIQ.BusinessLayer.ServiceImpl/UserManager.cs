@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using HealthIQ.BusinessLayer.Services.Contracts;
 using HealthIQ.CommonLayer.Aspects.DTO;
+using HealthIQ.CommonLayer.Aspects.Security;
 using HealthIQ.PersistenceLayer.Data.AdminEntity;
 using HealthIQ.PersistenceLayer.Data.Repository;
 using System.Collections.Generic;
@@ -20,20 +21,26 @@ namespace HealthIQ.BusinessLayer.Base
 
         public UserMasterDTO UserLogin(string email, string password)
         {
-            UserMasterDTO user = new UserMasterDTO();
+            UserMasterDTO User = new UserMasterDTO();
             UserMaster result = UserRepository.UserLogin(email, password);
-            return mapper.Map<UserMasterDTO>(result);
+            User = mapper.Map<UserMasterDTO>(result);
+            User.Email = EncryptionEngine.DecryptString(User.Email);
+            User.Password = EncryptionEngine.DecryptString(User.Password);
+            return User;
         }
 
         public UserMasterDTO GetUserByEmail(string email)
         {
-            return mapper.Map<UserMasterDTO>(UserRepository.GetUserByEmail(email));
+            email = EncryptionEngine.EncryptString(email);
+            UserMasterDTO User = mapper.Map<UserMasterDTO>(UserRepository.GetUserByEmail(email));
+            User.Email = EncryptionEngine.DecryptString(User.Email);
+
+            return User;
         }
 
         public int RegisterUser(UserMasterDTO user)
         {
-            UserMaster U = mapper.Map<UserMaster>(user);
-
+            UserMaster U = mapper.Map<UserMaster>(user);           
             U.UserID = UserRepository.RegisterUser(U);
             if (U.UserID > 0)
             {
@@ -56,6 +63,10 @@ namespace HealthIQ.BusinessLayer.Base
         public List<UserMasterDTO> GetUsersByStatus(int status)
         {
             var result = UserRepository.GetUsersByStatus(status);
+            foreach(var user in result)
+            {
+                user.Email = EncryptionEngine.DecryptString(user.Email);
+            }
             return mapper.Map<List<UserMasterDTO>>(result);
         }
 
@@ -68,6 +79,8 @@ namespace HealthIQ.BusinessLayer.Base
         public UserMasterDTO GetUserByID(int id)
         {
             var result = UserRepository.GetUserByID(id);
+            result.Email = EncryptionEngine.DecryptString(result.Email);
+            result.Password = EncryptionEngine.DecryptString(result.Password);
             return mapper.Map<UserMasterDTO>(result);
         }
 

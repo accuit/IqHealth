@@ -64,7 +64,7 @@ namespace HealthIQ.PresentationLayer.AdminApp.Controllers
 
         [HttpPost]
         [Route("user-login")]
-        public JsonResponse<UserMasterDTO> UserMasterLogin(UserLoginDTO u)
+        public JsonResponse<UserMasterDTO> UserMasterLogin(UserAccountDTO u)
         {
             ActivityLog.SetLog("[Started] UserMasterLogin.", LogLoc.INFO);
             JsonResponse<UserMasterDTO> response = new JsonResponse<UserMasterDTO>();
@@ -179,43 +179,37 @@ namespace HealthIQ.PresentationLayer.AdminApp.Controllers
 
         [HttpPost]
         [Route("reset-password")]
-        public JsonResponse<UserMasterDTO> ChangeUserPassword(UserMasterDTO user)
+        public JsonResponse<bool> ChangeUserPassword(UserAccountDTO user)
         {
-            JsonResponse<UserMasterDTO> response = new JsonResponse<UserMasterDTO>();
-            if (user.Password != user.ConfirmPassword)
-            {
-                response.SingleResult = user;
-                response.IsSuccess = false;
-                response.StatusCode = "200";
-                response.Message = "Password and Confirm password does not match. Try again please.";
-                return response;
-            }
+            JsonResponse<bool> response = new JsonResponse<bool>();
 
             try
             {
-                var User = UserBusinessInstance.GetUserByEmail(user.Email);
+                var User = UserBusinessInstance.GetUserByEmail(user.email);
                 if (User == null)
                 {
-                    response.SingleResult = user;
+                    response.SingleResult = false;
                     response.StatusCode = "200";
+                    response.IsSuccess = false;
                     response.Message = "User does not exist in our system.";
                     return response;
                 }
 
-                if (User.Password != user.ConfirmPassword)
+                if (User.Password != user.password)
                 {
-                    User.Password = user.Password;
+                    User.Password = user.password;
                     User.UpdatedDate = DateTime.Now;
 
-                    response.IsSuccess = UserBusinessInstance.UpdateUser(User) > 0 ? true : false;
-                    response.SingleResult = user;
+                    response.SingleResult = SecurityBusinessInstance.ChangePassword(user.Guid, User.Password);
+                    response.IsSuccess = response.SingleResult;
                     response.StatusCode = "200";
                     response.Message = "Your password has been successfully updated.";
                 }
                 else
                 {
-                    response.SingleResult = user;
+                    response.SingleResult = false;
                     response.StatusCode = "200";
+                    response.IsSuccess = false;
                     response.Message = "You can not use same password. it must be different than previous.";
                     return response;
                 }
@@ -234,7 +228,7 @@ namespace HealthIQ.PresentationLayer.AdminApp.Controllers
 
         [HttpPost]
         [Route("forget-password")]
-        public JsonResponse<UserMasterDTO> ForgetPasswordNotification(UserLoginDTO email)
+        public JsonResponse<UserMasterDTO> ForgetPasswordNotification(UserAccountDTO email)
         {
             ActivityLog.SetLog("[Started] ForgetPasswordNotification.", LogLoc.INFO);
             JsonResponse<UserMasterDTO> response = new JsonResponse<UserMasterDTO>();
@@ -274,9 +268,19 @@ namespace HealthIQ.PresentationLayer.AdminApp.Controllers
             var UserMasterDTO = new UserMasterDTO();
             try
             {
-                response.SingleResult = UserBusinessInstance.GetUserByGUID(id);
+                if (SecurityBusinessInstance.ValidateGUID(id))
+                {
+                    response.SingleResult = UserBusinessInstance.GetUserByGUID(id);
+                    response.IsSuccess = true;
+                }
+                else
+                {
+                    response.IsSuccess = false;
+                    response.Message = "Password reset link is expired or invalid. Try again later.";
+                }
+
                 response.StatusCode = "200";
-                response.IsSuccess = true;
+
             }
             catch (Exception ex)
             {
@@ -299,11 +303,13 @@ namespace HealthIQ.PresentationLayer.AdminApp.Controllers
             return SecurityBusinessInstance.SaveOTP(objOTP);
             #endregion
         }
+
     }
 
-    public class UserLoginDTO
+    public class UserAccountDTO
     {
         public string email { get; set; }
         public string password { get; set; }
+        public string Guid { get; set; }
     }
 }

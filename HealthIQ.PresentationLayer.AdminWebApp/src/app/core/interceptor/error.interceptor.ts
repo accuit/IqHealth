@@ -58,7 +58,7 @@ export class ErrorInterceptor implements HttpInterceptor {
             this.alert.showAlert({ alertType: AlertTypeEnum.error, text: 'Internal server error. Please contact administrator.' });
         } else if (status === HttpStatusEnum.NotFound) {
             this.alert.showAlert({ alertType: AlertTypeEnum.warning, title: 'Are you lost?', text: 'Page or Content is not found.' });
-        } else if (status === HttpStatusEnum.Forbidden || HttpStatusEnum.UnAuthorized) {
+        } else if (status === HttpStatusEnum.Forbidden || status === HttpStatusEnum.UnAuthorized) {
             this.alert.showAlert({ alertType: AlertTypeEnum.warning, title: 'UnAuthorized Access!', text: 'You do not have permission to perform this action. Please contact administrator.' });
         } else {
             this.alert.showAlert({ alertType: AlertTypeEnum.error, title: 'OOPS!', text: 'Something went wrong. Please try again later.' });

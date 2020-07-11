@@ -7,7 +7,7 @@ import { AuthGuard } from './core/auth/auth-guard';
 export const AppRoutes: Routes = [
     {
         path: '',
-        redirectTo: 'dashboard',
+        redirectTo: 'account/login',
         pathMatch: 'full',
     }, {
         path: '',
@@ -17,8 +17,7 @@ export const AppRoutes: Routes = [
             {
                 path: '',
                 loadChildren: './dashboard/dashboard.module#DashboardModule'
-            }
-            , {
+            }, {
                 path: '',
                 loadChildren: './admin/admin.module#AdminModule'
             }, {

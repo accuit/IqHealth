@@ -14,6 +14,7 @@ export class UserMaster {
     state?: number;
     pin?: string;
     userStatus: number;
+    gUID?: string;
     roles?: Array<string>;
     token?: string;
     createdDate?: Date;

@@ -55,6 +55,7 @@ export class LoginComponent extends BaseFormValidationComponent implements After
     }
 
     ngOnInit() {
+        this.authService.logout();
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
         this.loginForm = this.formBuilder.group({
             email: ['', [Validators.required, Validators.email, this.EmailValidation]],
@@ -68,31 +69,24 @@ export class LoginComponent extends BaseFormValidationComponent implements After
 
     onSubmit(): any {
         this.isSubmitted = true;
+        this.inProgress = true;
         if (this.loginForm.invalid) {
             this.validateAllFormFields(this.loginForm);
             return;
         }
-        this.inProgress = true;
         this.authService.login(this.loginForm.value.email, this.loginForm.value.password)
             .toPromise().then(res => {
-                if (res) {
-                    this.router.navigate([this.returnUrl]);
+                if (res.isSuccess) {
+                    this.authService.setUserSessionInfo(res.singleResult);
+                    this.router.navigate(['/dashboard']);
+                  } else {
+                    this.alert.showAlert({ alertType: AlertTypeEnum.error, text: res.message });
                     this.inProgress = false;
-                }
+                  }
             }, () => {
-                const alert: SweetAlertOptions = {
-                    type: AlertTypeEnum.error as SweetAlertType,
-                    title: AlertTitleEnum.Fail,
-                    text: 'Something went wrong!'
-                }
                 this.inProgress = false;
-                this.alert.showAlert({ alertType: AlertTypeEnum.error, text: 'Something went wrong!' });
             });
-    }
-
-    saveInLocal(key, val): void {
-        localStorage.setItem(key, val);
-        this.data[key] = localStorage.getItem(key);
+            
     }
 
     ngAfterViewInit() {
