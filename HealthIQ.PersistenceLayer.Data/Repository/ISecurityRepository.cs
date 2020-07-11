@@ -37,6 +37,6 @@ namespace HealthIQ.PersistenceLayer.Data.Repository
         /// <param name="GUID"> uniqe string </param>
         /// <param name="Password">password entered by user</param>
         /// <returns></returns>
-       // bool ChangePassword(string GUID, string Password);
+        bool ChangePassword(string GUID, string Password);
     }
 }

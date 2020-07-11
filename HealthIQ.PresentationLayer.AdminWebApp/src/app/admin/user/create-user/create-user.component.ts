@@ -109,6 +109,7 @@ export class CreateUserComponent extends BaseFormValidationComponent implements 
         email: ['', [Validators.required]],
         mobile: ['', [Validators.required]],
         userCode: [''],
+        password: ['123456'],
         imagePath: [''],
         image: [''],
         status: [1],

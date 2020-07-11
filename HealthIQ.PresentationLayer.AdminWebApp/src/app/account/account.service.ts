@@ -24,7 +24,7 @@ export class AccountService {
     return this.httpClient.post(this.baseUrl + 'account/register', user, { headers: this.headers });
   }
 
-  resetPassword(user: UserMaster): any {
+  resetPassword(user): any {
     return this.httpClient.post(this.baseUrl + 'account/reset-password', user, { headers: this.headers });
   }
 

@@ -55,21 +55,15 @@ export class AuthService {
   }
 
   login(email: string, password: string) {
-    return this.http.post<any>(`${environment.apiUrl}account/user-login`, { email, password })
-      .pipe(map(res => {
-        let user : UserMaster = null;
-        if (res.isSuccess) {
-          user = res.singleResult;
-          user.roles = user.userRoles.map(x=> x.roleMaster.name);
-          localStorage.setItem('currentUser', JSON.stringify(user));
-          localStorage.setItem('token', this.encode.b64EncodeUnicode(email + ':' + password));
-          this.user.next(user);
-          this.isLogged.next(res.isSuccess);
-        } else {
-          this.alert.showAlert({ alertType: AlertTypeEnum.error, text: res.message });
-        }
-        return user;
-      }));
+    return this.http.post<any>(`${environment.apiUrl}account/user-login`, { email, password });
+  }
+
+  setUserSessionInfo(user : UserMaster): void{
+    user.roles = user.userRoles.map(x=> x.roleMaster.name);
+    localStorage.setItem('currentUser', JSON.stringify(user));
+    localStorage.setItem('token', this.encode.b64EncodeUnicode(user.email + ':' + user.password));
+    this.user.next(user);
+    this.isLogged.next(true);
   }
 
   logout() {

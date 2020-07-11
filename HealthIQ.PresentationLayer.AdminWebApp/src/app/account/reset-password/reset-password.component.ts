@@ -49,6 +49,8 @@ export class ResetPasswordComponent extends BaseFormValidationComponent implemen
           this.isValidResetUrl = true;
           this.user = res.singleResult;
           this.loginForm = this.inititalizeResetForm();
+        } else {
+          this.alert.showAlert({ alertType: AlertTypeEnum.error, text: res.message });
         }
       })
     } else {
@@ -63,7 +65,8 @@ export class ResetPasswordComponent extends BaseFormValidationComponent implemen
     return this.formBuilder.group({
       email: [this.user.email, [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required]
+      confirmPassword: ['', Validators.required],
+      guid:[this.GUID]
     }, {
       validator: MustMatch('password', 'confirmPassword')
     });

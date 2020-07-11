@@ -14,7 +14,8 @@ namespace HealthIQ.BusinessLayer.Services.Contracts
         /// <param name="otp"> Object of OTP</param>
         /// <returns>returns true when data is saved</returns>
         bool SaveOTP(OTPDTO otp);
-
+        bool ValidateGUID(string GUID);
+        bool ChangePassword(string GUID, string Password);
         EmailTemplateDTO GetEmailTemplate(AspectEnums.EmailTemplateType TemplateTypeID);
 
     }

@@ -1,4 +1,5 @@
 ﻿using HealthIQ.CommonLayer.Aspects;
+using HealthIQ.CommonLayer.Aspects.Security;
 using HealthIQ.PersistenceLayer.Data.AdminEntity;
 using HealthIQ.PersistenceLayer.Data.Repository;
 using System;
@@ -11,17 +12,14 @@ namespace HealthIQ.PersistenceLayer.Data.Impl
     {
         public UserMaster UserLogin(string email, string password)
         {
-            return HIQAdminContext.UserMasters.Where(x => x.Email == email && x.Password == password).FirstOrDefault();
+            email = EncryptionEngine.EncryptString(email);
+            password = EncryptionEngine.EncryptString(password);
+            return HIQAdminContext.UserMasters.FirstOrDefault(x => x.Email == email && x.Password == password);
         }
 
         public int RegisterUser(UserMaster user)
         {
-            user.IsActive = true;
-            user.AccountStatus = 1;
-            user.Password = "123456";
-            user.CreatedDate = DateTime.Now;
-            HIQAdminContext.UserMasters.Add(user);
-            return HIQAdminContext.SaveChanges() > 0 ? user.UserID : 0;
+            return UpdateUser(user);
         }
 
         public int AddUserRole(UserMaster user, bool isAdmin)
@@ -38,6 +36,19 @@ namespace HealthIQ.PersistenceLayer.Data.Impl
 
         public int UpdateUser(UserMaster user)
         {
+            user.Email = EncryptionEngine.EncryptString(user.Email);
+            user.Password = EncryptionEngine.EncryptString(user.Password);
+
+            if (user.UserID == 0)
+            {
+                user.IsActive = true;
+                user.AccountStatus = 1;
+                user.Password = string.IsNullOrEmpty(user.Password)? "123456": user.Password;
+                user.CreatedDate = DateTime.Now;
+                HIQAdminContext.UserMasters.Add(user);
+                return HIQAdminContext.SaveChanges() > 0 ? user.UserID : 0;
+            }
+
             UserMaster User = HIQAdminContext.UserMasters.FirstOrDefault(x => x.UserID == user.UserID);
             User.ModifiedBy = 1;
             User.ModifiedDate = DateTime.Now;
@@ -50,7 +61,7 @@ namespace HealthIQ.PersistenceLayer.Data.Impl
             User.Image = user.Image;
 
             HIQAdminContext.Entry<UserMaster>(User).State = System.Data.Entity.EntityState.Modified;
-            return HIQAdminContext.SaveChanges();
+            return HIQAdminContext.SaveChanges() > 0 ? user.UserID : 0;
         }
 
         public UserMaster GetUserByEmail(string email)

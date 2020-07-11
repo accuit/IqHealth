@@ -50,6 +50,8 @@ namespace HealthIQ.CommonLayer.Aspects.DTO
 
         public string ConfirmPassword { get; set; }
 
+        public string GUID { get; set; }
+
         [StringLength(15)]
         public string Mobile { get; set; }
 
