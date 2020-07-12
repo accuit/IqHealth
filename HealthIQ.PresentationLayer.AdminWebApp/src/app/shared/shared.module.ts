@@ -13,6 +13,7 @@ import { PDFExportModule } from '@progress/kendo-angular-pdf-export';
 import { IpxModalService } from './components/modal/modal.service';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { PrintModule } from './print/print.module';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
     imports: [
@@ -29,7 +30,8 @@ import { PrintModule } from './print/print.module';
     declarations: [
         FieldErrorDisplayComponent,
         BaseFormValidationComponent,
-        UserProfileComponent
+        UserProfileComponent,
+        LoaderComponent
     ],
     exports: [FieldErrorDisplayComponent, UserProfileComponent],
     providers: [UserSharedService, IpxModalService]

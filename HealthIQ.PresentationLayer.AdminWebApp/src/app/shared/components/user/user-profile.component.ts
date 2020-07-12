@@ -1,11 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserMaster } from 'src/app/shared/components/user/user.model';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BaseFormValidationComponent } from 'src/app/shared/components/base-form-validation/base-form-validation.component';
-import { tap } from 'rxjs/operators';
 import { APIResponse } from 'src/app/core/models';
 import { UserSharedService } from './user-shared.service';
-import { PrintService } from '../../print/print.service';
 import { InvoiceService } from 'src/app/services/invoice.service';
 import { IpxModalService } from '../modal/modal.service';
 import { InvoiceTemplateComponent } from '../../print/invoice/invoice-template.component';
@@ -16,14 +13,12 @@ import { InvoiceTemplateComponent } from '../../print/invoice/invoice-template.c
 })
 export class UserProfileComponent extends BaseFormValidationComponent implements OnInit {
     user: UserMaster;
-    formGroup: FormGroup;
     showInvoice = false;
     invoices: any;
     columns: any;
 
     constructor(
         private readonly userService: UserSharedService,
-        private readonly formBuilder: FormBuilder,
         private readonly modalService: IpxModalService,
         private readonly service: InvoiceService) {
         super()

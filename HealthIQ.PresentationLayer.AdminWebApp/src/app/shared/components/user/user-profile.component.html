@@ -1,6 +1,7 @@
-<div class="row">
+
+<ipx-loader></ipx-loader>
+<div class="row" *ngIf="user">
   <div class="col-md-8">
-      <form *ngIf="user" >
           <div class="card">
               <div class="card-header card-header-icon card-header-rose">
                   <div class="card-icon">
@@ -69,10 +70,8 @@
                   <div class="clearfix"></div>
               </div>
           </div>
-      </form>    
   </div>
-
-  <div *ngIf="user" class="col-md-4">
+  <div *ngIf="user"  class="col-md-4">
       <div class="card card-profile">
           <div class="card-avatar">
               <a href="#pablo">
@@ -87,7 +86,7 @@
   </div>
 </div>
 
-<div class="row">
+<div class="row" *ngIf="invoices">
     <div class="col-md-12">
       <div class="card">
         <div class="card-header card-header-text card-header-warning">
@@ -96,7 +95,7 @@
             <p class="card-category">Invoice history of user.</p>
           </div>
         </div>
-        <div *ngIf="invoices" class="card-body table-responsive">
+        <div class="card-body table-responsive">
           <table class="table table-hover">
             <thead class="text-warning">
               <tr>
@@ -129,4 +128,4 @@
         </div>
       </div>
     </div>
-  </div>
+</div>

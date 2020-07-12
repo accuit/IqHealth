@@ -54,6 +54,7 @@ import { AuthInterceptor } from './core/interceptor/auth.interceptor';
 import { EncodeDecodeService } from './core/encode-decode.service';
 import { PDFExportModule } from '@progress/kendo-angular-pdf-export';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { LoaderInterceptor } from './core/interceptor/loader.interceptor';
 
 
 @NgModule({
@@ -125,6 +126,11 @@ export class MaterialModule { }
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptor,
       multi: true
     },
     JwtHelperService,

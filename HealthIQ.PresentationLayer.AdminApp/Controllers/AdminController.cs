@@ -1,4 +1,5 @@
 ﻿using HealthIQ.CommonLayer.Aspects.DTO;
+using HealthIQ.CommonLayer.Aspects.Security;
 using HealthIQ.PresentationLayer.AdminApp.CustomFilters;
 using System;
 using System.Collections.Generic;
@@ -8,9 +9,32 @@ using System.Web.Http;
 
 namespace HealthIQ.PresentationLayer.AdminApp.Controllers
 {
+    public class EDString
+    {
+        public string str { get; set; }
+    }
+
     [RoutePrefix("api")]
     public class AdminController : BaseAPIController
     {
+        [HttpPost]
+        [Route("encrypt")]
+        public JsonResponse<string> EncryptString(EDString str)
+        {
+            JsonResponse<string> result = new JsonResponse<string>();
+            result.SingleResult = EncryptionEngine.EncryptString(str.str);
+            return result;
+        }
+
+        [HttpGet]
+        [Route("decrypt/{str}")]
+        public JsonResponse<string> DecryptString(string str)
+        {
+            JsonResponse<string> result = new JsonResponse<string>();
+            result.SingleResult = EncryptionEngine.DecryptString(str);  
+            return result;
+        }
+
         [HttpGet]
         [Route("get-blogs")]
         public JsonResponse<IList<BlogMasterDTO>> GetAllBlogs()
