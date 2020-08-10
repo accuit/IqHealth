@@ -12,6 +12,7 @@ using HealthIQ.BusinessLayer.Base.Manager;
 using HealthIQ.BusinessLayer.Services.Contracts;
 using HealthIQ.CommonLayer.AopContainer;
 using HealthIQ.PersistenceLayer.Data.LocalEntity;
+using HealthIQ.CommonLayer.Aspects.Security;
 
 namespace HealthIQ.CommonLayer.AOPRegistrations
 {
@@ -80,8 +81,14 @@ namespace HealthIQ.CommonLayer.AOPRegistrations
                 map.CreateMap<OTPMaster, OTPDTO>();
                 map.CreateMap<OTPDTO, OTPMaster>();
 
-                map.CreateMap<UserMasterDTO, UserMaster>();
-                map.CreateMap<UserMaster, UserMasterDTO>();
+                map.CreateMap<UserMasterDTO, UserMaster>()
+                .ForMember(d => d.Email, opt => opt.MapFrom(s => EncryptionEngine.EncryptString(s.Email)))
+                .ForMember(d => d.LoginName, opt => opt.MapFrom(s => EncryptionEngine.EncryptString(s.LoginName)))
+                .ForMember(d => d.Password, opt => opt.MapFrom(s => EncryptionEngine.EncryptString(s.Password)));
+                map.CreateMap<UserMaster, UserMasterDTO>()
+                 .ForMember(d => d.Email, opt => opt.MapFrom(s => EncryptionEngine.DecryptString(s.Email)))
+                .ForMember(d => d.LoginName, opt => opt.MapFrom(s => EncryptionEngine.DecryptString(s.LoginName)))
+                .ForMember(d => d.Password, opt => opt.MapFrom(s => EncryptionEngine.DecryptString(s.Password)));
 
                 map.CreateMap<RoleMaster, RoleMasterDTO>();
                 map.CreateMap<RoleMasterDTO, RoleMaster>();

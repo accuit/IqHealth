@@ -23,6 +23,7 @@ namespace HealthIQ.CommonLayer.Aspects.DTO
 
         [StringLength(150)]
         public string Email { get; set; }
+        public string LoginName { get; set; }
 
         [Column(TypeName = "date")]
         public DateTime? DateOfBirth { get; set; }
@@ -39,7 +40,7 @@ namespace HealthIQ.CommonLayer.Aspects.DTO
         public DateTime? UpdatedDate { get; set; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int IsDeleted { get; set; }
+        public bool IsDeleted { get; set; }
         public bool IsEmployee { get; set; }
         public bool IsCustomer { get; set; }
         public bool IsStudent { get; set; }

@@ -19,7 +19,30 @@ namespace HealthIQ.PersistenceLayer.Data.Impl
 
         public int RegisterUser(UserMaster user)
         {
-            return UpdateUser(user);
+            if (user.UserID == 0)
+            {
+                user.IsActive = true;
+                user.AccountStatus = 1;
+                user.Password = string.IsNullOrEmpty(user.Password) ? "123456" : user.Password;
+                user.CreatedDate = DateTime.Now;
+                HIQAdminContext.UserMasters.Add(user);
+                return HIQAdminContext.SaveChanges() > 0 ? user.UserID : 0;
+            }
+
+            UserMaster User = HIQAdminContext.UserMasters.FirstOrDefault(x => x.UserID == user.UserID);
+            User.ModifiedBy = user.ModifiedBy;
+            User.ModifiedDate = DateTime.Now;
+            User.Password = user.Password;
+            User.Address = user.Address;
+            User.City = user.City;
+            User.Mobile = user.Mobile;
+            User.Phone = user.Phone;
+            User.Pin = user.Pin;
+            User.Image = user.Image;
+            User.IsDeleted = user.IsDeleted;
+
+            HIQAdminContext.Entry<UserMaster>(User).State = System.Data.Entity.EntityState.Modified;
+            return HIQAdminContext.SaveChanges() > 0 ? user.UserID : 0;
         }
 
         public int AddUserRole(UserMaster user, bool isAdmin)
@@ -32,36 +55,6 @@ namespace HealthIQ.PersistenceLayer.Data.Impl
                 HIQAdminContext.UserRoles.Add(new UserRole { UserID = user.UserID, RoleID = (int)AspectEnums.RoleType.Admin, CreatedBy = user.CreatedBy, CreatedDate = DateTime.Now, IsActive = true });
             }
             return HIQAdminContext.SaveChanges();
-        }
-
-        public int UpdateUser(UserMaster user)
-        {
-            user.Email = EncryptionEngine.EncryptString(user.Email);
-            user.Password = EncryptionEngine.EncryptString(user.Password);
-
-            if (user.UserID == 0)
-            {
-                user.IsActive = true;
-                user.AccountStatus = 1;
-                user.Password = string.IsNullOrEmpty(user.Password)? "123456": user.Password;
-                user.CreatedDate = DateTime.Now;
-                HIQAdminContext.UserMasters.Add(user);
-                return HIQAdminContext.SaveChanges() > 0 ? user.UserID : 0;
-            }
-
-            UserMaster User = HIQAdminContext.UserMasters.FirstOrDefault(x => x.UserID == user.UserID);
-            User.ModifiedBy = 1;
-            User.ModifiedDate = DateTime.Now;
-            User.Password = user.Password;
-            User.Address = user.Address;
-            User.City = user.City;
-            User.Mobile = user.Mobile;
-            User.Phone = user.Phone;
-            User.Pin = user.Pin;
-            User.Image = user.Image;
-
-            HIQAdminContext.Entry<UserMaster>(User).State = System.Data.Entity.EntityState.Modified;
-            return HIQAdminContext.SaveChanges() > 0 ? user.UserID : 0;
         }
 
         public UserMaster GetUserByEmail(string email)

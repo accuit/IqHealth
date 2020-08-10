@@ -24,18 +24,13 @@ namespace HealthIQ.BusinessLayer.Base
             UserMasterDTO User = new UserMasterDTO();
             UserMaster result = UserRepository.UserLogin(email, password);
             User = mapper.Map<UserMasterDTO>(result);
-            User.Email = EncryptionEngine.DecryptString(User.Email);
-            User.Password = EncryptionEngine.DecryptString(User.Password);
+           
             return User;
         }
 
         public UserMasterDTO GetUserByEmail(string email)
         {
-            email = EncryptionEngine.EncryptString(email);
-            UserMasterDTO User = mapper.Map<UserMasterDTO>(UserRepository.GetUserByEmail(email));
-            User.Email = EncryptionEngine.DecryptString(User.Email);
-
-            return User;
+            return mapper.Map<UserMasterDTO>(UserRepository.GetUserByEmail(email));
         }
 
         public int RegisterUser(UserMasterDTO user)
@@ -52,7 +47,7 @@ namespace HealthIQ.BusinessLayer.Base
         public int UpdateUser(UserMasterDTO user)
         {
             UserMaster U = mapper.Map<UserMaster>(user);
-            return UserRepository.UpdateUser(U);
+            return UserRepository.RegisterUser(U);
         }
 
         public bool LogoutWebUser(int loggenInUserID, string sessionID)

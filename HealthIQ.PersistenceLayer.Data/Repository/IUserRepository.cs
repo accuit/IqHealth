@@ -9,7 +9,6 @@ namespace HealthIQ.PersistenceLayer.Data.Repository
         UserMaster GetUserByEmail(string email);
         List<UserMaster> GetUsersByStatus(int status);
         int RegisterUser(UserMaster user);
-        int UpdateUser(UserMaster user);
         int AddUserRole(UserMaster user, bool isAdmin);
         UserMaster GetUserByGUID(string GUID);
         UserMaster GetUserByID(int id);
