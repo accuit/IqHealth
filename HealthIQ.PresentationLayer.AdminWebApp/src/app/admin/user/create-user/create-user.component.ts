@@ -7,6 +7,7 @@ import { UserMaster } from 'src/app/shared/components/user/user.model';
 import { UserService } from '../../user/user.service';
 import { APIResponse, FileToUpload } from 'src/app/core/models';
 import { AuthService } from 'src/app/core/auth/auth.service';
+ import {ToastrService} from 'ngx-toastr'; // for set notification
 
 @Component({
   selector: 'app-create-user',
@@ -27,7 +28,8 @@ export class CreateUserComponent extends BaseFormValidationComponent implements 
     private readonly userService: UserService,
     private readonly authService: AuthService,
     private formBuilder: FormBuilder,
-    private readonly alert: AlertService) {
+    private readonly alert: AlertService,
+    private toastr: ToastrService ) {
     super()
   }
 
@@ -46,16 +48,20 @@ export class CreateUserComponent extends BaseFormValidationComponent implements 
 
   onSubmit(): any {
     this.isSubmitted = true;
+    this.toastr.success('You have created user successfully', AlertTypeEnum.success);
+    this.toastr.error('getting some error', AlertTypeEnum.error);
+    this.toastr.info('You have information', AlertTypeEnum.info);
     if (this.formGroup.invalid) {
-      this.validateAllFormFields(this.formGroup);
       return;
     }
     this.inProgress = true;
+
     this.service.addUpdateUser(this.formGroup.value)
       .subscribe((res: APIResponse) => {
         if (res) {
           this.inProgress = false;
-          this.alert.showAlert({ alertType: AlertTypeEnum.success, text: res.message });
+         this.alert.showAlert({ alertType: AlertTypeEnum.success, text: res.message });
+
         }
         this.inProgress = false;
       });

@@ -33,7 +33,9 @@
               "node_modules/sweetalert2/src/sweetalert2.scss",
               "src/assets/css/demo.css",
               "node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css",
-              "src/assets/scss/material-dashboard.scss"
+              "src/assets/scss/material-dashboard.scss",
+              "node_modules/ngx-toastr/toastr.css"
+
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.js",

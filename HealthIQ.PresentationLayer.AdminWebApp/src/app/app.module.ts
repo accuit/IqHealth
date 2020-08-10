@@ -55,8 +55,10 @@ import { EncodeDecodeService } from './core/encode-decode.service';
 import { PDFExportModule } from '@progress/kendo-angular-pdf-export';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { LoaderInterceptor } from './core/interceptor/loader.interceptor';
+// toastr notifiaction
+import { ToastrModule , } from 'ngx-toastr';
 
-
+ 
 @NgModule({
   exports: [
     MatAutocompleteModule,
@@ -109,7 +111,17 @@ export class MaterialModule { }
     NavbarModule,
     FooterModule,
     FixedpluginModule,
-    CoreModule
+    CoreModule,
+    ToastrModule.forRoot(
+      {
+        timeOut : 2000,
+        progressBar :true,
+        progressAnimation : 'increasing',
+        preventDuplicates : true,
+        positionClass: 'toast-bottom-right',
+        closeButton: true,
+      }
+    ),
   ],
   declarations: [
     AppComponent,
