@@ -60,7 +60,7 @@ export class CreateUserComponent extends BaseFormValidationComponent implements 
       .subscribe((res: APIResponse) => {
         if (res) {
           this.inProgress = false;
-         this.alert.showAlert({ alertType: AlertTypeEnum.success, text: res.message });
+        // this.alert.showAlert({ alertType: AlertTypeEnum.success, text: res.message });
 
         }
         this.inProgress = false;
