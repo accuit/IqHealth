@@ -29,6 +29,10 @@ export const UserRoutes: Routes = [
       {
         path: 'create-user',
         component: CreateUserComponent
+      },
+      {
+        path: 'update-user/:id',
+        component: CreateUserComponent
       }
     ]
   }
