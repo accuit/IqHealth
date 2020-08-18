@@ -9,15 +9,18 @@ import { UserMaster } from 'src/app/shared/components/user/user.model';
 })
 export class UsersListComponent implements OnInit {
 
-  constructor(private readonly service: UserService) { }
+  constructor(private readonly service: UserService){}
 
   columns: Array<string>;
   students: Array<UserMaster>;
+
   ngOnInit(): void {
     this.service.getStudents().subscribe(res => {
       this.students = res;
-      this.columns = ['ID', 'First Name', 'Last Name', 'Email Address', 'Mobile No.'];
+      this.columns = ['ID', 'First Name', 'Last Name', 'Email Address', 'Mobile No.','Action'];
     })
+    
   }
+  
 
 }

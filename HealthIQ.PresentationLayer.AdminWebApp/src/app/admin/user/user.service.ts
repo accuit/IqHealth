@@ -44,6 +44,19 @@ export class UserService {
         return list;
       }));
   }
+  getStudentById(id:number): Observable<any> {
+    return this.httpClient.get(this.baseUrl + 'account/get-user-profile/'+ id, { headers: this.headers })
+      .pipe(map((res: APIResponse) => {
+        let list = null;
+        if (res.isSuccess) {
+          list = res.singleResult;
+        } else {
+          this.alert.showAlert({ alertType: AlertTypeEnum.error, title: "Failure!", text: res.message });
+        }
+        return list;
+      }));
+  }
+  
 
   addUpdateUser(user: UserMaster): Observable<any> {
     user.createdBy = this.userId;
