@@ -1,0 +1,30 @@
+
+<h2 mat-dialog-title> Details of Student</h2>
+
+<mat-dialog-content>
+   <table>
+       <thead>
+           <tr>
+            First Name : {{data.firstName}}
+           </tr>
+           <tr>
+            Last Name : {{data.lastName}}
+           </tr>
+           <tr>
+            Email Address : {{data.email}}
+           </tr>
+           <tr>
+            Mobile No : {{data.mobile}}
+           </tr>
+           <tr>
+               Address : {{data.address}}
+           </tr>
+           <tr>
+               Pin : {{data.pin}}
+           </tr>
+       </thead>
+   </table>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+    <button mat-raised-button color="primary" mat-dialog-close tabindex="-1"> Close </button>
+</mat-dialog-actions>

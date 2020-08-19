@@ -55,6 +55,7 @@ import { EncodeDecodeService } from './core/encode-decode.service';
 import { PDFExportModule } from '@progress/kendo-angular-pdf-export';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { LoaderInterceptor } from './core/interceptor/loader.interceptor';
+import { DialogBodyComponent } from './dialog-body/dialog-body.component';
 
 
 @NgModule({
@@ -89,7 +90,8 @@ import { LoaderInterceptor } from './core/interceptor/loader.interceptor';
     MatToolbarModule,
     MatTooltipModule,
     MatNativeDateModule
-  ]
+  ],
+  declarations: [DialogBodyComponent]
 })
 export class MaterialModule { }
 
