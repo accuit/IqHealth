@@ -46,7 +46,7 @@ export class CreateUserComponent extends BaseFormValidationComponent implements 
     const id = this.activaterouter.snapshot.params.id;
     if (id) 
     {
-      this.btnText = 'Update User';
+      //this.btnText = 'Update User';
       this.IsEditform = true; // set true for edit form
       this.service.getStudentById(+id).subscribe(res => {
         this.selectedStudent = res;
@@ -62,7 +62,9 @@ export class CreateUserComponent extends BaseFormValidationComponent implements 
      }
      else {
        //  create component
-      this.btnText = 'Submit User';
+       this.IsEditform = false; // set true for edit form
+
+      //this.btnText = 'Submit User';
     }
   }
   ngOnChanges() {
