@@ -105,7 +105,7 @@
                     <div class="clearfix"></div>
                     <button *ngIf="!inProgress" disabled="false" mat-raised-button type="submit" class="btn btn-rose"
                         (click)="onSubmit()">
-                        {{btnText}}
+                        {{IsEditform ? 'Update' : 'Submit'}} User
                         </button>
                     <a *ngIf="inProgress" href="#paper-kit" class="btn btn-round btn-rose">
                         <div class="uil-reload-css reload-small">
