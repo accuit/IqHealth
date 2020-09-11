@@ -29,7 +29,7 @@ export class CreateInvoiceComponent extends BaseFormValidationComponent implemen
 
   ngOnInit(): void {
     this.createInvoiceForm();
-    this.userService.getStudents()
+    this.userService.getUsers()
       .subscribe(result => {
         this.students = result;
       })

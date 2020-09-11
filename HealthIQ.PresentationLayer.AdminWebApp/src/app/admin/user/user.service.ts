@@ -29,11 +29,11 @@ export class UserService {
   }
 
   getUserData(): any {
-    return this.httpClient.get(this.baseUrl + 'account/get-user-profile/'+ this.userId , { headers: this.headers });
+    return this.httpClient.get(this.baseUrl + 'get-user-profile/'+ this.userId , { headers: this.headers });
   }
 
-  getStudents(): Observable<any> {
-    return this.httpClient.get(this.baseUrl + 'student/get/', { headers: this.headers })
+  getUsers(): Observable<any> {
+    return this.httpClient.get(this.baseUrl + 'get-all-users', { headers: this.headers })
       .pipe(map((res: APIResponse) => {
         let list = null;
         if (res.isSuccess) {
@@ -47,6 +47,6 @@ export class UserService {
 
   addUpdateUser(user: UserMaster): Observable<any> {
     user.createdBy = this.userId;
-    return this.httpClient.post(this.baseUrl + 'account/register-user/', user, { headers: this.headers });
+    return this.httpClient.post(this.baseUrl + 'create-user/', user, { headers: this.headers });
   }
 }

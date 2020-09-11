@@ -23,7 +23,6 @@ export class UserMaster {
     isCustomer: boolean;
     isEmployee: boolean;
     isAdmin: boolean;
-    userRoles?: Array<UserRole>;
 }
 
 export class UserRole {

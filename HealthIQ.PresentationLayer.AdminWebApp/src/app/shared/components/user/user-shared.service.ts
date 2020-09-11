@@ -29,13 +29,13 @@ export class UserSharedService {
   getUserProfile(): Observable<any> {
     const isAuth = this.auth.isLoggedIn;
     if (isAuth) {
-      return this.httpClient.get(this.baseUrl + 'account/get-user-profile/' + this.userId, { headers: this.headers });
+      return this.httpClient.get(this.baseUrl + 'get-user-profile/' + this.userId, { headers: this.headers });
     }
     return null;
   }
 
   getLoggedInUserData(): any {
-    return this.httpClient.get(this.baseUrl + 'account/get-user-profile/' + this.userId, { headers: this.headers });
+    return this.httpClient.get(this.baseUrl + 'get-user-profile/' + this.userId, { headers: this.headers });
   }
 
 }

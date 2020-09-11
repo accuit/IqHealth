@@ -10,7 +10,6 @@ declare const $: any;
 export class DashboardComponent implements OnInit {
 
   user: UserMaster;
-  roles: Array<RoleMaster>;
   isAdmin: boolean;
   isStudent: boolean;
 
@@ -18,10 +17,8 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.authService.currentUser;
-    this.roles = this.user.userRoles.map(x=>x.roleMaster);
-    console.log(this.roles);
-    this.isAdmin = this.roles.some(x=>x.name === 'Admin');
-    this.isStudent = !this.isAdmin && this.roles.some(x=>x.name === 'Student');
+    this.isAdmin = this.user.roles.some(x => x === 'Admin');
+    this.isStudent = !this.isAdmin && this.user.roles.some(x => x === 'Student');
   }
 
 }

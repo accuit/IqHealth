@@ -14,7 +14,7 @@ export class UsersListComponent implements OnInit {
   columns: Array<string>;
   students: Array<UserMaster>;
   ngOnInit(): void {
-    this.service.getStudents().subscribe(res => {
+    this.service.getUsers().subscribe(res => {
       this.students = res;
       this.columns = ['ID', 'First Name', 'Last Name', 'Email Address', 'Mobile No.'];
     })

@@ -58,8 +58,7 @@ export class AuthService {
     return this.http.post<any>(`${environment.apiUrl}account/user-login`, { email, password });
   }
 
-  setUserSessionInfo(user : UserMaster): void{
-    user.roles = user.userRoles.map(x=> x.roleMaster.name);
+  setUserSessionInfo(user: UserMaster): void {
     localStorage.setItem('currentUser', JSON.stringify(user));
     localStorage.setItem('token', this.encode.b64EncodeUnicode(user.email + ':' + user.password));
     this.user.next(user);
