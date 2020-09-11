@@ -1,11 +1,9 @@
-﻿using HealthIQ.CommonLayer.Aspects.DTO;
+﻿using System;
+using System.Collections.Generic;
+using System.Web.Http;
+using HealthIQ.CommonLayer.Aspects.DTO;
 using HealthIQ.CommonLayer.Aspects.Security;
 using HealthIQ.PresentationLayer.AdminApp.CustomFilters;
-using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
 
 namespace HealthIQ.PresentationLayer.AdminApp.Controllers
 {

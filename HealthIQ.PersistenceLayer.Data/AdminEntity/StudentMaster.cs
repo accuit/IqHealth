@@ -1,13 +1,11 @@
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace HealthIQ.PersistenceLayer.Data.AdminEntity
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
-
     [Table("StudentMaster")]
-    public partial class StudentMaster
+    public class StudentMaster
     {
         public int ID { get; set; }
 

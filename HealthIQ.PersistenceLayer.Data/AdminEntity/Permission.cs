@@ -1,12 +1,8 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace HealthIQ.PersistenceLayer.Data.AdminEntity
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
-
-    public partial class Permission
+    public class Permission
     {
         public int PermissionID { get; set; }
 

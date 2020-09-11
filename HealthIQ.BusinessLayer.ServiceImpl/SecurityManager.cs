@@ -1,17 +1,17 @@
-﻿using HealthIQ.BusinessLayer.Base;
+﻿using System.Collections.Generic;
+using HealthIQ.BusinessLayer.Base;
+using HealthIQ.BusinessLayer.Services.Contracts;
 using HealthIQ.CommonLayer.Aspects;
 using HealthIQ.CommonLayer.Aspects.DTO;
-using HealthIQ.PersistenceLayer.Data.Repository;
 using HealthIQ.PersistenceLayer.Data.AdminEntity;
-using HealthIQ.BusinessLayer.Services.Contracts;
-using System.Collections.Generic;
-using System.Linq;
+using HealthIQ.PersistenceLayer.Data.Repository;
+using Unity;
 
 namespace HealthIQ.BusinessLayer.ServiceImpl
 {
     public class SecurityManager : ServiceBase, ISecurityService
     {
-        [Unity.Dependency(ContainerDataLayerInstanceNames.SECURITY_REPOSITORY)]
+        [Dependency(ContainerDataLayerInstanceNames.SECURITY_REPOSITORY)]
         public ISecurityRepository SecurityRepository { get; set; }
 
         public List<RoleMasterDTO> GetRoles()

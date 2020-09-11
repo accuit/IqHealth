@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using HealthIQ.PersistenceLayer.Data.Repository;
+﻿using HealthIQ.PersistenceLayer.Data.Repository;
 
 namespace HealthIQ.PersistenceLayer.Data.Impl
 {

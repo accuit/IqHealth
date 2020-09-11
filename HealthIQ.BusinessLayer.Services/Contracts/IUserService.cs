@@ -1,5 +1,5 @@
-﻿using HealthIQ.CommonLayer.Aspects.DTO;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using HealthIQ.CommonLayer.Aspects.DTO;
 
 namespace HealthIQ.BusinessLayer.Services.Contracts
 {
@@ -8,6 +8,7 @@ namespace HealthIQ.BusinessLayer.Services.Contracts
         UserMasterDTO UserLogin(string email, string password);
         UserMasterDTO GetUserByEmail(string email);
         List<UserMasterDTO> GetUsersByStatus(int status);
+        List<UserMasterDTO> GetAllUsers();
         int RegisterUser(UserMasterDTO user);
         int UpdateUser(UserMasterDTO user);
         bool LogoutWebUser(int loggenInUserID, string sessionID);

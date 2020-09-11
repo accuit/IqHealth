@@ -1,13 +1,13 @@
-﻿using HealthIQ.CommonLayer.Aspects.DTO;
-using HealthIQ.PersistenceLayer.Data.AdminEntity;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
+using System.Reflection;
 using System.Web.Http;
-using System.Web.Http.Description;
+using HealthIQ.CommonLayer.Aspects.DTO;
+using HealthIQ.PersistenceLayer.Data.AdminEntity;
+using log4net;
 
 namespace HealthIQ.PresentationLayer.AdminApp.HIQControllers
 {
@@ -15,16 +15,16 @@ namespace HealthIQ.PresentationLayer.AdminApp.HIQControllers
     public class DoctorsController : ApiController
     {
         private readonly HIQAdminEntities _context;
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         public DoctorsController()
         {
             _context = new HIQAdminEntities();
         }
 
-        [HttpGet()]
+        [HttpGet]
         [Route("data/{id}")]
-        public JsonResponse<List<PersistenceLayer.Data.AdminEntity.DoctorMaster>> GetDoctors(int id = 99)
+        public JsonResponse<List<DoctorMaster>> GetDoctors(int id = 99)
         {
             JsonResponse<List<DoctorMaster>> response = new JsonResponse<List<DoctorMaster>>();
             log.Info("Started GetDoctors");
@@ -237,8 +237,7 @@ namespace HealthIQ.PresentationLayer.AdminApp.HIQControllers
             int count = _context.DoctorMasters.Where(x => x.FirstName == FirstName && x.LastName == LastName).ToList().Count();
             if (count > 1)
                 return true;
-            else
-                return false;
+            return false;
 
         }
 

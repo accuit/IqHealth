@@ -1,16 +1,18 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Collections.Generic;
+using AutoMapper;
 using HealthIQ.BusinessLayer.Services.Contracts;
 using HealthIQ.CommonLayer.Aspects.DTO;
 using HealthIQ.CommonLayer.Aspects.Security;
 using HealthIQ.PersistenceLayer.Data.AdminEntity;
 using HealthIQ.PersistenceLayer.Data.Repository;
-using System.Collections.Generic;
+using Unity;
 
 namespace HealthIQ.BusinessLayer.Base
 {
     public class UserManager : ServiceBase, IUserService
     {
-        [Unity.Dependency(ContainerDataLayerInstanceNames.USER_REPOSITORY)]
+        [Dependency(ContainerDataLayerInstanceNames.USER_REPOSITORY)]
         public IUserRepository UserRepository { get; set; }
         private readonly IMapper mapper;
 
@@ -21,7 +23,7 @@ namespace HealthIQ.BusinessLayer.Base
 
         public UserMasterDTO UserLogin(string email, string password)
         {
-            UserMasterDTO User = new UserMasterDTO();
+            UserMasterDTO User;
             UserMaster result = UserRepository.UserLogin(email, password);
             User = mapper.Map<UserMasterDTO>(result);
            
@@ -30,7 +32,7 @@ namespace HealthIQ.BusinessLayer.Base
 
         public UserMasterDTO GetUserByEmail(string email)
         {
-            return mapper.Map<UserMasterDTO>(UserRepository.GetUserByEmail(email));
+            return mapper.Map<UserMasterDTO>(UserRepository.GetUserByEmail(EncryptionEngine.EncryptString(email)));
         }
 
         public int RegisterUser(UserMasterDTO user)
@@ -52,7 +54,7 @@ namespace HealthIQ.BusinessLayer.Base
 
         public bool LogoutWebUser(int loggenInUserID, string sessionID)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public List<UserMasterDTO> GetUsersByStatus(int status)
@@ -77,6 +79,17 @@ namespace HealthIQ.BusinessLayer.Base
             result.Email = EncryptionEngine.DecryptString(result.Email);
             result.Password = EncryptionEngine.DecryptString(result.Password);
             return mapper.Map<UserMasterDTO>(result);
+        }
+
+        public List<UserMasterDTO> GetAllUsers()
+        {
+            var result = UserRepository.GetAllUsers();
+            foreach(var user in result)
+            {
+                user.Email = EncryptionEngine.DecryptString(user.Email);
+                user.Password = EncryptionEngine.DecryptString(user.Password);
+            }
+            return mapper.Map<List<UserMasterDTO>>(result);
         }
 
     }

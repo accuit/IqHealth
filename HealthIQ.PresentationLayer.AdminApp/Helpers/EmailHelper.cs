@@ -1,17 +1,15 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Configuration;
+using System.IO;
+using System.Net;
+using System.Net.Mail;
+using System.Text;
+using System.Web;
 using HealthIQ.CommonLayer.Aspects;
 using HealthIQ.CommonLayer.Aspects.DTO;
 using HealthIQ.CommonLayer.Aspects.Utilities;
 using HealthIQ.CommonLayer.Log;
 using HealthIQ.PersistenceLayer.Data.AdminEntity;
-using System;
-using System.Configuration;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Net.Mail;
-using System.Text;
-using System.Web;
 
 namespace HealthIQ.PresentationLayer.AdminApp.Helpers
 {
@@ -23,7 +21,7 @@ namespace HealthIQ.PresentationLayer.AdminApp.Helpers
             string PasswordResetURL = resetUrl + key;
 
             string body = string.Empty;
-            using (StreamReader reader = new StreamReader(System.Web.HttpContext.Current.Server.MapPath("~/Helpers/EmailTemplates/ResetPassword.html")))
+            using (StreamReader reader = new StreamReader(HttpContext.Current.Server.MapPath("~/Helpers/EmailTemplates/ResetPassword.html")))
             {
                 body = reader.ReadToEnd();
             }
@@ -45,7 +43,7 @@ namespace HealthIQ.PresentationLayer.AdminApp.Helpers
         {
 
             string body = string.Empty;
-            using (StreamReader reader = new StreamReader(System.Web.HttpContext.Current.Server.MapPath("~/Helpers/EmailTemplates/UserBookingConfirmation.html")))
+            using (StreamReader reader = new StreamReader(HttpContext.Current.Server.MapPath("~/Helpers/EmailTemplates/UserBookingConfirmation.html")))
             {
                 body = reader.ReadToEnd();
             }
@@ -77,7 +75,7 @@ namespace HealthIQ.PresentationLayer.AdminApp.Helpers
         public static int PrepareAndSendAppointmentEmail(DoctorAppointment model)
         {
             string body = string.Empty;
-            using (StreamReader reader = new StreamReader(System.Web.HttpContext.Current.Server.MapPath("~/Helpers/EmailTemplates/DoctorAppointmentConfirmation.html")))
+            using (StreamReader reader = new StreamReader(HttpContext.Current.Server.MapPath("~/Helpers/EmailTemplates/DoctorAppointmentConfirmation.html")))
             {
                 body = reader.ReadToEnd();
             }
@@ -118,7 +116,7 @@ namespace HealthIQ.PresentationLayer.AdminApp.Helpers
                 body = body.Replace("{BookingDate}", model.BookingDate.ToString());
 
             body = body.Replace("{Email}", model.Email);
-            body = body.Replace("{Mobile}", model.Mobile == null ? model.Phone : model.Mobile);
+            body = body.Replace("{Mobile}", model.Mobile ?? model.Phone);
             body = body.Replace("{Message}", model.Message);
             body = body.Replace("{Subject}", model.Subject);
             body = body.Replace("{Other}", otherDetails);
@@ -186,22 +184,22 @@ namespace HealthIQ.PresentationLayer.AdminApp.Helpers
 
         public static int SendEmail(EmailServiceDTO email)
         {
-            string fromPass = string.Empty;
+            string fromPass;
             ActivityLog.SetLog("[STARTED] SendEmail", LogLoc.INFO);
             MailMessage message = new MailMessage();
             SmtpClient smtpClient = new SmtpClient();
-            bool isDebugMode = ConfigurationManager.AppSettings["IsDebugMode"] == "Y" ? true : false;
-            message.Subject = string.IsNullOrEmpty(email.Subject) ? ConfigurationManager.AppSettings["Subject"].ToString() : email.Subject;
-            email.BccEmail = ConfigurationManager.AppSettings["BCCAddress"].ToString();
-            email.CcEmail = ConfigurationManager.AppSettings["CCAddress"].ToString();
+            bool isDebugMode = ConfigurationManager.AppSettings["IsDebugMode"] == "Y";
+            message.Subject = string.IsNullOrEmpty(email.Subject) ? ConfigurationManager.AppSettings["Subject"] : email.Subject;
+            email.BccEmail = ConfigurationManager.AppSettings["BCCAddress"];
+            email.CcEmail = ConfigurationManager.AppSettings["CCAddress"];
 
             try
             {
                 if (isDebugMode)
                 {
-                    message.To.Add(ConfigurationManager.AppSettings["DbugToEmail"].ToString());
-                    email.FromEmail = ConfigurationManager.AppSettings["DbugFromEmail"].ToString();
-                    smtpClient.EnableSsl = ConfigurationManager.AppSettings["DbugIsSSL"].ToString() == "Y" ? true : false;
+                    message.To.Add(ConfigurationManager.AppSettings["DbugToEmail"]);
+                    email.FromEmail = ConfigurationManager.AppSettings["DbugFromEmail"];
+                    smtpClient.EnableSsl = ConfigurationManager.AppSettings["DbugIsSSL"] == "Y" ? true : false;
                     fromPass = ConfigurationManager.AppSettings["DbugFromPass"];
                     smtpClient.Host = ConfigurationManager.AppSettings["DbugSMTPHost"]; //"relay-hosting.secureserver.net";   //-- Donot change.
                     smtpClient.Port = Convert.ToInt32(ConfigurationManager.AppSettings["DbugSMTPPort"]); // 587; //--- Donot change    
@@ -209,12 +207,12 @@ namespace HealthIQ.PresentationLayer.AdminApp.Helpers
                 }
                 else
                 {
-                    smtpClient.EnableSsl = ConfigurationManager.AppSettings["IsSSL"].ToString() == "Y" ? true : false;
-                    email.FromName = ConfigurationManager.AppSettings["FromName"].ToString();
-                    email.FromEmail = ConfigurationManager.AppSettings["FromEmail"].ToString();
-                    fromPass = ConfigurationManager.AppSettings["Password"].ToString();
+                    smtpClient.EnableSsl = ConfigurationManager.AppSettings["IsSSL"] == "Y" ? true : false;
+                    email.FromName = ConfigurationManager.AppSettings["FromName"];
+                    email.FromEmail = ConfigurationManager.AppSettings["FromEmail"];
+                    fromPass = ConfigurationManager.AppSettings["Password"];
                     smtpClient.Port = Convert.ToInt32(ConfigurationManager.AppSettings["SMTPPort"]);
-                    smtpClient.Host = ConfigurationManager.AppSettings["SMTPHost"].ToString();
+                    smtpClient.Host = ConfigurationManager.AppSettings["SMTPHost"];
                     message.To.Add(email.ToEmail);
                 }
 
@@ -234,7 +232,7 @@ namespace HealthIQ.PresentationLayer.AdminApp.Helpers
             catch (Exception ex)
             {
 
-                ActivityLog.SetLog("[FAILURE] Sending Email " + ex.Message.ToString() + ex.InnerException.ToString(), LogLoc.ERROR);
+                ActivityLog.SetLog("[FAILURE] Sending Email " + ex.Message + ex.InnerException, LogLoc.ERROR);
                 return (int)AspectEnums.EmailStatus.Failed;
             }
             finally

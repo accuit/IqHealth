@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HealthIQ.CommonLayer.Aspects.DTO
 {
-    public partial class InteriorAndCategoryMappingDTO
+    public class InteriorAndCategoryMappingDTO
     {
        
         public int ID { get; set; }

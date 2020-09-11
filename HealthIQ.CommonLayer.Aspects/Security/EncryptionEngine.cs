@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Runtime.Caching;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
-using System.Web;
 using System.Web.Hosting;
-using System.Runtime.Caching;
 using HealthIQ.CommonLayer.Aspects.Utilities;
 
 namespace HealthIQ.CommonLayer.Aspects.Security
@@ -128,7 +125,7 @@ namespace HealthIQ.CommonLayer.Aspects.Security
                     DataRow[] foundRow = dictionarySet.Tables[0].Select("CharacterValue = ('" + val.ToString().Replace("'", "''") + "')");
                     foreach (DataRow row in foundRow)
                     {
-                        encryptedText = encryptedText + row[1].ToString();
+                        encryptedText = encryptedText + row[1];
                     }
 
                 }
@@ -176,7 +173,7 @@ namespace HealthIQ.CommonLayer.Aspects.Security
                     DataRow[] foundRow = dictionarySet.Tables[0].Select("EncryptedValue = ('" + encryptedText.Substring(index, characterLength).Replace("'", "''") + "')");
                     foreach (DataRow row in foundRow)
                     {
-                        plainText = plainText + row[0].ToString();
+                        plainText = plainText + row[0];
                     }
                     index = index + characterLength;
                 }

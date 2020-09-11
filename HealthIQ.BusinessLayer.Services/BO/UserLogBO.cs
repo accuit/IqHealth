@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HealthIQ.BusinessLayer.Services.BO
 {
     public class UserLogBO
     {
         public byte LogID { get; set; }
-        public Nullable<int> UserID { get; set; }
-        public Nullable<System.DateTime> LoginDate { get; set; }
-        public Nullable<bool> Status { get; set; }
-        public Nullable<System.DateTime> LogOutDate { get; set; }
+        public int? UserID { get; set; }
+        public DateTime? LoginDate { get; set; }
+        public bool? Status { get; set; }
+        public DateTime? LogOutDate { get; set; }
     }
 }

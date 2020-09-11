@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HealthIQ.CommonLayer.Aspects.DTO
+﻿namespace HealthIQ.CommonLayer.Aspects.DTO
 {
     public class EmailTemplateDTO
     {
@@ -13,6 +7,6 @@ namespace HealthIQ.CommonLayer.Aspects.DTO
         public string Body { get; set; }
         public string Subject { get; set; }
         public bool IsActive { get; set; }
-        public Nullable<byte> TemplateType { get; set; }
+        public byte? TemplateType { get; set; }
     }
 }

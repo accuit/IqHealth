@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HealthIQ.CommonLayer.Aspects.DTO
 {
@@ -12,12 +8,12 @@ namespace HealthIQ.CommonLayer.Aspects.DTO
         public string MainType { get; set; }
         public string SubType { get; set; }
         public string DisplayText { get; set; }
-        public Nullable<byte> DisplayValue { get; set; }
-        public Nullable<int> ParentID { get; set; }
+        public byte? DisplayValue { get; set; }
+        public int? ParentID { get; set; }
         public bool IsDeleted { get; set; }
-        public System.DateTime CreatedDate { get; set; }
-        public Nullable<System.DateTime> ModifiedDate { get; set; }
-        public Nullable<int> CompanyID { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public DateTime? ModifiedDate { get; set; }
+        public int? CompanyID { get; set; }
         public string Description { get; set; }
     }
 }

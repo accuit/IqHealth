@@ -4,7 +4,7 @@ namespace HealthIQ.CommonLayer.Log
 {
     public class ActivityLog
     {
-        private static readonly ILog logger = log4net.LogManager.GetLogger("HealthIQ");
+        private static readonly ILog logger = LogManager.GetLogger("HealthIQ");
         public static void SetLog(string message, LogLoc location)
         {
 

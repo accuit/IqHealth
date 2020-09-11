@@ -1,11 +1,10 @@
 ﻿using System;
+using HealthIQ.PresentationLayer.AdminApp.CustomFilters;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
-using Owin;
 using Microsoft.Owin.Security.OAuth;
-using HealthIQ.PresentationLayer.AdminApp.CustomFilters;
+using Owin;
 
 namespace HealthIQ.PresentationLayer.AdminApp
 {

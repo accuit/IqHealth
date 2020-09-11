@@ -1,14 +1,13 @@
-﻿using HealthIQ.CommonLayer.Aspects;
+﻿using System;
+using System.Collections.Generic;
+using System.Web.Http;
+using HealthIQ.CommonLayer.Aspects;
 using HealthIQ.CommonLayer.Aspects.DTO;
 using HealthIQ.CommonLayer.Aspects.Utilities;
 using HealthIQ.CommonLayer.Log;
 using HealthIQ.CommonLayer.Resources;
 using HealthIQ.PresentationLayer.AdminApp.CustomFilters;
 using HealthIQ.PresentationLayer.AdminApp.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http;
 
 namespace HealthIQ.PresentationLayer.AdminApp.Controllers
 {
@@ -22,7 +21,6 @@ namespace HealthIQ.PresentationLayer.AdminApp.Controllers
         {
             int type = 1;
             JsonResponse<IList<UserMasterDTO>> response = new JsonResponse<IList<UserMasterDTO>>();
-            var UserMasterDTO = new List<UserMasterDTO>();
             try
             {
                 response.SingleResult = UserBusinessInstance.GetUsersByStatus(type);
@@ -45,7 +43,6 @@ namespace HealthIQ.PresentationLayer.AdminApp.Controllers
         public JsonResponse<UserMasterDTO> GetUsersByID(int id)
         {
             JsonResponse<UserMasterDTO> response = new JsonResponse<UserMasterDTO>();
-            var UserMasterDTO = new List<UserMasterDTO>();
             try
             {
                 response.SingleResult = UserBusinessInstance.GetUserByID(id);
@@ -68,7 +65,7 @@ namespace HealthIQ.PresentationLayer.AdminApp.Controllers
         {
             ActivityLog.SetLog("[Started] UserMasterLogin.", LogLoc.INFO);
             JsonResponse<UserMasterDTO> response = new JsonResponse<UserMasterDTO>();
-            UserMasterDTO UserMasterDTO = new UserMasterDTO();
+            UserMasterDTO UserMasterDTO;
             if (!String.IsNullOrEmpty(u.email))
             {
                 UserMasterDTO = UserBusinessInstance.UserLogin(u.email, u.password);
@@ -232,17 +229,16 @@ namespace HealthIQ.PresentationLayer.AdminApp.Controllers
         {
             ActivityLog.SetLog("[Started] ForgetPasswordNotification.", LogLoc.INFO);
             JsonResponse<UserMasterDTO> response = new JsonResponse<UserMasterDTO>();
-            UserMasterDTO User = new UserMasterDTO();
+            UserMasterDTO User;
             if (!String.IsNullOrEmpty(email.email))
             {
                 User = UserBusinessInstance.GetUserByEmail(email.email);
 
                 if (User != null)
                 {
-                    string UniqueString = "";
-                    if (SaveOTP(User.UserID, out UniqueString))
+                    if (SaveOTP(User.UserID, out var uniqueString))
                     {
-                        response.IsSuccess = EmailHelper.ForgetPasswordEmail(email.email, User.FirstName, UniqueString) > 0 ? true : false;
+                        response.IsSuccess = EmailHelper.ForgetPasswordEmail(email.email, User.FirstName, uniqueString) > 0;
                         response.SingleResult = User;
                         response.StatusCode = "200";
                         response.Message = Messages.AccountReset;
@@ -252,7 +248,7 @@ namespace HealthIQ.PresentationLayer.AdminApp.Controllers
             else
             {
                 response.SingleResult = null;
-                response.StatusCode = "500";
+                response.StatusCode = "200";
                 response.IsSuccess = false;
                 response.Message = "Username or Email can not be empty.";
             }
@@ -265,7 +261,6 @@ namespace HealthIQ.PresentationLayer.AdminApp.Controllers
         public JsonResponse<UserMasterDTO> ValidatePasswordResetUrl(string id)
         {
             JsonResponse<UserMasterDTO> response = new JsonResponse<UserMasterDTO>();
-            var UserMasterDTO = new UserMasterDTO();
             try
             {
                 if (SecurityBusinessInstance.ValidateGUID(id))
@@ -298,7 +293,7 @@ namespace HealthIQ.PresentationLayer.AdminApp.Controllers
 
             UniqueString = AppUtil.GetUniqueGuidString();
             string OTPString = AppUtil.GetUniqueRandomNumber(100000, 999999); // Generate a Six Digit OTP
-            OTPDTO objOTP = new OTPDTO() { GUID = UniqueString, OTP = OTPString, CreatedDate = DateTime.Now, UserID = UserID, Attempts = 0 };
+            OTPDTO objOTP = new OTPDTO { GUID = UniqueString, OTP = OTPString, CreatedDate = DateTime.Now, UserID = UserID, Attempts = 0 };
 
             return SecurityBusinessInstance.SaveOTP(objOTP);
             #endregion

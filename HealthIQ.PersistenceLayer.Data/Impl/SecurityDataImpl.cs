@@ -1,11 +1,12 @@
-﻿using HealthIQ.CommonLayer.Aspects;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using HealthIQ.CommonLayer.Aspects;
 using HealthIQ.CommonLayer.Aspects.Security;
 using HealthIQ.CommonLayer.Aspects.Utilities;
 using HealthIQ.PersistenceLayer.Data.AdminEntity;
 using HealthIQ.PersistenceLayer.Data.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace HealthIQ.PersistenceLayer.Data.Impl
 {
@@ -134,7 +135,7 @@ namespace HealthIQ.PersistenceLayer.Data.Impl
             // Use this validation to restrict user to generate multiple OTPs
             if (ValidateUser(otp.UserID, AspectEnums.UserValidationType.LastAttemptDuration))
             {
-                HIQAdminContext.Entry<OTPMaster>(otp).State = System.Data.Entity.EntityState.Added;
+                HIQAdminContext.Entry(otp).State = EntityState.Added;
                 IsSuccess = HIQAdminContext.SaveChanges() > 0;
             }
             return IsSuccess;
@@ -209,12 +210,10 @@ namespace HealthIQ.PersistenceLayer.Data.Impl
                     GuidString = ObjOTP.GUID;
                     return true;
                 }
-                else
-                {
-                    ObjOTP.Attempts = ++MaxAttempts;
-                    HIQAdminContext.Entry<OTPMaster>(ObjOTP).State = System.Data.Entity.EntityState.Modified;
-                    HIQAdminContext.SaveChanges(); // TBD
-                }
+
+                ObjOTP.Attempts = ++MaxAttempts;
+                HIQAdminContext.Entry(ObjOTP).State = EntityState.Modified;
+                HIQAdminContext.SaveChanges(); // TBD
             }
 
             //}
@@ -250,8 +249,7 @@ namespace HealthIQ.PersistenceLayer.Data.Impl
             OTPMaster objOTP = HIQAdminContext.OTPMasters.FirstOrDefault(k => k.CreatedDate >= StartTime && k.CreatedDate <= EndTime && k.GUID == GUID);
             if (objOTP != null)
                 return true;
-            else
-                return false;
+            return false;
         }
 
         /// <summary>
@@ -270,15 +268,15 @@ namespace HealthIQ.PersistenceLayer.Data.Impl
             {
                 UserMaster user = HIQAdminContext.UserMasters.FirstOrDefault(k => k.UserID == objOTP.UserID && !k.IsDeleted);
                 user.Password = EncryptionEngine.EncryptString(Password);
-                HIQAdminContext.Entry<UserMaster>(user).State = System.Data.Entity.EntityState.Modified;
+                HIQAdminContext.Entry(user).State = EntityState.Modified;
                 //Delete all previous OTPs
                 foreach (var o in HIQAdminContext.OTPMasters.Where(k => k.UserID == user.UserID))
                     HIQAdminContext.OTPMasters.Remove(o);
 
                 return HIQAdminContext.SaveChanges() > 0;
             }
-            else
-                return false;
+
+            return false;
         }
 
         #endregion

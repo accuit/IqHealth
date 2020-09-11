@@ -1,12 +1,6 @@
 namespace HealthIQ.PersistenceLayer.Data.AdminEntity
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
-
-    public partial class DoctorSpeciality
+    public class DoctorSpeciality
     {
         public int ID { get; set; }
 

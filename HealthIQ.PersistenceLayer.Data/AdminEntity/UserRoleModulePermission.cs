@@ -1,13 +1,11 @@
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace HealthIQ.PersistenceLayer.Data.AdminEntity
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
-
     [Table("UserRoleModulePermission")]
-    public partial class UserRoleModulePermission
+    public class UserRoleModulePermission
     {
         [Key]
         public long UserRolePermissionID { get; set; }

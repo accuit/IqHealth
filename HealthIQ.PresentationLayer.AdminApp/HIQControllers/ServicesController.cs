@@ -1,13 +1,15 @@
-﻿using AutoMapper;
-using HealthIQ.CommonLayer.Aspects.DTO;
-using HealthIQ.PersistenceLayer.Data.AdminEntity;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Web.Http;
 using System.Web.Http.Description;
+using AutoMapper;
+using HealthIQ.CommonLayer.Aspects.DTO;
+using HealthIQ.PersistenceLayer.Data.AdminEntity;
+using log4net;
 
 namespace HealthIQ.PresentationLayer.AdminApp.HIQControllers
 {
@@ -15,7 +17,7 @@ namespace HealthIQ.PresentationLayer.AdminApp.HIQControllers
     public class ServicesController : ApiController
     {
         private readonly HIQAdminEntities _context;
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         public ServicesController()
         {
@@ -116,7 +118,7 @@ namespace HealthIQ.PresentationLayer.AdminApp.HIQControllers
             return response;
         }
 
-        [HttpGet()]
+        [HttpGet]
         [Route("all-tests", Name = "GetAllTests")]
         public JsonResponse<List<TestMaster>> GetAllTests()
         {
@@ -271,8 +273,7 @@ namespace HealthIQ.PresentationLayer.AdminApp.HIQControllers
             int count = _context.HealthServiceMasters.Where(x => x.Name == name).ToList().Count();
             if (count > 1)
                 return true;
-            else
-                return false;
+            return false;
 
         }
 
@@ -306,8 +307,7 @@ namespace HealthIQ.PresentationLayer.AdminApp.HIQControllers
             if (appointments != null)
                 return Ok(appointments);
 
-            else
-                return NotFound();
+            return NotFound();
         }
 
     }

@@ -1,17 +1,20 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Reflection;
+using System.Web.Http;
+using AutoMapper;
 using HealthIQ.CommonLayer.Aspects;
 using HealthIQ.CommonLayer.Aspects.DTO;
 using HealthIQ.PersistenceLayer.Data.AdminEntity;
 using HealthIQ.PresentationLayer.AdminApp.Helpers;
-using System;
-using System.Web.Http;
+using log4net;
+using IMapper = AutoMapper.IMapper;
 
 namespace HealthIQ.PresentationLayer.AdminApp.HIQControllers
 {
     [RoutePrefix("api/notification")]
     public class NotificationController : ApiController
     {
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         [Route("email-booking")]
         [HttpPost]
@@ -61,7 +64,7 @@ namespace HealthIQ.PresentationLayer.AdminApp.HIQControllers
                 cfg.CreateMap<CorporateTieUpEnquiry, EmailModel>();
             });
 
-            AutoMapper.IMapper iMapper = config.CreateMapper();
+            IMapper iMapper = config.CreateMapper();
             EmailModel email = iMapper.Map<CorporateTieUpEnquiry, EmailModel>(model);
 
             string otherContent = "Company: " + model.CompanyName;

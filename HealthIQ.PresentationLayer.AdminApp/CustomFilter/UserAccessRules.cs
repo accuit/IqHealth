@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc;
-using System.Web.Routing;
 using HealthIQ.BusinessLayer.Services.BO;
 using HealthIQ.PresentationLayer.AdminApp.Core;
 
@@ -19,8 +17,8 @@ namespace HealthIQ.PresentationLayer.AdminApp.CustomFilter
 
         public UserAccessRules(string _username)
         {
-            this.LoginName = _username;
-            this.IsAdmin = false;
+            LoginName = _username;
+            IsAdmin = false;
             GetDatabaseUserRolesPermissions();
         }
 
@@ -45,19 +43,17 @@ namespace HealthIQ.PresentationLayer.AdminApp.CustomFilter
                 //var adminPerm = permissions.FirstOrDefault(k => k.ModuleCode == (int)module && k.PermissionID == (int)AspectEnums.RolePermissionEnums.CRUD);
                 return permissionIds;
             }
-            else
-            {
-                return null;
-            }
-             
+
+            return null;
+
         }
 
         public bool HasRole(int roleID)
         {
             if (profile.RoleID == roleID)
             { return true; }
-            else
-            { return false; }
+
+            return false;
 
         }
 
@@ -65,7 +61,7 @@ namespace HealthIQ.PresentationLayer.AdminApp.CustomFilter
         {
             bool bFound = false;
             string[] _roles = roles.Split(',');
-            foreach (UserRoleBO role in this.Roles)
+            foreach (UserRoleBO role in Roles)
             {
                 try
                 {

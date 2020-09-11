@@ -1,18 +1,19 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using HealthIQ.BusinessLayer.Base;
-using HealthIQ.CommonLayer.Aspects;
-using System;
-using Unity;
-using HealthIQ.PersistenceLayer.Data.Repository;
-using HealthIQ.PersistenceLayer.Data.Impl;
-using HealthIQ.PersistenceLayer.Data.AdminEntity;
-using HealthIQ.CommonLayer.Aspects.DTO;
-using HealthIQ.BusinessLayer.ServiceImpl;
 using HealthIQ.BusinessLayer.Base.Manager;
+using HealthIQ.BusinessLayer.ServiceImpl;
 using HealthIQ.BusinessLayer.Services.Contracts;
 using HealthIQ.CommonLayer.AopContainer;
-using HealthIQ.PersistenceLayer.Data.LocalEntity;
+using HealthIQ.CommonLayer.Aspects;
+using HealthIQ.CommonLayer.Aspects.DTO;
 using HealthIQ.CommonLayer.Aspects.Security;
+using HealthIQ.PersistenceLayer.Data.AdminEntity;
+using HealthIQ.PersistenceLayer.Data.Impl;
+using HealthIQ.PersistenceLayer.Data.LocalEntity;
+using HealthIQ.PersistenceLayer.Data.Repository;
+using Unity;
+using IMapper = AutoMapper.IMapper;
 
 namespace HealthIQ.CommonLayer.AOPRegistrations
 {
@@ -62,7 +63,7 @@ namespace HealthIQ.CommonLayer.AOPRegistrations
         private static void MapEntities()
         {
             var config = MapBOEntities();
-            AutoMapper.IMapper mapper = config.CreateMapper();
+            IMapper mapper = config.CreateMapper();
             AopEngine.Container.RegisterInstance(mapper);
         }
 

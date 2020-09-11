@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HealthIQ.CommonLayer.Aspects.DTO
 {
@@ -76,7 +72,7 @@ namespace HealthIQ.CommonLayer.Aspects.DTO
         public int CompanyID { get; set; }
     }
 
-    public partial class CourseCurriculumDTO
+    public class CourseCurriculumDTO
     {
         public int ID { get; set; }
 

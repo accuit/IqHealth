@@ -1,6 +1,6 @@
-﻿using HealthIQ.CommonLayer.Aspects;
+﻿using System.Collections.Generic;
+using HealthIQ.CommonLayer.Aspects;
 using HealthIQ.PersistenceLayer.Data.AdminEntity;
-using System.Collections.Generic;
 
 namespace HealthIQ.PersistenceLayer.Data.Repository
 {

@@ -1,10 +1,8 @@
-﻿using HealthIQ.CommonLayer.Aspects;
-using HealthIQ.PersistenceLayer.Data.AdminEntity;
-using HealthIQ.PersistenceLayer.Data.LocalEntity;
-using HealthIQ.PersistenceLayer.Data.Repository;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using HealthIQ.PersistenceLayer.Data.AdminEntity;
+using HealthIQ.PersistenceLayer.Data.Repository;
 
 namespace HealthIQ.PersistenceLayer.Data.Impl
 {

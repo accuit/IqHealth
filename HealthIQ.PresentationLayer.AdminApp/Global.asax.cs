@@ -1,4 +1,9 @@
-﻿using HealthIQ.BusinessLayer.Services;
+﻿using System;
+using System.Configuration;
+using System.Web;
+using System.Web.Configuration;
+using System.Web.Http;
+using System.Web.Mvc;
 using HealthIQ.BusinessLayer.Services.Contracts;
 using HealthIQ.CommonLayer.AopContainer;
 using HealthIQ.CommonLayer.AOPRegistrations;
@@ -8,15 +13,10 @@ using HealthIQ.PresentationLayer.AdminApp.App_Start;
 using HealthIQ.PresentationLayer.AdminApp.Core;
 using log4net.Config;
 using Newtonsoft.Json;
-using System;
-using System.Configuration;
-using System.Web.Configuration;
-using System.Web.Http;
-using System.Web.Mvc;
 
 namespace HealthIQ.PresentationLayer.AdminApp
 {
-    public class WebApiApplication : System.Web.HttpApplication
+    public class WebApiApplication : HttpApplication
     {
         private IUserService userBusinessInstance;
         public IUserService UserBusinessInstance
@@ -37,7 +37,7 @@ namespace HealthIQ.PresentationLayer.AdminApp
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             UnityRegistration.InitializeAopContainer();
             string configFile = AppUtil.GetAppSettings(AspectEnums.ConfigKeys.SchedulerConfigFile);
-            _ = log4net.Config.XmlConfigurator.Configure();
+            _ = XmlConfigurator.Configure();
             GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
         }
 
@@ -59,7 +59,7 @@ namespace HealthIQ.PresentationLayer.AdminApp
 
             if (Request.Cookies[sidCookieName] != null)
             {
-                System.Web.HttpCookie sidCookie = Response.Cookies[sidCookieName];
+                HttpCookie sidCookie = Response.Cookies[sidCookieName];
                 sidCookie.Value = Session.SessionID;
                 sidCookie.HttpOnly = true;
                 sidCookie.Secure = true;

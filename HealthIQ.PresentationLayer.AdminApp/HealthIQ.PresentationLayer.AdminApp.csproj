@@ -254,6 +254,7 @@
     <Compile Include="Controllers\BaseAPIController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Core\PageConstants.cs" />
     <Compile Include="CustomFilters\AppOAuthProvider.cs" />
     <Compile Include="CustomFilters\AuthorizePageAttribute.cs" />

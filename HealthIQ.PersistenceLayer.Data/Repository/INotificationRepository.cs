@@ -1,8 +1,4 @@
-﻿using HealthIQ.CommonLayer.Aspects;
-using System.Collections.Generic;
-
-
-namespace HealthIQ.PersistenceLayer.Data.Repository
+﻿namespace HealthIQ.PersistenceLayer.Data.Repository
 {
     public interface INotificationRepository
     {

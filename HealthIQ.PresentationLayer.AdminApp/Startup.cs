@@ -1,7 +1,8 @@
-﻿using Microsoft.Owin;
+﻿using HealthIQ.PresentationLayer.AdminApp;
+using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(HealthIQ.PresentationLayer.AdminApp.Startup))]
+[assembly: OwinStartupAttribute(typeof(Startup))]
 namespace HealthIQ.PresentationLayer.AdminApp
 {
     public partial class Startup

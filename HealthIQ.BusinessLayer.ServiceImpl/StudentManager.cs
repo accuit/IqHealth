@@ -1,17 +1,18 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Collections.Generic;
+using AutoMapper;
 using HealthIQ.BusinessLayer.Base;
 using HealthIQ.BusinessLayer.Services.Contracts;
 using HealthIQ.CommonLayer.Aspects.DTO;
 using HealthIQ.PersistenceLayer.Data.AdminEntity;
 using HealthIQ.PersistenceLayer.Data.Repository;
-using System;
-using System.Collections.Generic;
+using Unity;
 
 namespace HealthIQ.BusinessLayer.ServiceImpl
 {
     public class StudentManager : ServiceBase, IStudentService
     {
-        [Unity.Dependency(ContainerDataLayerInstanceNames.STUDENT_REPOSITORY)]
+        [Dependency(ContainerDataLayerInstanceNames.STUDENT_REPOSITORY)]
         public IStudentRepository StudentRepository { get; set; }
         private readonly IMapper mapper;
         public StudentManager(IMapper mapper)

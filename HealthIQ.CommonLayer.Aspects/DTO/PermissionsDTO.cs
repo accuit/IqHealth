@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HealthIQ.CommonLayer.Aspects.DTO
 {
@@ -16,7 +12,7 @@ namespace HealthIQ.CommonLayer.Aspects.DTO
         public string PermissionValue { get; set; }
     }
 
-    public partial class UserRoleModulePermissionDTO
+    public class UserRoleModulePermissionDTO
     {
         public long UserRolePermissionID { get; set; }
 

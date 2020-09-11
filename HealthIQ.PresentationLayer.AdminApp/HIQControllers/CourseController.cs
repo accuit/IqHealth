@@ -1,15 +1,10 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Http;
+using AutoMapper;
 using HealthIQ.CommonLayer.Aspects.DTO;
 using HealthIQ.PersistenceLayer.Data.AdminEntity;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-using System.Web.Http.Description;
-using System.Web.Http.Results;
 
 namespace HealthIQ.PresentationLayer.AdminApp.HIQControllers
 {
@@ -25,7 +20,7 @@ namespace HealthIQ.PresentationLayer.AdminApp.HIQControllers
         }
 
 
-        [HttpGet()]
+        [HttpGet]
         [Route("data", Name = "GetCourses")]
         public JsonResponse<List<CourseMaster>> GetCourses()
         {
@@ -58,7 +53,7 @@ namespace HealthIQ.PresentationLayer.AdminApp.HIQControllers
             return response;
         }
 
-        [HttpGet()]
+        [HttpGet]
         [Route("get-sub-courses", Name = "GetSubCourses")]
         public JsonResponse<List<SubCourse>> GetSubCourses()
         {
@@ -92,7 +87,7 @@ namespace HealthIQ.PresentationLayer.AdminApp.HIQControllers
         }
 
 
-        [HttpGet()]
+        [HttpGet]
         [Route("get-course-details/{id}")]
         public JsonResponse<CourseMasterDTO> GetCourseDetails(int id)
         {
@@ -109,7 +104,7 @@ namespace HealthIQ.PresentationLayer.AdminApp.HIQControllers
             try
             {
                 CourseMaster Course = _context.CourseMasters.Where(c => c.IsDeleted == 0 && c.ID == id).FirstOrDefault();
-                AutoMapper.IMapper iMapper = config.CreateMapper();
+                IMapper iMapper = config.CreateMapper();
                 CourseMasterDTO C = iMapper.Map<CourseMasterDTO>(Course);
 
                 if (C != null)

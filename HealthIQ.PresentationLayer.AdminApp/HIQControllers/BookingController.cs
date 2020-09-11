@@ -1,11 +1,9 @@
-﻿using HealthIQ.CommonLayer.Aspects.DTO;
-using HealthIQ.PersistenceLayer.Data.AdminEntity;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
+using HealthIQ.CommonLayer.Aspects.DTO;
+using HealthIQ.PersistenceLayer.Data.AdminEntity;
 
 namespace HealthIQ.PresentationLayer.AdminApp.HIQControllers
 {
@@ -20,7 +18,7 @@ namespace HealthIQ.PresentationLayer.AdminApp.HIQControllers
             _context = new HIQAdminEntities();
         }
 
-        [HttpGet()]
+        [HttpGet]
         [Route("data")]
         public IHttpActionResult GetBookingss()
         {
@@ -29,8 +27,7 @@ namespace HealthIQ.PresentationLayer.AdminApp.HIQControllers
             if (appointments != null)
                 return Ok(appointments);
 
-            else
-                return NotFound();
+            return NotFound();
         }
 
         [HttpPost]

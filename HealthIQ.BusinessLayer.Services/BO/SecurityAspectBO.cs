@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HealthIQ.BusinessLayer.Services.BO
+﻿namespace HealthIQ.BusinessLayer.Services.BO
 {
     public class SecurityAspectBO
     {

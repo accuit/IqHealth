@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace HealthIQ.PresentationLayer.AdminApp.Core
+﻿namespace HealthIQ.PresentationLayer.AdminApp.Core
 {
     /// <summary>
     /// Class to determine the constants and keys of the application

@@ -1,11 +1,8 @@
+using System.Data.Entity;
+
 namespace HealthIQ.PersistenceLayer.Data.AdminEntity
 {
-    using System;
-    using System.Data.Entity;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Linq;
-
-    public partial class HIQAdminEntities : DbContext
+    public class HIQAdminEntities : DbContext
     {
         public HIQAdminEntities()
             : base("name=HIQAdminEntities")

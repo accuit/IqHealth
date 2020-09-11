@@ -1,6 +1,6 @@
-﻿using HealthIQ.CommonLayer.Aspects;
+﻿using System.Collections.Generic;
+using HealthIQ.CommonLayer.Aspects;
 using HealthIQ.CommonLayer.Aspects.DTO;
-using System.Collections.Generic;
 
 namespace HealthIQ.BusinessLayer.Services.Contracts
 {

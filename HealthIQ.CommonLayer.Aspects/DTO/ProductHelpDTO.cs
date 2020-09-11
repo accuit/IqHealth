@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HealthIQ.CommonLayer.Aspects.DTO
 {
-    public partial class ProductHelpDTO
+    public class ProductHelpDTO
     {
 
         public int ID { get; set; }

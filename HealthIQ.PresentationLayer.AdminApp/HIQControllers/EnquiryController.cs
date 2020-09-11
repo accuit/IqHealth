@@ -1,14 +1,15 @@
-﻿using HealthIQ.CommonLayer.Aspects;
-using HealthIQ.CommonLayer.Aspects.DTO;
-using HealthIQ.CommonLayer.Aspects.Utilities;
-using HealthIQ.PersistenceLayer.Data.AdminEntity;
-using System;
+﻿using System;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.Http;
-
+using HealthIQ.CommonLayer.Aspects;
+using HealthIQ.CommonLayer.Aspects.DTO;
+using HealthIQ.CommonLayer.Aspects.Utilities;
+using HealthIQ.PersistenceLayer.Data.AdminEntity;
+using log4net;
 
 namespace HealthIQ.PresentationLayer.AdminApp.HIQControllers
 {
@@ -16,7 +17,7 @@ namespace HealthIQ.PresentationLayer.AdminApp.HIQControllers
     public class EnquiryController : ApiController
     {
         private readonly HIQAdminEntities _context;
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         public EnquiryController()
         {

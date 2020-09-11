@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-using AutoMapper;
+﻿using AutoMapper;
 using HealthIQ.BusinessLayer.Services.Contracts;
-using HealthIQ.CommonLayer.Aspects.DTO;
-using HealthIQ.PersistenceLayer.Data.AdminEntity;
 using HealthIQ.PersistenceLayer.Data.Repository;
+using Unity;
 
 namespace HealthIQ.BusinessLayer.Base.Manager
 {
@@ -11,7 +9,7 @@ namespace HealthIQ.BusinessLayer.Base.Manager
     {
         #region initialize private fields
 
-        [Unity.Dependency(ContainerDataLayerInstanceNames.NOTIFICATION_REPOSITORY)]
+        [Dependency(ContainerDataLayerInstanceNames.NOTIFICATION_REPOSITORY)]
         public INotificationRepository NotificationRepository { get; set; }
         private readonly IMapper mapper;
         public NotificationManager(IMapper mapper)

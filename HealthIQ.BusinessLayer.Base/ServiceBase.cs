@@ -1,9 +1,6 @@
-﻿using HealthIQ.CommonLayer.Aspects;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+using HealthIQ.CommonLayer.Aspects;
+using Unity;
 
 namespace HealthIQ.BusinessLayer.Base
 {
@@ -13,7 +10,7 @@ namespace HealthIQ.BusinessLayer.Base
         /// <summary>
         /// Property to get set object mapping instance
         /// </summary>
-        [Unity.Dependency]
+        [Dependency]
         public Mapper ObjectMapper
         {
             get;

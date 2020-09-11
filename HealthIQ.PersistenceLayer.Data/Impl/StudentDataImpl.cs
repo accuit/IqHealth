@@ -1,9 +1,10 @@
-﻿using HealthIQ.CommonLayer.Aspects;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using HealthIQ.CommonLayer.Aspects;
 using HealthIQ.PersistenceLayer.Data.AdminEntity;
 using HealthIQ.PersistenceLayer.Data.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace HealthIQ.PersistenceLayer.Data.Impl
 {
@@ -28,7 +29,7 @@ namespace HealthIQ.PersistenceLayer.Data.Impl
                     invoice.Status = student.Status;
                     invoice.SubTotal = student.SubTotal;
                     invoice.ModifiedDate = DateTime.Now;
-                    HIQAdminContext.Entry<StudentInvoice>(invoice).State = System.Data.Entity.EntityState.Modified;
+                    HIQAdminContext.Entry(invoice).State = EntityState.Modified;
                 }
 
             }
@@ -74,7 +75,7 @@ namespace HealthIQ.PersistenceLayer.Data.Impl
             HIQAdminContext.UserMasters.Add(student);
             var result = HIQAdminContext.SaveChanges() > 0 ? student.UserID : 0;
 
-            if (result > 0 && student.IsEmployee == true)
+            if (result > 0 && student.IsEmployee)
             {
                 HIQAdminContext.UserRoles.Add(new UserRole { UserID = student.UserID, RoleID = (int)AspectEnums.RoleType.Admin, CreatedBy = student.CreatedBy, CreatedDate = DateTime.Now, IsActive = true });
                 HIQAdminContext.SaveChanges();

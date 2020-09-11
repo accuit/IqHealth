@@ -1,10 +1,11 @@
-﻿using HealthIQ.CommonLayer.Aspects;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using HealthIQ.CommonLayer.Aspects;
 using HealthIQ.CommonLayer.Aspects.Security;
 using HealthIQ.PersistenceLayer.Data.AdminEntity;
 using HealthIQ.PersistenceLayer.Data.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace HealthIQ.PersistenceLayer.Data.Impl
 {
@@ -41,7 +42,7 @@ namespace HealthIQ.PersistenceLayer.Data.Impl
             User.Image = user.Image;
             User.IsDeleted = user.IsDeleted;
 
-            HIQAdminContext.Entry<UserMaster>(User).State = System.Data.Entity.EntityState.Modified;
+            HIQAdminContext.Entry(User).State = EntityState.Modified;
             return HIQAdminContext.SaveChanges() > 0 ? user.UserID : 0;
         }
 
@@ -67,13 +68,17 @@ namespace HealthIQ.PersistenceLayer.Data.Impl
             return HIQAdminContext.UserMasters.Where(x => x.AccountStatus == (int)AspectEnums.UserAccountStatus.Active && x.IsActive && !x.IsDeleted).ToList();
         }
 
+        public List<UserMaster> GetAllUsers()
+        {
+            return HIQAdminContext.UserMasters.Where(x => x.IsActive && !x.IsDeleted).ToList();
+        }
+
         public UserMaster GetUserByGUID(string GUID)
         {
             OTPMaster objOTP = HIQAdminContext.OTPMasters.FirstOrDefault(x => x.GUID == GUID);
             if (objOTP != null)
                 return HIQAdminContext.UserMasters.FirstOrDefault(k => k.UserID == objOTP.UserID);
-            else
-                return null;
+            return null;
 
         }
 

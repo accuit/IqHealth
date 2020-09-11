@@ -1,13 +1,8 @@
-﻿using HealthIQ.CommonLayer.Aspects;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using HealthIQ.CommonLayer.Aspects;
 using Unity;
-using Unity.Injection;
 using Unity.Lifetime;
-using Unity.Resolution;
 
 namespace HealthIQ.CommonLayer.AopContainer
 {
@@ -63,10 +58,8 @@ namespace HealthIQ.CommonLayer.AopContainer
             {
                 return _container.Resolve<T>();
             }
-            else
-            {
-                return default(T);
-            }
+
+            return default;
         }
         /// <summary>
         /// Definition for the Unity Resolve Property with name property.
@@ -78,12 +71,10 @@ namespace HealthIQ.CommonLayer.AopContainer
         {
             if (_container.IsRegistered(typeof(T), name))
             {
-                return _container.Resolve<T>(name, new Unity.Resolution.ResolverOverride[] { });
+                return _container.Resolve<T>(name);
             }
-            else
-            {
-                return default(T);
-            }
+
+            return default;
         }
 
         /// <summary>
@@ -99,12 +90,10 @@ namespace HealthIQ.CommonLayer.AopContainer
             name = String.Format("{0}_{1}", application.ToString(), instanceName.ToString());
             if (_container.IsRegistered(typeof(T), name))
             {
-                return _container.Resolve<T>(name, new ResolverOverride[] { });
+                return _container.Resolve<T>(name);
             }
-            else
-            {
-                return default(T);
-            }
+
+            return default;
         }
 
         /// <summary>
@@ -120,12 +109,10 @@ namespace HealthIQ.CommonLayer.AopContainer
             name = String.Format("{0}_{1}", application.ToString(), instanceName.ToString());
             if (_container.IsRegistered(typeof(T), name))
             {
-                return _container.Resolve<T>(name, new ResolverOverride[] { });
+                return _container.Resolve<T>(name);
             }
-            else
-            {
-                return default(T);
-            }
+
+            return default;
         }
 
         /// <summary>
@@ -137,7 +124,7 @@ namespace HealthIQ.CommonLayer.AopContainer
         {
             if (_container.Registrations.Any(c => c.MappedToType == to && c.RegisteredType == from) == false)
             {
-                _container.RegisterType(from, to, new ContainerControlledLifetimeManager() { }, new InjectionMember[] { });
+                _container.RegisterType(from, to, new ContainerControlledLifetimeManager());
             }
         }
 
@@ -151,7 +138,7 @@ namespace HealthIQ.CommonLayer.AopContainer
         {
             if (_container.Registrations.Any(c => c.MappedToType == to && c.RegisteredType == from) == false)
             {
-                _container.RegisterType(from, to, new ContainerControlledLifetimeManager() { }, new InjectionMember[] { });
+                _container.RegisterType(from, to, new ContainerControlledLifetimeManager());
             }
         }
         /// <summary>
@@ -171,7 +158,7 @@ namespace HealthIQ.CommonLayer.AopContainer
         /// <param name="instanceName">instance name</param>
         public static void Register<T, K>(string instanceName)
         {
-            _container.RegisterType(typeof(T), typeof(K), instanceName, new ContainerControlledLifetimeManager() { }, new InjectionMember[] { });
+            _container.RegisterType(typeof(T), typeof(K), instanceName, new ContainerControlledLifetimeManager());
         }
 
         /// <summary>
@@ -181,7 +168,7 @@ namespace HealthIQ.CommonLayer.AopContainer
         /// <param name="instanceName">instance name</param>
         public static void Register<T>(string instanceName)
         {
-            _container.RegisterType(typeof(T), instanceName, new ContainerControlledLifetimeManager() { }, new InjectionMember[] { });
+            _container.RegisterType(typeof(T), instanceName, new ContainerControlledLifetimeManager());
         }
 
         /// <summary>
@@ -192,7 +179,7 @@ namespace HealthIQ.CommonLayer.AopContainer
         /// <param name="instanceNameToRegister">Object</param>
         public static void RegisterInstance<T>(string name, T instanceNameToRegister)
         {
-            _container.RegisterInstance<T>(name, instanceNameToRegister);
+            _container.RegisterInstance(name, instanceNameToRegister);
         }
 
     }

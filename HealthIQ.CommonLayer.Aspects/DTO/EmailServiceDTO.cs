@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HealthIQ.CommonLayer.Aspects.DTO
 {
     public class EmailServiceDTO
     {
         public long EmailServiceID { get; set; }
-        public Nullable<int> TemplateID { get; set; }
+        public int? TemplateID { get; set; }
         public string FromEmail { get; set; }
         public string FromName { get; set; }
         public string ToName { get; set; }
@@ -23,10 +19,10 @@ namespace HealthIQ.CommonLayer.Aspects.DTO
         public int Status { get; set; }
         public bool IsAttachment { get; set; }
         public string AttachmentFileName { get; set; }
-        public Nullable<long> CreatedBy { get; set; }
-        public System.DateTime CreatedDate { get; set; }
-        public Nullable<long> ModifyBy { get; set; }
-        public Nullable<System.DateTime> ModifiedDate { get; set; }
+        public long? CreatedBy { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public long? ModifyBy { get; set; }
+        public DateTime? ModifiedDate { get; set; }
         public string Remarks { get; set; }
     }
 }

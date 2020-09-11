@@ -1,8 +1,8 @@
-﻿using HealthIQ.CommonLayer.Aspects;
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Configuration;
 using System.Globalization;
+using System.IO;
 using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
@@ -65,7 +65,7 @@ namespace HealthIQ.CommonLayer.Aspects.Utilities
         /// <returns>returns default value</returns>
         public static T GetDefault<T>()
         {
-            return default(T);
+            return default;
         }
 
         /// <summary>
@@ -249,7 +249,7 @@ namespace HealthIQ.CommonLayer.Aspects.Utilities
         /// </summary>
         /// <param name="valuToConvert">Value to converted into integer</param>
         /// <returns>returns Integer value</returns>
-        public static Nullable<int> ConvertToInt(object valueToConvert)
+        public static int? ConvertToInt(object valueToConvert)
         {
             if (valueToConvert == null)
                 return null;
@@ -265,7 +265,7 @@ namespace HealthIQ.CommonLayer.Aspects.Utilities
         /// </summary>
         /// <param name="valuToConvert">Value to converted into long</param>
         /// <returns>returns Long value</returns>
-        public static Nullable<long> ConvertToLong(object valueToConvert)
+        public static long? ConvertToLong(object valueToConvert)
         {
             if (valueToConvert == null)
                 return null;
@@ -432,9 +432,9 @@ namespace HealthIQ.CommonLayer.Aspects.Utilities
         public static bool DeleteFile(string fileName)
         {
             bool isDeleted = false;
-            if (System.IO.File.Exists(fileName))
+            if (File.Exists(fileName))
             {
-                System.IO.File.Delete(fileName);
+                File.Delete(fileName);
                 isDeleted = true;
             }
             return isDeleted;
@@ -472,8 +472,7 @@ namespace HealthIQ.CommonLayer.Aspects.Utilities
 
             if (attributes != null && attributes.Length > 0)
                 return attributes[0].Description;
-            else
-                return value.ToString();
+            return value.ToString();
         }
 
         #endregion

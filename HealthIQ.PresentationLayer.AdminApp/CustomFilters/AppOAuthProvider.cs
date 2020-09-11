@@ -1,16 +1,13 @@
-﻿using HealthIQ.BusinessLayer.Services;
+﻿using System;
+using System.Collections.Generic;
+using System.Security.Claims;
+using System.Threading.Tasks;
 using HealthIQ.BusinessLayer.Services.Contracts;
 using HealthIQ.CommonLayer.AopContainer;
 using HealthIQ.CommonLayer.Aspects;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using System.Web;
 
 namespace HealthIQ.PresentationLayer.AdminApp.CustomFilters
 {

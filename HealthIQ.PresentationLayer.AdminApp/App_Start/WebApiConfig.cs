@@ -1,7 +1,8 @@
-﻿using Microsoft.Owin.Security.OAuth;
-using System.Configuration;
+﻿using System.Configuration;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using Microsoft.Owin.Security.OAuth;
+using Newtonsoft.Json.Serialization;
 
 namespace HealthIQ.PresentationLayer.AdminApp
 {
@@ -28,7 +29,7 @@ namespace HealthIQ.PresentationLayer.AdminApp
             // WebAPI when dealing with JSON & JavaScript!
             // Setup json serialization to serialize classes to camel (std. Json format)
             var formatter = GlobalConfiguration.Configuration.Formatters.JsonFormatter;
-            formatter.SerializerSettings.ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver();
+            formatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
             // Adding JSON type web api formatting.
             config.Formatters.Clear();
