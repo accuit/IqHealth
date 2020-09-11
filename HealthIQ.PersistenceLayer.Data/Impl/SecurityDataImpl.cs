@@ -21,46 +21,9 @@ namespace HealthIQ.PersistenceLayer.Data.Impl
         }
         public List<UserRole> GetUserRoles(int userId)
         {
-            var result = HIQAdminContext.UserRoles.Where(x => x.UserID == userId).ToList();
-            return result;
+            var ur = HIQAdminContext.UserRoles.Where(x => x.UserID == userId).ToList();
+            return ur;
         }
-        /// <summary>
-        /// Method to fetch user authorization parameters for various modules in application
-        /// </summary>
-        /// <param name="userID">user ID</param>
-        /// <returns>returns entity collection</returns>
-        //public IList<SecurityAspect> GetUserAuthorization(long userID)
-        //{
-        //    return (from urm in HIQAdminContext.UserRoleModulePermissions
-        //            join rm in HIQAdminContext.RoleModules on urm.RoleModuleID equals rm.RoleModuleID
-        //            join m in HIQAdminContext.Modules on rm.ModuleID equals m.ModuleID
-        //            join rl in HIQAdminContext.RoleMasters on rm.RoleID equals rl.RoleID
-        //            join ur in HIQAdminContext.UserRoles on rl.RoleID equals ur.RoleID
-        //            join um in HIQAdminContext.UserMasters on ur.UserID equals um.UserID
-        //            where um.UserID == userID && !um.IsDeleted && !m.IsDeleted && !rl.IsDeleted && urm.PermissionValue.Equals("1")
-        //            && ur.IsActive && !ur.IsDeleted
-        //            orderby urm.UserRolePermissionID
-        //            select new SecurityAspect()
-        //            {
-        //                ModuleID = m.ModuleID,
-        //                PermissionID = urm.PermissionID,
-        //                PermissionValue = urm.PermissionValue,
-        //                RoleID = ur.RoleID,
-        //                UserID = um.UserID,
-        //                UserRolePermissionID = urm.UserRolePermissionID,
-        //                ModuleCode = m.ModuleCode.HasValue ? m.ModuleCode.Value : 0,
-        //            }).ToList();
-
-        //}
-
-
-        #region Forgot Password Functions
-        /// <summary>
-        /// Validate Employee if given Employee Code is correct or not
-        /// </summary>
-        /// <param name="EmplCode">Employee Code of User</param>
-        /// <param name="Type">Validation type (Only Employee Code, Employee Code and Email etc)</param>
-        /// <returns></returns>
         //public bool ValidateEmployee(long userID, AspectEnums.EmployeeValidationType Type)
         //{
         //    bool IsValid = false;
@@ -160,7 +123,7 @@ namespace HealthIQ.PersistenceLayer.Data.Impl
                 //// Check Max AttUserts
                 if (User1 != null)
                 {
-                    int TodaysAttUserts = HIQAdminContext.OTPMasters.Where(k => k.UserID == UserID && k.CreatedDate >= Today && k.CreatedDate < Tomorrow).Count();
+                    int TodaysAttUserts = HIQAdminContext.OTPMasters.Count(k => k.UserID == UserID && k.CreatedDate >= Today && k.CreatedDate < Tomorrow);
                     int PasswordAttUserts = Convert.ToInt32(AppUtil.GetAppSettings(AspectEnums.ConfigKeys.FotgotPasswordAttempts));
                     IsValid = TodaysAttUserts < PasswordAttUserts;
                 }
@@ -178,7 +141,7 @@ namespace HealthIQ.PersistenceLayer.Data.Impl
 
                     DateTime LastAttUsertStart = Now.Subtract(new TimeSpan(Int32.Parse(TimeArr[0]), Int32.Parse(TimeArr[1]), Int32.Parse(TimeArr[2])));
 
-                    IsValid = HIQAdminContext.OTPMasters.Where(k => k.UserID == UserID && k.CreatedDate >= LastAttUsertStart && k.CreatedDate < Now).Count() <= 0;
+                    IsValid = !HIQAdminContext.OTPMasters.Where(k => k.UserID == UserID && k.CreatedDate >= LastAttUsertStart && k.CreatedDate < Now).Any();
 
                 }
 
@@ -278,7 +241,5 @@ namespace HealthIQ.PersistenceLayer.Data.Impl
 
             return false;
         }
-
-        #endregion
     }
 }

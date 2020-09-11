@@ -71,12 +71,13 @@ namespace HealthIQ.PresentationLayer.AdminApp.CustomFilters
                 if (user != null)
                 {
                     var identity = new GenericIdentity(username);
+                    var roles = SecurityBusinessInstance.GetUserRoleNames(user.UserID);
                     identity.AddClaim(new Claim("Email", user.Email));
                     identity.AddClaim(new Claim(ClaimTypes.Name, user.FirstName + " " + user.LastName));
+                    identity.AddClaim(new Claim(ClaimTypes.Role, roles[0]));
                     identity.AddClaim(new Claim("ID", Convert.ToString(user.UserID)));
 
-                    var userRoles = user.UserRoles;
-                    IPrincipal principal = new GenericPrincipal(identity, userRoles.Select(x => x.RoleMaster.Name).ToArray());
+                    IPrincipal principal = new GenericPrincipal(identity, roles);
                     Thread.CurrentPrincipal = principal;
                     if (HttpContext.Current != null)
                     {

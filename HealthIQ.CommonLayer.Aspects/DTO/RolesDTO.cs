@@ -34,13 +34,9 @@ namespace HealthIQ.CommonLayer.Aspects.DTO
         public DateTime? CreatedDate { get; set; }
 
         public DateTime? ModifiedDate { get; set; }
-
-        public  List<RoleModuleDTO> RoleModules { get; set; }
-
-        public  List<UserRoleDTO> UserRoles { get; set; }
     }
 
-    public  class UserRoleDTO
+    public class UserRoleDTO
     {
         public int UserRoleID { get; set; }
         public int RoleID { get; set; }
@@ -51,11 +47,10 @@ namespace HealthIQ.CommonLayer.Aspects.DTO
         public int? ModifiedBy { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? ModifiedDate { get; set; }
-        //public  RoleMasterDTO RoleMaster { get; set; }
-        //public  UserMasterDTO UserMaster { get; set; }
+        public string Role { get; set; }
     }
 
-    public  class RoleModuleDTO
+    public class RoleModuleDTO
     {
         public int RoleModuleID { get; set; }
 

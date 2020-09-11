@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Http;
+using System.Web.Security;
 using HealthIQ.CommonLayer.Aspects;
 using HealthIQ.CommonLayer.Aspects.DTO;
 using HealthIQ.CommonLayer.Aspects.Utilities;
@@ -24,28 +25,6 @@ namespace HealthIQ.PresentationLayer.AdminApp.Controllers
             try
             {
                 response.SingleResult = UserBusinessInstance.GetUsersByStatus(type);
-                response.StatusCode = "200";
-                response.IsSuccess = true;
-            }
-            catch (Exception ex)
-            {
-                response.SingleResult = null;
-                response.StatusCode = "500";
-                response.IsSuccess = false;
-                response.Message = ex.Message;
-            }
-            return response;
-        }
-
-        [HttpGet]
-        [BaseAuthentication]
-        [Route("get-user-profile/{id}")]
-        public JsonResponse<UserMasterDTO> GetUsersByID(int id)
-        {
-            JsonResponse<UserMasterDTO> response = new JsonResponse<UserMasterDTO>();
-            try
-            {
-                response.SingleResult = UserBusinessInstance.GetUserByID(id);
                 response.StatusCode = "200";
                 response.IsSuccess = true;
             }
@@ -83,50 +62,6 @@ namespace HealthIQ.PresentationLayer.AdminApp.Controllers
                 response.Message = "Username or Email can not be empty.";
             }
             ActivityLog.SetLog("[Finished] UserMasterLogin.", LogLoc.INFO);
-            return response;
-        }
-
-        [HttpPost]
-        [Route("register-user")]
-        [BaseAuthentication]
-        [AuthorizePage(Roles = "Admin")]
-        public JsonResponse<int> RegisterUserMasterDTO(UserMasterDTO user)
-        {
-            JsonResponse<int> response = new JsonResponse<int>();
-
-            var User = UserBusinessInstance.GetUserByEmail(user.Email);
-            if (User == null)
-            {
-                try
-                {
-                    user.UserStatus = (int)AspectEnums.AccountStatus.Pending;
-                    response.SingleResult = UserBusinessInstance.RegisterUser(user);
-                    response.StatusCode = response.SingleResult > 0 ? "200" : "500";
-                    response.IsSuccess = response.SingleResult > 0 ? true : false;
-                    response.Message = "User successfully submitted.";
-                }
-                catch (FormattedDbEntityValidationException ex)
-                {
-                    response.IsSuccess = false;
-                    response.StatusCode = "500";
-                    response.Message = string.Format(Messages.Exception, ex.Message, ex.InnerException, ex.StackTrace);
-                }
-                catch (Exception ex)
-                {
-                    response.IsSuccess = false;
-                    response.StatusCode = "500";
-                    response.Message = string.Format(Messages.Exception, ex.Message, ex.InnerException, ex.StackTrace);
-                }
-
-            }
-            else
-            {
-                response.SingleResult = 0;
-                response.IsSuccess = false;
-                response.StatusCode = "200";
-                response.Message = string.Format("User with email address {0} already exists. Try again.", user.Email);
-
-            }
             return response;
         }
 

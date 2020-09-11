@@ -22,12 +22,12 @@ namespace HealthIQ.CommonLayer.Aspects.Utilities
         /// <returns>returns application settings value</returns>
         public static string GetAppSettings(AspectEnums.ConfigKeys key)
         {
-            string value = string.Empty;
+            string value;
             try
             {
                 value = ConfigurationManager.AppSettings[key.ToString()];
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 value = string.Empty;
                 //LogTraceEngine.WriteLog(ex.Message);
@@ -44,12 +44,12 @@ namespace HealthIQ.CommonLayer.Aspects.Utilities
         /// <returns>returns application settings value</returns>
         public static string GetAppSettings(string key)
         {
-            string value = string.Empty;
+            string value;
             try
             {
                 value = ConfigurationManager.AppSettings[key];
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 value = string.Empty;
                 //LogTraceEngine.WriteLog(ex.Message);
@@ -254,8 +254,7 @@ namespace HealthIQ.CommonLayer.Aspects.Utilities
             if (valueToConvert == null)
                 return null;
 
-            int defaultValue = 0;
-            int.TryParse(valueToConvert.ToString(), out defaultValue);
+            int.TryParse(valueToConvert.ToString(), out var defaultValue);
 
             return defaultValue;
         }
@@ -270,8 +269,7 @@ namespace HealthIQ.CommonLayer.Aspects.Utilities
             if (valueToConvert == null)
                 return null;
 
-            long defaultValue = 0;
-            long.TryParse(valueToConvert.ToString(), out defaultValue);
+            long.TryParse(valueToConvert.ToString(), out var defaultValue);
 
             return defaultValue;
         }
@@ -299,7 +297,7 @@ namespace HealthIQ.CommonLayer.Aspects.Utilities
         /// <returns>returns guid value or null</returns>
         public static Guid? ConvertToGuid(object valueToConvert)
         {
-            Guid defaultValue = Guid.Empty;
+            Guid defaultValue;
             if (valueToConvert != null && Guid.TryParse(valueToConvert.ToString(), out defaultValue))
             {
                 if (defaultValue != Guid.Empty)
@@ -353,11 +351,11 @@ namespace HealthIQ.CommonLayer.Aspects.Utilities
         public static string GetUniqueKey()
         {
             int maxSize = 10;
-            char[] chars = new char[62];
+            char[] chars;
             string a;
             a = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
             chars = a.ToCharArray();
-            int size = maxSize;
+            int size;
             byte[] data = new byte[1];
             RNGCryptoServiceProvider crypto = new RNGCryptoServiceProvider();
             crypto.GetNonZeroBytes(data);

@@ -15,7 +15,7 @@ namespace HealthIQ.PersistenceLayer.Data.Impl
         {
             email = EncryptionEngine.EncryptString(email);
             password = EncryptionEngine.EncryptString(password);
-            return HIQAdminContext.UserMasters.FirstOrDefault(x => x.Email == email && x.Password == password);
+            return HIQAdminContext.UserMasters.Include("UserRoles").FirstOrDefault(x => x.Email == email && x.Password == password);
         }
 
         public int RegisterUser(UserMaster user)

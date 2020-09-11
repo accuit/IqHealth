@@ -303,6 +303,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\DiagnosticReports\" />
+    <Folder Include="Extensions\" />
     <Folder Include="Views\Course\" />
   </ItemGroup>
   <ItemGroup>

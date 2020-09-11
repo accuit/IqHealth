@@ -38,7 +38,7 @@ namespace HealthIQ.PresentationLayer.AdminApp.Controllers
         public JsonResponse<IList<BlogMasterDTO>> GetAllBlogs()
         {
             JsonResponse<IList<BlogMasterDTO>> response = new JsonResponse<IList<BlogMasterDTO>>();
-            var UserMasterDTO = new List<UserMasterDTO>();
+            new List<UserMasterDTO>();
             try
             {
                 response.SingleResult = AdminBusinessInstance.GetAllBlogs();

@@ -7,6 +7,7 @@ namespace HealthIQ.PersistenceLayer.Data.AdminEntity
         public HIQAdminEntities()
             : base("name=HIQAdminEntities")
         {
+            //this.Configuration.LazyLoadingEnabled = false;
         }
 
         public virtual DbSet<AddressMaster> AddressMasters { get; set; }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using HealthIQ.BusinessLayer.Base;
 using HealthIQ.BusinessLayer.Services.Contracts;
 using HealthIQ.CommonLayer.Aspects;
@@ -25,6 +26,11 @@ namespace HealthIQ.BusinessLayer.ServiceImpl
             List<UserRoleDTO> roles = new List<UserRoleDTO>();
             ObjectMapper.Map(SecurityRepository.GetUserRoles(userId), roles);
             return roles;
+        }
+
+        public string[] GetUserRoleNames(int userId)
+        {
+            return SecurityRepository.GetUserRoles(userId).Select(x => x.RoleMaster.Name).ToArray();
         }
         public bool SaveOTP(OTPDTO otp)
         {

@@ -17,7 +17,7 @@ namespace HealthIQ.PresentationLayer.AdminApp.Controllers
         public JsonResponse<IList<UserMasterDTO>> GetStudents()
         {
             JsonResponse<IList<UserMasterDTO>> response = new JsonResponse<IList<UserMasterDTO>>();
-            var UserMasterDTO = new List<UserMasterDTO>();
+            new List<UserMasterDTO>();
             try
             {
                 response.SingleResult = StudentBusinessInstance.GetAllStudents();
@@ -40,7 +40,6 @@ namespace HealthIQ.PresentationLayer.AdminApp.Controllers
         public JsonResponse<UserMasterDTO> GetStudentProfile(int id)
         {
             JsonResponse<UserMasterDTO> response = new JsonResponse<UserMasterDTO>();
-            var UserMasterDTO = new UserMasterDTO();
             try
             {
                 response.SingleResult = StudentBusinessInstance.GetStudentProfile(id);
@@ -106,7 +105,7 @@ namespace HealthIQ.PresentationLayer.AdminApp.Controllers
         public JsonResponse<IList<StudentInvoiceDTO>> GetStudentInvoices(int userId)
         {
             JsonResponse<IList<StudentInvoiceDTO>> response = new JsonResponse<IList<StudentInvoiceDTO>>();
-            var StudentInvoiceDTO = new List<StudentInvoiceDTO>();
+            new List<StudentInvoiceDTO>();
             try
             {
                 response.SingleResult = StudentBusinessInstance.GetStudentInvoices(userId);
@@ -129,7 +128,7 @@ namespace HealthIQ.PresentationLayer.AdminApp.Controllers
         public JsonResponse<IList<StudentInvoiceDTO>> GetAllInvoices()
         {
             JsonResponse<IList<StudentInvoiceDTO>> response = new JsonResponse<IList<StudentInvoiceDTO>>();
-            var StudentInvoiceDTO = new List<StudentInvoiceDTO>();
+            new List<StudentInvoiceDTO>();
             try
             {
                 response.SingleResult = StudentBusinessInstance.GetAllInvoices();
@@ -152,7 +151,7 @@ namespace HealthIQ.PresentationLayer.AdminApp.Controllers
         public JsonResponse<StudentInvoiceDTO> GetInvoiceDetails(int Id)
         {
             JsonResponse<StudentInvoiceDTO> response = new JsonResponse<StudentInvoiceDTO>();
-            var StudentInvoiceDTO = new List<StudentInvoiceDTO>();
+            new List<StudentInvoiceDTO>();
             try
             {
                 response.SingleResult = StudentBusinessInstance.GetInvoiceDetails(Id);
