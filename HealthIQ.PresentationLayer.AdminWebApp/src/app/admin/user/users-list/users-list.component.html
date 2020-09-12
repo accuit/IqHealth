@@ -8,6 +8,7 @@
             </div>
           </div>
             <div class="card-body table-responsive">
+
                 <table class="table table-hover table-shopping">
                         <thead class="text-warning">
                             <tr>
@@ -28,7 +29,7 @@
                               <button type="button" rel="tooltip" class="btn btn-link btn-success">
                                <a routerLink ='/user/update-user//{{row.userID}}'><i class="material-icons">edit</i></a> 
                             </button>
-                            <button type="button" rel="tooltip" class="btn btn-link btn-danger" (click)='deleteuser(row.userID)'>
+                            <button type="button" rel="tooltip" class="btn btn-link btn-danger" (click)='deleteuser(row)'>
                                 <i class="material-icons">close</i>
                                 </button>
                             </td>
@@ -39,3 +40,4 @@
         </div>
     </div>
 </div>
+

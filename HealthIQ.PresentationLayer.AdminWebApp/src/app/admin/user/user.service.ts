@@ -33,7 +33,7 @@ export class UserService {
   }
 
   getStudents(): Observable<any> {
-    return this.httpClient.get(this.baseUrl + 'student/get/', { headers: this.headers })
+    return this.httpClient.get(this.baseUrl + 'get-all-users/', { headers: this.headers })
       .pipe(map((res: APIResponse) => {
         let list = null;
         if (res.isSuccess) {
