@@ -48,7 +48,7 @@ export class CreateUserComponent extends BaseFormValidationComponent implements 
     {
       //this.btnText = 'Update User';
       this.IsEditform = true; // set true for edit form
-      this.service.getStudentById(+id).subscribe(res => {
+      this.service.getUserById(+id).subscribe(res => {
         this.selectedStudent = res;
         // this.selectedStudent = this.students.find(x=>x.userID == +id);
         console.log(this.selectedStudent);
@@ -91,6 +91,7 @@ export class CreateUserComponent extends BaseFormValidationComponent implements 
     this.inProgress = true;
     this.service.addUpdateUser(this.formGroup.value)
       .subscribe((res: APIResponse) => {
+        debugger;
         if (res) {
           this.inProgress = false;
           this.router.navigate(['user/users-list']);

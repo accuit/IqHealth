@@ -1,8 +1,114 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header card-header-icon card-header-rose">
+                <div class="card-icon">
+                    <i class="material-icons">perm_identity</i>
+                </div>
+                <h4 class="card-title"> <strong> User Profile </strong>
+                </h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <strong>First Name :</strong>   {{data.firstName}}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <strong>Last Name :</strong> {{data.lastName}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <strong>Email Address :</strong>   {{data.email}}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <strong>Mobile No :</strong> {{data.mobile}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <strong>Country  :</strong>   {{data.country}}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <strong>City  :</strong> {{data.city}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <strong>Address :</strong>   {{data.address}}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <strong>Postal Code :</strong> {{data.pin}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="card-body table-responsive">
+                <table class="table table-hover table-shopping">
+                        <thead class="">
+                                <tr>
+                                 <strong>First Name :</strong>   {{data.firstName}}
+                                </tr>
+                                <tr>
+                                    <strong>Last Name :</strong>
+                                     {{data.lastName}}
+                                </tr>
+                                <tr>
+                                    <strong>Email Address : </strong>
+                                    {{data.email}}
+                                </tr>
+                                <tr>
+                                    <strong>
+                                 Mobile No : 
+                                    </strong>{{data.mobile}}
+                                </tr>
+                                <tr> <strong>
+                                    Address : </strong>{{data.address}}
+                                </tr>
+                                <tr>
+                                    <strong>
+                                    Postal Code : </strong>{{data.pin}}
+                                </tr>
+                                <tr> <strong>
+                                    Country : </strong>{{data.Country}}
+                                </tr>
+                                <tr>
+                                    <strong>
+                                    City : </strong>{{data.City}}
+                                </tr>
+                            </thead>
+                </table>
+            </div> -->
+            <div class="clearfix"></div>
+            <div id="aligndiv">
+                <button class="btn btn-rose" mat-dialog-close tabindex="-1"> Close </button>
 
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+<!-- 
 <h2 mat-dialog-title> Details of Student</h2>
 
 <mat-dialog-content>
-   <table>
+   <table class="table table-responsive">
        <thead>
            <tr>
             First Name : {{data.firstName}}
@@ -24,7 +130,4 @@
            </tr>
        </thead>
    </table>
-</mat-dialog-content>
-<mat-dialog-actions align="center">
-    <button mat-raised-button color="primary" mat-dialog-close tabindex="-1"> Close </button>
-</mat-dialog-actions>
+</mat-dialog-content> -->

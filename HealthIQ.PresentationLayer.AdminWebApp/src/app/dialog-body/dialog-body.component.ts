@@ -20,7 +20,7 @@ export class DialogBodyComponent {
       this.data = injecteddata
       
     }
-    //this.dialogRef.updateSize('300vw','300vw')
+//    this.dialogRef.updateSize('50%','50%')
   }
 
   onConfirmClick(): void {

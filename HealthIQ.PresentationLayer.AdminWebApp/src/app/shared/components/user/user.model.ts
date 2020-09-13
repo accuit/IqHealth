@@ -23,6 +23,8 @@ export class UserMaster {
     isCustomer: boolean;
     isEmployee: boolean;
     isAdmin: boolean;
+    isDeleted:boolean;
+    UserRole : UserRole;
 }
 
 export class UserRole {
