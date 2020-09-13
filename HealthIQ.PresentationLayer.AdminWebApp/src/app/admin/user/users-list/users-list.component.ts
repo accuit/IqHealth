@@ -32,26 +32,22 @@ export class UsersListComponent implements OnInit {
   selectedrow : UserMaster;
 
   ngOnInit(): void {
-
     this.service.getUsers().subscribe(res => {
       this.students = res;
-  //    console.log(this.students.filter(x=>x.isDeleted == false));
       this.columns = ['ID', 'First Name', 'Last Name', 'Email Address', 'Mobile No.','Action'];
     }) 
   }
-  openDialog(row: UserMaster)
-  {
+  //calling this method for popup view display using matdialog
+  openDialog(row: UserMaster){
     const dialogConfig = new MatDialogConfig();
-     dialogConfig.disableClose = true;
+    dialogConfig.disableClose = true;
     dialogConfig.data = row;
     dialogConfig.width = '60%';
-
     let dialogRef = this.dialog.open(DialogBodyComponent,dialogConfig);
   }
 
   // delete the user data
-  deleteuser(SelectedrowId)
-  { 
+  deleteuser(SelectedrowId){
     this.service.deleteUser(SelectedrowId)
       .subscribe((res: APIResponse) => {
         if (res) {

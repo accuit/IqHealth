@@ -1,3 +1,4 @@
+<ipx-loader></ipx-loader>
 <form [formGroup]="formGroup">
     <div class="row">
         <div class="col-md-8">
@@ -114,8 +115,7 @@
                     <br>
                     <div class="clearfix"></div>
                     <button *ngIf="!inProgress" disabled="false" mat-raised-button type="submit" class="btn btn-rose"
-                        (click)="onSubmit()">
-                        {{IsEditform ? 'Update' : 'Submit'}} User
+                        (click)="onSubmit()"> {{IsEditform ? 'Update' : 'Submit'}} User
                         </button>
                     <a *ngIf="inProgress" href="#paper-kit" class="btn btn-round btn-rose">
                         <div class="uil-reload-css reload-small">

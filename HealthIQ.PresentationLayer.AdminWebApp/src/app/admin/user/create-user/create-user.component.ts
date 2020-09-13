@@ -25,7 +25,6 @@ export class CreateUserComponent extends BaseFormValidationComponent implements 
   isEmployee = false;
   IsEditform: boolean = false;
   selectedStudent: UserMaster;
-  btnText: string = 'Update User';
 
   paymentModes = [{ id: 1, name: 'Cash' }, { id: 2, name: 'Card' }, { id: 3, name: 'UPI' }];
   constructor(
@@ -37,39 +36,26 @@ export class CreateUserComponent extends BaseFormValidationComponent implements 
     private activaterouter: ActivatedRoute,
     private router: Router) {
     super()
-
-
   }
 
   ngOnInit(): void {
     this.createForm();
     const id = this.activaterouter.snapshot.params.id;
-    if (id) 
-    {
-      //this.btnText = 'Update User';
+    if (id) {
       this.IsEditform = true; // set true for edit form
       this.service.getUserById(+id).subscribe(res => {
         this.selectedStudent = res;
-        // this.selectedStudent = this.students.find(x=>x.userID == +id);
-        console.log(this.selectedStudent);
-        if (this.selectedStudent.isStudent) {
-          this.formGroup.patchValue({ userType: '1' })
-        }
+        if      (this.selectedStudent.isStudent)  { this.formGroup.patchValue({ userType: '1' }) }
         else if (this.selectedStudent.isEmployee) { this.formGroup.patchValue({ userType: '2' }) }
         else if (this.selectedStudent.isCustomer) { this.formGroup.patchValue({ userType: '3' }) }
         this.formGroup.patchValue(this.selectedStudent);
       })
      }
      else {
-       //  create component
-       this.IsEditform = false; // set true for edit form
-
-      //this.btnText = 'Submit User';
+       this.IsEditform = false; // set false for create form
     }
   }
   ngOnChanges() {
-
-
   }
 
   get f() {
@@ -81,6 +67,7 @@ export class CreateUserComponent extends BaseFormValidationComponent implements 
     return this.isVerified;
   };
 
+  // submit user to service
   onSubmit(): any {
     this.isSubmitted = true;
     console.log(this.formGroup.value);
