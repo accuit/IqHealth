@@ -21,6 +21,18 @@
                               <td>{{ row.lastName}}</td>
                               <td>{{ row.email}}</td>
                               <td>{{ row.mobile}}</td>
+                              <td class="td-actions">
+                                <button type="button" rel="tooltip" class="btn btn-info btn-link" (click)="openDialog(row)">
+                                  <i class="material-icons">person</i>
+                              </button>
+                              <button type="button" rel="tooltip" class="btn btn-link btn-success">
+                               <a routerLink ='/user/update-user//{{row.userID}}'>
+                                <i class="material-icons">edit</i></a> 
+                            </button>
+                            <button type="button" rel="tooltip" class="btn btn-link btn-danger" (click)='deleteuser(row.userID)'>
+                                <i class="material-icons">close</i>
+                                </button>
+                            </td>
                           </tr>
                       </tbody>
                 </table>
