@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BaseFormValidationComponent } from 'src/app/shared/components/base-form-validation/base-form-validation.component';
 import { AlertTypeEnum, UserTypeEnum } from 'src/app/core/enums';
@@ -7,19 +7,25 @@ import { UserMaster } from 'src/app/shared/components/user/user.model';
 import { UserService } from '../../user/user.service';
 import { APIResponse, FileToUpload } from 'src/app/core/models';
 import { AuthService } from 'src/app/core/auth/auth.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-create-user',
   templateUrl: './create-user.component.html',
   styleUrls: ['./create-user.component.css']
 })
-export class CreateUserComponent extends BaseFormValidationComponent implements OnInit {
+export class CreateUserComponent extends BaseFormValidationComponent implements OnInit, OnChanges {
   formGroup: FormGroup;
   isVerified = false;
   file: any;
   errMessage: any;
   image: string;
   isEmployee = false;
+  IsEditform: boolean = false;
+  selectedStudent: UserMaster;
+  btnText: string = 'Update User';
 
   paymentModes = [{ id: 1, name: 'Cash' }, { id: 2, name: 'Card' }, { id: 3, name: 'UPI' }];
   constructor(
@@ -27,12 +33,43 @@ export class CreateUserComponent extends BaseFormValidationComponent implements 
     private readonly userService: UserService,
     private readonly authService: AuthService,
     private formBuilder: FormBuilder,
-    private readonly alert: AlertService) {
+    private readonly alert: AlertService,
+    private activaterouter: ActivatedRoute,
+    private router: Router) {
     super()
+
+
   }
 
   ngOnInit(): void {
     this.createForm();
+    const id = this.activaterouter.snapshot.params.id;
+    if (id) 
+    {
+      //this.btnText = 'Update User';
+      this.IsEditform = true; // set true for edit form
+      this.service.getStudentById(+id).subscribe(res => {
+        this.selectedStudent = res;
+        // this.selectedStudent = this.students.find(x=>x.userID == +id);
+        console.log(this.selectedStudent);
+        if (this.selectedStudent.isStudent) {
+          this.formGroup.patchValue({ userType: '1' })
+        }
+        else if (this.selectedStudent.isEmployee) { this.formGroup.patchValue({ userType: '2' }) }
+        else if (this.selectedStudent.isCustomer) { this.formGroup.patchValue({ userType: '3' }) }
+        this.formGroup.patchValue(this.selectedStudent);
+      })
+     }
+     else {
+       //  create component
+       this.IsEditform = false; // set true for edit form
+
+      //this.btnText = 'Submit User';
+    }
+  }
+  ngOnChanges() {
+
+
   }
 
   get f() {
@@ -46,6 +83,7 @@ export class CreateUserComponent extends BaseFormValidationComponent implements 
 
   onSubmit(): any {
     this.isSubmitted = true;
+    console.log(this.formGroup.value);
     if (this.formGroup.invalid) {
       this.validateAllFormFields(this.formGroup);
       return;
@@ -55,6 +93,7 @@ export class CreateUserComponent extends BaseFormValidationComponent implements 
       .subscribe((res: APIResponse) => {
         if (res) {
           this.inProgress = false;
+          this.router.navigate(['user/users-list']);
           this.alert.showAlert({ alertType: AlertTypeEnum.success, text: res.message });
         }
         this.inProgress = false;
@@ -102,29 +141,29 @@ export class CreateUserComponent extends BaseFormValidationComponent implements 
     }
   }
 
-    createForm() {
-      this.formGroup = this.formBuilder.group({
-        firstName: ['', [Validators.required]],
-        lastName: ['', [Validators.required]],
-        email: ['', [Validators.required]],
-        mobile: ['', [Validators.required]],
-        userCode: [''],
-        password: ['123456'],
-        imagePath: [''],
-        image: [''],
-        status: [1],
-        pin: [''],
-        address: [''],
-        city: [''],
-        state: [''],
-        country: [1],
-        userID: [''],
-        userType: ['', Validators.required],
-        isStudent: [],
-        isCustomer: [],
-        isEmployee: [],
-        isAdmin: [],
-        createdDate: ['']
-      });
-    }
+  createForm() {
+    this.formGroup = this.formBuilder.group({
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
+      email: ['', [Validators.required]],
+      mobile: ['', [Validators.required]],
+      userCode: [''],
+      password: ['123456'],
+      imagePath: [''],
+      image: [''],
+      status: [1],
+      pin: [''],
+      address: [''],
+      city: [''],
+      state: [''],
+      country: [1],
+      userID: [''],
+      userType: ['', Validators.required],
+      isStudent: [],
+      isCustomer: [],
+      isEmployee: [],
+      isAdmin: [],
+      createdDate: ['']
+    });
   }
+}
