@@ -61,7 +61,7 @@
     "jqvmap": "1.5.1",
     "js-base64": "^2.6.0",
     "jwt-decode": "^2.2.0",
-    "moment": "2.24.0",
+    "moment": "2.29.4",
     "moment-timezone": "0.5.27",
     "ng2-nouislider": "1.8.2",
     "ng2-select": "2.0.0",
